@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from './data/index.js';
 
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_historie_master_v7_final';
+const STORAGE_KEY = 'hf_historie_master_v8_stable';
 
 const getYearFromDate = (dateStr) => {
   if (!dateStr) return 0;
@@ -323,8 +323,7 @@ const App = () => {
 
   const handleRecord = (id, ok) => {
     setStats(prev => {
-      // Access count and correct properties from the entry after casting to avoid 'unknown' type errors
-      const s = (prev[id] || { count: 0, correct: 0 }) as { count: number; correct: number };
+      const s = prev[id] || { count: 0, correct: 0 };
       return { ...prev, [id]: { count: s.count + 1, correct: s.correct + (ok ? 1 : 0) } };
     });
   };
@@ -345,11 +344,11 @@ const App = () => {
     let totalAttempts = 0;
     let totalCorrect = 0;
     
-    relevantEntries.forEach(([_, val]) => {
-      // Cast val to any to resolve TypeScript 'unknown' type error when accessing count and correct properties
-      const entry = val as any;
-      totalAttempts += (entry.count || 0);
-      totalCorrect += (entry.correct || 0);
+    relevantEntries.forEach(([_, v]) => {
+      // Cast v to the expected shape to fix property access on 'unknown' error
+      const val = v as { count: number; correct: number };
+      totalAttempts += (val.count || 0);
+      totalCorrect += (val.correct || 0);
     });
     
     return totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
@@ -362,7 +361,7 @@ const App = () => {
           <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-xl">H</div>
           <div>
             <h1 className="text-3xl font-black italic text-slate-900 tracking-tighter leading-none">HF <span className="text-indigo-600">Historie</span> Master</h1>
-            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v8.0 • GitHub Stable Build</p>
+            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v8.1 • Stable GitHub Build</p>
           </div>
         </div>
         <div className="flex items-center gap-8">
@@ -470,7 +469,7 @@ const App = () => {
       </main>
 
       <footer className="bg-white border-t py-16 px-10 text-center relative z-20">
-        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision V8.0 • GitHub Stable Build</p>
+        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision v8.1 • Stable GitHub Build</p>
       </footer>
     </div>
   );
