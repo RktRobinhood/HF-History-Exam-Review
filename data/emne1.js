@@ -1,97 +1,86 @@
 export const emne1_entries = [
   // --- TRADITIONEL IDENTITET (LARS RASMUSSEN & BONDESAMFUNDET) ---
   { id: 't1_1', topicId: '1', type: 'concept', title: 'Det Feudale Samfund', description: 'Stændersamfund baseret på jord og pligt.', questions: [{ question: 'Hvad var magtgrundlaget i feudalsamfundet?', options: ['Penge', 'Jord', 'Internettet', 'Våben'], correctAnswer: 'Jord' }] },
-  { id: 't1_b1', topicId: '1', type: 'concept', title: 'Nærestanden', description: 'Bønder og håndværkere.', questions: [{ question: 'Hvem udgjorde nærestanden?', options: ['Adel', 'Bønder/Håndværkere', 'Gejstlige', 'Konger'], correctAnswer: 'Bønder/Håndværkere' }] },
+  { id: 't1_b1', topicId: '1', type: 'concept', title: 'Nærestanden', description: 'Bønder og håndværkere i det feudale samfund.', questions: [{ question: 'Hvem udgjorde nærestanden?', options: ['Adel', 'Bønder/Håndværkere', 'Gejstlige', 'Konger'], correctAnswer: 'Bønder/Håndværkere' }] },
   { id: 't1_b2', topicId: '1', type: 'concept', title: 'Patriarkatet i Bondesamfundet', description: 'Faderen som enevældig hersker over husstanden.', questions: [{ question: 'Hvilken magt havde husbonden i 1800-tallet?', options: ['Absolut autoritet over børn og tyende', 'Han delte magten med konen', 'Han var underlagt børnene', 'Han havde ingen magt'], correctAnswer: 'Absolut autoritet over børn og tyende' }] },
-  { id: 't1_disciplin', topicId: '1', type: 'concept', title: 'Fysisk afstraffelse (Riset/Kæppen)', description: 'Normal pædagogisk metode i det traditionelle samfund.', questions: [{ question: 'Hvordan så man på afstraffelse af børn ifølge Lars Rasmussen?', options: ['Det var nødvendigt for at lære dem respekt', 'Det var forbudt', 'Det var kun for sjov', 'Børn slog forældrene'], correctAnswer: 'Det var nødvendigt for at lære dem respekt' }] },
-  { id: 't1_sleeping', topicId: '1', type: 'concept', title: 'Sovevaner i Bondestuen', description: 'Generationer sov sammen, ofte i samme seng.', questions: [{ question: 'Lars Rasmussen sov sammen med hvem?', options: ['Sin farmor', 'Sine venner', 'Hundene', 'Alene'], correctAnswer: 'Sin farmor' }] },
-  { id: 't1_fear', topicId: '1', type: 'concept', title: 'Ærefrygt vs. Frygt', description: 'Børns forhold til faderen var præget af en blanding af kærlighed og terror.', questions: [{ question: 'Hvordan beskriver Lars sit forhold til sin far?', options: ['Ærefrygt blandet med skræk', 'Venskabeligt', 'Ligeberettiget', 'De talte aldrig sammen'], correctAnswer: 'Ærefrygt blandet med skræk' }] },
-  { id: 't1_mother', topicId: '1', type: 'concept', title: 'Moderens rolle i bondesamfundet', description: 'Mægler mellem faderens strenghed og børnenes behov.', questions: [{ question: 'Hvad var moderens funktion i Lars Rasmussens hjem?', options: ['Mægler og fortrolig for børnene', 'Hun var strengere end faderen', 'Hun arbejdede udenfor hjemmet', 'Hun bestemte over faderen'], correctAnswer: 'Mægler og fortrolig for børnene' }] },
-  { id: 't1_silence', topicId: '1', type: 'concept', title: 'Børns synlighed', description: '"De unge skal man lære, og de gamle skal man ære".', questions: [{ question: 'Hvad forventedes der af børn når faderen var til stede?', options: ['At de forholdt sig i ro og var lydige', 'At de legede vildt', 'At de sang sange', 'At de holdt taler'], correctAnswer: 'At de forholdt sig i ro og var lydige' }] },
+  { id: 't1_lars_1', topicId: '1', type: 'concept', title: 'Lars Rasmussens opvækst', description: 'En kilde til livet som barn af en fæstebonde på Falster i 1840erne.', questions: [
+    { question: 'Hvor sov Lars Rasmussen som barn?', options: ['I stuen sammen med hele familien', 'I sit eget værelse', 'I stalden', 'På loftet'], correctAnswer: 'I stuen sammen med hele familien' },
+    { question: 'Hvem delte Lars seng med?', options: ['Sin farmor', 'Sin søster', 'En karl', 'Alene'], correctAnswer: 'Sin farmor' }
+  ]},
+  { id: 't1_disciplin', topicId: '1', type: 'concept', title: 'Fysisk afstraffelse (Riset/Kæppen)', description: 'Normal pædagogisk metode i det traditionelle samfund.', questions: [
+    { question: 'Hvordan reagerede faderen på "næsvished"?', options: ['Med fysisk straf (kæppen eller riset)', 'Med en kammeratlig samtale', 'Ved at give barnet penge', 'Han ignorerede det'], correctAnswer: 'Med fysisk straf (kæppen eller riset)' },
+    { question: 'Hvad betyder faderens citat: "I gamle Dage hed det: De Unge skal man lære, og de gamle skal man ære"?', options: ['At der var et strengt hierarki mellem generationerne', 'At unge vidste mest', 'At alle var lige', 'At man ikke skulle gå i skole'], correctAnswer: 'At der var et strengt hierarki mellem generationerne' }
+  ]},
+  { id: 't1_mother_role', topicId: '1', type: 'concept', title: 'Moderens rolle i 1840', description: 'Lars Rasmussens mor beskrives som from og fredelig.', questions: [
+    { question: 'Hvordan adskilte moderens opdragelse sig fra faderens?', options: ['Hun slog ikke gerne og mente man ikke måtte slå i vrede', 'Hun var strengere end faderen', 'Hun bestemte over faderen', 'Hun var aldrig hjemme'], correctAnswer: 'Hun slog ikke gerne og mente man ikke måtte slå i vrede' },
+    { question: 'Hvad gjorde Lars når han var "i klemme" hos faderen?', options: ['Han hviskede fortroligt til sin moder', 'Han løb sin vej', 'Han slog igen', 'Han bad faderen om undskyldning'], correctAnswer: 'Han hviskede fortroligt til sin moder' }
+  ]},
 
   // --- INDUSTRIALISERING & URBANISERING (BOLIGER & JERNBANE) ---
-  { id: 't1_urban1', topicId: '1', type: 'event', title: 'Den Store Urbanisering', date: '1870-1920', description: 'Massevandring fra land til by.', questions: [{ question: 'Hvad trak folk til byerne?', options: ['Fabriksarbejde', 'Frisk luft', 'Større gårde', 'Mere plads'], correctAnswer: 'Fabriksarbejde' }] },
-  { id: 't1_rail1', topicId: '1', type: 'event', title: 'Jernbanenettet 1875', date: '1875', description: 'Begyndelsen på den nationale infrastruktur.', questions: [{ question: 'Hvordan så jernbanenettet ud i 1875?', options: ['Få hovedlinjer mellem de største byer', 'Landet var dækket helt', 'Der var ingen baner', 'Kun på Bornholm'], correctAnswer: 'Få hovedlinjer mellem de største byer' }] },
-  { id: 't1_rail2', topicId: '1', type: 'event', title: 'Jernbanenettet 1900', date: '1900', description: 'Tæt netværk der binder hele Danmark sammen.', questions: [{ question: 'Hvad var konsekvensen af det tætte banenet i 1900?', options: ['Varer og folk kunne bevæge sig hurtigt og skabe et nationalt marked', 'Folk holdt op med at rejse', 'Det blev sværere at handle', 'Landbruget gik konkurs'], correctAnswer: 'Varer og folk kunne bevæge sig hurtigt og skabe et nationalt marked' }] },
-  { id: 't1_housing1', topicId: '1', type: 'concept', title: 'Arbejderboligen på Vesterbro', description: 'To-værelses lejligheder til store familier.', questions: [{ question: 'Hvad manglede der i lejlighederne i Sundevedsgade i 1880?', options: ['Eget toilet (WC)', 'Køkken', 'Vinduer', 'Tag'], correctAnswer: 'Eget toilet (WC)' }] },
-  { id: 't1_proletar', topicId: '1', type: 'concept', title: 'Proletarisering', description: 'Processen hvor bønder bliver til ejendomsløse fabriksarbejdere.', questions: [{ question: 'Hvad definerer en proletar?', options: ['En person der kun ejer sin egen arbejdskraft', 'En rig bankmand', 'En godsejer', 'En selvstændig bonde'], correctAnswer: 'En person der kun ejer sin egen arbejdskraft' }] },
-  { id: 't1_hierarchy', topicId: '1', type: 'concept', title: 'Bolig-hierarkiet', description: 'Lejlighedens placering (etage) afspejlede social status.', questions: [{ question: 'Hvem boede typisk på 4. sal i en københavnsk baggård?', options: ['De fattigste arbejdere', 'Direktøren', 'Kongen', 'Lægen'], correctAnswer: 'De fattigste arbejdere' }] },
-  { id: 't1_sanitary', topicId: '1', type: 'concept', title: 'Kolera-epidemierne', description: 'Følge af de ekstremt dårlige sanitære forhold i byerne.', questions: [{ question: 'Hvorfor opstod der sygdom i de tidlige arbejderboliger?', options: ['Mangel på rent vand og for mange mennesker på lidt plads', 'Fordi folk var dummere', 'Fordi det regnede for meget', 'Mangel på medicin'], correctAnswer: 'Mangel på rent vand og for mange mennesker på lidt plads' }] },
+  { id: 't1_rail_map', topicId: '1', type: 'event', title: 'Jernbaneudviklingen 1875-1900', date: '1875-1900', description: 'Infrastrukturens betydning for det moderne Danmark.', questions: [
+    { question: 'Hvad er den største forskel på jernbanenettet i 1875 og 1900?', options: ['I 1900 var hele landet forbundet i et tæt netværk', 'Der var færre baner i 1900', 'Jernbanen blev nedlagt', 'Kun København havde tog i 1900'], correctAnswer: 'I 1900 var hele landet forbundet i et tæt netværk' },
+    { question: 'Hvordan påvirkede jernbanen urbaniseringen?', options: ['Den muliggjorde hurtig transport af folk og varer til byerne', 'Den gjorde at folk blev på landet', 'Den stoppede væksten', 'Den var kun for de rige'], correctAnswer: 'Den muliggjorde hurtig transport af folk og varer til byerne' }
+  ]},
+  { id: 't1_housing_detail', topicId: '1', type: 'concept', title: 'Arbejderboligen i Sundevedsgade', description: 'Levevilkår på Vesterbro omkring 1900.', questions: [
+    { question: 'Var der eget toilet (WC) i lejlighederne i Sundevedsgade i 1880?', options: ['Nej, det blev først installeret senere', 'Ja, i alle rum', 'Kun på 4. sal', 'Ja, men kun til koldt vand'], correctAnswer: 'Nej, det blev først installeret senere' },
+    { question: 'Hvem boede typisk i disse lejligheder?', options: ['Arbejderfamilier med mange børn på få kvadratmeter', 'Rige direktører', 'Enlige studerende', 'Kun mænd'], correctAnswer: 'Arbejderfamilier med mange børn på få kvadratmeter' },
+    { question: 'Hvad var "køkkentrappen" et symbol på?', options: ['Klasseskel og praktisk adgang for bude og tyende', 'En flugtvej ved brand', 'Et sted man dyrkede motion', 'En pyntegenstand'], correctAnswer: 'Klasseskel og praktisk adgang for bude og tyende' }
+  ]},
 
   // --- MODERNITET & DET SENMODERNE (1950+ OG GIDDENS) ---
-  { id: 't1_gender1', topicId: '1', type: 'concept', title: 'Kønsroller i 1950erne', description: 'Husmor-idealet og den forsørgende mand.', questions: [{ question: 'Hvad var kvindens primære rolle i 1950erne ifølge "Klinket Porcelæn"?', options: ['At passe hjemmet og bevare familiens ære', 'At gøre karriere', 'At være politiker', 'At rejse verden rundt'], correctAnswer: 'At passe hjemmet og bevare familiens ære' }] },
-  { id: 't1_porcelain', topicId: '1', type: 'concept', title: 'Metaforen "Klinket Porcelæn"', description: 'Symbol på et ægteskab der er gået i stykker men holdes sammen.', questions: [{ question: 'Hvad betyder det at porcelænet er klinket?', options: ['Forholdet er ødelagt men repareret for pligtens skyld', 'At man har købt nyt stel', 'At man er rig', 'At man er glad'], correctAnswer: 'Forholdet er ødelagt men repareret for pligtens skyld' }] },
-  { id: 't1_forgiveness', topicId: '1', type: 'concept', title: 'Tilgivelse af utroskab', description: 'Samfundsnormen i 1950erne krævede at kvinden tilgav manden.', questions: [{ question: 'Hvorfor skulle kvinden tilgive manden i 1950erne?', options: ['For børnenes skyld og pga. økonomisk afhængighed', 'Fordi han var sød', 'Fordi hun fik penge for det', 'Det skulle hun heller ikke'], correctAnswer: 'For børnenes skyld og pga. økonomisk afhængighed' }] },
-  { id: 't1_giddens1', topicId: '1', type: 'concept', title: 'Anthony Giddens', description: 'Sociolog der analyserer det senmoderne samfund.', questions: [{ question: 'Hvad er Giddens kendt for?', options: ['Teorier om aftraditionalisering og identitetsvalg', 'Opfindelsen af hjulet', 'Studier af vikinger', 'At være politiker'], correctAnswer: 'Teorier om aftraditionalisering og identitetsvalg' }] },
-  { id: 't1_refleksiv', topicId: '1', type: 'concept', title: 'Den refleksive identitet', description: 'I det senmoderne samfund spejler vi os hele tiden i andre og justerer vores identitet.', questions: [{ question: 'Hvad betyder det at være refleksiv?', options: ['At man hele tiden overvejer hvem man er og vil være', 'At man har gode reflekser', 'At man ligner sine forældre', 'At man aldrig ændrer sig'], correctAnswer: 'At man hele tiden overvejer hvem man er og vil være' }] },
-  { id: 't1_ontolog', topicId: '1', type: 'concept', title: 'Ontologisk sikkerhed', description: 'Følelsen af at verden er forudsigelig og tryg.', questions: [{ question: 'Hvorfor er den ontologiske sikkerhed udfordret i dag?', options: ['Fordi vi selv skal vælge alt og intet er givet på forhånd', 'Fordi der er krig alle steder', 'Fordi vi har for mange penge', 'Det er den heller ikke'], correctAnswer: 'Fordi vi selv skal vælge alt og intet er givet på forhånd' }] },
-  { id: 't1_digital', topicId: '1', type: 'concept', title: 'Digital Identitet', description: 'Skabelsen af selvet på sociale medier.', questions: [{ question: 'Hvordan påvirker sociale medier identiteten?', options: ['De øger kravet om konstant selvfremstilling', 'De gør os alle ens', 'De sletter identiteten', 'De har ingen betydning'], correctAnswer: 'De øger kravet om konstant selvfremstilling' }] },
-  { id: 't1_choice', topicId: '1', type: 'concept', title: 'Valgbiografien', description: 'Livet ses som et projekt vi selv skriver.', questions: [{ question: 'Hvad betyder "valgbiografi"?', options: ['At vi selv er ansvarlige for vores livshistorie og succes/fiasko', 'At vi skal stemme til valg', 'At vi læser biografier om rige folk', 'At staten bestemmer vores liv'], correctAnswer: 'At vi selv er ansvarlige for vores livshistorie og succes/fiasko' }] },
+  { id: 't1_gender_1950', topicId: '1', type: 'concept', title: 'Kønsroller i 1950 (Klinket Porcelæn)', description: 'Normer for ægteskab og kvinders opofrelse.', questions: [
+    { question: 'Hvad er budskabet i kilden "Klinket Porcelæn"?', options: ['At kvinden forventes at tilgive utroskab for familiens skyld', 'At kvinder skal gå fra deres mænd med det samme', 'At porcelæn er meget dyrt', 'At mænd altid er trofaste'], correctAnswer: 'At kvinden forventes at tilgive utroskab for familiens skyld' },
+    { question: 'Hvorfor blev kvinderne ofte i dårlige ægteskaber i 1950erne?', options: ['Økonomisk afhængighed og sociale normer om pligt', 'Fordi de ikke måtte skilles ifølge loven', 'Fordi de var ligeglade', 'Fordi mændene var rige'], correctAnswer: 'Økonomisk afhængighed og sociale normer om pligt' }
+  ]},
+  { id: 't1_giddens_late', topicId: '1', type: 'concept', title: 'Det Senmoderne Identitetsvalg', description: 'Giddens teorier om selvet som et projekt.', questions: [
+    { question: 'Hvad betyder "aftraditionalisering"?', options: ['At faste normer og traditioner ikke længere dikterer vores livsvalg', 'At vi holder op med at fejre jul', 'At alt bliver som i gamle dage', 'At vi får flere traditioner'], correctAnswer: 'At faste normer og traditioner ikke længere dikterer vores livsvalg' },
+    { question: 'Hvad er "valgbiografien"?', options: ['At vi selv er ansvarlige for at skabe vores livshistorie gennem valg', 'En bog om en politiker', 'At man skal stemme til valg', 'Staten bestemmer ens fremtid'], correctAnswer: 'At we selv er ansvarlige for at skabe vores livshistorie gennem valg' }
+  ]},
 
-  // --- SUPPLEMENTARY CONTENT FOR VOLUME (TOPIC 1) ---
-  { id: 't1_s2', topicId: '1', type: 'concept', title: 'Individualisering', description: 'Individer frigøres fra kollektive bånd som klasse og familie.', questions: [{ question: 'Hvad er kernen i individualisering?', options: ['At individet kommer før fællesskabet', 'At alle bor alene', 'At man ikke må tale sammen', 'At man bliver egoistisk'], correctAnswer: 'At individet kommer før fællesskabet' }] },
-  { id: 't1_s3', topicId: '1', type: 'concept', title: 'Globalisering og Identitet', description: 'Vi påvirkes af kulturer fra hele verden.', questions: [{ question: 'Hvad sker der med den nationale identitet under globalisering?', options: ['Den udfordres af globale strømninger', 'Den forsvinder helt på én dag', 'Den bliver stærkere hos alle', 'Der sker intet'], correctAnswer: 'Den udfordres af globale strømninger' }] },
-  { id: 't1_s4', topicId: '1', type: 'concept', title: 'Stavnsbåndet', description: 'Historisk binding af bønder til jorden (1733-1788).', questions: [{ question: 'Hvorfor blev stavnsbåndet indført?', options: ['For at sikre arbejdskraft til godserne og soldater til hæren', 'For at hjælpe bønderne', 'For at stoppe sygdom', 'For at bygge jernbaner'], correctAnswer: 'For at sikre arbejdskraft til godserne og soldater til hæren' }] },
-  { id: 't1_s5', topicId: '1', type: 'concept', title: 'Adelssamfundet', description: 'Overklassen før demokratiet.', questions: [{ question: 'Hvad gav adelen deres særstilling?', options: ['Skattefrihed og jordbesiddelse', 'Deres uddannelse', 'Deres evne til at sejle', 'Deres stemmeret'], correctAnswer: 'Skattefrihed og jordbesiddelse' }] },
-  { id: 't1_s6', topicId: '1', type: 'concept', title: 'Klassebevidsthed', description: 'Følelsen af at tilhøre en bestemt social gruppe med fælles interesser.', questions: [{ question: 'Hvem udviklede stærk klassebevidsthed i 1800-tallet?', options: ['Arbejderne i byerne', 'Bønderne på landet', 'Kongen', 'Adelen'], correctAnswer: 'Arbejderne i byerne' }] },
-  { id: 't1_s7', topicId: '1', type: 'concept', title: 'Fagforeninger', description: 'Sammenslutninger til beskyttelse af arbejdernes interesser.', questions: [{ question: 'Hvad kæmpede de tidlige fagforeninger for?', options: ['Bedre løn og kortere arbejdstid', 'Gratis mad', 'Retten til at eje jord', 'At lukke fabrikkerne'], correctAnswer: 'Bedre løn og kortere arbejdstid' }] },
-  { id: 't1_s8', topicId: '1', type: 'concept', title: 'Det Traditionelle Samfund', description: 'Livet før industrialiseringen.', questions: [{ question: 'Hvad styrede livet i det traditionelle samfund?', options: ['Tradition, religion og slægt', 'Penge og karriere', 'Sociale medier', 'Demokrati'], correctAnswer: 'Tradition, religion og slægt' }] },
-  { id: 't1_s9', topicId: '1', type: 'concept', title: 'Det Moderne Samfund', description: 'Industrisamfundet.', questions: [{ question: 'Hvad er kendetegnet ved det moderne samfund?', options: ['Urbanisering, industrialisering og kernefamilien', 'Bønder og konger', 'Internettet', 'At alle er jægere'], correctAnswer: 'Urbanisering, industrialisering og kernefamilien' }] },
-  { id: 't1_s10', topicId: '1', type: 'concept', title: 'Kernefamilien', description: 'Mor, far og børn som den centrale enhed.', questions: [{ question: 'Hvornår blev kernefamilien den dominerende form?', options: ['Under industrialiseringen/moderniteten', 'I stenalderen', 'Under enevælden', 'Først i går'], correctAnswer: 'Under industrialiseringen/moderniteten' }] },
-  { id: 't1_s11', topicId: '1', type: 'concept', title: 'Social Mobilitet', description: 'Muligheden for at bevæge sig mellem sociale lag.', questions: [{ question: 'Er social mobilitet højest i det traditionelle eller senmoderne samfund?', options: ['Det senmoderne', 'Det traditionelle', 'Der er ingen forskel', 'Det feudale'], correctAnswer: 'Det senmoderne' }] },
-  { id: 't1_s12', topicId: '1', type: 'concept', title: 'Sekularisering', description: 'Religionens aftagende betydning i samfundet.', questions: [{ question: 'Hvordan påvirker sekularisering identiteten?', options: ['Man finder værdier andre steder end i kirken', 'Man må ikke gå i kirke', 'Alle bliver ateister', 'Det har ingen betydning'], correctAnswer: 'Man finder værdier andre steder end i kirken' }] },
-  { id: 't1_s13', topicId: '1', type: 'concept', title: 'Nationalisme', description: 'Følelsen af at tilhøre en nation.', questions: [{ question: 'Hvornår opstod den moderne danske nationalisme?', options: ['I 1800-tallet (efter 1864)', 'Under vikingerne', 'I 1992', 'Ved jernalderen'], correctAnswer: 'I 1800-tallet (efter 1864)' }] },
-  { id: 't1_s14', topicId: '1', type: 'concept', title: 'Dannelsesidealet', description: 'Ideen om at uddannelse gør os til hele mennesker.', questions: [{ question: 'Hvem introducerede højskolen som dannelsesprojekt?', options: ['Grundtvig', 'H.C. Andersen', 'Søren Kierkegaard', 'Christian 4.'], correctAnswer: 'Grundtvig' }] },
-  { id: 't1_s15', topicId: '1', type: 'concept', title: 'Velfærdsstaten', description: 'Staten sikrer borgerne mod social nød.', questions: [{ question: 'Hvordan påvirker velfærdsstaten identiteten?', options: ['Den giver tryghed og mulighed for uafhængighed af familien', 'Den gør os alle fattige', 'Den sletter identiteten', 'Den er kun for de rige'], correctAnswer: 'Den giver tryghed og mulighed for uafhængighed af familien' }] },
-  { id: 't1_s16', topicId: '1', type: 'concept', title: 'Individualiseringen af tro', description: 'Religion bliver en privatsag.', questions: [{ question: 'Hvad betyder "shoppe-religion"?', options: ['At man vælger dele fra forskellige religioner der passer til én selv', 'At man køber bibler', 'At man går i kirke i indkøbscentre', 'At man hader religion'], correctAnswer: 'At man vælger dele fra forskellige religioner der passer til én selv' }] }
+  // --- ADDITIONAL PERSISTENT DATA ---
+  { id: 't1_urban_stats', topicId: '1', type: 'event', title: 'Urbaniserings-eksplosionen', date: '1870-1910', description: 'Københavns befolkning fordobles på få årtier.', questions: [
+    { question: 'Hvad skete der med byerne under industrialiseringen?', options: ['De voksede voldsomt pga. vandring fra land til by', 'De skrumpede ind', 'Folk flyttede til udlandet', 'Byerne blev forbudt'], correctAnswer: 'De voksede voldsomt pga. vandring fra land til by' }
+  ]},
+  { id: 't1_proletar_id', topicId: '1', type: 'concept', title: 'Proletar-identitet', description: 'Arbejderklassens opståen og fælles kamp.', questions: [
+    { question: 'Hvad definerer en proletar?', options: ['En person der kun ejer sin arbejdskraft', 'En rig landejer', 'En person uden tøj', 'En konge'], correctAnswer: 'En person der kun ejer sin arbejdskraft' }
+  ]},
+  { id: 't1_social_state', topicId: '1', type: 'event', title: 'Kanslergadeforliget', date: '1933', description: 'Grundstenen til den moderne velfærdsstat.', questions: [
+    { question: 'Hvad var formålet med Kanslergadeforliget?', options: ['At løse krisen i 1930erne og skabe social tryghed', 'At starte en krig', 'At bygge en jernbane', 'At vælge en ny konge'], correctAnswer: 'At løse krisen i 1930erne og skabe social tryghed' }
+  ]}
 ];
 
 export const emne1_sources = [
   {
-    id: 's1_lars',
+    id: 's1_lars_full',
     topicId: '1',
     title: 'Søn af en Fæstebonde (1837-1845)',
     text: '"Naar Faderen sagde: ”Kom” saa hed det ikke ”Ja, jeg kommer ret straks!” ... men saa kom han øjeblikkelig. Naar Faderen sagde: ”Ti” saa sagde han ikke et Muk. (...) Naar Børnene viste sig ”kæphøje”, saa regnede det ned over deres syndige Hoveder. (...) Han holdt ikke af, at der blev kælet for meget for Børnene."',
     questions: [
       { question: 'Hvad fortæller kilden om autoritetsforholdet?', options: ['Faderen var en ubestridt autoritet baseret på frygt', 'Forholdet var demokratisk', 'Moderen bestemte alt', 'Børnene var i centrum'], correctAnswer: 'Faderen var en ubestridt autoritet baseret på frygt' },
       { question: 'Hvilket menneskesyn præger opdragelsen?', options: ['Barnet er født syndigt og skal tugtes', 'Barnet er født frit', 'Barnet er klogere end de voksne', 'Der er ingen disciplin'], correctAnswer: 'Barnet er født syndigt og skal tugtes' },
-      { question: 'Hvad betyder "kæphøje" i denne kontekst?', options: ['At børnene var stolte eller udfordrende', 'At de legede med kæppe', 'At de var høje af vækst', 'At de var syge'], correctAnswer: 'At børnene var stolte eller udfordrende' },
-      { question: 'Hvordan fungerer kilden som levn?', options: ['Den vidner om datidens barske opdragelsesnormer', 'Den beviser præcis hvad Lars spiste', 'Den er en løgn', 'Den viser at alle var glade'], correctAnswer: 'Den vidner om datidens barske opdragelsesnormer' }
+      { question: 'Hvad betyder "kæphøje" i denne kontekst?', options: ['At børnene var stolte eller udfordrende', 'At de legede med kæppe', 'At de var høje af vækst', 'At de var syge'], correctAnswer: 'At børnene var stolte eller udfordrende' }
     ]
   },
   {
-    id: 's1_klinket',
+    id: 's1_klinket_porcelain',
     topicId: '1',
     title: 'Klinket Porcelæn (1950)',
     text: '"Hvis en Hustru elsker sin Mand og bliver svigtet... saa falder Tilgivelsen. Hun ofrer stadig sine Kræfter... som om hun beholdes af Medlidenhed, Pligt eller maaske Ret. Porcelænet er itu, og klinket porcelæn er aldrig saa smukt som nyt."',
     questions: [
       { question: 'Hvad symboliserer porcelænet?', options: ['Ægteskabet og tilliden', 'Køkkenudstyr', 'Rigdom', 'At man er fattig'], correctAnswer: 'Ægteskabet og tilliden' },
-      { question: 'Hvilken samfundsnorm beskrives her?', options: ['At kvinden skal opretholde facaden og familien for enhver pris', 'At kvinder skal skilles hurtigt', 'At mænd altid er trofaste', 'At det er godt at knuse tallerkener'], correctAnswer: 'At kvinden skal opretholde facaden og familien for enhver pris' },
-      { question: 'Hvilken følelse dominerer kildens beskrivelse af forholdet?', options: ['Resignation og pligt', 'Håb og lykke', 'Vrede og hævn', 'Ligesom en fest'], correctAnswer: 'Resignation og pligt' }
-    ]
-  },
-  {
-    id: 's1_bolig',
-    topicId: '1',
-    title: 'Arbejderboligen på Vesterbro (1880)',
-    text: 'Sundevedsgade nr. 32. 2. sal maskinarbejder Niels Jørgen Vesterdal med kone og tre børn. To værelser, intet wc, lille køkken med komfur.',
-    questions: [
-      { question: 'Hvad fortæller plantegningen om arbejderfamilien?', options: ['Trange kår og mangel på privatliv', 'De boede luksuriøst', 'De havde masser af plads', 'De havde moderne toiletter'], correctAnswer: 'Trange kår og mangel på privatliv' },
-      { question: 'Hvor mange rum havde de til 5 personer?', options: ['To værelser', 'Ti værelser', 'Ingen værelser', 'Fem værelser'], correctAnswer: 'To værelser' },
-      { question: 'Hvad var formålet med køkkentrappen?', options: ['Praktisk adgang og klasseskel (tjenestefolk/leverancer)', 'Til at dyrke motion', 'Der var ingen trappe', 'Kun til pynt'], correctAnswer: 'Praktisk adgang og klasseskel (tjenestefolk/leverancer)' }
+      { question: 'Hvilken samfundsnorm beskrives her?', options: ['At kvinden skal opretholde facaden og familien for enhver pris', 'At kvinder skal skilles hurtigt', 'At mænd altid er trofaste', 'At det er godt at knuse tallerkener'], correctAnswer: 'At kvinden skal opretholde facaden og familien for enhver pris' }
     ]
   }
 ];
 
 export const emne1_exams = [
   {
-    id: 'e1_1',
+    id: 'e1_exam_identity',
     topicId: '1',
     examQuestion: 'Diskutér hvordan individets identitet har ændret sig fra det traditionelle til det senmoderne samfund.',
     subtext: [
       { question: 'Hvilken sociolog skal du bruge til at forklare det senmoderne?', options: ['Anthony Giddens', 'Karl Marx', 'Napoleon', 'Lars Rasmussen'], correctAnswer: 'Anthony Giddens' },
-      { question: 'Hvad er den vigtigste forskel på identitet før og nu?', options: ['Før var den givet af tradition - nu er den et valg/projekt', 'Der er ingen forskel', 'Før havde man ingen identitet', 'Nu er vi mere ens'], correctAnswer: 'Før var den givet af tradition - nu er den et valg/projekt' },
-      { question: 'Hvad forventer læreren at du siger om "aftraditionalisering"?', options: ['At traditioner mister deres tvingende magt over vores valg', 'At vi stopper med at fejre jul', 'At alt bliver gammelt', 'At vi får flere traditioner'], correctAnswer: 'At traditioner mister deres tvingende magt over vores valg' }
+      { question: 'Hvad er den vigtigste forskel på identitet før og nu?', options: ['Før var den givet af tradition - nu er den et valg/projekt', 'Der er ingen forskel', 'Før havde man ingen identitet', 'Nu er vi mere ens'], correctAnswer: 'Før var den givet af tradition - nu er den et valg/projekt' }
     ]
   }
 ];

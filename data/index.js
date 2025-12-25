@@ -1,6 +1,11 @@
 import { emne0_entries, emne0_sources, emne0_exams } from './emne0.js';
+import { emne1_part1_entries } from './emne1_part1.js';
+import { emne1_part2_entries } from './emne1_part2.js';
+import { emne1_part3_entries } from './emne1_part3.js';
+import { emne1_part4_entries } from './emne1_part4.js';
 import { emne1_entries, emne1_sources, emne1_exams } from './emne1.js';
 import { emne2_entries, emne2_sources, emne2_exams } from './emne2.js';
+import { emne2_part1_entries } from './emne2_part1.js';
 import { emne3_entries, emne3_sources, emne3_exams } from './emne3.js';
 import { emne4_entries, emne4_sources, emne4_exams } from './emne4.js';
 
@@ -14,8 +19,13 @@ export const TOPICS = [
 
 export const HISTORY_ENTRIES = [
   ...emne0_entries,
+  ...emne1_part1_entries,
+  ...emne1_part2_entries,
+  ...emne1_part3_entries,
+  ...emne1_part4_entries,
   ...emne1_entries,
   ...emne2_entries,
+  ...emne2_part1_entries,
   ...emne3_entries,
   ...emne4_entries,
 ];
