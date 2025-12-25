@@ -1,10 +1,14 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from './data/index.js';
 
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_historie_master_v9_stable';
+const STORAGE_KEY = 'hf_historie_master_v10_final';
+
+// Helper to clean titles for the timeline game (removes dates like 1888 or (1700-1800))
+const sanitizeTitle = (title) => {
+  return title.replace(/\s*\(?\d{4}(?:-\d{2,4})?\)?/g, '').trim();
+};
 
 const getYearFromDate = (dateStr) => {
   if (!dateStr) return 0;
@@ -19,7 +23,7 @@ const AnkiFlashcards = ({ entries, onExit, onRecord }) => {
   const [flipped, setFlipped] = useState(false);
   const entry = entries[curr];
   
-  if (!entry) return <div className="p-20 text-center font-black text-slate-400">Ingen data tilgængelig.</div>;
+  if (!entry) return <div className="p-20 text-center font-black text-slate-400">Ingen kort fundet.</div>;
 
   const handleLevel = (isOk) => {
     onRecord(entry.id, isOk);
@@ -29,34 +33,51 @@ const AnkiFlashcards = ({ entries, onExit, onRecord }) => {
   };
 
   return (
-    <div className="max-w-xl mx-auto py-8 animate-pop">
-      <div className="flex justify-between items-center mb-8">
-        <button onClick={onExit} className="text-slate-600 font-black text-xs uppercase hover:text-indigo-600 transition-colors bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">✕ Afslut</button>
-        <span className="text-xs font-black text-indigo-600 bg-white px-4 py-2 rounded-xl shadow-sm tracking-widest">{curr + 1} / {entries.length}</span>
+    <div className="max-w-3xl mx-auto py-4 animate-pop min-h-[80vh] flex flex-col">
+      <div className="flex justify-between items-center mb-6">
+        <button onClick={onExit} className="text-slate-600 font-black text-xs uppercase hover:text-indigo-600 bg-white px-6 py-3 rounded-2xl shadow-sm border border-slate-100 transition-all">✕ Afslut</button>
+        <span className="text-xs font-black text-indigo-600 bg-white px-6 py-3 rounded-2xl shadow-sm tracking-widest">{curr + 1} / {entries.length}</span>
       </div>
       
-      <div className="relative perspective-1000 h-[450px] cursor-pointer mb-10" onClick={() => setFlipped(!flipped)}>
-        <div className={`relative w-full h-full transition-all duration-700 transform-style-3d ${flipped ? 'rotate-y-180' : ''}`}>
-          <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-[3rem] shadow-2xl border-4 border-slate-50 flex flex-col items-center justify-center p-12 text-center">
-            <span className="text-[10px] font-black uppercase text-indigo-500 mb-6 tracking-widest">{entry.type === 'event' ? 'Historisk Begivenhed' : 'Begreb'}</span>
-            <h2 className="text-3xl font-black text-slate-800 leading-tight">{entry.title}</h2>
-            <p className="mt-8 text-slate-400 text-[10px] font-black uppercase tracking-widest animate-pulse">Klik for svar</p>
-          </div>
-          <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-slate-900 rounded-[3rem] shadow-2xl p-12 flex flex-col items-center justify-center text-center text-white">
-             <div className="overflow-y-auto max-h-full py-4 px-2">
-                <p className="text-xl leading-relaxed font-medium mb-8 text-slate-100">{entry.description}</p>
-                {entry.date && <div className="inline-block px-8 py-3 bg-indigo-600 rounded-2xl text-white font-black text-xs uppercase tracking-widest shadow-lg">Tid: {entry.date}</div>}
-             </div>
+      <div className="flex-1 flex flex-col items-center justify-center">
+        <div 
+          className="relative perspective-1000 w-full max-w-2xl h-[500px] cursor-pointer mb-12" 
+          onClick={() => setFlipped(!flipped)}
+        >
+          <div className={`relative w-full h-full transition-all duration-700 transform-style-3d ${flipped ? 'rotate-y-180' : ''}`}>
+            {/* Front */}
+            <div className="absolute inset-0 w-full h-full backface-hidden bg-white rounded-[4rem] shadow-2xl border-4 border-slate-50 flex flex-col items-center justify-center p-16 text-center">
+              <span className="text-xs font-black uppercase text-indigo-500 mb-8 tracking-[0.3em]">{entry.type === 'event' ? 'Historisk Begivenhed' : 'Begreb'}</span>
+              <h2 className="text-4xl md:text-5xl font-black text-slate-800 leading-tight italic tracking-tighter">{entry.title}</h2>
+              <div className="mt-16 flex items-center gap-3 text-slate-300">
+                <span className="w-8 h-[2px] bg-slate-100"></span>
+                <p className="text-[10px] font-black uppercase tracking-widest animate-pulse">Klik for svar</p>
+                <span className="w-8 h-[2px] bg-slate-100"></span>
+              </div>
+            </div>
+            {/* Back */}
+            <div className="absolute inset-0 w-full h-full backface-hidden rotate-y-180 bg-slate-900 rounded-[4rem] shadow-2xl p-16 flex flex-col items-center justify-center text-center text-white">
+               <div className="overflow-y-auto max-h-full py-4 w-full">
+                  <p className="text-2xl md:text-3xl leading-relaxed font-medium mb-12 text-slate-100">{entry.description}</p>
+                  {entry.date && <div className="inline-block px-10 py-4 bg-indigo-600 rounded-3xl text-white font-black text-sm uppercase tracking-widest shadow-xl">Tidspunkt: {entry.date}</div>}
+               </div>
+            </div>
           </div>
         </div>
-      </div>
 
-      {flipped && (
-        <div className="grid grid-cols-2 gap-6 animate-pop">
-          <button onClick={() => handleLevel(false)} className="py-6 bg-white text-rose-600 rounded-[2rem] font-black border-2 border-rose-100 hover:bg-rose-50 transition-all text-xs uppercase shadow-md">Igen (Svært)</button>
-          <button onClick={() => handleLevel(true)} className="py-6 bg-white text-emerald-600 rounded-[2rem] font-black border-2 border-emerald-100 hover:bg-emerald-50 transition-all text-xs uppercase shadow-md">Nemt (Forstået)</button>
-        </div>
-      )}
+        {flipped && (
+          <div className="grid grid-cols-2 gap-8 w-full max-w-2xl animate-pop">
+            <button onClick={() => handleLevel(false)} className="py-8 bg-white text-rose-600 rounded-[2.5rem] font-black border-2 border-rose-100 hover:bg-rose-50 transition-all text-sm uppercase shadow-lg flex flex-col items-center">
+                <span className="text-2xl mb-1">🔄</span>
+                Igen (Svært)
+            </button>
+            <button onClick={() => handleLevel(true)} className="py-8 bg-white text-emerald-600 rounded-[2.5rem] font-black border-2 border-emerald-100 hover:bg-emerald-50 transition-all text-sm uppercase shadow-lg flex flex-col items-center">
+                <span className="text-2xl mb-1">✅</span>
+                Nemt (Forstået)
+            </button>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
@@ -68,17 +89,17 @@ const Quiz = ({ questions, onExit, onRecord, title }) => {
   const q = questions[idx];
   const opts = useMemo(() => q?.options ? shuffle(q.options) : [], [q]);
 
-  if (!q) return <div className="p-20 text-center font-black text-slate-400">Færdig!</div>;
+  if (!q) return <div className="p-20 text-center font-black text-slate-400">Quiz færdig!</div>;
 
   return (
     <div className="max-w-2xl mx-auto py-8 animate-pop">
       <div className="flex justify-between items-center mb-8">
-        <button onClick={onExit} className="text-slate-600 font-black text-xs uppercase hover:text-indigo-600 bg-white px-4 py-2 rounded-xl shadow-sm border border-slate-100">✕ Luk</button>
-        <span className="text-xs font-black text-indigo-600 bg-white px-4 py-2 rounded-xl shadow-sm">{idx + 1} / {questions.length}</span>
+        <button onClick={onExit} className="text-slate-600 font-black text-xs uppercase hover:text-indigo-600 bg-white px-5 py-3 rounded-2xl shadow-sm border border-slate-100">✕ Luk</button>
+        <span className="text-xs font-black text-indigo-600 bg-white px-5 py-3 rounded-2xl shadow-sm">{idx + 1} / {questions.length}</span>
       </div>
       <div className="bg-white p-12 rounded-[3.5rem] shadow-2xl border border-slate-100">
         <p className="text-[10px] font-black text-slate-400 uppercase mb-4 tracking-[0.2em]">{title}</p>
-        <h2 className="text-2xl font-black mb-10 text-slate-800 leading-snug">{q.question}</h2>
+        <h2 className="text-2xl md:text-3xl font-black mb-10 text-slate-800 leading-snug italic tracking-tight">{q.question}</h2>
         <div className="space-y-4">
           {opts.map((o) => {
             const isCorrect = o === q.correctAnswer;
@@ -109,8 +130,13 @@ const Quiz = ({ questions, onExit, onRecord, title }) => {
       </div>
       {done && (
         <div className="mt-8 animate-pop">
-          {q.explanation && <div className="p-8 bg-amber-50 rounded-[2.5rem] mb-6 text-amber-900 text-xs font-bold border border-amber-100 leading-relaxed">💡 Tip: {q.explanation}</div>}
-          <button onClick={() => { if (idx < questions.length - 1) { setIdx(idx + 1); setSel(null); setDone(false); } else onExit(); }} className="w-full py-7 bg-slate-900 text-white rounded-[2.5rem] font-black uppercase tracking-widest hover:bg-black shadow-xl transition-all">Næste Spørgsmål →</button>
+          {q.explanation && <div className="p-8 bg-amber-50 rounded-[2.5rem] mb-6 text-amber-900 text-xs font-bold border border-amber-100 leading-relaxed">💡 Vidste du: {q.explanation}</div>}
+          <button 
+            onClick={() => { if (idx < questions.length - 1) { setIdx(idx + 1); setSel(null); setDone(false); } else onExit(); }} 
+            className="w-full py-8 bg-slate-900 text-white rounded-[2.5rem] font-black uppercase tracking-widest hover:bg-black shadow-2xl transition-all border-b-8 border-slate-700 active:border-b-0 active:translate-y-1"
+          >
+            Næste Spørgsmål →
+          </button>
         </div>
       )}
     </div>
@@ -129,11 +155,18 @@ const TimelineGame = ({ entries, onExit }) => {
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [message, setMessage] = useState('Vælg en brik fra puljen');
 
+  // Initialization: Pick 2 random anchors from the pool
   useEffect(() => {
-    if (dated.length >= 2) {
-      const anchors = [dated[0], dated[dated.length - 1]];
-      setPlaced(anchors);
-      setPool(shuffle(dated.filter(d => d.id !== anchors[0].id && d.id !== anchors[1].id)));
+    if (dated.length >= 4) {
+      const shuffled = shuffle([...dated]);
+      const anchor1 = shuffled[0];
+      const anchor2 = shuffled[1];
+      
+      // Sort anchors so timeline starts correctly
+      const initialPlaced = [anchor1, anchor2].sort((a, b) => getYearFromDate(a.date) - getYearFromDate(b.date));
+      
+      setPlaced(initialPlaced);
+      setPool(shuffle(dated.filter(d => d.id !== anchor1.id && d.id !== anchor2.id)));
     } else {
       setPool(shuffle(dated));
     }
@@ -152,29 +185,30 @@ const TimelineGame = ({ entries, onExit }) => {
       setPlaced(newPlaced);
       setPool(pool.filter(p => p.id !== selectedPiece.id));
       setSelectedPiece(null);
-      setMessage('🎯 Flot! Brikken er placeret korrekt.');
+      setMessage('🎯 Flot! Placeret korrekt.');
     } else {
       setPool(pool.filter(p => p.id !== selectedPiece.id));
       setSelectedPiece(null);
-      setMessage('❌ Forkert! Begivenheden hørte ikke til dér og er nu kasseret.');
+      setMessage('❌ Forkert rækkefølge! Brikken er kasseret.');
     }
   };
 
   const resetGame = () => {
-    const anchors = [dated[0], dated[dated.length - 1]];
-    setPlaced(anchors);
-    setPool(shuffle(dated.filter(d => d.id !== anchors[0].id && d.id !== anchors[1].id)));
+    const shuffled = shuffle([...dated]);
+    const initialPlaced = [shuffled[0], shuffled[1]].sort((a, b) => getYearFromDate(a.date) - getYearFromDate(b.date));
+    setPlaced(initialPlaced);
+    setPool(shuffle(dated.filter(d => d.id !== initialPlaced[0].id && d.id !== initialPlaced[1].id)));
     setSelectedPiece(null);
-    setMessage('Nyt spil startet. Vælg en brik.');
+    setMessage('Nyt spil startet.');
   };
 
-  if (placed.length >= 6) {
+  if (placed.length >= 8 || (pool.length === 0 && selectedPiece === null)) {
     return (
       <div className="max-w-4xl mx-auto py-20 text-center animate-pop">
          <div className="bg-indigo-600 p-20 rounded-[4rem] text-white shadow-2xl">
             <div className="text-8xl mb-8">🏆</div>
-            <h3 className="text-5xl font-black mb-6 italic tracking-tight">Tidslinjen er Komplet!</h3>
-            <p className="text-indigo-100 text-xl font-medium mb-12 opacity-90">Du har placeret 6 historiske brikker i træk. Du har styr på rækkefølgen.</p>
+            <h3 className="text-5xl font-black mb-6 italic tracking-tight">Spillet er Slut!</h3>
+            <p className="text-indigo-100 text-xl font-medium mb-12 opacity-90">Du fik placeret {placed.length - 2} brikker korrekt på tidslinjen.</p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button onClick={resetGame} className="px-12 py-6 bg-white text-indigo-600 rounded-3xl font-black uppercase tracking-widest hover:scale-105 shadow-xl transition-all">Prøv Igen</button>
               <button onClick={onExit} className="px-12 py-6 bg-indigo-900 text-white rounded-3xl font-black uppercase tracking-widest hover:scale-105 shadow-xl transition-all">Menu</button>
@@ -193,7 +227,7 @@ const TimelineGame = ({ entries, onExit }) => {
               <p className={`text-[10px] font-black uppercase tracking-[0.2em] mt-2 h-4 ${message.includes('❌') ? 'text-rose-500' : 'text-indigo-600'}`}>{message}</p>
             </div>
             <div className="bg-white px-6 py-3 rounded-2xl shadow-md border-2 border-indigo-50">
-               <span className="text-xs font-black text-indigo-600">Correct: {placed.length} / 6</span>
+               <span className="text-xs font-black text-indigo-600">Nye korrekte: {placed.length - 2} / 6</span>
             </div>
         </div>
 
@@ -209,10 +243,9 @@ const TimelineGame = ({ entries, onExit }) => {
                           +
                         </button>
                         
-                        <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border-4 border-indigo-500 text-center text-white min-w-[180px] animate-pop relative">
-                            <span className="block text-indigo-400 font-black text-xs mb-2">{p.date}</span>
-                            <span className="text-[10px] font-black leading-relaxed block uppercase tracking-tight">{p.title}</span>
-                            <div className="absolute -top-4 -right-4 w-9 h-9 bg-indigo-500 rounded-full flex items-center justify-center text-[10px] font-black shadow-lg">#{i+1}</div>
+                        <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border-4 border-indigo-500 text-center text-white min-w-[200px] animate-pop relative">
+                            <span className="block text-indigo-400 font-black text-xs mb-2 tracking-widest">{p.date}</span>
+                            <span className="text-[11px] font-black leading-relaxed block uppercase tracking-tight italic">{sanitizeTitle(p.title)}</span>
                         </div>
 
                         {i === placed.length - 1 && (
@@ -231,16 +264,16 @@ const TimelineGame = ({ entries, onExit }) => {
 
         {pool.length > 0 && (
             <div className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100">
-                <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.5em] mb-10">Dine Brikker (Datoer er skjult)</p>
+                <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.5em] mb-10">Dine Brikker (Hvad skete hvornår?)</p>
                 <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
                     {pool.map(item => (
                         <button 
                           key={item.id} 
-                          onClick={() => { setSelectedPiece(item); setMessage(`Klik på et "+" for at placere "${item.title}"`); }} 
+                          onClick={() => { setSelectedPiece(item); setMessage(`Placér "${sanitizeTitle(item.title)}" på linjen`); }} 
                           className={`p-8 rounded-[2rem] border-2 transition-all text-center group shadow-sm flex flex-col items-center justify-center min-h-[140px] ${selectedPiece?.id === item.id ? 'border-indigo-600 bg-indigo-50 scale-105 shadow-xl ring-4 ring-indigo-100' : 'border-slate-100 bg-white hover:border-indigo-300'}`}
                         >
                             <div className="w-10 h-1 bg-slate-100 mb-6 rounded-full group-hover:bg-indigo-200"></div>
-                            <span className="font-black text-slate-800 text-xs leading-tight block uppercase tracking-tight">{item.title}</span>
+                            <span className="font-black text-slate-800 text-[11px] leading-tight block uppercase tracking-tight">{sanitizeTitle(item.title)}</span>
                         </button>
                     ))}
                 </div>
@@ -324,7 +357,7 @@ const App = () => {
   const handleRecord = (id, ok) => {
     setStats(prev => {
       const s = prev[id] || { count: 0, correct: 0 };
-      return { ...prev, [id]: { count: s.count + 1, correct: s.correct + (ok ? 1 : 0) } };
+      return { ...prev, [id]: { count: (s.count || 0) + 1, correct: (s.correct || 0) + (ok ? 1 : 0) } };
     });
   };
 
@@ -344,11 +377,10 @@ const App = () => {
     let totalAttempts = 0;
     let totalCorrect = 0;
     
-    relevantEntries.forEach(([_, val]) => {
-      // Fix: Cast val to a more specific type to avoid "unknown" property access errors
-      const entry = val as { count?: number; correct?: number };
-      totalAttempts += (entry.count || 0);
-      totalCorrect += (entry.correct || 0);
+    // Fix: Explicitly type the entry in the loop to avoid unknown type errors on line 381 and 382
+    relevantEntries.forEach(([_, val]: [string, any]) => {
+      totalAttempts += (val.count || 0);
+      totalCorrect += (val.correct || 0);
     });
     
     return totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
@@ -361,7 +393,7 @@ const App = () => {
           <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-xl">H</div>
           <div>
             <h1 className="text-3xl font-black italic text-slate-900 tracking-tighter leading-none">HF <span className="text-indigo-600">Historie</span> Master</h1>
-            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v9.1 • Plain JS Stable Build</p>
+            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3 tracking-widest uppercase">Eksamens-forberedelse</p>
           </div>
         </div>
         <div className="flex items-center gap-8">
@@ -388,7 +420,7 @@ const App = () => {
                         return (
                             <button key={t.id} onClick={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} 
                                     className={`p-8 rounded-[2.5rem] border-2 text-left transition-all relative group shadow-sm flex flex-col justify-between ${active ? 'border-indigo-600 bg-white shadow-xl scale-[1.02]' : 'border-slate-200 bg-slate-100/50 opacity-60 hover:opacity-100'}`}>
-                                <h3 className={`font-black text-xs leading-tight mb-4 min-h-[2.5rem] uppercase tracking-tight ${active ? 'text-indigo-600' : 'text-slate-600'}`}>{t.title}</h3>
+                                <h3 className={`font-black text-xs leading-tight mb-4 min-h-[3rem] uppercase tracking-tight ${active ? 'text-indigo-600' : 'text-slate-600'}`}>{t.title}</h3>
                                 <div className={`inline-block px-4 py-2 rounded-2xl text-[9px] font-black uppercase tracking-widest self-start ${active ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-200 text-slate-500'}`}>{qCount} elementer</div>
                             </button>
                         )
@@ -469,7 +501,7 @@ const App = () => {
       </main>
 
       <footer className="bg-white border-t py-16 px-10 text-center relative z-20">
-        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision v9.1 • Plain JS Stable Build</p>
+        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master • Powered by AI Education</p>
       </footer>
     </div>
   );
