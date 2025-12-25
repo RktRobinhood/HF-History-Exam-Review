@@ -4,7 +4,7 @@ import { createRoot } from 'react-dom/client';
 import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from './data/index.js';
 
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_historie_master_v8_stable';
+const STORAGE_KEY = 'hf_historie_master_v9_stable';
 
 const getYearFromDate = (dateStr) => {
   if (!dateStr) return 0;
@@ -220,9 +220,9 @@ const TimelineGame = ({ entries, onExit }) => {
                               onClick={() => handlePlace(i + 1)}
                               disabled={!selectedPiece}
                               className={`w-12 h-12 rounded-full border-4 border-dashed mx-2 transition-all flex items-center justify-center text-xl font-black ${selectedPiece ? 'border-indigo-400 bg-indigo-50 text-indigo-400 hover:scale-110 hover:border-indigo-600 hover:bg-white animate-pulse' : 'border-slate-200 text-transparent opacity-0 pointer-events-none'}`}
-                            >
-                              +
-                            </button>
+                        >
+                          +
+                        </button>
                         )}
                     </React.Fragment>
                 ))}
@@ -344,11 +344,11 @@ const App = () => {
     let totalAttempts = 0;
     let totalCorrect = 0;
     
-    relevantEntries.forEach(([_, v]) => {
-      // Cast v to the expected shape to fix property access on 'unknown' error
-      const val = v as { count: number; correct: number };
-      totalAttempts += (val.count || 0);
-      totalCorrect += (val.correct || 0);
+    relevantEntries.forEach(([_, val]) => {
+      // Fix: Cast val to a more specific type to avoid "unknown" property access errors
+      const entry = val as { count?: number; correct?: number };
+      totalAttempts += (entry.count || 0);
+      totalCorrect += (entry.correct || 0);
     });
     
     return totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
@@ -361,7 +361,7 @@ const App = () => {
           <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-xl">H</div>
           <div>
             <h1 className="text-3xl font-black italic text-slate-900 tracking-tighter leading-none">HF <span className="text-indigo-600">Historie</span> Master</h1>
-            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v8.1 • Stable GitHub Build</p>
+            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v9.1 • Plain JS Stable Build</p>
           </div>
         </div>
         <div className="flex items-center gap-8">
@@ -402,11 +402,11 @@ const App = () => {
                     
                     <button onClick={() => setView('flashcards')} className="bg-indigo-600 p-12 rounded-[4rem] text-white text-left shadow-2xl hover:translate-y-[-10px] transition-transform border-b-[12px] border-indigo-800 group relative">
                         <div className="text-6xl mb-12 group-hover:rotate-12 transition-transform">🗂️</div>
-                        <h3 className="text-4xl font-black mb-3 italic tracking-tight">Anki Recall</h3>
+                        <h3 className="text-4xl font-black mb-3 italic tracking-tight text-white">Anki Recall</h3>
                         <p className="text-indigo-100 text-sm mb-16 font-medium opacity-80 leading-relaxed">Begreber og teorier udenad.</p>
                         <div className="flex justify-between items-center bg-indigo-700/50 p-8 rounded-[2.5rem] border border-indigo-400/30">
                             <span className="text-xs font-black uppercase tracking-widest text-indigo-200">{filtered.entries.length} Kort</span>
-                            <span className="bg-white text-indigo-600 px-10 py-3 rounded-2xl text-xs font-black uppercase shadow-xl">Start →</span>
+                            <span className="bg-white text-indigo-900 px-10 py-3 rounded-2xl text-xs font-black uppercase shadow-xl hover:bg-slate-100">Start →</span>
                         </div>
                     </button>
 
@@ -422,11 +422,11 @@ const App = () => {
 
                     <button onClick={() => setView('interpretation')} className="bg-slate-800 p-12 rounded-[4rem] text-white text-left shadow-2xl hover:translate-y-[-10px] transition-transform border-b-[12px] border-slate-900 group">
                         <div className="text-6xl mb-12 group-hover:rotate-[-12deg] transition-transform">💡</div>
-                        <h3 className="text-4xl font-black mb-3 italic tracking-tight">Eksamens Focus</h3>
+                        <h3 className="text-4xl font-black mb-3 italic tracking-tight text-white">Eksamens Focus</h3>
                         <p className="text-slate-300 text-sm mb-16 font-medium leading-relaxed">Lær at svare strategisk til eksamen.</p>
                         <div className="flex justify-between items-center bg-slate-700/50 p-8 rounded-[2.5rem] border border-slate-600">
                             <span className="text-xs font-black uppercase tracking-widest text-slate-100">{examQs.length} Sæt</span>
-                            <span className="bg-white text-slate-900 px-10 py-3 rounded-2xl text-xs font-black uppercase shadow-lg">Træn →</span>
+                            <span className="bg-white text-slate-900 px-10 py-3 rounded-2xl text-xs font-black uppercase shadow-lg hover:bg-slate-100">Træn →</span>
                         </div>
                     </button>
 
@@ -439,7 +439,7 @@ const App = () => {
                             <div className="text-9xl opacity-10 grayscale group-hover:grayscale-0 transition-all group-hover:rotate-12 duration-700">⏳</div>
                         </div>
                         <div className="flex items-center gap-12">
-                            <div className="bg-indigo-600 text-white px-16 py-6 rounded-3xl text-sm font-black uppercase tracking-widest shadow-2xl">Spil Nu</div>
+                            <div className="bg-indigo-600 text-white px-16 py-6 rounded-3xl text-sm font-black uppercase tracking-widest shadow-2xl hover:bg-indigo-700">Spil Nu</div>
                             <span className="text-slate-400 text-xs font-black uppercase tracking-[0.4em]">{filtered.entries.filter(e => e.date).length} Begivenheder</span>
                         </div>
                     </button>
@@ -450,7 +450,7 @@ const App = () => {
                         <p className="text-emerald-50 text-sm mb-16 font-medium leading-relaxed opacity-90">Analysér originale tekster fra pensum.</p>
                         <div className="flex justify-between items-center bg-emerald-700/40 p-8 rounded-[2.5rem] border border-white/20">
                             <span className="text-xs font-black uppercase tracking-widest text-white">{filtered.sources.length} Kilder</span>
-                            <span className="bg-white text-emerald-600 px-10 py-3 rounded-2xl text-xs font-black uppercase shadow-lg">Analyse →</span>
+                            <span className="bg-white text-emerald-900 px-10 py-3 rounded-2xl text-xs font-black uppercase shadow-lg hover:bg-slate-100">Analyse →</span>
                         </div>
                     </button>
 
@@ -469,7 +469,7 @@ const App = () => {
       </main>
 
       <footer className="bg-white border-t py-16 px-10 text-center relative z-20">
-        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision v8.1 • Stable GitHub Build</p>
+        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision v9.1 • Plain JS Stable Build</p>
       </footer>
     </div>
   );
