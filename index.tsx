@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from './data/index.js';
@@ -347,7 +346,6 @@ const App = () => {
   const calculateMastery = (ids) => {
     const relevant = Object.entries(stats).filter(([id]) => ids.includes(id));
     if (!relevant.length) return 0;
-    // Explicitly casting b as any to fix Property 'count' and 'correct' does not exist on type 'unknown' errors
     const total = relevant.reduce((a, [_, b]) => a + (b as any).count, 0);
     const correct = relevant.reduce((a, [_, b]) => a + (b as any).correct, 0);
     return Math.round((correct / total) * 100);
@@ -360,7 +358,7 @@ const App = () => {
           <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-xl">H</div>
           <div>
             <h1 className="text-3xl font-black italic text-slate-900 tracking-tighter leading-none">HF <span className="text-indigo-600">Historie</span> Master</h1>
-            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v7.0 • Eksamensklar</p>
+            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v7.5 • Eksamensklar</p>
           </div>
         </div>
         <div className="flex items-center gap-8">
@@ -468,7 +466,7 @@ const App = () => {
       </main>
 
       <footer className="bg-white border-t py-16 px-10 text-center relative z-20">
-        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision V7.0 • Web Compiler Patch</p>
+        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision V7.5 • Web Compiler Patch</p>
       </footer>
     </div>
   );

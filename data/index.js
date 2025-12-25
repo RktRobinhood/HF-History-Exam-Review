@@ -1,8 +1,10 @@
+
 import { emne0_entries, emne0_sources, emne0_exams } from './emne0.js';
 import { emne1_part1_entries } from './emne1_part1.js';
 import { emne1_part2_entries } from './emne1_part2.js';
 import { emne1_part3_entries } from './emne1_part3.js';
 import { emne1_part4_entries } from './emne1_part4.js';
+import { emne1_pdf_entries } from './emne1_pdf_questions.js';
 import { emne1_entries, emne1_sources, emne1_exams } from './emne1.js';
 import { emne2_entries, emne2_sources, emne2_exams } from './emne2.js';
 import { emne2_part1_entries } from './emne2_part1.js';
@@ -23,6 +25,7 @@ export const HISTORY_ENTRIES = [
   ...emne1_part2_entries,
   ...emne1_part3_entries,
   ...emne1_part4_entries,
+  ...emne1_pdf_entries,
   ...emne1_entries,
   ...emne2_entries,
   ...emne2_part1_entries,
