@@ -1,35 +1,28 @@
 
-// Fix: Defining and exporting the shared types to resolve "not a module" errors in importing components.
+// Shared type definitions for the history learning application.
+// This file is a module that exports interfaces used across the UI components.
 
-/**
- * Interface representing a historical topic category.
- */
-export interface Topic {
-  id: number;
-  title: string;
-  description: string;
-}
-
-/**
- * Interface representing a quiz question associated with a historical entry.
- */
 export interface Question {
   question: string;
   options: string[];
   correctAnswer: string;
   explanation?: string;
+  entryTitle?: string;
 }
 
-/**
- * Interface representing a specific historical event or concept entry.
- */
 export interface HistoryEntry {
   id: number;
   topicId: number;
-  type: 'event' | 'concept';
   title: string;
-  date?: string;
   description: string;
+  date?: string;
+  type: 'event' | 'concept';
   tags: string[];
   questions: Question[];
+}
+
+export interface Topic {
+  id: number;
+  title: string;
+  description: string;
 }

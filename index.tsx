@@ -1,1 +1,1 @@
-// Empty file to prevent MIME type issues on static hosts. Logic moved to index.html.
+// Consolidated into index.html for static site compatibility.
