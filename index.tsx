@@ -1,3 +1,4 @@
+
 import React, { useState, useMemo, useEffect } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from './data/index.js';
@@ -18,7 +19,7 @@ const AnkiFlashcards = ({ entries, onExit, onRecord }) => {
   const [flipped, setFlipped] = useState(false);
   const entry = entries[curr];
   
-  if (!entry) return <div className="p-20 text-center font-black">Ingen data tilgængelig.</div>;
+  if (!entry) return <div className="p-20 text-center font-black text-slate-400">Ingen data tilgængelig.</div>;
 
   const handleLevel = (isOk) => {
     onRecord(entry.id, isOk);
@@ -67,7 +68,7 @@ const Quiz = ({ questions, onExit, onRecord, title }) => {
   const q = questions[idx];
   const opts = useMemo(() => q?.options ? shuffle(q.options) : [], [q]);
 
-  if (!q) return <div className="p-20 text-center font-black">Færdig!</div>;
+  if (!q) return <div className="p-20 text-center font-black text-slate-400">Færdig!</div>;
 
   return (
     <div className="max-w-2xl mx-auto py-8 animate-pop">
@@ -128,7 +129,6 @@ const TimelineGame = ({ entries, onExit }) => {
   const [selectedPiece, setSelectedPiece] = useState(null);
   const [message, setMessage] = useState('Vælg en brik fra puljen');
 
-  // Initialization: Start with 2 random anchors (earliest and latest)
   useEffect(() => {
     if (dated.length >= 2) {
       const anchors = [dated[0], dated[dated.length - 1]];
@@ -146,7 +146,6 @@ const TimelineGame = ({ entries, onExit }) => {
     const beforeYear = index === 0 ? -Infinity : getYearFromDate(placed[index - 1].date);
     const afterYear = index === placed.length ? Infinity : getYearFromDate(placed[index].date);
 
-    // Strict placement check
     if (correctYear >= beforeYear && correctYear <= afterYear) {
       const newPlaced = [...placed];
       newPlaced.splice(index, 0, selectedPiece);
@@ -155,7 +154,6 @@ const TimelineGame = ({ entries, onExit }) => {
       setSelectedPiece(null);
       setMessage('🎯 Flot! Brikken er placeret korrekt.');
     } else {
-      // Discard piece on failure
       setPool(pool.filter(p => p.id !== selectedPiece.id));
       setSelectedPiece(null);
       setMessage('❌ Forkert! Begivenheden hørte ikke til dér og er nu kasseret.');
@@ -199,12 +197,10 @@ const TimelineGame = ({ entries, onExit }) => {
             </div>
         </div>
 
-        {/* BOARD: WRAPPING LAYOUT */}
         <div className="mb-16 bg-white/60 p-10 rounded-[4rem] border-4 border-dashed border-slate-200">
             <div className="flex flex-wrap gap-y-12 items-center justify-center">
                 {placed.map((p, i) => (
                     <React.Fragment key={p.id}>
-                        {/* SLOT */}
                         <button 
                           onClick={() => handlePlace(i)}
                           disabled={!selectedPiece}
@@ -213,7 +209,6 @@ const TimelineGame = ({ entries, onExit }) => {
                           +
                         </button>
                         
-                        {/* PLACED PIECE (DATE REVEALED) */}
                         <div className="bg-slate-900 p-8 rounded-[2.5rem] shadow-xl border-4 border-indigo-500 text-center text-white min-w-[180px] animate-pop relative">
                             <span className="block text-indigo-400 font-black text-xs mb-2">{p.date}</span>
                             <span className="text-[10px] font-black leading-relaxed block uppercase tracking-tight">{p.title}</span>
@@ -225,16 +220,15 @@ const TimelineGame = ({ entries, onExit }) => {
                               onClick={() => handlePlace(i + 1)}
                               disabled={!selectedPiece}
                               className={`w-12 h-12 rounded-full border-4 border-dashed mx-2 transition-all flex items-center justify-center text-xl font-black ${selectedPiece ? 'border-indigo-400 bg-indigo-50 text-indigo-400 hover:scale-110 hover:border-indigo-600 hover:bg-white animate-pulse' : 'border-slate-200 text-transparent opacity-0 pointer-events-none'}`}
-                        >
-                          +
-                        </button>
+                            >
+                              +
+                            </button>
                         )}
                     </React.Fragment>
                 ))}
             </div>
         </div>
 
-        {/* PIECES: DATE HIDDEN */}
         {pool.length > 0 && (
             <div className="bg-white p-12 rounded-[4rem] shadow-2xl border border-slate-100">
                 <p className="text-center text-[10px] font-black text-slate-400 uppercase tracking-[0.5em] mb-10">Dine Brikker (Datoer er skjult)</p>
@@ -260,7 +254,7 @@ const SourceStudy = ({ sources, onExit }) => {
     const [idx, setIdx] = useState(0);
     const [feedback, setFeedback] = useState({});
     const s = sources[idx];
-    if (!s) return <div className="p-20 text-center font-black">Ingen kilder fundet.</div>;
+    if (!s) return <div className="p-20 text-center font-black text-slate-400">Ingen kilder fundet.</div>;
 
     const handleSourceAnswer = (qId, option, correct) => {
         if (feedback[qId]) return;
@@ -329,7 +323,8 @@ const App = () => {
 
   const handleRecord = (id, ok) => {
     setStats(prev => {
-      const s = prev[id] || { count: 0, correct: 0 };
+      // Access count and correct properties from the entry after casting to avoid 'unknown' type errors
+      const s = (prev[id] || { count: 0, correct: 0 }) as { count: number; correct: number };
       return { ...prev, [id]: { count: s.count + 1, correct: s.correct + (ok ? 1 : 0) } };
     });
   };
@@ -344,11 +339,20 @@ const App = () => {
   const examQs = useMemo(() => filtered.exams.flatMap(e => (e.subtext || []).map(s => ({ ...s, entryId: e.id }))), [filtered]);
 
   const calculateMastery = (ids) => {
-    const relevant = Object.entries(stats).filter(([id]) => ids.includes(id));
-    if (!relevant.length) return 0;
-    const total = relevant.reduce((a, [_, b]) => a + (b as any).count, 0);
-    const correct = relevant.reduce((a, [_, b]) => a + (b as any).correct, 0);
-    return Math.round((correct / total) * 100);
+    const relevantEntries = Object.entries(stats).filter(([id]) => ids.includes(id));
+    if (!relevantEntries.length) return 0;
+    
+    let totalAttempts = 0;
+    let totalCorrect = 0;
+    
+    relevantEntries.forEach(([_, val]) => {
+      // Cast val to any to resolve TypeScript 'unknown' type error when accessing count and correct properties
+      const entry = val as any;
+      totalAttempts += (entry.count || 0);
+      totalCorrect += (entry.correct || 0);
+    });
+    
+    return totalAttempts > 0 ? Math.round((totalCorrect / totalAttempts) * 100) : 0;
   };
 
   return (
@@ -358,7 +362,7 @@ const App = () => {
           <div className="w-14 h-14 bg-indigo-600 rounded-2xl flex items-center justify-center text-white text-3xl font-black shadow-xl">H</div>
           <div>
             <h1 className="text-3xl font-black italic text-slate-900 tracking-tighter leading-none">HF <span className="text-indigo-600">Historie</span> Master</h1>
-            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v7.5 • Eksamensklar</p>
+            <p className="text-[10px] font-black uppercase text-slate-400 tracking-[0.4em] mt-3">Revision v8.0 • GitHub Stable Build</p>
           </div>
         </div>
         <div className="flex items-center gap-8">
@@ -384,9 +388,9 @@ const App = () => {
                         const qCount = HISTORY_ENTRIES.filter(e => e.topicId === t.id).length;
                         return (
                             <button key={t.id} onClick={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} 
-                                    className={`p-8 rounded-[2.5rem] border-2 text-left transition-all relative group shadow-sm ${active ? 'border-indigo-600 bg-white shadow-xl scale-[1.02]' : 'border-slate-200 bg-slate-100/50 opacity-60 hover:opacity-100'}`}>
-                                <h3 className={`font-black text-xs leading-tight mb-6 h-10 overflow-hidden uppercase tracking-tight ${active ? 'text-indigo-600' : 'text-slate-600'}`}>{t.title}</h3>
-                                <div className={`inline-block px-5 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest ${active ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-200 text-slate-500'}`}>{qCount} elementer</div>
+                                    className={`p-8 rounded-[2.5rem] border-2 text-left transition-all relative group shadow-sm flex flex-col justify-between ${active ? 'border-indigo-600 bg-white shadow-xl scale-[1.02]' : 'border-slate-200 bg-slate-100/50 opacity-60 hover:opacity-100'}`}>
+                                <h3 className={`font-black text-xs leading-tight mb-4 min-h-[2.5rem] uppercase tracking-tight ${active ? 'text-indigo-600' : 'text-slate-600'}`}>{t.title}</h3>
+                                <div className={`inline-block px-4 py-2 rounded-2xl text-[9px] font-black uppercase tracking-widest self-start ${active ? 'bg-indigo-600 text-white shadow-md' : 'bg-slate-200 text-slate-500'}`}>{qCount} elementer</div>
                             </button>
                         )
                     })}
@@ -466,11 +470,14 @@ const App = () => {
       </main>
 
       <footer className="bg-white border-t py-16 px-10 text-center relative z-20">
-        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision V7.5 • Web Compiler Patch</p>
+        <p className="text-[11px] font-black text-slate-400 uppercase tracking-[0.6em]">HF Historie Master Engine • Revision V8.0 • GitHub Stable Build</p>
       </footer>
     </div>
   );
 };
 
 const rootEl = document.getElementById('root');
-if (rootEl) createRoot(rootEl).render(<App />);
+if (rootEl) {
+  const root = createRoot(rootEl);
+  root.render(<App />);
+}
