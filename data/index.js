@@ -14,6 +14,15 @@ import { emne2_image_analysis_entries } from './emne2_image_analysis.js';
 import { emne2_good_society_entries } from './emne2_good_society.js';
 import { emne2_grundlov_1849_entries } from './emne2_grundlov_1849.js';
 import { emne2_demography_entries } from './emne2_demography.js';
+import { emne2_velfaerd_debat_entries } from './emne2_velfaerd_debat.js';
+import { emne2_kongeloven_1665_entries } from './emne2_kongeloven_1665.js';
+import { emne2_systemskifte_war_entries } from './emne2_systemskifte_war.js';
+import { emne2_social_realism_entries } from './emne2_social_realism.js';
+import { emne2_unemployment_30s_entries } from './emne2_unemployment_30s.js';
+import { emne2_enlightenment_entries } from './emne2_enlightenment.js';
+import { emne2_difficult_democracy_entries } from './emne2_difficult_democracy.js';
+import { emne2_welfare_timeline_entries } from './emne2_welfare_timeline.js';
+import { emne2_exam_concepts_entries } from './emne2_exam_concepts.js';
 import { emne3_entries, emne3_sources, emne3_exams } from './emne3.js';
 import { emne4_entries, emne4_sources, emne4_exams } from './emne4.js';
 
@@ -41,6 +50,15 @@ export const HISTORY_ENTRIES = [
   ...emne2_good_society_entries,
   ...emne2_grundlov_1849_entries,
   ...emne2_demography_entries,
+  ...emne2_velfaerd_debat_entries,
+  ...emne2_kongeloven_1665_entries,
+  ...emne2_systemskifte_war_entries,
+  ...emne2_social_realism_entries,
+  ...emne2_unemployment_30s_entries,
+  ...emne2_enlightenment_entries,
+  ...emne2_difficult_democracy_entries,
+  ...emne2_welfare_timeline_entries,
+  ...emne2_exam_concepts_entries,
   ...emne3_entries,
   ...emne4_entries,
 ];
