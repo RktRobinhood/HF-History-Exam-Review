@@ -1,30 +1,35 @@
 
-export type EntryType = 'event' | 'term' | 'concept';
+// Fix: Defining and exporting the shared types to resolve "not a module" errors in importing components.
 
+/**
+ * Interface representing a historical topic category.
+ */
+export interface Topic {
+  id: number;
+  title: string;
+  description: string;
+}
+
+/**
+ * Interface representing a quiz question associated with a historical entry.
+ */
 export interface Question {
-  id: string;
   question: string;
   options: string[];
   correctAnswer: string;
   explanation?: string;
 }
 
+/**
+ * Interface representing a specific historical event or concept entry.
+ */
 export interface HistoryEntry {
-  id: string;
+  id: number;
+  topicId: number;
+  type: 'event' | 'concept';
   title: string;
-  type: EntryType;
-  date?: string; // For events
-  period?: string;
+  date?: string;
   description: string;
   tags: string[];
-  topicId: string;
   questions: Question[];
 }
-
-export interface Topic {
-  id: string;
-  title: string;
-  description: string;
-}
-
-export type ViewMode = 'menu' | 'flashcards' | 'quiz' | 'browser';
