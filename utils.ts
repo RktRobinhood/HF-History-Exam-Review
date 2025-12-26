@@ -1,4 +1,3 @@
-
 export const shuffle = (arr: any[]) => [...arr].sort(() => Math.random() - 0.5);
 
 export const playSound = (type: 'start' | 'damage' | 'success' | 'victory') => {

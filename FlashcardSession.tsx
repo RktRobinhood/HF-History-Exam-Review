@@ -1,33 +1,20 @@
-
 import React, { useState } from 'react';
 
 export const FlashcardSession = ({ entries, onExit, onRecord, playSound }: any) => {
   const [queue, setQueue] = useState([...entries]);
   const [revealed, setRevealed] = useState(false);
   const current = queue[0];
-
   if (!current) return (
     <div className="max-w-xl mx-auto py-20 text-center animate-pop">
       <h2 className="text-4xl font-black text-slate-900 mb-8 uppercase italic tracking-tighter">Session Færdig!</h2>
       <button onClick={onExit} className="bg-blue-300 border-4 border-slate-900 px-12 py-6 text-xl font-black shadow-[8px_8px_0px_black] uppercase italic">TILBAGE TIL DOCK</button>
     </div>
   );
-
   const handleResponse = (ok: boolean) => {
     onRecord(current.id, ok);
-    
-    if (ok) {
-      playSound('success');
-      setRevealed(false);
-      // Remove current from queue only if answered correctly (or OK/LET)
-      setQueue((prev) => prev.slice(1));
-    } else {
-      playSound('damage');
-      // For 'IGEN' or 'SVÆRT', we flip it back to the front and keep it at index 0 to repeat it
-      setRevealed(false);
-    }
+    if (ok) { playSound('success'); setRevealed(false); setQueue((prev: any[]) => prev.slice(1)); } 
+    else { playSound('damage'); setRevealed(false); }
   };
-
   return (
     <div className="max-w-2xl mx-auto py-8 px-4 h-full overflow-y-auto">
       <div className="flex justify-between items-center mb-8">
@@ -51,7 +38,6 @@ export const FlashcardSession = ({ entries, onExit, onRecord, playSound }: any) 
               <button onClick={() => handleResponse(true)} className="bg-green-400 border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-green-500">OK</button>
               <button onClick={() => handleResponse(true)} className="bg-blue-400 text-white border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-blue-500">LET</button>
             </div>
-            <p className="mt-8 text-[10px] font-black text-slate-400 uppercase italic">Tryk 'Igen' for at repetere med det samme</p>
           </div>
         )}
       </div>
