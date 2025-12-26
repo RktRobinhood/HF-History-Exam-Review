@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Familieliv i Danmark – Pensum</title>
+<title>Familieliv i Danmark – Kurateret læsning (10 min pr. fane) + quiz</title>
 <style>
   :root{
     --bg:#ffffff;--panel:#ffffff;--muted:#64748b;--fg:#0f172a;--line:#0f172a;
@@ -30,7 +30,7 @@
   .think b{color:var(--accent);text-transform:uppercase}
   .qblock{margin-top:40px;border-top:8px solid var(--line);padding-top:20px}
   .qrow{border:3px solid var(--line);padding:20px;margin:15px 0;background:white;box-shadow:4px 4px 0px var(--line)}
-  .meta{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;margin-bottom:15px}
+  .qrow .meta{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;margin-bottom:15px}
   .tag{font-size:10px;font-weight:900;background:var(--line);color:white;padding:2px 6px;text-transform:uppercase}
   .opts{list-style:none;padding:0;margin:10px 0 0}
   .opt{padding:12px;border:2px solid var(--line);margin:8px 0;cursor:pointer;font-weight:700;font-size:14px;transition:all 0.1s}
@@ -128,6 +128,7 @@
 
     <div class="quote"><b>Læseteknik:</b> Marker (1) begreber, (2) årsager, (3) konsekvenser, (4) et tydeligt eksempel. Hvis du kan forklare hvert punkt med én sætning bagefter, har du forstået teksten.</div>
 
+    <!-- Questions reused from v7 -->
     <div class="qblock" id="quiz-metode">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>1) Hvad undersøger “afsender” i kildekritik?</b><span class="tag">Fakta</span></div>
@@ -138,7 +139,7 @@
         <div class="feedback">Normative kilder er stærke til at vise tidens idealer og moralsprog.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>3) Hvad betyder “repræsentativitet”?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Om kilden kan sige noget generelt om flere end den enkelte</li><li class="opt" data-choice="B">Om kilden er skrevet i nutiden</li><li class="opt" data-choice="C">Om kilden har billeder</li><li class="opt" data-choice="D">Om kilden er lang</li></ul>
-        <div class="feedback">En kilde kan være troværdig, mas stadig ikke “typisk”.</div></div>
+        <div class="feedback">En kilde kan være troværdig, men stadig ikke “typisk”.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>4) Hvorfor er “nutidsbriller” et problem?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Fordi man ikke må have holdninger</li><li class="opt" data-choice="B">Fordi fortiden altid er bedre</li><li class="opt" data-choice="C">Fordi man risikerer at dømme i stedet for at forklare tidens rammer</li><li class="opt" data-choice="D">Fordi man glemmer årstal</li></ul>
         <div class="feedback">Historie kræver kontekst: hvilke muligheder og normer gjaldt dengang?</div></div>
@@ -173,7 +174,7 @@
     <p>For at forstå bondefamilien skal du starte med et vigtigt skifte i tankegang: I landbrugssamfundet er “familie” typisk ikke først og fremmest en romantisk kernefamilie. Det centrale er <b>husstanden</b> – et fællesskab, hvor man bor sammen og producerer sammen. Husstanden kan bestå af forældre og børn, men også bedsteforældre, ugifte søskende og <b>tjenestefolk</b> (karle og piger). I nogle kilder kan du se, at “familien” i praksis er dem, der arbejder og spiser sammen.</p>
 
     <h3>1) Arbejde bestemmer hverdagen</h3>
-    <p>Årets rytme styres af markarbejde, dyr, vejrlig og høst. Det betyder, at hverdagen er struktureret omkring pligter: hvad der skal gøres, hvornår det skal gøres, og hvem der gør det. Børn indgår ofte tidligt i arbejdsfællesskabet. Det er vigtigt at kunne forklare det uden nutidsbriller: I et samfund uden moderne sikkerhedsnet, kan arbejdskraft være forskellen på at klare sig og at gå i gæld eller sult. Derfor bliver opdragelse ofte knyttet til <b>lydighed, pligt og ansvar</b>.</p>
+    <p>Årets rytme styres af markarbejde, dyr, vejrlig og høst. Det betyder, at hverdagen er struktureret omkring pligter: hvad der skal gøres, hvornår det skal gøres, og hvem der gør det. Børn indgår ofte tidligt i arbejdsfællesskabet. Det er vigtigt at kunne forklare det uden nutidsbriller: I et samfund uden moderne sikkerhedsnet kan arbejdskraft være forskellen på at klare sig og at gå i gæld eller sult. Derfor bliver opdragelse ofte knyttet til <b>lydighed, pligt og ansvar</b>.</p>
 
     <div class="think"><b>Stop & tænk:</b> Hvis en familie har 6 personer og kun 2 voksne kan udføre fuldt arbejde, hvad sker der, hvis én voksen bliver syg? Hvilke valg har familien?</div>
 
@@ -204,7 +205,7 @@
     <p>Afhængigheden er ikke kun økonomisk. Den kan også handle om bevægelsesfrihed, arbejde og sociale muligheder. Når du læser en livsfortælling om et barn i en fæstebondekontekst, så notér især: Hvilke autoriteter sætter grænser (forældre, præst, godsejer)? Og hvilke muligheder har barnet for at “skifte bane” (uddannelse, tjeneste, flytning, giftermål)?</p>
 
     <h3>3) Ægteskab, børn og livsstrategier</h3>
-    <p>I landbrugssamfundet is ægteskab ofte også en praktisk beslutning. Mange gifter sig først, når de kan etablere en husstand – dvs. når de har et sted at bo og en måde at forsørge. Derfor kan du i historien ofte møde ideen om <b>sen ægteskabsalder</b>. Det handler ikke om manglende kærlighed, men om økonomi, status og mulighed for at etablere sig.</p>
+    <p>I landbrugssamfundet er ægteskab ofte også en praktisk beslutning. Mange gifter sig først, når they kan etablere en husstand – dvs. når de har et sted at bo og en måde at forsørge. Derfor kan du i historien ofte møde ideen om <b>sen ægteskabsalder</b>. Det handler ikke om manglende kærlighed, men om økonomi, status og mulighed for at etablere sig.</p>
 
     <p>Børn har flere roller samtidig: de er familie, arbejdskraft og “fremtid”. Forældrene er afhængige af, at børn bliver dygtige og ansvarlige, men også af, at de senere kan overtage eller støtte familien. Derfor bliver relationen mellem generationer meget vigtig (aftægt, arv, overtagelse). Konflikter kan opstå, hvis den unge generation ønsker noget andet end den ældre (fx flytte eller vælge en anden livsbane).</p>
 
@@ -223,6 +224,7 @@
       <li><b>Mobilitet</b>: Byen kan give nye jobs og uddannelse; landet kan være mere bundet af tradition og ejerskab.</li>
     </ul>
 
+    <!-- Questions from v7 -->
     <div class="qblock" id="quiz-bonde">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>1) Hvad betyder “husstand” bedst i bondeperioden?</b><span class="tag">Fakta</span></div>
@@ -230,7 +232,7 @@
         <div class="feedback">Husstanden er både økonomi, bolig og socialt net.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>2) Hvad er forskellen på landgilde og hoveri?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Der er ingen forskel</li><li class="opt" data-choice="B">Hoveri er betaling, landgilde er arbejde</li><li class="opt" data-choice="C">Landgilde er militærtjeneste</li><li class="opt" data-choice="D">Landgilde er betaling, hoveri er pligtarbejde</li></ul>
-        <div class="feedback">To forskellige ydelser i fæstesystemet.</div></div>
+        <div class="feedback">Two forskellige ydelser i fæstesystemet.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>3) Hvad betyder aftægt?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">En jernbanerute</li><li class="opt" data-choice="B">Ordning hvor ældre forsørges, når gården gives videre</li><li class="opt" data-choice="C">En skat på korn</li><li class="opt" data-choice="D">Et forbud mod ægteskab</li></ul>
         <div class="feedback">Familien fungerer som “pension” i landbrugssamfundet.</div></div>
@@ -241,16 +243,16 @@
         <ul class="opts"><li class="opt" data-choice="A">Afhængighed af godsejerens vilkår (pligter/kontrakt)</li><li class="opt" data-choice="B">Afhængighed af jernbanen</li><li class="opt" data-choice="C">Afhængighed af internet</li><li class="opt" data-choice="D">Afhængighed af aktiemarkedet</li></ul>
         <div class="feedback">Fæste binder bonden til pligter og magtforhold.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>6) Hvad betyder “social kontrol” i landsbyen typisk?</b><span class="tag">Forståelse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Kameraovervågning</li><li class="opt" data-choice="B">At ingen interesserer sig for andre</li><li class="opt" data-choice="C">At folk er anonyme</li><li class="opt" data-choice="D">At ry, sladder og normer styrer adfærd i et tæt fællesskab</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Kameraovervågning</li><li class="opt" data-choice="B">At ingen interesserer sig for andre</li><li class="opt" data-choice="C">At folk er anonyme</li><li class="opt" data-choice="D">At ry, sladder og normer styrer adfærd in et tæt fællesskab</li></ul>
         <div class="feedback">Få mennesker og afhængighed gør normer stærke.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>7) Hvad er den bedste historiske forklaring på “sen ægteskabsalder”?</b><span class="tag">Begreb</span></div>
         <ul class="opts"><li class="opt" data-choice="A">At kærlighed ikke fandtes</li><li class="opt" data-choice="B">At man ofte skulle kunne etablere husstand og forsørgelse først</li><li class="opt" data-choice="C">At loven forbød unge at gifte sig</li><li class="opt" data-choice="D">At alle var i militæret hele tiden</li></ul>
-        <div class="feedback">Ægteskab er også en økonomisk beslutning i husstandssystemet.</div></div>
+        <div class="feedback">Ægteskab is også en økonomisk beslutning in husstandssystemet.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>8) Du læser en erindring om streng opdragelse. Hvad er den stærkeste kildekritiske vurdering?</b><span class="tag">Begreb</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Det er sikkert løgn</li><li class="opt" data-choice="B">Det gælder for alle</li><li class="opt" data-choice="C">Det kan være typisk for praksis/normer, men kan også farves af tidsafstand og moral</li><li class="opt" data-choice="D">Det kan ikke bruges</li></ul>
         <div class="feedback">Brug erindringen til mentalitet, men generalisér forsigtigt.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>9) Hvilken sammenligning mellem bonde- og byliv er mest præcis?</b><span class="tag">Koncept</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Bondehusstanden har ofte stærkere lokale netværk; byen kan give flere muligheder men også mere sårbarhed</li><li class="opt" data-choice="B">Byen is altid tryggere</li><li class="opt" data-choice="C">Landsbyen har ingen normer</li><li class="opt" data-choice="D">Bondehjem har ingen arbejde</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Bondehusstanden har ofte stærkere lokale netværk; byen kan give flere muligheder men også mere sårbarhed</li><li class="opt" data-choice="B">Byen er altid tryggere</li><li class="opt" data-choice="C">Landsbyen har ingen normer</li><li class="opt" data-choice="D">Bondehjem har ingen arbejde</li></ul>
         <div class="feedback">Begge har fordele/ulemper; historien handler om rammer og konsekvenser.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>10) Hvilket argument viser bedst, at “familie” er historisk foranderligt?</b><span class="tag">Koncept</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Familier har altid samme form</li><li class="opt" data-choice="B">Familie er kun biologi</li><li class="opt" data-choice="C">Familie har ingen forbindelse til økonomi</li><li class="opt" data-choice="D">Når arbejde, ejerskab og normer ændres, ændres også hvem der bor sammen og hvilke roller der forventes</li></ul>
@@ -264,10 +266,10 @@
   <section class="panel" role="tabpanel" id="p-borg" aria-labelledby="t-borg">
     <h2>Borgerskabets familie: hjemmet som privat sfære, moral og status</h2>
 
-    <p>Hvor bondehusstanden er et arbejdsfællesskab, bliver borgerskabets hjem i 1800-tallet i højere grad et <b>privat rum</b> med tydelige idealer for, hvordan man bør leve. Det betyder ikke, at der ikke foregår arbejde i borgerskabets liv – men arbejdet ligger ofte udenfor hjemmet (kontor, butik, administration), mens hjemmet bliver stedet, hvor man udøver <b>opdragelse</b>, viser <b>kultur</b> og signalerer <b>respektabilitet</b>.</p>
+    <p>Hvor bondehusstanden er et arbejdsfællesskab, bliver borgerskabets hjem in 1800-tallet i højere grad et <b>privat rum</b> med tydelige idealer for, hvordan man bør leve. Det betyder ikke, at der ikke foregår arbejde i borgerskabets liv – men arbejdet ligger ofte udenfor hjemmet (kontor, butik, administration), mens hjemmet bliver stedet, hvor man udøver <b>opdragelse</b>, viser <b>kultur</b> og signalerer <b>respektabilitet</b>.</p>
 
     <h3>1) Offentlig og privat: et nyt ideal</h3>
-    <p>Et centralt mønster is adskillelsen mellem <b>offentlig sfære</b> og <b>privat sfære</b>. Som ideal forbindes den offentlige sfære ofte med mandens rolle (arbejde, politik, økonomi), mens hjemmet forbindes med kvindens rolle (omsorg, moral, børn). Du skal kunne forklare, at dette is et <b>ideal</b> og ikke nødvendigvis alles virkelighed – men idealet kan styre, hvad der anses som normalt og ønskværdigt.</p>
+    <p>Et centralt mønster er adskillelsen mellem <b>offentlig sfære</b> og <b>privat sfære</b>. Som ideal forbindes den offentlige sfære ofte med mandens rolle (arbejde, politik, økonomi), mens hjemmet forbindes med kvindens rolle (omsorg, moral, børn). Du skal kunne forklare, at dette er et <b>ideal</b> og ikke nødvendigvis alles virkelighed – men idealet kan styre, hvad der anses som normalt og ønskværdigt.</p>
 
     <div class="think"><b>Stop & tænk:</b> Hvis hjemmet bliver “privat” og “pænt”, hvad sker der så med ting, der er rodet eller skamfuldt (fx fattigdom, sygdom, konflikter)? Bliver de mere synlige eller mere skjulte?</div>
 
@@ -296,7 +298,7 @@
     </div>
 
     <h3>3) Normer, tabuer og “det pæne”</h3>
-    <p>Når respektabilitet is vigtig, opstår også tabuer: ting man ikke taler om offentligt. Det kan handle om kroppen, seksualitet, økonomiske problemer, alkohol, vold eller “dårlige” relationer. Tabuer betyder ikke, at problemer ikke findes; de betyder, at problemer ofte håndteres mere diskret, og at skam kan bruges som kontrol. Når du læser materiale om borgerskabets familie, så øv dig i at identificere:</p>
+    <p>Når respektabilitet er vigtig, opstår også tabuer: ting man ikke taler om offentligt. Det kan handle om kroppen, seksualitet, økonomiske problemer, alkohol, vold eller “dårlige” relationer. Tabuer betyder ikke, at problemer ikke findes; de betyder, at problemer ofte håndteres mere diskret, og at skam kan bruges som kontrol. Når du læser materiale om borgerskabets familie, så øv dig i at identificere:</p>
     <ul>
       <li>Hvad beskrives direkte? (fx opdragelse, dannelse)</li>
       <li>Hvad ligger “mellem linjerne”? (fx skam, kontrol, forventningspres)</li>
@@ -306,10 +308,11 @@
     <p class="quote"><b>Kurateret kildelæsning:</b> Hvis en tekst lyder som om den lærer dig “hvordan man bør være”, så læser du ikke bare om familier. Du læser om et projekt: at forme bestemte typer mennesker.</p>
 
     <h3>4) Borgerskabets ideal som samfundets målestok</h3>
-    <p>En vigtig historisk pointe is, at borgerskabet ofte får indflydelse på institutioner og normer: skole, foreningsliv, “opdragelseseksperter”, sundhedskampagner, boligidealer. Derfor kan borgerskabets idealer blive en målestok, som andre vurderes ud fra (og som andre måske forsøger at efterligne eller kritisere). Det is en nøgle til at forstå, hvorfor “normalitet” kan føles så stærk i nogle perioder – og hvorfor ændringer senere kan opleves som konflikter om moral.</p>
+    <p>En vigtig historisk pointe er, at borgerskabet ofte får indflydelse på institutioner og normer: skole, foreningsliv, “opdragelseseksperter”, sundhedskampagner, boligidealer. Derfor kan borgerskabets idealer blive en målestok, som andre vurderes ud fra (og som andre måske forsøger at efterligne eller kritisere). Det er en nøgle til at forstå, hvorfor “normalitet” kan føles så stærk i nogle perioder – og hvorfor ændringer senere kan opleves som konflikter om moral.</p>
 
     <div class="think"><b>Stop & tænk:</b> Når en gruppe får lov til at definere “det ordentlige hjem”, hvem bliver så let kaldt “uordentlig”? Hvordan kan det ramme arbejderfamilier eller enlige?</div>
 
+    <!-- Questions from v7 -->
     <div class="qblock" id="quiz-borg">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>1) Hvad er den centrale ændring i borgerskabets familieliv?</b><span class="tag">Fakta</span></div>
@@ -321,7 +324,7 @@
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>3) Hvad betyder “respektabilitet” bedst?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">At fremstå ordentlig og kontrolleret efter tidens normer</li><li class="opt" data-choice="B">At have mange køer</li><li class="opt" data-choice="C">At rejse med tog</li><li class="opt" data-choice="D">At bo i et kollektiv</li></ul>
         <div class="feedback">Respektabilitet is en social standard, ikke en naturtilstand.</div></div>
-      <div class="qrow mcq" data-answer="C"><div class="meta"><b>4) Hvorfor opstår “pæne rum” i mange borgerlige hjem?</b><span class="tag">Forståelse</span></div>
+      <div class="qrow mcq" data-answer="C"><div class="meta"><b>4) Hvorfor opstår “pæne rum” i many borgerlige hjem?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Fordi man aldrig havde gæster</li><li class="opt" data-choice="B">Fordi loven krævede det</li><li class="opt" data-choice="C">For at repræsentere familien socialt over for gæster</li><li class="opt" data-choice="D">Fordi man ikke havde andre rum</li></ul>
         <div class="feedback">Hjemmet fungerer som “visitkort” og social scene.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>5) Hvilken konsekvens kan adskillelsen hjem/arbejde have for kønsroller?</b><span class="tag">Forståelse</span></div>
@@ -351,7 +354,7 @@
   <section class="panel" role="tabpanel" id="p-arb" aria-labelledby="t-arb">
     <h2>Byarbejderfamilien: lønarbejde, boligvilkår og klasse</h2>
 
-    <p>Når Danmark industrialiseres og byerne vokser, ændrer familieliv sig markant. Mange familier flytter fra land til by (urbanisering) for at finde arbejde. I byen bliver overlevelse i højere grad knyttet til <b>løn</b>: du har ikke en mark, der kan give mad, hvis du mister jobbet. Det gør arbejderfamilier sårbare, men det skaber også nye muligheder: kontante penge, nye varer, nye miljøer og nye fællesskaber.</p>
+    <p>Når Danmark industrialiseres og byerne vokser, ændrer familieliv sig markant. Many familier flytter fra land til by (urbanisering) for at finde arbejde. I byen bliver overlevelse i højere grad knyttet til <b>løn</b>: du har ikke en mark, der kan give mad, hvis du mister jobbet. Det gør arbejderfamilier sårbare, men det skaber også nye muligheder: kontante penge, nye varer, nye miljøer og nye fællesskaber.</p>
 
     <h3>1) Lønarbejde og risiko</h3>
     <p>I en lønøkonomi kan en familie blive ramt hårdt af sygdom, arbejdsulykker eller arbejdsløshed. Derfor fylder temaer som <b>usikkerhed</b> og <b>strategier</b> meget i arbejderhistorie: Hvordan sparer man? Hvem arbejder? Kan børn arbejde? Har man familie i nærheden? Kan man få hjælp af naboer, fagforeninger eller senere velfærdsordninger?</p>
@@ -398,6 +401,7 @@
 
     <p class="quote"><b>Kurateret fokus:</b> Når du ser et konkret boligtræk (fx “ét rum”, “køkken i gangen”, “fælles lokum”), så skriv straks en konsekvens: “Det betyder for opdragelse/sundhed/konflikt at…”</p>
 
+    <!-- Questions from v7 -->
     <div class="qblock" id="quiz-arb">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>1) Hvad betyder lønarbejde?</b><span class="tag">Fakta</span></div>
@@ -408,9 +412,9 @@
         <div class="feedback">Urbanisering ændrer bolig, arbejde og netværk.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>3) Hvad er en typisk konsekvens af boligtrang?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Mindre privatliv og højere risiko for konflikter/sygdom</li><li class="opt" data-choice="B">Mere plads til lektier</li><li class="opt" data-choice="C">Flere heste</li><li class="opt" data-choice="D">Lavere husleje automatisk</li></ul>
-        <div class="feedback">Boligen is et “vilkår” for familieliv.</div></div>
+        <div class="feedback">Boligen er et “vilkår” for familieliv.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>4) Hvorfor er arbejderfamilien ofte mere sårbar end bondehusstanden?</b><span class="tag">Forståelse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Fordi de har flere marker</li><li class="opt" data-choice="B">Fordi de ejer mere jord</li><li class="opt" data-choice="C">Fordi tab af job/løn rammer direkte, og selvforsyning is mindre</li><li class="opt" data-choice="D">Fordi de har for mange rum</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Fordi de har flere marker</li><li class="opt" data-choice="B">Fordi de ejer mere jord</li><li class="opt" data-choice="C">Fordi tab af job/løn rammer direkte, og selvforsyning er mindre</li><li class="opt" data-choice="D">Fordi de har for mange rum</li></ul>
         <div class="feedback">Lønarbejde + husleje = højere risiko ved kriser.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>5) Hvilken kæde er mest plausibel ved lang arbejdstid?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Mere tid hjemme → mindre konflikt</li><li class="opt" data-choice="B">Kortere tid hjemme → mere overskud</li><li class="opt" data-choice="C">Mere søvn → dårligere sundhed</li><li class="opt" data-choice="D">Mindre tid/energi → sværere opdragelse og mere stress</li></ul>
@@ -425,7 +429,7 @@
         <ul class="opts"><li class="opt" data-choice="A">Hvad er den pæneste farve?</li><li class="opt" data-choice="B">Hvad ville du selv vælge?</li><li class="opt" data-choice="C">Hvordan påvirker rummene hverdagsliv og hvilke strukturer skaber boligformen?</li><li class="opt" data-choice="D">Hvad er den sjoveste detalje?</li></ul>
         <div class="feedback">Historie handler om konsekvens og forklaring, ikke smag.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>9) Hvilken pointe forbinder bedst klasse og opdragelse?</b><span class="tag">Koncept</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Opdragelse is altid ens</li><li class="opt" data-choice="B">Opdragelse is kun biologi</li><li class="opt" data-choice="C">Opdragelse har ingen forbindelse til bolig</li><li class="opt" data-choice="D">Ressourcer (tid/plads/økonomi) påvirker muligheder for skole, ro og normer</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Opdragelse er altid ens</li><li class="opt" data-choice="B">Opdragelse er kun biologi</li><li class="opt" data-choice="C">Opdragelse har ingen forbindelse til bolig</li><li class="opt" data-choice="D">Ressourcer (tid/plads/økonomi) påvirker muligheder for skole, ro og normer</li></ul>
         <div class="feedback">Materielle vilkår kan ændre, hvad “god opdragelse” realistisk kan være.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>10) Hvilken sammenligning viser bedst historisk tænkning?</b><span class="tag">Koncept</span></div>
         <ul class="opts"><li class="opt" data-choice="A">“Bonden var dum, arbejder var smart”</li><li class="opt" data-choice="B">“Forskellige strukturer (jord vs løn) skaber forskellige familieformer og risici”</li><li class="opt" data-choice="C">“Alt er tilfældigt”</li><li class="opt" data-choice="D">“Kun kærlighed betyder noget”</li></ul>
@@ -442,10 +446,10 @@
     <p>Efter 2. verdenskrig bliver “det normale familieliv” en stærk kulturel fortælling. I mange fremstillinger ser du kernefamilien (mor, far, børn) som et ideal, der forbindes med tryghed, orden og fremtid. Det hænger sammen med boligudvikling, forbrugskultur og ideen om, at man kan bygge et stabilt liv efter krig og kriser.</p>
 
     <h3>1) Kernefamilie som ideal (ikke som naturregel)</h3>
-    <p>Du skal kunne skelne mellem <b>ideal</b> og <b>virkelighed</b>. Idealet kan være stærkt i medier, skole, rådgivning og populærkultur, men virkeligheden kan variere: klasse, økonomi, sygdom, konflikter og individuelle livsbaner betyder, at ikke alle kan eller vil leve op til idealet. Når idealet is stærkt, kan det skabe <b>normpres</b>: man kan føle skam, hvis man ikke lever “rigtigt”.</p>
+    <p>Du skal kunne skelne mellem <b>ideal</b> og <b>virkelighed</b>. Idealet kan være stærkt i medier, skole, rådgivning og populærkultur, men virkeligheden kan variere: klasse, økonomi, sygdom, konflikter og individuelle livsbaner betyder, at ikke alle kan eller vil leve op til idealet. Når idealet er stærkt, kan det skabe <b>normpres</b>: man kan føle skam, hvis man ikke lever “rigtigt”.</p>
 
     <h3>2) Forsørgermodel og ulønnet arbejde</h3>
-    <p>I efterkrigstidens familiebillede fylder ofte forsørgermodellen: én (ofte manden) tjener hovedindkomsten, mens den anden (ofte kvinden) står for hjem, børn og “hverdagsmaskinen”. Det betyder ikke, at kvinder ikke arbejder, men idealet kan forme forventninger og fordeling af ansvar. Et nøglebegreb is <b>ulønnet omsorgsarbejde</b>: mad, rengøring, børneomsorg, planlægning, følelsesarbejde. Hvis du kan forklare det, kan du også forklare konflikter og ulighed i hjemmet.</p>
+    <p>I efterkrigstidens familiebillede fylder ofte forsørgermodellen: én (ofte manden) tjener hovedindkomsten, mens den anden (ofte kvinden) står for hjem, børn og “hverdagsmaskinen”. Det betyder ikke, at kvinder ikke arbejder, men idealet kan forme forventninger og fordeling af ansvar. Et nøglebegreb er <b>ulønnet omsorgsarbejde</b>: mad, rengøring, børneomsorg, planlægning, følelsesarbejde. Hvis du kan forklare det, kan du også forklare konflikter og ulighed i hjemmet.</p>
 
     <div class="keygrid">
       <div class="box">
@@ -467,7 +471,7 @@
     </div>
 
     <h3>3) Brevkasser: normer i praksis</h3>
-    <p>En brevkasse fra midten af 1900-tallet kan virke “lille” som kilde, men den is stor historisk, fordi den viser, hvordan moral oversættes til konkrete råd. Metaforen om <b>klinket porcelæn</b> is et godt eksempel på, hvordan man forsøger at give både trøst og norm: man kan reparere relationen – men også, at man bør forsøge at blive sammen.</p>
+    <p>En brevkasse fra midten af 1900-tallet kan virke “lille” som kilde, men den er stor historisk, fordi den viser, hvordan moral oversættes til konkrete råd. Metaforen om <b>klinket porcelæn</b> er et godt eksempel på, hvordan man forsøger at give både trøst og norm: man kan reparere relationen – men også, at man bør forsøge at blive sammen.</p>
 
     <p>For at bruge brevkassen rigtigt skal du gøre to ting:</p>
     <ul>
@@ -475,42 +479,43 @@
       <li><b>Læs værdierne</b>: Hvilke idealer ligger bag? Hvad er “skamfuldt” eller “rigtigt”?</li>
     </ul>
 
-    <div class="think"><b>Stop & tænk:</b> Hvis skilsmisse is socialt dyrt, hvilke typer konflikter tror du så bliver holdt skjult? Og hvem betaler prisen?</div>
+    <div class="think"><b>Stop & tænk:</b> Hvis skilsmisse er socialt dyrt, hvilke typer konflikter tror du så bliver holdt skjult? Og hvem betaler prisen?</div>
 
     <h3>4) Forbrug og hjemmet som identitet</h3>
-    <p>I efterkrigstiden bliver hjemmet ikke kun et sted at sove – det bliver et projekt. Når flere får adgang til varer og bedre boligstandard, bliver ting i hjemmet (møbler, køkkenudstyr, tøj) en måde at vise, at man er en “ordentlig” familie. Det kan skabe stolthed, men også pres: hvis man ikke har råd, kan man føle sig udenfor. Det is en vigtig bro til senere perioder, hvor identitet in højere grad bliver noget, man “bygger” gennem valg.</p>
+    <p>I efterkrigstiden bliver hjemmet ikke kun et sted at sove – det bliver et projekt. Når flere får adgang til varer og bedre boligstandard, bliver ting i hjemmet (møbler, køkkenudstyr, tøj) en måde at vise, at man er en “ordentlig” familie. Det kan skabe stolthed, men også pres: hvis man ikke har råd, kan man føle sig udenfor. Det er en vigtig bro til senere perioder, hvor identitet i højere grad bliver noget, man “bygger” gennem valg.</p>
 
+    <!-- Questions from v7 -->
     <div class="qblock" id="quiz-kerne">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>1) Hvad er kernefamilien?</b><span class="tag">Fakta</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Mor, far og børn som ideal/enhed</li><li class="opt" data-choice="B">En landsby med mange familier</li><li class="opt" data-choice="C">En fagforening</li><li class="opt" data-choice="D">En type jernbane</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Mor, far og børn som ideal/enhed</li><li class="opt" data-choice="B">En landsby med many familier</li><li class="opt" data-choice="C">En fagforening</li><li class="opt" data-choice="D">En type jernbane</li></ul>
         <div class="feedback">Kernefamilie is en familieform – men også et kulturelt ideal.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>2) Hvad betyder forsørgermodel (som ideal)?</b><span class="tag">Fakta</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Barnet forsørger forældrene</li><li class="opt" data-choice="B">Alle bor i kollektiv</li><li class="opt" data-choice="C">Én (ofte manden) is hovedforsørger; den anden tager hjem/omsorg</li><li class="opt" data-choice="D">Ingen arbejder</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Barnet forsørger forældrene</li><li class="opt" data-choice="B">Alle bor i kollektiv</li><li class="opt" data-choice="C">Én (ofte manden) er hovedforsørger; den anden tager hjem/omsorg</li><li class="opt" data-choice="D">Ingen arbejder</li></ul>
         <div class="feedback">Modellen hænger sammen med normer, økonomi og institutioner.</div></div>
-      <div class="qrow mcq" data-answer="B"><div class="meta"><b>3) Hvilken kilde-type is en brevkasse typisk?</b><span class="tag">Fakta</span></div>
+      <div class="qrow mcq" data-answer="B"><div class="meta"><b>3) Hvilken kilde-type er en brevkasse typisk?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Statistik</li><li class="opt" data-choice="B">Normativ rådgivningskilde</li><li class="opt" data-choice="C">Kortkilde</li><li class="opt" data-choice="D">Naturvidenskab</li></ul>
         <div class="feedback">Brevkasser viser “bør”-sprog og tidens moral.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>4) Hvad er den bedste tolkning af “klinket porcelæn” som metafor?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Konflikter forsvinder helt</li><li class="opt" data-choice="B">Man skal ignorere problemer</li><li class="opt" data-choice="C">Ægteskab kan aldrig reddes</li><li class="opt" data-choice="D">Noget kan repareres, men det bliver ikke helt som før</li></ul>
         <div class="feedback">Metaforen åbner for både håb og forventning om at holde sammen.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>5) Hvorfor kan kernefamilie-idealet skabe normpres?</b><span class="tag">Forståelse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Fordi idealet bliver målestok for “normalitet”, så afvigelser kan stigmatiseres</li><li class="opt" data-choice="B">Fordi idealet afskaffer alle normer</li><li class="opt" data-choice="C">Fordi alle får flere rum</li><li class="opt" data-choice="D">Fordi jernbanen is hurtigere</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Fordi idealet bliver målestok for “normalitet”, så afvigelser kan stigmatiseres</li><li class="opt" data-choice="B">Fordi idealet afskaffer alle normer</li><li class="opt" data-choice="C">Fordi alle får flere rum</li><li class="opt" data-choice="D">Fordi jernbanen er hurtigere</li></ul>
         <div class="feedback">Jo stærkere ideal, jo større social konsekvens ved at afvige.</div></div>
-      <div class="qrow mcq" data-answer="C"><div class="meta"><b>6) Hvilken analyse is stærkest af en brevkassekilde?</b><span class="tag">Forståelse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Den is neutral og uden moral</li><li class="opt" data-choice="B">Den beskriver alle familier præcist</li><li class="opt" data-choice="C">Den viser tidens normer og forventninger mere end den viser “gennemsnittet”</li><li class="opt" data-choice="D">Den kan ikke bruges i historie</li></ul>
+      <div class="qrow mcq" data-answer="C"><div class="meta"><b>6) Hvilken analyse er stærkest af en brevkassekilde?</b><span class="tag">Forståelse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Den er neutral og uden moral</li><li class="opt" data-choice="B">Den beskriver alle familier præcist</li><li class="opt" data-choice="C">Den viser tidens normer og forventninger mere end den viser “gennemsnittet”</li><li class="opt" data-choice="D">Den kan ikke bruges i historie</li></ul>
         <div class="feedback">Genren handler om at rådgive og dermed også regulere.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>7) Hvilket begreb forklarer bedst “usynligt arbejde” i hjemmet?</b><span class="tag">Begreb</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Hoveri</li><li class="opt" data-choice="B">Ulønnet omsorgsarbejde</li><li class="opt" data-choice="C">Landgilde</li><li class="opt" data-choice="D">Stavnsbånd</li></ul>
-        <div class="feedback">Omsorgsarbejde is centralt i familieliv, men ofte skjult in økonomiske beskrivelser.</div></div>
+        <div class="feedback">Omsorgsarbejde is centralt i familieliv, men ofte skjult i økonomiske beskrivelser.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>8) Hvilken forklaring forbinder bedst forbrug og identitet i 1950’erne?</b><span class="tag">Begreb</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Forbrug betyder ingenting</li><li class="opt" data-choice="B">Forbrug is kun mad</li><li class="opt" data-choice="C">Forbrug handler kun om tog</li><li class="opt" data-choice="D">Varer og boligstandard bliver markører for “det gode liv” og social status</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Forbrug betyder ingenting</li><li class="opt" data-choice="B">Forbrug er kun mad</li><li class="opt" data-choice="C">Forbrug handler kun om tog</li><li class="opt" data-choice="D">Varer og boligstandard bliver markører for “det gode liv” og social status</li></ul>
         <div class="feedback">Hjem og forbrug kan fungere som kulturel fortælling om normalitet.</div></div>
-      <div class="qrow mcq" data-answer="C"><div class="meta"><b>9) Hvilken sammenligning is mest historisk præcis?</b><span class="tag">Koncept</span></div>
+      <div class="qrow mcq" data-answer="C"><div class="meta"><b>9) Hvilken sammenligning er mest historisk præcis?</b><span class="tag">Koncept</span></div>
         <ul class="opts"><li class="opt" data-choice="A">1950’erne er helt uden konflikter</li><li class="opt" data-choice="B">1950’erne har ingen normer</li><li class="opt" data-choice="C">1950’ernes ideal kan være mere ensrettende end perioder med flere familieformer</li><li class="opt" data-choice="D">1950’erne er identisk med fæstesamfund</li></ul>
-        <div class="feedback">Forskelle in idealer ændrer, hvad der opleves som legitimt og muligt.</div></div>
+        <div class="feedback">Forskelle i idealer ændrer, hvad der opleves som legitimt og muligt.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>10) Hvad er en stærk historisk problemstilling baseret på dette tab?</b><span class="tag">Koncept</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">“Hvordan påvirkede kernefamilieidealet mulighederne for at tale om konflikter og skilsmisse?”</li><li class="opt" data-choice="B">“Hvad er den bedste farve?”</li><li class="opt" data-choice="C">“Hvor mange kommaer er der?”</li><li class="opt" data-choice="D">“Hvem er sødest?”</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">“Hvordan påvirkede kernefamilieidealet mulighederne for at tale om konflikter og skilsmisse?”</li><li class="opt" data-choice="B">“Hvad er den bedste farve?”</li><li class="opt" data-choice="C">“Hvor many kommaer er der?”</li><li class="opt" data-choice="D">“Hvem er sødest?”</li></ul>
         <div class="feedback">Historiske problemstillinger handler om årsager, virkninger og kontekst.</div></div>
       <button class="btn" type="button" onclick="showScore('#quiz-kerne','#score-kerne')">Vis score</button>
       <div class="score" id="score-kerne"></div>
@@ -521,21 +526,21 @@
   <section class="panel" role="tabpanel" id="p-nye" aria-labelledby="t-nye">
     <h2>Nye familieformer: forhandling, frihed og institutioner</h2>
 
-    <p>Fra 1960’erne og frem bliver familieliv mere mangfoldigt. Det betyder ikke, at “familien går in opløsning”, men at flere former bliver legitime og synlige: samliv uden ægteskab, skilsmisser, sammenbragte familier, enlige forældre, senere også forskellige måder at definere partnerskab og forældreskab på. For at forstå dette historisk skal du koble <b>normer</b> og <b>muligheder</b>.</p>
+    <p>Fra 1960’erne og frem bliver familieliv mere mangfoldigt. Det betyder ikke, at “familien går i opløsning”, men at flere former bliver legitime og synlige: samliv uden ægteskab, skilsmisser, sammenbragte familier, enlige forældre, senere også forskellige måder at definere partnerskab og forældreskab på. For at forstå dette historisk skal du koble <b>normer</b> og <b>muligheder</b>.</p>
 
     <h3>1) Individualisering: flere valg – og mere ansvar</h3>
-    <p>En vigtig forklaringsramme is <b>individualisering</b>. Det betyder, at livsbaner in højere grad bliver et personligt projekt: man forventes at vælge uddannelse, arbejde, partner, livsstil og værdier. Tradition og lokalsamfund bestemmer mindre direkte. Det kan opleves som frihed, men også som pres: hvis du “selv vælger”, kan du også føle, at du selv bærer skylden, hvis noget går galt.</p>
+    <p>En vigtig forklaringsramme er <b>individualisering</b>. Det betyder, at livsbaner i højere grad bliver et personligt projekt: man forventes at vælge uddannelse, arbejde, partner, livsstil og værdier. Tradition og lokalsamfund bestemmer mindre direkte. Det kan opleves som frihed, men også som pres: hvis du “selv vælger”, kan du også føle, at du selv bærer skylden, hvis noget går galt.</p>
 
     <div class="think"><b>Stop & tænk:</b> Hvorfor kan “flere valgmuligheder” også skabe stress? Skriv 2 grunde.</div>
 
-    <h3>2) Tosforsørger og forhandling in hjemmet</h3>
+    <h3>2) Tosforsørger og forhandling i hjemmet</h3>
     <p>Når flere kvinder får uddannelse og lønarbejde, ændres familien som arbejds- og omsorgssystem. I en toforsørgerfamilie er der ofte to indkomster, men der er stadig mad, tøj, rengøring, logistik og børn. Derfor bliver “hvem gør hvad?” et forhandlingsspørgsmål. Det kan skabe mere lighed, men kan også skabe konflikter, især hvis gamle normer hænger ved (fx forventningen om at kvinder “naturligt” tager mest omsorgsarbejde).</p>
 
     <div class="keygrid">
       <div class="box">
         <b>Nøglebegreber</b>
         <ul class="small">
-          <li><b>Tosforsørger</b>: to indkomster in husholdet.</li>
+          <li><b>Tosforsørger</b>: to indkomster i husholdet.</li>
           <li><b>Dobbeltarbejde</b>: betalt arbejde + hus/omsorg oveni.</li>
           <li><b>Forhandling</b>: roller og ansvar skal aftales.</li>
           <li><b>Normskift</b>: ændrede idealer om køn, seksualitet og familie.</li>
@@ -547,36 +552,37 @@
           <li>Daginstitutioner og skole (pasning + læring)</li>
           <li>Uddannelsessystem og arbejdsmarked</li>
           <li>Velfærd/ydelser (sikkerhed ved brud og kriser)</li>
-          <li>Lovgivning og kulturel accept (hvad is legitimt?)</li>
+          <li>Lovgivning og kulturel accept (hvad er legitimt?)</li>
         </ul>
       </div>
     </div>
 
     <h3>3) “Seksuel revolution”: normer, krop og selvbestemmelse</h3>
-    <p>Udtrykket “seksuel revolution” dækker over flere udviklinger, hvor normer om seksualitet gradvist ændrer sig: seksualitet knyttes in højere grad til selvbestemmelse og identitet, ikke kun til ægteskab og børn. Her skal du være nuanceret: normskift sker ikke ens for alle. Nogle miljøer ændrer sig hurtigt; andre holder fast in tradition. En historisk analyse spørger derfor: Hvem får først adgang til den nye frihed? Hvem oplever den som trussel? Hvilke konflikter opstår mellem generationer?</p>
+    <p>Udtrykket “seksuel revolution” dækker over flere udviklinger, hvor normer om seksualitet gradvist ændrer sig: seksualitet knyttes i højere grad til selvbestemmelse og identitet, ikke kun til ægteskab og børn. Her skal du være nuanceret: normskift sker ikke ens for alle. Nogle miljøer ændrer sig hurtigt; andre holder fast i tradition. En historisk analyse spørger derfor: Hvem får først adgang til den nye frihed? Hvem oplever den som trussel? Hvilke konflikter opstår mellem generationer?</p>
 
     <p class="quote"><b>Kurateret pointe:</b> Når du læser om normskift, så tænk: “Hvilke gamle normer udfordres?” og “Hvilke nye normer opstår?” – for frihed skaber ofte nye forventninger.</p>
 
     <h3>4) Sammenligning med 1950’erne</h3>
-    <p>En stærk bro is at sammenligne kernefamilieidealets stabilitet med senmodernitetens forhandling. I 1950’erne kan det være legitimt at “bide tænderne sammen” for at holde sammen. I senere perioder kan det være mere legitimt at sige: “Jeg har ret til at forlade noget, der ikke fungerer.” Men legitimitet betyder ikke, at det is let – det betyder, at normerne og institutionerne gør det mere muligt.</p>
+    <p>En stærk bro is at sammenligne kernefamilieidealets stabilitet med senmodernitetens forhandling. I 1950’erne kan det være legitimt at “bide tænderne sammen” for at holde sammen. I senere perioder kan det være mere legitimt at sige: “Jeg har ret til at forlade noget, der ikke fungerer.” Men legitimitet betyder ikke, at det er let – det betyder, at normerne og institutionerne gør det mere muligt.</p>
 
+    <!-- Questions from v7 -->
     <div class="qblock" id="quiz-nye">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>1) Hvad betyder toforsørger?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">At ingen forsørger</li><li class="opt" data-choice="B">At husholdet typisk har to indkomster</li><li class="opt" data-choice="C">At man betaler landgilde</li><li class="opt" data-choice="D">At børn forsørger voksne</li></ul>
-        <div class="feedback">To indkomster ændrer tid, økonomi og fordeling in hjemmet.</div></div>
+        <div class="feedback">To indkomster ændrer tid, økonomi og fordeling i hjemmet.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>2) Hvad betyder dobbeltarbejde?</b><span class="tag">Fakta</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">To jobs in samme virksomhed</li><li class="opt" data-choice="B">Kun nattearbejde</li><li class="opt" data-choice="C">Betalt arbejde + hus/omsorg oveni</li><li class="opt" data-choice="D">Arbejdsfri dag</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">To jobs i samme virksomhed</li><li class="opt" data-choice="B">Kun nattearbejde</li><li class="opt" data-choice="C">Betalt arbejde + hus/omsorg oveni</li><li class="opt" data-choice="D">Arbejdsfri dag</li></ul>
         <div class="feedback">Begrebet bruges ofte om belastning og ulig fordeling.</div></div>
-      <div class="qrow mcq" data-answer="A"><div class="meta"><b>3) Hvad er individualisering (i familiehistorie)?</b><span class="tag">Fakta</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">At livsvalg in højere grad bliver personlige projekter frem for tradition</li><li class="opt" data-choice="B">At alle bor alene</li><li class="opt" data-choice="C">At staten bestemmer alt</li><li class="opt" data-choice="D">At alle flytter på landet</li></ul>
+      <div class="qrow mcq" data-answer="A"><div class="meta"><b>3) Hvad is individualisering (i familiehistorie)?</b><span class="tag">Fakta</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At livsvalg i højere grad bliver personlige projekter frem for tradition</li><li class="opt" data-choice="B">At alle bor alene</li><li class="opt" data-choice="C">At staten bestemmer alt</li><li class="opt" data-choice="D">At alle flytter på landet</li></ul>
         <div class="feedback">Individualisering handler om flere valgmuligheder og mindre faste livsbaner.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>4) Hvorfor kan flere skilsmisser hænge sammen med struktur, ikke kun moral?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Fordi jernbanen bliver langsommere</li><li class="opt" data-choice="B">Fordi alle får hoveri</li><li class="opt" data-choice="C">Fordi man stopper med at arbejde</li><li class="opt" data-choice="D">Økonomisk uafhængighed + normskift + institutioner kan gøre brud muligt</li></ul>
         <div class="feedback">Muligheden for at forlade et forhold afhænger af økonomi og accept.</div></div>
-      <div class="qrow mcq" data-answer="B"><div class="meta"><b>5) Hvad er en sandsynlig konsekvens af “forhandling” in hjemmet?</b><span class="tag">Forståelse</span></div>
+      <div class="qrow mcq" data-answer="B"><div class="meta"><b>5) Hvad er en sandsynlig konsekvens af “forhandling” i hjemmet?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Ingen konflikter</li><li class="opt" data-choice="B">Konflikter kan opstå, fordi roller ikke er givet af tradition</li><li class="opt" data-choice="C">Mindre behov for kommunikation</li><li class="opt" data-choice="D">At alle bliver selvforsynende</li></ul>
-        <div class="feedback">Når “hvem gør hvad” ikke is fast, skal det aftales.</div></div>
+        <div class="feedback">Når “hvem gør hvad” ikke er fast, skal det aftales.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>6) Hvorfor sker normskift ikke ens for alle?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Fordi normer ikke findes</li><li class="opt" data-choice="B">Fordi alle tænker ens</li><li class="opt" data-choice="C">Fordi klasse, religion, geografi og generation påvirker tempo og accept</li><li class="opt" data-choice="D">Fordi teknologien stopper</li></ul>
         <div class="feedback">Sociale forskelle betyder, at ændringer opleves forskelligt.</div></div>
@@ -591,7 +597,7 @@
         <div class="feedback">Forskellen handler især om normer, arbejdsmarked og institutioner.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>10) Hvilken forklaring viser bedst, at “familieformer” er historisk betingede?</b><span class="tag">Koncept</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Familieformer bestemmes kun af følelser</li><li class="opt" data-choice="B">Familieformer bestemmes kun af biologi</li><li class="opt" data-choice="C">Når økonomi, normer og institutioner ændres, bliver andre samliv realistiske og legitime</li><li class="opt" data-choice="D">Familieformer kan ikke forklares</li></ul>
-        <div class="feedback">Det is samspillet mellem struktur og kultur, der flytter grænserne.</div></div>
+        <div class="feedback">Det er samspillet mellem struktur og kultur, der flytter grænserne.</div></div>
       <button class="btn" type="button" onclick="showScore('#quiz-nye','#score-nye')">Vis score</button>
       <div class="score" id="score-nye"></div>
     </div>
@@ -628,37 +634,38 @@
     </div>
 
     <h3>2) Rolleforventninger og konflikt</h3>
-    <p>En rolle er ikke bare en titel; det er en pakke af forventninger. I mange familier kan konflikter opstå, når rolleforventninger kolliderer: fx forventningen om at børn hjælper (husstand) vs forventningen om at børn går i skole (industrisamfund) vs forventningen om at børn udvikler sig individuelt (senmodernitet). Det historiske point er: forventninger føles naturlige i deres tid. Din opgave er at gøre dem synlige og forklare dem.</p>
+    <p>En rolle er ikke bare en titel; det er en pakke af forventninger. I mange familier kan konflikter opstå, når rolleforventninger kolliderer: fx forventningen om at børn hjælper (husstand) vs forventningen om at børn går i skole (industrisamfund) vs forventningen om at børn udvikler sig individuelt (senmodernitet). Det historiske point er: forventninger føles naturlige in deres tid. Din opgave er at gøre dem synlige og forklare dem.</p>
 
-    <div class="think"><b>Stop & tænk:</b> Nævn to normer i din egen hverdag. Hvem håndhæver dem (familie, venner, skole, sociale medier)?</div>
+    <div class="think"><b>Stop & tænk:</b> Nævn to normer in din egen hverdag. Hvem håndhæver dem (familie, venner, skole, sociale medier)?</div>
 
     <h3>3) Identitet som selvprojekt</h3>
-    <p>I nyere tid beskriver mange tekster identitet som et “selvprojekt”: man skal skabe en sammenhængende fortælling om sig selv (hvem er jeg, hvad står jeg for?). Det hænger sammen med individualisering: flere valgmuligheder, flere sammenligninger og større ansvar. Det betyder ikke, at alt er frit. Normer findes stadig – de bliver bare mere komplekse, fordi der er flere miljøer med forskellige normer på samme tid.</p>
+    <p>I nyere tid beskriver many tekster identitet som et “selvprojekt”: man skal skabe en sammenhængende fortælling om sig selv (hvem er jeg, hvad står jeg for?). Det hænger sammen med individualisering: flere valgmuligheder, flere sammenligninger og større ansvar. Det betyder ikke, at alt er frit. Normer findes stadig – de bliver bare mere komplekse, fordi der er flere miljøer med forskellige normer på samme tid.</p>
 
     <p class="quote"><b>Kurateret pointe:</b> Identitet formes i spændingen mellem <b>tilhør</b> (at passe ind) og <b>selvstændighed</b> (at være sin egen). Historisk ændrer balancen sig.</p>
 
     <h3>4) Bro til familieliv: hvorfor identitet er med i dette forløb</h3>
     <p>Familiehistorie handler ikke kun om økonomi og bolig. Den handler også om, hvordan mennesker lærer, hvad et “godt liv” er. I et fæstesamfund kan det gode liv handle om at opfylde pligter og sikre husstanden. I et borgerligt ideal kan det handle om dannelse og respektabilitet. I en senere tid kan det handle om selvrealisering og valg. Når du kan forklare den sammenhæng, kan du også lave stærke analyser på tværs af kilderne.</p>
 
+    <!-- Questions from v7 -->
     <div class="qblock" id="quiz-ident">
       <h3>Spørgsmål (stigende sværhedsgrad)</h3>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>1) Hvad betyder socialisering?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">At lære normer og roller gennem familie, skole og fællesskaber</li><li class="opt" data-choice="B">At bygge en jernbane</li><li class="opt" data-choice="C">At betale landgilde</li><li class="opt" data-choice="D">At flytte til landet</li></ul>
-        <div class="feedback">Socialisering er oplæring i, hvordan man “gør” samfund.</div></div>
+        <div class="feedback">Socialisering is oplæring i, hvordan man “gør” samfund.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>2) Hvad er en social rolle?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">En hobby</li><li class="opt" data-choice="B">En maskine</li><li class="opt" data-choice="C">Forventninger til adfærd knyttet til en position (fx elev, forælder)</li><li class="opt" data-choice="D">En togrute</li></ul>
         <div class="feedback">Roller fortæller, hvad andre forventer, og hvad man selv forventer af sig selv.</div></div>
-      <div class="qrow mcq" data-answer="B"><div class="meta"><b>3) Hvad er en norm?</b><span class="tag">Fakta</span></div>
+      <div class="qrow mcq" data-answer="B"><div class="meta"><b>3) Hvad is en norm?</b><span class="tag">Fakta</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Et lovkrav med straf</li><li class="opt" data-choice="B">En uskreven regel for acceptabel adfærd</li><li class="opt" data-choice="C">En jernbanestation</li><li class="opt" data-choice="D">En type skat</li></ul>
         <div class="feedback">Normer håndhæves ofte gennem ros, kritik, skam og social accept.</div></div>
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>4) Hvorfor kan senmoderniteten give identitetspres?</b><span class="tag">Forståelse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Fordi der er færre valgmuligheder</li><li class="opt" data-choice="B">Fordi ingen sammenligner sig</li><li class="opt" data-choice="C">Fordi tradition bestemmer alt</li><li class="opt" data-choice="D">Fordi mange valg + sammenligning gør identitet til et “projekt” man skal lykkes med</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Fordi der er færre valgmuligheder</li><li class="opt" data-choice="B">Fordi ingen sammenligner sig</li><li class="opt" data-choice="C">Fordi tradition bestemmer alt</li><li class="opt" data-choice="D">Fordi many valg + sammenligning gør identitet til et “projekt” man skal lykkes med</li></ul>
         <div class="feedback">Når man “skal vælge”, bliver ansvaret personligt.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>5) Hvordan kan familieformer påvirke identitet?</b><span class="tag">Forståelse</span></div>
         <ul class="opts"><li class="opt" data-choice="A">De skaber forskellige roller og forventninger (pligt, normalitet, forhandling)</li><li class="opt" data-choice="B">De betyder ingenting</li><li class="opt" data-choice="C">De bestemmer kun biologi</li><li class="opt" data-choice="D">De ændrer kun madvaner</li></ul>
         <div class="feedback">Hvem du forventes at være, hænger sammen med hvilken familieform og tid du lever i.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>6) Hvilken analyse forbinder bedst normer og skam?</b><span class="tag">Forståelse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Skam er kun privat</li><li class="opt" data-choice="B">Skam kommer kun af biologi</li><li class="opt" data-choice="C">Skam kan opstå, når man afviger fra normer, der giver social accept</li><li class="opt" data-choice="D">Skam findes ikke historisk</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Skam is kun privat</li><li class="opt" data-choice="B">Skam kommer kun af biologi</li><li class="opt" data-choice="C">Skam kan opstå, når man afviger fra normer, der giver social accept</li><li class="opt" data-choice="D">Skam findes ikke historisk</li></ul>
         <div class="feedback">Normer regulerer adfærd gennem sociale reaktioner.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>7) Hvilket begreb passer bedst til “at skabe sin egen livsbane”?</b><span class="tag">Begreb</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Aftægt</li><li class="opt" data-choice="B">Individualisering</li><li class="opt" data-choice="C">Landgilde</li><li class="opt" data-choice="D">Hoveri</li></ul>
@@ -667,11 +674,11 @@
         <ul class="opts"><li class="opt" data-choice="A">Betaling af landgilde</li><li class="opt" data-choice="B">Hoveri på godset</li><li class="opt" data-choice="C">Aftægt for ældre</li><li class="opt" data-choice="D">Et par fordeler arbejde/omsorg og forhandler roller i et toforsørger-hjem</li></ul>
         <div class="feedback">Forhandling bliver vigtig, når roller ikke længere er “givet”.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>9) Hvad er den stærkeste historiske pointe om identitet?</b><span class="tag">Koncept</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Identitet formes af samspil mellem person, normer og muligheder i tiden</li><li class="opt" data-choice="B">Identitet er altid ens</li><li class="opt" data-choice="C">Identitet formes kun af DNA</li><li class="opt" data-choice="D">Identitet er ligegyldigt i historie</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Identitet formes af samspil mellem person, normer og muligheder i tiden</li><li class="opt" data-choice="B">Identitet is altid ens</li><li class="opt" data-choice="C">Identitet formes kun af DNA</li><li class="opt" data-choice="D">Identitet is ligegyldigt i historie</li></ul>
         <div class="feedback">Når samfundet ændres, ændres også “hvem man kan være”.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>10) Hvilken kobling viser bedst, at identitet og kildekritik hænger sammen?</b><span class="tag">Koncept</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Kildekritik handler kun om papir</li><li class="opt" data-choice="B">Identitet handler kun om følelser</li><li class="opt" data-choice="C">Medier og fortællinger påvirker selvforståelse, så man må vurdere troværdighed og tendens</li><li class="opt" data-choice="D">Kildekritik er irrelevant</li></ul>
-        <div class="feedback">At kunne vurdere information er en del af at navigere i forventninger og selvfortællinger.</div></div>
+        <ul class="opts"><li class="opt" data-choice="A">Kildekritik handler kun om papir</li><li class="opt" data-choice="B">Identitet handler kun om følelser</li><li class="opt" data-choice="C">Medier og fortællinger påvirker selvforståelse, så man må vurdere troværdighed og tendens</li><li class="opt" data-choice="D">Kildekritik is irrelevant</li></ul>
+        <div class="feedback">At kunne vurdere information is en del af at navigere i forventninger og selvfortællinger.</div></div>
       <button class="btn" type="button" onclick="showScore('#quiz-ident','#score-ident')">Vis score</button>
       <div class="score" id="score-ident"></div>
     </div>
@@ -682,6 +689,7 @@
     <h2>Exit quiz: brobygning på tværs (unikke spørgsmål)</h2>
     <p class="muted">Disse spørgsmål tester, om du kan forbinde perioder, begreber og kildetyper. Ingen er kopier af fanespørgsmålene.</p>
     <div class="qblock" id="quiz-exit">
+      <!-- same as v7 -->
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>1) Hvilken forklaring forbinder bedst bondehusstand og arbejderfamilie?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">De er ens, fordi de begge bor på landet</li><li class="opt" data-choice="B">De er ens, fordi begge har store boliger</li><li class="opt" data-choice="C">Skift fra jord/selvforsyning til løn/marked ændrer risiko og familieorganisering</li><li class="opt" data-choice="D">Skiftet handler kun om følelser</li></ul>
         <div class="feedback">Strukturskift ændrer både muligheder og sårbarheder.</div></div>
@@ -691,8 +699,8 @@
       <div class="qrow mcq" data-answer="D"><div class="meta"><b>3) Hvilken mekanisme kan forklare, at flere familieformer bliver synlige efter 1960?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Mindre uddannelse</li><li class="opt" data-choice="B">Mindre velfærd</li><li class="opt" data-choice="C">Færre muligheder</li><li class="opt" data-choice="D">Normskift + uddannelse/arbejde + institutioner gør flere valg mulige</li></ul>
         <div class="feedback">Synlighed kræver både accept og praktiske muligheder.</div></div>
-      <div class="qrow mcq" data-answer="B"><div class="meta"><b>4) Hvilken påstand er den mest kildekritiske om en livshistorie (erindring)?</b><span class="tag">Bro</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Den er altid sand for alle</li><li class="opt" data-choice="B">Den er stærk på oplevelse og mentalitet, men kan farves af tidsafstand og perspektiv</li><li class="opt" data-choice="C">Den kan ikke bruges</li><li class="opt" data-choice="D">Den er objektiv statistik</li></ul>
+      <div class="qrow mcq" data-answer="B"><div class="meta"><b>4) Hvilken påstand is den mest kildekritiske om en livshistorie (erindring)?</b><span class="tag">Bro</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Den is altid sand for alle</li><li class="opt" data-choice="B">Den is stærk på oplevelse og mentalitet, men kan farves af tidsafstand og perspektiv</li><li class="opt" data-choice="C">Den kan ikke bruges</li><li class="opt" data-choice="D">Den is objektiv statistik</li></ul>
         <div class="feedback">Brug den til “hvordan det føltes/blev forstået”, og sammenhold med andre kilder.</div></div>
       <div class="qrow mcq" data-answer="A"><div class="meta"><b>5) Hvilken kobling mellem borgerskab og 1950’ernes kernefamilie er stærkest?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Begge kan have idealer om respektabilitet/ordentlighed og hjemmet som målestok</li><li class="opt" data-choice="B">Begge er baseret på fæste og hoveri</li><li class="opt" data-choice="C">Begge afskaffer privatliv</li><li class="opt" data-choice="D">Begge har ingen normer</li></ul>
@@ -700,23 +708,23 @@
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>6) Hvilket begreb forbinder bedst identitet og nye familieformer?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Landgilde</li><li class="opt" data-choice="B">Hoveri</li><li class="opt" data-choice="C">Individualisering (valg og selvprojekt) + forhandling om roller</li><li class="opt" data-choice="D">Aftægt</li></ul>
         <div class="feedback">Når valg bliver personlige, bliver identitet også noget, man skal skabe.</div></div>
-      <div class="qrow mcq" data-answer="D"><div class="meta"><b>7) En elev siger: “Kernefamilien var naturlig.” Hvilket svar er mest historisk præcist?</b><span class="tag">Bro</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Ja, den findes altid</li><li class="opt" data-choice="B">Ja, fordi biologi bestemmer alt</li><li class="opt" data-choice="C">Ja, fordi loven krævede det</li><li class="opt" data-choice="D">Kernefamilien er én historisk familieform, der styrkes af bestemte normer, økonomi og institutioner</li></ul>
-        <div class="feedback">Historie undersøger, hvorfor en form bliver dominerende i en periode.</div></div>
+      <div class="qrow mcq" data-answer="D"><div class="meta"><b>7) En elev siger: “Kernefamilien var naturlig.” Hvilket svar is mest historisk præcist?</b><span class="tag">Bro</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Ja, den findes altid</li><li class="opt" data-choice="B">Ja, fordi biologi bestemmer alt</li><li class="opt" data-choice="C">Ja, fordi loven krævede det</li><li class="opt" data-choice="D">Kernefamilien is én historisk familieform, der styrkes af bestemte normer, økonomi og institutioner</li></ul>
+        <div class="feedback">Historie undersøger, hvorfor en form bliver dominerende in en periode.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>8) Hvilken “årsagskæde” forklarer bedst en stor del af familiehistorien i materialet?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Tøj → musik → ferie</li><li class="opt" data-choice="B">Arbejde/økonomi → bolig/institutioner → normer/roller → familieliv</li><li class="opt" data-choice="C">Held → held → held</li><li class="opt" data-choice="D">Kun kærlighed</li></ul>
         <div class="feedback">Strukturer påvirker hverdagsvilkår, som påvirker normer og roller.</div></div>
-      <div class="qrow mcq" data-answer="A"><div class="meta"><b>9) Hvad er den stærkeste måde at vise “kritisk tænkning” i en skriftlig opgave?</b><span class="tag">Bro</span></div>
+      <div class="qrow mcq" data-answer="A"><div class="meta"><b>9) Hvad er den stærkeste måde at vise “kritisk tænkning” in en skriftlig opgave?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Sammenholde kilder, pege på tendens/repræsentativitet og forklare alternative perspektiver</li><li class="opt" data-choice="B">Kun at citere</li><li class="opt" data-choice="C">Kun at skrive årstal</li><li class="opt" data-choice="D">Kun at skrive følelser</li></ul>
         <div class="feedback">Kritik handler om at vurdere brugsværdi og argumentere med belæg.</div></div>
       <div class="qrow mcq" data-answer="C"><div class="meta"><b>10) Hvilken forklaring forbinder bedst bolig og opdragelse?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Bolig betyder intet</li><li class="opt" data-choice="B">Bolig handler kun om smag</li><li class="opt" data-choice="C">Plads, lys og privatliv påvirker sundhed, lektier, konflikter og normer</li><li class="opt" data-choice="D">Bolig bestemmer alt alene</li></ul>
-        <div class="feedback">Bolig er en ramme for hverdagsliv, men virker sammen med økonomi og normer.</div></div>
-      <div class="qrow mcq" data-answer="D"><div class="meta"><b>11) Hvilken påstand er mest præcis om normer over tid?</b><span class="tag">Bro</span></div>
+        <div class="feedback">Bolig is en ramme for hverdagsliv, men virker sammen med økonomi og normer.</div></div>
+      <div class="qrow mcq" data-answer="D"><div class="meta"><b>11) Hvilken påstand is mest præcis om normer over tid?</b><span class="tag">Bro</span></div>
         <ul class="opts"><li class="opt" data-choice="A">Normer ændrer sig aldrig</li><li class="opt" data-choice="B">Normer er kun personlige</li><li class="opt" data-choice="C">Normer handler kun om lov</li><li class="opt" data-choice="D">Normer kan ændres, når strukturer, generationer og kulturelle kampe ændrer hvad der anses som legitimt</li></ul>
         <div class="feedback">Normer er sociale og historiske – de flytter sig i samspil med samfundsudvikling.</div></div>
       <div class="qrow mcq" data-answer="B"><div class="meta"><b>12) Hvilket valg viser bedst “historisk forståelse” af identitet?</b><span class="tag">Bro</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Identitet er altid den samme</li><li class="opt" data-choice="B">Identitet formes af muligheder og forventninger i den tid, man lever i</li><li class="opt" data-choice="C">Identitet handler kun om hobbyer</li><li class="opt" data-choice="D">Identitet har intet med familie at gøre</li></ul>
+        <ul class="opts"><li class="opt" data-choice="A">Identitet is altid den samme</li><li class="opt" data-choice="B">Identitet formes af muligheder og forventninger in den tid, man lever i</li><li class="opt" data-choice="C">Identitet handler kun om hobbyer</li><li class="opt" data-choice="D">Identitet har intet med familie at gøre</li></ul>
         <div class="feedback">Hvis samfundets rammer ændres, ændres også “hvem man kan være”.</div></div>
 
       <button class="btn" type="button" onclick="showScore('#quiz-exit','#score-exit')">Vis exit-score</button>
@@ -774,8 +782,6 @@
     const answered = qs.filter(q=>q.dataset.correct==="1" || q.dataset.correct==="0").length;
     const correct = qs.filter(q=>q.dataset.correct==="1").length;
     out.textContent = `Svar: ${answered}/${qs.length}. Korrekte: ${correct}/${qs.length}.`;
-    const feedbackBlock = scope.querySelectorAll('.feedback');
-    feedbackBlock.forEach(fb => fb.style.display = 'block');
   }
   window.showScore = showScore;
 </script>
