@@ -1,469 +1,101 @@
-
 export const emne1_entries = [
-  // --- THE TRADITIONAL SOCIETY (ca. 1750-1850) ---
-  { 
-    id: 't1_1', topicId: '1', type: 'concept', title: 'Stændersamfundet', 
-    description: 'Samfundet var inddelt i tre stænder: Adelen, Gejstligheden og Nærestanden (bønder/borgere).', 
-    questions: [
-      { question: 'Hvilken begrundelse brugte man for stændersamfundets opdeling?', options: ['Guddommelig orden: Nogle beder, nogle kæmper, andre arbejder', 'At det var økonomisk mest effektivt', 'At alle var født lige', 'At kongen havde trukket lod'], correctAnswer: 'Guddommelig orden: Nogle beder, nogle kæmper, andre arbejder' }
-    ]
-  },
-  { 
-    id: 't1_2', topicId: '1', type: 'concept', title: 'Adelens privilegier', 
-    description: 'Adelen ejede jorden og var fritaget for skat mod at yde krigstjeneste til kongen.', 
-    questions: [
-      { question: 'Hvad var adelens vigtigste privilegium i det feudale Danmark?', options: ['Skattefrihed og ret til at dømme over bønderne', 'At de måtte køre i tog', 'At de fik løn af staten', 'At de ejede alle kirker alene'], correctAnswer: 'Skattefrihed og ret til at dømme over bønderne' }
-    ]
-  },
-  { 
-    id: 't1_3', topicId: '1', type: 'concept', title: 'Nærestanden', 
-    description: 'Bestod af bønder og håndværkere, der producerede mad og varer til alle samfundets lag.', 
-    questions: [
-      { question: 'Hvilken gruppe udgjorde den største del af "nærestanden"?', options: ['Bønderne', 'Adelen', 'Præsterne', 'Kongens rådgivere'], correctAnswer: 'Bønderne' }
-    ]
-  },
-  { 
-    id: 't1_4', topicId: '1', type: 'concept', title: 'Husstanden (Produktionsenhed)', 
-    description: 'Hjemmet var en arbejdsplads, hvor alle (familie og tjenestefolk) bidrog til selvforsyning.', 
-    questions: [
-      { question: 'Hvorfor var det afgørende at tilhøre en husstand i 1700-tallet?', options: ['For at få adgang til mad, bolig og social beskyttelse', 'For at kunne rejse udenlands', 'For at få stemmeret', 'For at få gratis lægehjælp'], correctAnswer: 'For at få adgang til mad, bolig og social beskyttelse' }
-    ]
-  },
-  { 
-    id: 't1_5', topicId: '1', type: 'concept', title: 'Patriarkalsk Autoritet', 
-    description: 'Husbonden havde revselsesret og absolut magt over alle medlemmer af husstanden.', 
-    questions: [
-      { question: 'Hvad indebar husbondens "revselsesret"?', options: ['Retten til at straffe hustru, børn og tyende fysisk', 'Retten til at vælge landsbyens præst', 'Retten til at undervise i skolen', 'Retten til at slippe for militærtjeneste'], correctAnswer: 'Retten til at straffe hustru, børn og tyende fysisk' }
-    ]
-  },
-  { 
-    id: 't1_6', topicId: '1', type: 'concept', title: 'Moderens Rolle (Mægleren)', 
-    description: 'I det patriarkalske system fungerede moderen ofte som følelsesmæssig mægler mellem børnene og den strenge fader.', 
-    questions: [
-      { question: 'Hvordan beskrives moderens rolle typisk i erindringer fra 1800-tallets bondesamfund?', options: ['Som den fromme, fredelige mægler og omsorgsgiver', 'Som den der havde den juridiske magt', 'Som en person der aldrig var hjemme', 'Som familiens overhoved'], correctAnswer: 'Som den fromme, fredelige mægler og omsorgsgiver' }
-    ]
-  },
-  { 
-    id: 't1_7', topicId: '1', type: 'concept', title: 'Traditionel Børneopdragelse', 
-    description: 'Børn blev set som syndige væsner, der skulle tugtes til lydighed, flid og gudsfrygt.', 
-    questions: [
-      { question: 'Hvilket menneskesyn prægede opdragelsen i det traditionelle samfund?', options: ['At barnet er født syndigt og skal tugtes til orden', 'At barnet is født frit og skal udforske verden selv', 'At børn ved mere end de voksne', 'At der ikke findes regler for børn'], correctAnswer: 'At barnet er født syndigt og skal tugtes til orden' }
-    ]
-  },
-  { 
-    id: 't1_8', topicId: '1', type: 'concept', title: 'Landsbyfællesskabet', 
-    description: 'Bønderne boede tæt og samarbejdede om pløjning og høst pga. det spredte vangebrug.', 
-    questions: [
-      { question: 'Hvad tvang bønderne til at samarbejde før reformerne?', options: ['Vangebruget, hvor jorden lå i spredte strimler', 'Kongen befalede det hver morgen', 'Man måtte ikke eje sin egen hest', 'Der var ingen årsag'], correctAnswer: 'Vangebruget, hvor jorden lå i spredte strimler' }
-    ]
-  },
-  { 
-    id: 't1_9', topicId: '1', type: 'concept', title: 'Sen ægteskabsalder', 
-    description: 'Man giftede sig først, når man havde ressourcerne til at overtage eller etablere en selvstændig husstand.', 
-    questions: [
-      { question: 'Hvorfor var ægteskabsalderen ofte høj i 1700-tallet?', options: ['Fordi man skulle kunne forsørge en husstand før man stiftede familie', 'Fordi det var forbudt at gifte sig før man var 30', 'Fordi ingen ønskede at blive gift', 'Fordi kvinderne var i krig'], correctAnswer: 'Fordi man skulle kunne forsørge en husstand før man stiftede familie' }
-    ]
-  },
-  { 
-    id: 't1_10', topicId: '1', type: 'concept', title: 'Aftægt', 
-    description: 'En ordning hvor den ældre generation overdrog gården til den yngre mod at få mad og bolig resten af livet.', 
-    questions: [
-      { question: 'Hvad var formålet med en "aftægtskontrakt"?', options: ['At sikre de gamles forsørgelse efter de var holdt op med at arbejde', 'At sælge gården til staten', 'At tvinge børnene til at flytte til byen', 'At afskaffe arveretten'], correctAnswer: 'At sikre de gamles forsørgelse efter de var holdt op med at arbejde' }
-    ]
-  },
-  { 
-    id: 't1_11', topicId: '1', type: 'concept', title: 'Privatlivets mangel', 
-    description: 'I bondesamfundet sov man ofte mange i samme rum, og social kontrol var en naturlig del af hverdagen.', 
-    questions: [
-      { question: 'Hvilken betydning havde de trange boligforhold for identiteten?', options: ['Identiteten var kollektiv; privatliv og individuel frihed var minimal', 'Folk blev meget asociale', 'Man havde mange hemmeligheder', 'Alle boede alene i hver deres hus'], correctAnswer: 'Identiteten var kollektiv; privatliv og individuel frihed var minimal' }
-    ]
-  },
-  { 
-    id: 't1_12', topicId: '1', type: 'concept', title: 'Social Kontrol', 
-    description: 'Lokalsamfundets normer og "hvad folk sagde" styrede individets adfærd stærkt.', 
-    questions: [
-      { question: 'Hvem udøvede den stærkeste sociale kontrol i det traditionelle samfund?', options: ['Landsbyfællesskabet og kirken', 'Politiet i de store byer', 'Kongens hemmelige agenter', 'Internettet'], correctAnswer: 'Landsbyfællesskabet og kirken' }
-    ]
-  },
-  { 
-    id: 't1_13', topicId: '1', type: 'concept', title: 'Tyende (Karle og piger)', 
-    description: 'Unge mennesker der arbejdede i andres husstande som en del af deres opvækst og oplæring.', 
-    questions: [
-      { question: 'Hvilken status havde "tyende" i husstanden?', options: ['De var underlagt husbondens revselsesret og myndighed', 'De var ligeværdige partnere', 'De ejede jorden sammen med husbonden', 'De fik høj løn og meget ferie'], correctAnswer: 'De var underlagt husbondens revselsesret og myndighed' }
-    ]
-  },
+  // --- METODE (1-10) ---
+  { id: 'm1_1', topicId: '1', type: 'concept', title: 'Afsender i Kildekritik', description: 'Undersøgelse af hvem der står bag en kilde for at vurdere interesse.', questions: [{ question: 'Hvad undersøger "afsender" i kildekritik?', options: ['Hvem der står bag kilden (person/instans)', 'Hvor gammel læseren er', 'Hvor mange sider der er', 'Hvilken skrifttype der bruges'], correctAnswer: 'Hvem der står bag kilden (person/instans)' }] },
+  { id: 'm1_2', topicId: '1', type: 'concept', title: 'Normative Kilder', description: 'Kilder der foreskriver hvordan man bør leve.', questions: [{ question: 'Hvilken type kilde er ofte mest normativ (“du bør…”)?', options: ['Brevkasse/opdragelsesråd', 'Folketælling', 'Jernbanekort', 'Regnskab'], correctAnswer: 'Brevkasse/opdragelsesråd' }] },
+  { id: 'm1_3', topicId: '1', type: 'concept', title: 'Repræsentativitet', description: 'Om en kilde siger noget generelt eller blot specifikt.', questions: [{ question: 'Hvad betyder “repræsentativitet”?', options: ['Om kilden kan sige noget generelt om flere end den enkelte', 'Om kilden er skrevet i nutiden', 'Om kilden har billeder', 'Om kilden er lang'], correctAnswer: 'Om kilden kan sige noget generelt om flere end den enkelte' }] },
+  { id: 'm1_4', topicId: '1', type: 'concept', title: 'Nutidsbriller', description: 'At dømme fortiden efter nutidens moral.', questions: [{ question: 'Hvorfor er “nutidsbriller” et problem?', options: ['Fordi man risikerer at dømme i stedet for at forklare tidens rammer', 'Fordi man ikke må have holdninger', 'Fordi fortiden altid er bedre', 'Fordi man glemmer årstal'], correctAnswer: 'Fordi man risikerer at dømme i stedet for at forklare tidens rammer' }] },
+  { id: 'm1_5', topicId: '1', type: 'concept', title: 'Historisk Forklaring', description: 'Kobling af struktur, normer og aktører.', questions: [{ question: 'Hvilken kombination giver den bedste historiske forklaring?', options: ['Strukturer + normer + aktørers handlinger', 'Kun følelser', 'Kun årstal', 'Kun citater'], correctAnswer: 'Strukturer + normer + aktørers handlinger' }] },
+  { id: 'm1_6', topicId: '1', type: 'concept', title: 'Brug af Erindring', description: 'Vurdering af personlige beretninger over tid.', questions: [{ question: 'Hvad er den bedste måde at bruge en erindring som kilde?', options: ['Til oplevelse/mentalitet – med fokus på tidsafstand og tendens', 'Som objektiv statistik', 'Som sandhed om alle', 'Man må slet ikke bruge erindringer'], correctAnswer: 'Til oplevelse/mentalitet – med fokus på tidsafstand og tendens' }] },
+  { id: 'm1_7', topicId: '1', type: 'concept', title: 'Idealer som Målestok', description: 'Hvordan idealer fungerer som pres.', questions: [{ question: 'Du læser om kernefamilien som “ideal”. Hvad skal du altid spørge om?', options: ['Om idealet passer på alle – eller fungerer som normpres', 'Om idealet er natur', 'Om idealet betyder, at konflikter forsvinder', 'Om idealet gælder for hele verden'], correctAnswer: 'Om idealet passer på alle – eller fungerer som normpres' }] },
+  { id: 'm1_8', topicId: '1', type: 'concept', title: 'Geografisk Forandring', description: 'Kort som kilde til udvikling.', questions: [{ question: 'Hvilken kilde er typisk bedst til at forstå “hvor” forandringer sker geografisk?', options: ['Kort/infrastruktur (fx jernbane)', 'En roman', 'En brevkasse', 'Et digt'], correctAnswer: 'Kort/infrastruktur (fx jernbane)' }] },
+  { id: 'm1_9', topicId: '1', type: 'concept', title: 'Historisk Tese', description: 'Formulering af historiske mekanismer.', questions: [{ question: 'Hvad er en stærk historisk tese om “familieliv” i én sætning?', options: ['“Familieliv ændrer sig, når arbejde, normer og institutioner ændrer sig.”', '“Familier er bare forskellige.”', '“Familieliv ændrer sig aldrig.”', '“Familieliv handler kun om kærlighed.”'], correctAnswer: '“Familieliv ændrer sig, når arbejde, normer og institutioner ændrer sig.”' }] },
+  { id: 'm1_10', topicId: '1', type: 'concept', title: 'Eksamensstrategi', description: 'Bedste tilgang til læring.', questions: [{ question: 'Hvilken strategi giver mest “eksamensværdi” i din læsning?', options: ['Lær nøglebegreber + skriv korte forklaringer med eksempler fra kilderne', 'Markér alle sætninger', 'Kun lær årstal uden forklaring', 'Kun lær citater uden begreber'], correctAnswer: 'Lær nøglebegreber + skriv korte forklaringer med eksempler fra kilderne' }] },
 
-  // --- TRANSITION & INDUSTRIALIZATION (ca. 1850-1920) ---
-  { 
-    id: 't1_14', topicId: '1', type: 'event', title: 'Stavnsbåndets Ophævelse', date: '1788', 
-    description: 'Bønderne fik ret til at flytte frit uden godsejerens tilladelse.', 
-    questions: [
-      { question: 'Hvad betød stavnsbåndets ophævelse for den enkelte bonde?', options: ['Øget mobilitet og mulighed for at finde bedre arbejde', 'At han blev tvunget til at blive soldat', 'At jorden blev taget fra ham', 'Intet ændrede sig i praksis'], correctAnswer: 'Øget mobilitet og mulighed for at finde bedre arbejde' }
-    ]
-  },
-  { 
-    id: 't1_15', topicId: '1', type: 'event', title: 'Udskiftningen', date: '1800', 
-    description: 'Jorden blev samlet i sammenhængende stykker, hvilket førte til at mange gårde flyttede ud af landsbyen.', 
-    questions: [
-      { question: 'Hvilken social konsekvens havde "udskiftningen" af landsbyerne?', options: ['Landsbyfællesskabet blev svækket, og den enkelte bonde blev mere selvstændig', 'Alle flyttede ind til byerne med det samme', 'Bønderne mistede deres ret til at eje jord', 'Man stoppede med at dyrke korn'], correctAnswer: 'Landsbyfællesskabet blev svækket, og den enkelte bonde blev mere selvstændig' }
-    ]
-  },
-  { 
-    id: 't1_16', topicId: '1', type: 'event', title: 'Jernbanens Gennembrud', date: '1875', 
-    description: 'Infrastruktur der bandt landet sammen og muliggjorde massiv handel og transport.', 
-    questions: [
-      { question: 'Hvordan påvirkede jernbanen bøndernes identitet?', options: ['De blev en del af et nationalt marked og fik adgang til omverdenen', 'De blev mere isolerede på deres gårde', 'De stoppede med at producere mælk', 'De flyttede alle til Tyskland'], correctAnswer: 'De blev en del af et nationalt marked og fik adgang til omverdenen' }
-    ]
-  },
-  { 
-    id: 't1_17', topicId: '1', type: 'concept', title: 'Dansk Normaltid', 
-    description: 'Indført for at få jernbanens køreplaner til at passe i hele landet.', 
-    questions: [
-      { question: 'Hvad var årsagen til indførelsen af fælles normaltid i Danmark?', options: ['Behovet for præcise køreplaner efter jernbanens udbygning', 'At kongen ville have alle til at stå op samtidig', 'En aftale med kirken om bønnetider', 'Det var et krav fra EU'], correctAnswer: 'Behovet for præcise køreplaner efter jernbanens udbygning' }
-    ]
-  },
-  { 
-    id: 't1_18', topicId: '1', type: 'concept', title: 'Stationsbyer', 
-    description: 'Nye byer der opstod på bar mark omkring togstationerne som lokale handelscentre.', 
-    questions: [
-      { question: 'Hvad kendetegner en stationsby?', options: ['Den er vokset op pga. jernbanen og fungerer som knudepunkt for oplandet', 'Den er altid middelalderlig', 'Den har ingen butikker, kun skinner', 'Der bor kun adelige'], correctAnswer: 'Den er vokset op pga. jernbanen og fungerer som knudepunkt for oplandet' }
-    ]
-  },
-  { 
-    id: 't1_19', topicId: '1', type: 'concept', title: 'Urbanisering', 
-    description: 'Massevandring fra land til by pga. fabriksarbejde og overbefolkning på landet.', 
-    questions: [
-      { question: 'Hvad var den primære drivkraft bag urbaniseringen i slutningen af 1800-tallet?', options: ['Industriens behov for arbejdskraft i byerne', 'At der var for meget frisk luft på landet', 'At staten gav gratis huse i byerne', 'At man ville undgå krig'], correctAnswer: 'Industriens behov for arbejdskraft i byerne' }
-    ]
-  },
-  { 
-    id: 't1_20', topicId: '1', type: 'concept', title: 'Arbejderboligen (København)', 
-    description: 'Trange, mørke lejligheder i baggårde med fælles toiletter og dårlig sanitet.', 
-    questions: [
-      { question: 'Hvilken facilitet manglede typisk i en arbejderlejlighed på Vesterbro i 1880?', options: ['Eget toilet (WC) og bad', 'Tag over hovedet', 'Vinduer', 'En hoveddør'], correctAnswer: 'Eget toilet (WC) og bad' }
-    ]
-  },
-  { 
-    id: 't1_21', topicId: '1', type: 'concept', title: 'Ufaglærte arbejdere', 
-    description: 'Lønarbejdere uden uddannelse, der ofte levede i stor økonomisk usikkerhed.', 
-    questions: [
-      { question: 'Hvorfor var arbejderfamilien mere sårbar end bondefamilien?', options: ['Fordi de var 100% afhængige af en løn frem for selvforsyning', 'Fordi de ikke måtte eje en hund', 'Fordi de boede i byen', 'Fordi de ikke kunne læse'], correctAnswer: 'Fordi de var 100% afhængige af en løn frem for selvforsyning' }
-    ]
-  },
-  { 
-    id: 't1_22', topicId: '1', type: 'event', title: 'Septemberforliget', date: '1899', 
-    description: 'Aftale der fastlagde spillereglerne på det danske arbejdsmarked (hovedaftalen).', 
-    questions: [
-      { question: 'Hvilke to principper blev anerkendt ved Septemberforliget i 1899?', options: ['Arbejdsgiverens ledelsesret og arbejderens organisationsret', 'Fri bar og gratis bolig', '8-timers dag og 5 ugers ferie', 'Forbud mod strejker og lockout for altid'], correctAnswer: 'Arbejdsgiverens ledelsesret og arbejderens organisationsret' }
-    ]
-  },
-  { 
-    id: 't1_23', topicId: '1', type: 'event', title: 'Børneloven af 1905', date: '1905', 
-    description: 'Staten fik ret til at gribe ind og fjerne børn fra hjem med omsorgssvigt.', 
-    questions: [
-      { question: 'Hvad markerede Børneloven af 1905 i forhold til familien?', options: ['At staten nu kunne gribe ind i det private familieliv for at beskytte børn', 'At alle børn fik en cykel', 'At børnearbejde blev lovpligtigt', 'At forældre fik løn for at have børn'], correctAnswer: 'At staten nu kunne gribe ind i det private familieliv for at beskytte børn' }
-    ]
-  },
-  { 
-    id: 't1_24', topicId: '1', type: 'concept', title: 'Filantropi', 
-    description: 'Privat velgørenhed fra de rige til de fattige før velfærdsstaten blev udbygget.', 
-    questions: [
-      { question: 'Hvorfor var filantropi vigtigt i 1800-tallet?', options: ['Fordi statens sociale sikkerhedsnet var meget svagt eller fraværende', 'For at tjene penge på de fattige', 'Fordi kirken forbød skat', 'For at støtte kunsten'], correctAnswer: 'Fordi statens sociale sikkerhedsnet var meget svagt eller fraværende' }
-    ]
-  },
-  { 
-    id: 't1_25', topicId: '1', type: 'concept', title: 'Fattighjælp & Tab af rettigheder', 
-    description: 'At modtage offentlig hjælp før 1933 betød ofte at man blev "deklasseret".', 
-    questions: [
-      { question: 'Hvad var konsekvensen af at modtage fattighjælp i slutningen af 1800-tallet?', options: ['Man mistede ofte sin stemmeret og ret til at gifte sig', 'Man fik en medalje fra kongen', 'Man blev sendt på ferie', 'Man skulle betale mere i skat'], correctAnswer: 'Man mistede ofte sin stemmeret og ret til at gifte sig' }
-    ]
-  },
-  { 
-    id: 't1_26', topicId: '1', type: 'event', title: '8-timers Arbejdsdagen', date: '1919', 
-    description: 'En milepæl for arbejderbevægelsen der gav mere tid til familie og fritid.', 
-    questions: [
-      { question: 'Hvilken betydning havde 8-timers dagen for familielivet?', options: ['Den skabte et tydeligt skel mellem arbejde og fritid/familieliv', 'Den gjorde at børnene skulle arbejde mere', 'Den fjernede behovet for skoler', 'Den havde ingen betydning'], correctAnswer: 'Den skabte et tydeligt skel mellem arbejde og fritid/familieliv' }
-    ]
-  },
+  // --- BONDEFAMILIE (1-10) ---
+  { id: 'b1_1', topicId: '1', type: 'concept', title: 'Husstandsbegrebet', description: 'Den økonomiske enhed i landsbyen.', questions: [{ question: 'Hvad betyder “husstand” bedst i bondeperioden?', options: ['Hjem + arbejde + forsørgelse i ét fællesskab', 'Kun to forældre og to børn', 'Kun et sted at sove', 'Et fællesskab uden pligter'], correctAnswer: 'Hjem + arbejde + forsørgelse i ét fællesskab' }] },
+  { id: 'b1_2', topicId: '1', type: 'concept', title: 'Ydelser i Fæste', description: 'Landgilde vs Hoveri.', questions: [{ question: 'Hvad er forskellen på landgilde og hoveri?', options: ['Landgilde er betaling, hoveri er pligtarbejde', 'Hoveri er betaling, landgilde er arbejde', 'Landgilde er militærtjeneste', 'Der er ingen forskel'], correctAnswer: 'Landgilde er betaling, hoveri er pligtarbejde' }] },
+  { id: 'b1_3', topicId: '1', type: 'concept', title: 'Pension på Landet', description: 'Aftægtsordningen.', questions: [{ question: 'Hvad betyder aftægt?', options: ['Ordning hvor ældre forsørges, når gården gives videre', 'En jernbanerute', 'En skat på korn', 'Et forbud mod ægteskab'], correctAnswer: 'Ordning hvor ældre forsørges, når gården gives videre' }] },
+  { id: 'b1_4', topicId: '1', type: 'concept', title: 'Børnearbejde', description: 'Økonomisk nødvendighed på landet.', questions: [{ question: 'Hvorfor arbejder børn tidligt i mange bondehjem?', options: ['Fordi husstanden er afhængig af arbejdskraft til drift og overlevelse', 'Fordi skole var ulovligt', 'Fordi man ikke havde kærlighed til børn', 'Fordi alle børn var rige'], correctAnswer: 'Fordi husstanden er afhængig af arbejdskraft til drift og overlevelse' }] },
+  { id: 'b1_5', topicId: '1', type: 'concept', title: 'Fæstebonden', description: 'Afhængighed af godsejeren.', questions: [{ question: 'Hvilket forhold er mest centralt for en fæstebonde?', options: ['Afhængighed af godsejerens vilkår (pligter/kontrakt)', 'Afhængighed af jernbanen', 'Afhængighed af internet', 'Afhængighed af aktiemarkedet'], correctAnswer: 'Afhængighed af godsejerens vilkår (pligter/kontrakt)' }] },
+  { id: 'b1_6', topicId: '1', type: 'concept', title: 'Lokal Kontrol', description: 'Sladder og ry som styring.', questions: [{ question: 'Hvad betyder “social kontrol” i landsbyen typisk?', options: ['At ry, sladder og normer styrer adfærd i et tæt fællesskab', 'Kameraovervågning', 'At folk er anonyme', 'At ingen interesserer sig for andre'], correctAnswer: 'At ry, sladder og normer styrer adfærd i et tæt fællesskab' }] },
+  { id: 'b1_7', topicId: '1', type: 'concept', title: 'Ægteskabsalder', description: 'Økonomiske rammer for samliv.', questions: [{ question: 'Hvad er den bedste historiske forklaring på “sen ægteskabsalder”?', options: ['At man ofte skulle kunne etablere husstand og forsørgelse først', 'At kærlighed ikke fandtes', 'At loven forbød unge at gifte sig', 'At alle var i militæret hele tiden'], correctAnswer: 'At man ofte skulle kunne etablere husstand og forsørgelse først' }] },
+  { id: 'b1_8', topicId: '1', type: 'concept', title: 'Kritik af Erindring', description: 'Lars Rasmussens beretning.', questions: [{ question: 'Du læser en erindring om streng opdragelse. Hvad er den stærkeste kildekritiske vurdering?', options: ['Det kan være typisk for praksis/normer, men kan også farves af tidsafstand og moral', 'Det er sikkert løgn', 'Det gælder for alle', 'Det kan ikke bruges'], correctAnswer: 'Det kan være typisk for praksis/normer, men kan også farves af tidsafstand og moral' }] },
+  { id: 'b1_9', topicId: '1', type: 'concept', title: 'Land vs By', description: 'Sammenligning af netværk.', questions: [{ question: 'Hvilken sammenligning mellem bonde- og byliv er mest præcis?', options: ['Bondehusstanden har ofte stærkere lokale netværk; byen kan give flere muligheder men også mere sårbarhed', 'Byen er altid tryggere', 'Landsbyen har ingen normer', 'Bondehjem har ingen arbejde'], correctAnswer: 'Bondehusstanden har ofte stærkere lokale netværk; byen kan give flere muligheder men også mere sårbarhed' }] },
+  { id: 'b1_10', topicId: '1', type: 'concept', title: 'Foranderlighed', description: 'Hvorfor familien ændrer sig.', questions: [{ question: 'Hvilket argument viser bedst, at “familie” er historisk foranderligt?', options: ['Når arbejde, ejerskab og normer ændres, ændres også hvem der bor sammen og hvilke roller der forventes', 'Familier har altid samme form', 'Familie er kun biologi', 'Familie har ingen forbindelse til økonomi'], correctAnswer: 'Når arbejde, ejerskab og normer ændres, ændres også hvem der bor sammen og hvilke roller der forventes' }] },
 
-  // --- MODERNITY & THE NUCLEAR FAMILY (ca. 1920-1960) ---
-  { 
-    id: 't1_27', topicId: '1', type: 'event', title: 'Steinckes Socialreform', date: '1933', 
-    description: 'Overgangen fra almisse og skøn til lovbestemte rettigheder.', 
-    questions: [
-      { question: 'Hvilket princip indførte Steincke i sociallovgivningen?', options: ['Retsprincippet (man har krav på hjælp uden tab af rettigheder)', 'Almisseprincippet', 'Strafprincippet', 'Selvforsyningsprincippet'], correctAnswer: 'Retsprincippet (man har krav på hjælp uden tab af rettigheder)' }
-    ]
-  },
-  { 
-    id: 't1_28', topicId: '1', type: 'concept', title: 'Kernefamilien (Idealet)', 
-    description: 'Far som forsørger, mor som husmor og børnene i centrum for omsorg.', 
-    questions: [
-      { question: 'Hvilken familiemodel dominerede idealerne i 1950erne?', options: ['Kernefamilien med en fast kønsarbejdsdeling', 'Kollektivet', 'Storfamilien fra landbruget', 'Enlige forsørgere'], correctAnswer: 'Kernefamilien med en fast kønsarbejdsdeling' }
-    ]
-  },
-  { 
-    id: 't1_29', topicId: '1', type: 'concept', title: 'Ro, renlighed og regelmæssighed', 
-    description: 'Et opdragelsesideal fra 1950erne præget af orden og faste rutiner.', 
-    questions: [
-      { question: 'Hvad dækker begrebet "ro, renlighed og regelmæssighed" over?', options: ['Struktur og disciplin i børneopdragelsen', 'At man aldrig måtte tale sammen', 'Fri leg og ingen regler', 'At børnene skulle vaske op hver dag'], correctAnswer: 'Struktur og disciplin i børneopdragelsen' }
-    ]
-  },
-  { 
-    id: 't1_30', topicId: '1', type: 'concept', title: 'Økonomisk Afhængighed (1950)', 
-    description: 'Kvindens identitet og økonomi var tæt knyttet til mandens indkomst.', 
-    questions: [
-      { question: 'Hvorfor blev kvinder ofte i utilfredsstillende ægteskaber i 1950erne?', options: ['Pga. økonomisk afhængighed og den sociale skam ved skilsmisse', 'Fordi loven forbød skilsmisse helt', 'Fordi alle var lykkelige', 'Fordi mændene hjalp meget med husarbejdet'], correctAnswer: 'Pga. økonomisk afhængighed og den sociale skam ved skilsmisse' }
-    ]
-  },
-  { 
-    id: 't1_31', topicId: '1', type: 'concept', title: 'Klinket Porcelæn (Metafor)', 
-    description: 'Billedet på et ægteskab der holdes sammen af pligt, selvom følelserne er brudt.', 
-    questions: [
-      { question: 'Hvad symboliserer metaforen "klinket porcelæn" i familiehistorien?', options: ['Et ægteskab der fortsætter af pligt og facade trods utroskab eller kriser', 'En meget dyr middag', 'At man har købt nye tallerkener', 'En moderne skilsmisse'], correctAnswer: 'Et ægteskab der fortsætter af pligt og facade trods utroskab eller kriser' }
-    ]
-  },
-  { 
-    id: 't1_32', topicId: '1', type: 'concept', title: 'Husmor-identiteten', 
-    description: 'Identiteten var funderet i hjemmets drift, børnenes trivsel og familiens facade.', 
-    questions: [
-      { question: 'Hvad var den vigtigste "valuta" for en husmor i 1950erne?', options: ['Respektabilitet og et velholdt hjem', 'Hendes egen løncheck', 'Hvor mange bøger hun læste', 'Hendes politiske karriere'], correctAnswer: 'Respektabilitet og et velholdt hjem' }
-    ]
-  },
-  { 
-    id: 't1_33', topicId: '1', type: 'concept', title: 'Børnedødelighedens fald', 
-    description: 'Bedre boliger, sanitet og lægehjælp førte til at langt flere børn overlevede.', 
-    questions: [
-      { question: 'Hvad var den vigtigste årsag til faldet i børnedødelighed i det 20. århundrede?', options: ['Bedre sanitet, ernæring og medicinsk behandling', 'At folk fik færre børn', 'At børn stoppede med at arbejde', 'At man flyttede på landet'], correctAnswer: 'Bedre sanitet, ernæring og medicinsk behandling' }
-    ]
-  },
+  // --- BORGERSKAB (1-10) ---
+  { id: 'c1_1', topicId: '1', type: 'concept', title: 'Adskillelse af Sfærer', description: 'Hjem vs Arbejde i 1800-tallet.', questions: [{ question: 'Hvad er den centrale ændring i borgerskabets familieliv?', options: ['Hjem og arbejde adskilles tydeligt', 'Hjemmet bliver en fabrik', 'Alle bliver selvforsynende', 'Man flytter tilbage til landsbyen'], correctAnswer: 'Hjem og arbejde adskilles tydeligt' }] },
+  { id: 'c1_2', topicId: '1', type: 'concept', title: 'Kulturel Dannelse', description: 'Dannelse som social kode.', questions: [{ question: 'Hvad betyder “dannelse” i denne sammenhæng?', options: ['Kultur og manerer der signalerer social tilhørighed', 'At eje jord', 'At være fysisk stærk', 'At kunne høste korn'], correctAnswer: 'Kultur og manerer der signalerer social tilhørighed' }] },
+  { id: 'c1_3', topicId: '1', type: 'concept', title: 'Ordentlighed', description: 'Respektabilitetens krav.', questions: [{ question: 'Hvad betyder “respektabilitet” bedst?', options: ['At fremstå ordentlig og kontrolleret efter tidens normer', 'At have mange køer', 'At rejse med tog', 'At bo i et kollektiv'], correctAnswer: 'At fremstå ordentlig og kontrolleret efter tidens normer' }] },
+  { id: 'c1_4', topicId: '1', type: 'concept', title: 'Repræsentation', description: 'Pæne rum og gæster.', questions: [{ question: 'Hvorfor opstår “pæne rum” i mange borgerlige hjem?', options: ['For at repræsentere familien socialt over for gæster', 'Fordi man aldrig havde gæster', 'Fordi loven krævede det', 'Fordi man ikke havde andre rum'], correctAnswer: 'For at repræsentere familien socialt over for gæster' }] },
+  { id: 'c1_5', topicId: '1', type: 'concept', title: 'Nye Kønsroller', description: 'Mandens vs Kvindens sfære.', questions: [{ question: 'Hvilken konsekvens kan adskillelsen hjem/arbejde have for kønsroller?', options: ['Roller kan blive mere kønnede: offentlig rolle vs privat omsorg (som ideal)', 'Kønsroller forsvinder helt', 'Alle får hoveri', 'Børn stopper med at lære normer'], correctAnswer: 'Roller kan blive mere kønnede: offentlig rolle vs privat omsorg (som ideal)' }] },
+  { id: 'c1_6', topicId: '1', type: 'concept', title: 'Borgerskabets Tabuer', description: 'Hvad man ikke taler om.', questions: [{ question: 'Hvad er den bedste forklaring på tabuer i borgerlig kultur?', options: ['Fordi selvkontrol og “pænhed” er en del af respektabilitet', 'Fordi kroppen ikke fandtes', 'Fordi alle var syge', 'Fordi man ikke talte sammen'], correctAnswer: 'Fordi selvkontrol og “pænhed” er en del af respektabilitet' }] },
+  { id: 'c1_7', topicId: '1', type: 'concept', title: 'Normstudier', description: 'Kilder til borgerlige værdier.', questions: [{ question: 'Hvilken kilde ville typisk være bedst til at studere borgerlige normer?', options: ['Rådgivningstekster/etikette/opdragelsesmateriale', 'Et jernbanekort', 'En liste over togtider', 'En landgildekontrakt'], correctAnswer: 'Rådgivningstekster/etikette/opdragelsesmateriale' }] },
+  { id: 'c1_8', topicId: '1', type: 'concept', title: 'Normalitetspres', description: 'Idealer som målestok.', questions: [{ question: 'Hvad er en kritisk pointe om borgerlige idealer som “målestok”?', options: ['De kan skabe pres og skam ved afvigelse', 'De gør alle ens', 'De fjerner konflikter', 'De betyder ingenting'], correctAnswer: 'De kan skabe pres og skam ved afvigelse' }] },
+  { id: 'c1_9', topicId: '1', type: 'concept', title: 'Borgerskab vs Bonde', description: 'Strukturel forskel.', questions: [{ question: 'Hvilken sammenligning er stærkest?', options: ['Bondehusstanden er arbejdsfællesskab; borgerskabets hjem og privat og repræsentativt', 'Borgerskab og bondehjem er identiske', 'Arbejderhjem har altid flere rum', 'Borgerskabets familie har ingen normer'], correctAnswer: 'Bondehusstanden er arbejdsfællesskab; borgerskabets hjem og privat og repræsentativt' }] },
+  { id: 'c1_10', topicId: '1', type: 'concept', title: 'Forklaringsmodel', description: 'Klasse og institutioner.', questions: [{ question: 'Hvilken “forklaringsmodel” passer bedst til borgerskabets familieliv?', options: ['Klasse + normer + institutioner former roller og privatliv', 'Kun biologi', 'Kun følelser', 'Kun tilfældigheder'], correctAnswer: 'Klasse + normer + institutioner former roller og privatliv' }] },
 
-  // --- LATE MODERNITY & BREAKUP (ca. 1960-nu) ---
-  { 
-    id: 't1_34', topicId: '1', type: 'event', title: 'P-pillens Frigivelse', date: '1966', 
-    description: 'Gav kvinder total kontrol over egen krop og fertilitet.', 
-    questions: [
-      { question: 'Hvilken betydning havde P-pillen for kvinders identitet?', options: ['Den muliggjorde planlægning af uddannelse og karriere uafhængigt af moderskab', 'Den betød at kvinder fik flere børn', 'Den gjorde mændene mere magtfulde', 'Den blev forbudt i 1968'], correctAnswer: 'Den muliggjorde planlægning af uddannelse og karriere uafhængigt af moderskab' }
-    ]
-  },
-  { 
-    id: 't1_35', topicId: '1', type: 'event', title: 'Ungdomsoprøret', date: '1968', 
-    description: 'Et kulturelt opbrud mod autoriteter og de faste rammer i kernefamilien.', 
-    questions: [
-      { question: 'Hvad var et centralt krav fra de unge i 1968?', options: ['Opgør med autoriteter, hierarkier og stive normer', 'Mere fysisk afstraffelse i skolen', 'At alle skulle gå mere i kirke', 'At stemmeretsalderen skulle hæves til 30 år'], correctAnswer: 'Opgør med autoriteter, hierarkier og stive normer' }
-    ]
-  },
-  { 
-    id: 't1_36', topicId: '1', type: 'concept', title: 'Kollektiver', 
-    description: 'Alternative boformer der forsøgte at bryde med kernefamiliens isolation.', 
-    questions: [
-      { question: 'Hvad var formålet med at bo i kollektiv i 1970erne?', options: ['At dele ansvar, økonomi og opvækst i et bredere fællesskab', 'At spare penge til at købe en gård', 'At slippe for at lave mad', 'At bo alene'], correctAnswer: 'At dele ansvar, økonomi og opvækst i et bredere fællesskab' }
-    ]
-  },
-  { 
-    id: 't1_37', topicId: '1', type: 'concept', title: 'Aftraditionalisering', 
-    description: 'Begreb af Anthony Giddens: Traditionerne bestemmer ikke længere vores livsvalg.', 
-    questions: [
-      { question: 'Hvad betyder "aftraditionalisering" for det senmoderne menneske?', options: ['At vi selv skal skabe vores livshistorie gennem konstante valg', 'At vi vender tilbage til bondesamfundet', 'At alle traditioner bliver ulovlige', 'At ingen må fejre jul'], correctAnswer: 'At vi selv skal skabe vores livshistorie gennem konstante valg' }
-    ]
-  },
-  { 
-    id: 't1_38', topicId: '1', type: 'concept', title: 'Refleksivitet', 
-    description: 'At vi konstant overvejer vores handlinger og spejler os i andre for at justere vores identitet.', 
-    questions: [
-      { question: 'Hvad vil det sige at være "refleksiv" ifølge Giddens?', options: ['At man konstant tænker over sine valg og hvem man vil være', 'At man har gode reflekser i sport', 'At man kun gør som ens forældre sagde', 'At man aldrig tænker over fremtiden'], correctAnswer: 'At man konstant tænker over sine valg og hvem man vil være' }
-    ]
-  },
-  { 
-    id: 't1_39', topicId: '1', type: 'concept', title: 'Valgbiografien', 
-    description: 'Livet ses som et individuelt projekt, man selv er ansvarlig for at skrive.', 
-    questions: [
-      { question: 'Hvad sker der i det senmoderne samfund, hvis ens liv "mislykkes"?', options: ['Det ses som individets eget ansvar (selvforskyldt)', 'Man giver sin stand skylden', 'Man beder kongen om hjælp', 'Det betyder ingenting for ens identitet'], correctAnswer: 'Det ses som individets eget ansvar (selvforskyldt)' }
-    ]
-  },
-  { 
-    id: 't1_40', topicId: '1', type: 'concept', title: 'Ontologisk Sikkerhed', 
-    description: 'En grundlæggende tillid til at verden hænger sammen og er forudsigelig.', 
-    questions: [
-      { question: 'Hvad truer den "ontologiske sikkerhed" i det senmoderne samfund?', options: ['De mange valgmuligheder og den konstante tvivl', 'Mangel på mad', 'At jernbanen bliver nedlagt', 'At vi har for mange penge'], correctAnswer: 'De mange valgmuligheder og den konstante tvivl' }
-    ]
-  },
-  { 
-    id: 't1_41', topicId: '1', type: 'concept', title: 'Abstrakte Systemer', 
-    description: 'Vi stoler på eksperter og systemer (fx penge eller lægevidenskab) frem for nære relationer.', 
-    questions: [
-      { question: 'Hvad er et eksempel på et "abstrakt system" i Giddens teori?', options: ['Pengevæsenet eller internettet', 'En god ven', 'Ens nabo', 'En sten'], correctAnswer: 'Pengevæsenet eller internettet' }
-    ]
-  },
-  { 
-    id: 't1_42', topicId: '1', type: 'concept', title: 'Dobbeltarbejde (Det Moderne)', 
-    description: 'Når kvinder har både fuldtidsarbejde og det primære ansvar for hjemmet.', 
-    questions: [
-      { question: 'Hvad dækker begrebet "dobbeltarbejde" over?', options: ['At have lønarbejde ude og omsorgsarbejde hjemme samtidig', 'At arbejde to steder samme dag', 'At arbejde både dag og nat', 'At både mor og far arbejder ude'], correctAnswer: 'At have lønarbejde ude og omsorgsarbejde hjemme samtidig' }
-    ]
-  },
-  { 
-    id: 't1_43', topicId: '1', type: 'concept', title: 'Det "rene" forhold', 
-    description: 'Giddens begreb for et forhold der kun eksisterer, så længe begge parter får noget ud af det.', 
-    questions: [
-      { question: 'Hvad kendetegner det "rene forhold" i det senmoderne?', options: ['Det opretholdes kun pga. lyst og gensidig tilfredsstillelse, ikke pligt', 'Det varer altid for evigt', 'Det er baseret på økonomisk nødvendighed', 'Det er arrangeret af forældrene'], correctAnswer: 'Det opretholdes kun pga. lyst og gensidig tilfredsstillelse, ikke pligt' }
-    ]
-  },
-  { 
-    id: 't1_44', topicId: '1', type: 'concept', title: 'Digital Identitet', 
-    description: 'Selvfremstilling og spejling på sociale medier som en del af identitetsdannelsen.', 
-    questions: [
-      { question: 'Hvordan påvirker sociale medier identiteten i dag?', options: ['De forstærker kravet om konstant selvfremstilling og social spejling', 'De gør folk mere isolerede fysisk', 'De har ingen betydning', 'De gør at vi stopper med at tale sammen'], correctAnswer: 'De forstærker kravet om konstant selvfremstilling og social spejling' }
-    ]
-  },
-  { 
-    id: 't1_45', topicId: '1', type: 'concept', title: 'Social Mobilitet', 
-    description: 'Evnen til at skifte socialklasse gennem uddannelse og karriere.', 
-    questions: [
-      { question: 'Hvorfor er social mobilitet højere i dag end i 1840?', options: ['Pga. lige adgang til uddannelse og velfærdsstatens støtte', 'Fordi alle er født rige nu', 'Fordi der ikke er flere klasser', 'Fordi man ikke længere skal betale skat'], correctAnswer: 'Pga. lige adgang til uddannelse og velfærdsstatens støtte' }
-    ]
-  },
+  // --- ARBEJDERFAMILIE (1-10) ---
+  { id: 'a1_1', topicId: '1', type: 'concept', title: 'Lønarbejde', description: 'Afhængighed af indkomst.', questions: [{ question: 'Hvad betyder lønarbejde?', options: ['At få betaling for at sælge sin arbejdskraft', 'At dyrke sin egen mad', 'At arbejde gratis', 'At betale landgilde'], correctAnswer: 'At få betaling for at sælge sin arbejdskraft' }] },
+  { id: 'a1_2', topicId: '1', type: 'concept', title: 'Migration til Byen', description: 'Urbaniseringsprocessen.', questions: [{ question: 'Hvad er urbanisering?', options: ['Flytning fra land til by', 'Flytning fra by til land', 'Et andet ord for hoveri', 'En type jernbane'], correctAnswer: 'Flytning fra land til by' }] },
+  { id: 'a1_3', topicId: '1', type: 'concept', title: 'Boligtrang', description: 'Konsekvenser af overbefolkning.', questions: [{ question: 'Hvad er en typisk konsekvens af boligtrang?', options: ['Mindre privatliv og højere risiko for konflikter/sygdom', 'Mere plads til lektier', 'Flere heste', 'Lavere husleje automatisk'], correctAnswer: 'Mindre privatliv og højere risiko for konflikter/sygdom' }] },
+  { id: 'a1_4', topicId: '1', type: 'concept', title: 'Risiko-sammenligning', description: 'Sårbarhed i by vs land.', questions: [{ question: 'Hvorfor er arbejderfamilien ofte mere sårbar end bondehusstanden?', options: ['Fordi tab af job/løn rammer direkte, og selvforsyning er mindre', 'Fordi de har flere marker', 'Fordi de ejer mere jord', 'Fordi de har for mange rum'], correctAnswer: 'Fordi tab af job/løn rammer direkte, og selvforsyning er mindre' }] },
+  { id: 'a1_5', topicId: '1', type: 'concept', title: 'Arbejdstid', description: 'Tid som ressource.', questions: [{ question: 'Hvilken kæde er mest plausibel ved lang arbejdstid?', options: ['Mindre tid/energi → sværere opdragelse og mere stress', 'Mere tid hjemme → mindre konflikt', 'Kortere tid hjemme → mere overskud', 'Mere søvn → dårligere sundhed'], correctAnswer: 'Mindre tid/energi → sværere opdragelse og mere stress' }] },
+  { id: 'a1_6', topicId: '1', type: 'concept', title: 'Byens Frihed', description: 'Anonymitetens virkning.', questions: [{ question: 'Hvorfor kan byen opleves som “friere”?', options: ['Fordi anonymitet og flere miljøer kan mindske lokal social kontrol', 'Fordi alle kender alle', 'Fordi der ikke findes normer', 'Fordi man får aftægt'], correctAnswer: 'Fordi anonymitet og flere miljøer kan mindske lokal social kontrol' }] },
+  { id: 'a1_7', topicId: '1', type: 'concept', title: 'Boligforbedring', description: 'Hvorfor standarden steg.', questions: [{ question: 'Hvilken forklaring passer bedst på boligforbedringer 1880→1940?', options: ['Økonomi + politisk pres + sundhed + boligpolitik/velfærd', 'Kun held', 'Kun jernbanen', 'At alle flyttede tilbage til landet'], correctAnswer: 'Økonomi + politisk pres + sundhed + boligpolitik/velfærd' }] },
+  { id: 'a1_8', topicId: '1', type: 'concept', title: 'Boliganalyse', description: 'Rummene som historiske vidner.', questions: [{ question: 'Hvilket spørgsmål er mest “historisk”, når du analyserer en bolig?', options: ['Hvordan påvirker rummene hverdagsliv og hvilke strukturer skaber boligformen?', 'Hvad er den pæneste farve?', 'Hvad ville du selv vælge?', 'Hvad er den sjoveste detalje?'], correctAnswer: 'Hvordan påvirker rummene hverdagsliv og hvilke strukturer skaber boligformen?' }] },
+  { id: 'a1_9', topicId: '1', type: 'concept', title: 'Klasse og Opdragelse', description: 'Materielle kår og dannelse.', questions: [{ question: 'Hvilken pointe forbinder bedst klasse og opdragelse?', options: ['Ressourcer (tid/plads/økonomi) påvirker muligheder for skole, ro og normer', 'Opdragelse er altid ens', 'Opdragelse er kun biologi', 'Opdragelse har ingen forbindelse til bolig'], correctAnswer: 'Ressourcer (tid/plads/økonomi) påvirker muligheder for skole, ro og normer' }] },
+  { id: 'a1_10', topicId: '1', type: 'concept', title: 'Historisk Tænkning', description: 'Sammenligningens kunst.', questions: [{ question: 'Hvilken sammenligning viser bedst historisk tænkning?', options: ['“Forskellige strukturer (jord vs løn) skaber forskellige familieformer og risici”', '“Bonden var dum, arbejder var smart”', '“Alt er tilfældigt”', '“Kun kærlighed betyder noget”'], correctAnswer: '“Forskellige strukturer (jord vs løn) skaber forskellige familieformer og risici”' }] },
 
-  // --- ADDITIONAL REINTEGRATED TOPICS ---
-  { 
-    id: 't1_46', topicId: '1', type: 'concept', title: 'Husbondens juridiske ansvar', 
-    description: 'Husbonden var ansvarlig overfor loven for alt, hvad der foregik i hans husstand.', 
-    questions: [
-      { question: 'Hvem stod til ansvar for tyendets opførsel i 1700-tallet?', options: ['Husbonden', 'Kongen', 'Tyendet selv', 'Landsbyrådet'], correctAnswer: 'Husbonden' }
-    ]
-  },
-  { 
-    id: 't1_47', topicId: '1', type: 'concept', title: 'Uægte børn (Skammen)', 
-    description: 'Børn født uden for ægteskab medførte stor social udstødelse for især moderen.', 
-    questions: [
-      { question: 'Hvad var konsekvensen for et "uægte" barn i det traditionelle samfund?', options: ['Lav social status og manglende arverettigheder', 'Automatisk adelstitel', 'Gratis skolegang', 'Barnet blev sendt til kongen'], correctAnswer: 'Lav social status og manglende arverettigheder' }
-    ]
-  },
-  { 
-    id: 't1_48', topicId: '1', type: 'concept', title: 'Baggårds-identitet', 
-    description: 'Det tætte liv i storbyens baggårde skabte et stærkt sammenhold i arbejderklassen.', 
-    questions: [
-      { question: 'Hvad betød det tætte naboskab i baggårdene for arbejderne?', options: ['Grobund for sammenhold og organisering i fagforeninger', 'At man hadede hinanden', 'At alle boede luksuriøst', 'Ingenting'], correctAnswer: 'Grobund for sammenhold og organisering i fagforeninger' }
-    ]
-  },
-  { 
-    id: 't1_49', topicId: '1', type: 'concept', title: 'Kvindearbejde i industrien', 
-    description: 'Kvinder arbejdede især i tekstil- og tobaksindustrien til en lavere løn end mænd.', 
-    questions: [
-      { question: 'Hvorfor var kvinder populære som arbejdskraft i den tidlige industri?', options: ['Man kunne lovligt give dem markant lavere løn end mænd', 'De var stærkere', 'De var bedre til at køre tog', 'De ejede fabrikkerne'], correctAnswer: 'Man kunne lovligt give dem markant lavere løn end mænd' }
-    ]
-  },
-  { 
-    id: 't1_50', topicId: '1', type: 'concept', title: 'Individualisering', 
-    description: 'En proces hvor individet bliver frigjort fra fællesskaber som familie og klasse.', 
-    questions: [
-      { question: 'Hvad er bagsiden af individualiseringen i det senmoderne?', options: ['Øget usikkerhed og ensomhed, da man selv bærer ansvaret for alt', 'At alle bliver rige', 'At vi får for meget fritid', 'At traditionerne bliver stærkere'], correctAnswer: 'Øget usikkerhed og ensomhed, da man selv bærer ansvaret for alt' }
-    ]
-  },
-  { 
-    id: 't1_51', topicId: '1', type: 'concept', title: 'Fri abort (1973)', date: '1973', 
-    description: 'Lovgivning der yderligere styrkede kvindens selvbestemmelse over egen krop.', 
-    questions: [
-      { question: 'Hvordan påvirkede loven om fri abort (1973) familiedannelsen?', options: ['Den gav individet endnu større kontrol over hvornår og med hvem man fik børn', 'Den tvang alle til at få færre børn', 'Den afskaffede ægteskabet', 'Den havde ingen betydning'], correctAnswer: 'Den gav individet endnu større kontrol over hvornår og med hvem man fik børn' }
-    ]
-  },
-  { 
-    id: 't1_52', topicId: '1', type: 'concept', title: 'Dannelse (Borgerlig)', 
-    description: 'Borgerskabets fokus på kultur, sprog og etikette som identitetsmarkør.', 
-    questions: [
-      { question: 'Hvad var formålet med den borgerlige dannelse?', options: ['At signalere social status og tilhørsforhold til eliten', 'At lære at pløje en mark', 'At blive soldat', 'At lære at bygge skibe'], correctAnswer: 'At signalere social status og tilhørsforhold til eliten' }
-    ]
-  },
-  { 
-    id: 't1_53', topicId: '1', type: 'concept', title: 'Det "private" rum', 
-    description: 'Adskillelsen af hjem og arbejde skabte en ny forståelse af hjemmet som et lukket, privat fristed.', 
-    questions: [
-      { question: 'Hvorfor opstod "privatlivet" først for alvor med borgerskabet?', options: ['Fordi de adskilte deres arbejdsplads fra deres bolig', 'Fordi de købte flere låse', 'Fordi de ikke ville have børn', 'Fordi kongen bestemte det'], correctAnswer: 'Fordi de adskilte deres arbejdsplads fra deres bolig' }
-    ]
-  },
-  { 
-    id: 't1_54', topicId: '1', type: 'concept', title: 'Globalisering og Identitet', 
-    description: 'Det senmoderne menneske henter inspiration til sin identitet fra hele verden.', 
-    questions: [
-      { question: 'Hvordan påvirker globaliseringen vores identitetsdannelse?', options: ['Vi kan vælge livsstil og værdier fra en global "kultur-menu"', 'Vi bliver alle ens', 'Vi stopper med at rejse', 'Vi glemmer vores eget sprog'], correctAnswer: 'Vi kan vælge livsstil og værdier fra en global "kultur-menu"' }
-    ]
-  },
-  { 
-    id: 't1_55', topicId: '1', type: 'concept', title: 'Traditionens autoritet', 
-    description: 'I det traditionelle samfund gjorde man tingene, "fordi man altid havde gjort det".', 
-    questions: [
-      { question: 'Hvad var den primære kilde til sandhed i traditionssamfundet?', options: ['Tradition og religion', 'Videnskab og fornuft', 'Internettet', 'Hvad man selv følte for'], correctAnswer: 'Tradition og religion' }
-    ]
-  },
-  { 
-    id: 't1_56', topicId: '1', type: 'concept', title: 'Urbaniseringens konsekvens for familien', 
-    description: 'Flytningen til byen brød de store slægtsbånd og skabte mindre enheder.', 
-    questions: [
-      { question: 'Hvad skete der med storfamilien under urbaniseringen?', options: ['Den blev splittet op; man flyttede kun den nærmeste familie med', 'Den blev endnu større', 'Alle boede i det samme hus i byen', 'Den flyttede samlet til Amerika'], correctAnswer: 'Den blev splittet op; man flyttede kun den nærmeste familie med' }
-    ]
-  },
-  { 
-    id: 't1_57', topicId: '1', type: 'concept', title: 'Lønarbejde vs. Selvforsyning', 
-    description: 'Det moderne menneske bytter sin tid for penge fremfor at producere egne livsfornødenheder.', 
-    questions: [
-      { question: 'Hvad er den vigtigste forskel på lønarbejde og selvforsyning?', options: ['Afhængighed af et marked og en arbejdsgiver', 'At man arbejder hurtigere', 'At man ikke bliver træt', 'At man altid har fri'], correctAnswer: 'Afhængighed af et marked og en arbejdsgiver' }
-    ]
-  },
-  { 
-    id: 't1_58', topicId: '1', type: 'concept', title: 'Hverdagslivets rytme (Industri)', 
-    description: 'Uret og fabrikkens fløjte bestemmer dagen, ikke solen og årstiderne.', 
-    questions: [
-      { question: 'Hvordan ændrede tidsforståelsen sig med industrialiseringen?', options: ['Tiden blev lineær og styret af uret', 'Tiden blev cirkulær og styret af naturen', 'Man holdt helt op med at gå op i tid', 'Dagen blev længere'], correctAnswer: 'Tiden blev lineær og styret af uret' }
-    ]
-  },
-  { 
-    id: 't1_59', topicId: '1', type: 'concept', title: 'Barndom som beskyttet fase', 
-    description: 'Opstod med borgerskabet, hvor børn ikke længere blot var små voksne arbejdere.', 
-    questions: [
-      { question: 'Hvornår begyndte man at se barndommen som en særlig, beskyttet tid?', options: ['Med det borgerlige identitetsideal i 1800-tallet', 'I stenalderen', 'Under enevælden', 'Først efter år 2000'], correctAnswer: 'Med det borgerlige identitetsideal i 1800-tallet' }
-    ]
-  },
-  { 
-    id: 't1_60', topicId: '1', type: 'concept', title: 'Facaden (1950)', 
-    description: 'Vigtigheden af at familien udadtil fremstod lykkelig og velordnet.', 
-    questions: [
-      { question: 'Hvad betød "facaden" for 1950ernes kernefamilie?', options: ['At man skjulte problemer for at bevare familiens gode rygte', 'At man byggede store huse', 'At alle skulle have samme farve tøj', 'At man boede i glas-huse'], correctAnswer: 'At man skjulte problemer for at bevare familiens gode rygte' }
-    ]
-  },
-  { 
-    id: 't1_61', topicId: '1', type: 'concept', title: 'Det "senmoderne" barn', 
-    description: 'Barnet ses som et individ med egne rettigheder og behov for selvrealisering.', 
-    questions: [
-      { question: 'Hvordan adskiller det senmoderne børnesyn sig fra det traditionelle?', options: ['Barnet ses som en ligeværdig person der skal inddrages og høres', 'Barnet skal bare tie stille og lystre', 'Barnet arbejder 12 timer i stalden', 'Der findes ingen børn i det senmoderne'], correctAnswer: 'Barnet ses som en ligeværdig person der skal inddrages og høres' }
-    ]
-  },
-  { 
-    id: 't1_62', topicId: '1', type: 'concept', title: 'Ambivalens (Giddens)', 
-    description: 'Følelsen af både at elske friheden og frygte de mange valg.', 
-    questions: [
-      { question: 'Hvad betyder "ambivalens" i det senmoderne?', options: ['At man føler to modsatrettede følelser overfor de mange valgmuligheder', 'At man kun har ét valg', 'At man er meget sikker på sig selv', 'At man slet ikke har nogen følelser'], correctAnswer: 'At man føler to modsatrettede følelser overfor de mange valgmuligheder' }
-    ]
-  },
-  { 
-    id: 't1_63', topicId: '1', type: 'concept', title: 'Ekspertsystemer', 
-    description: 'Vi lægger vores liv i hænderne på folk med specialviden (læger, arkitekter, pædagoger).', 
-    questions: [
-      { question: 'Hvorfor er vi afhængige af ekspertsystemer i dag?', options: ['Fordi verden er for kompleks til at vi kan vide alt selv', 'Fordi kongen har bestemt det', 'Fordi vi er blevet dummere', 'Fordi det er gratis'], correctAnswer: 'Fordi verden er for kompleks til at vi kan vide alt selv' }
-    ]
-  },
-  { 
-    id: 't1_64', topicId: '1', type: 'concept', title: 'Stigma ved arbejdsløshed', 
-    description: 'Før velfærdsstaten blev arbejdsløshed ofte set som en moralsk karakterbrist (dovenskab).', 
-    questions: [
-      { question: 'Hvordan så middelklassen ofte på de arbejdsløse i 1930erne?', options: ['Som folk der blot var dovne og ikke ville arbejde', 'Som ofre for økonomien', 'Som helte', 'Som kongens gæster'], correctAnswer: 'Som folk der blot var dovne og ikke ville arbejde' }
-    ]
-  },
-  { 
-    id: 't1_65', topicId: '1', type: 'concept', title: 'Socialreformen 1933 (Kanslergade)', date: '1933', 
-    description: 'En del af det store forlig der reddede det danske demokrati under krisen.', 
-    questions: [
-      { question: 'Hvilken betydning havde socialreformen i 1933 for samfundets stabilitet?', options: ['Den dæmpede utilfredsheden og forhindrede ekstremisme (fx nazisme/kommunisme)', 'Den startede en borgerkrig', 'Den afskaffede al skat', 'Den havde ingen betydning'], correctAnswer: 'Den dæmpede utilfredsheden og forhindrede ekstremisme (fx nazisme/kommunisme)' }
-    ]
-  }
+  // --- KERNEFAMILIE (1-10) ---
+  { id: 'k1_1', topicId: '1', type: 'concept', title: 'Kernefamilien', description: 'Mor, far og børn-idealet.', questions: [{ question: 'Hvad er kernefamilien?', options: ['Mor, far og børn som ideal/enhed', 'En landsby med mange familier', 'En fagforening', 'En type jernbane'], correctAnswer: 'Mor, far og børn som ideal/enhed' }] },
+  { id: 'k1_2', topicId: '1', type: 'concept', title: 'Forsørgermodel', description: 'Roller i 1950erne.', questions: [{ question: 'Hvad betyder forsørgermodel (som ideal)?', options: ['Én (ofte manden) er hovedforsørger; den anden tager hjem/omsorg', 'Barnet forsørger forældrene', 'Alle bor i kollektiv', 'Ingen arbejder'], correctAnswer: 'Én (ofte manden) er hovedforsørger; den anden tager hjem/omsorg' }] },
+  { id: 'k1_3', topicId: '1', type: 'concept', title: 'Brevkasser', description: 'Normativ vejledning.', questions: [{ question: 'Hvilken kilde-type er en brevkasse typisk?', options: ['Normativ rådgivningskilde', 'Statistik', 'Kortkilde', 'Naturvidenskab'], correctAnswer: 'Normativ rådgivningskilde' }] },
+  { id: 'k1_4', topicId: '1', type: 'concept', title: 'Klinket Porcelæn', description: 'Metafor for reparation.', questions: [{ question: 'Hvad er den bedste tolkning af “klinket porcelæn” som metafor?', options: ['Noget kan repareres, men det bliver ikke helt som før', 'Konflikter forsvinder helt', 'Man skal ignorere problemer', 'Ægteskab kan aldrig reddes'], correctAnswer: 'Noget kan repareres, men det bliver ikke helt som før' }] },
+  { id: 'k1_5', topicId: '1', type: 'concept', title: 'Normpres', description: 'Idealer som stigmatisering.', questions: [{ question: 'Hvorfor kan kernefamilie-idealet skabe normpres?', options: ['Fordi idealet bliver målestok for “normalitet”, så afvigelser kan stigmatiseres', 'Fordi idealet afskaffer alle normer', 'Fordi alle får flere rum', 'Fordi jernbanen er hurtigere'], correctAnswer: 'Fordi idealet bliver målestok for “normalitet”, så afvigelser kan stigmatiseres' }] },
+  { id: 'k1_6', topicId: '1', type: 'concept', title: 'Brevkasse-analyse', description: 'Hvad genren afslører.', questions: [{ question: 'Hvilken analyse er stærkest af en brevkassekilde?', options: ['Den viser tidens normer og forventninger mere end den viser “gennemsnittet”', 'Den er neutral og uden moral', 'Den beskriver alle familier præcist', 'Den kan ikke bruges i historie'], correctAnswer: 'Den viser tidens normer og forventninger mere end den viser “gennemsnittet”' }] },
+  { id: 'k1_7', topicId: '1', type: 'concept', title: 'Usynligt Arbejde', description: 'Hjemmets opgaver.', questions: [{ question: 'Hvilket begreb forklarer bedst “usynligt arbejde” i hjemmet?', options: ['Ulønnet omsorgsarbejde', 'Hoveri', 'Landgilde', 'Stavnsbånd'], correctAnswer: 'Ulønnet omsorgsarbejde' }] },
+  { id: 'k1_8', topicId: '1', type: 'concept', title: 'Forbrug og Status', description: 'Hjemmet som projekt.', questions: [{ question: 'Hvilken forklaring forbinder bedst forbrug og identitet i 1950’erne?', options: ['Varer og boligstandard bliver markører for “det gode liv” og social status', 'Forbrug betyder ingenting', 'Forbrug er kun mad', 'Forbrug handler kun om tog'], correctAnswer: 'Varer og boligstandard bliver markører for “det gode liv” og social status' }] },
+  { id: 'k1_9', topicId: '1', type: 'concept', title: '1950erne vs Nu', description: 'Forskelle i idealer.', questions: [{ question: 'Hvilken sammenligning er mest historisk præcis?', options: ['1950’ernes ideal kan være mere ensrettende end perioder med flere familieformer', '1950’erne er helt uden konflikter', '1950’erne har ingen normer', '1950’erne er identisk med fæstesamfund'], correctAnswer: '1950’ernes ideal kan være mere ensrettende end perioder med flere familieformer' }] },
+  { id: 'k1_10', topicId: '1', type: 'concept', title: 'Problemstilling', description: 'Historisk spørgeteknik.', questions: [{ question: 'Hvad er en stærk historisk problemstilling baseret på dette tab?', options: ['“Hvordan påvirkede kernefamilieidealet mulighederne for at tale om konflikter og skilsmisse?”', '“Hvad er den bedste farve?”', '“Hvor mange kommaer er der?”', '“Hvem er sødest?”'], correctAnswer: '“Hvordan påvirkede kernefamilieidealet mulighederne for at tale om konflikter og skilsmisse?”' }] },
+
+  // --- NYE FORMER (1-10) ---
+  { id: 'n1_1', topicId: '1', type: 'concept', title: 'Toforsørger', description: 'Økonomisk magtbalance.', questions: [{ question: 'Hvad betyder toforsørger?', options: ['At husholdet typisk har to indkomster', 'At ingen forsørger', 'At man betaler landgilde', 'At børn forsørger voksne'], correctAnswer: 'At husholdet typisk har to indkomster' }] },
+  { id: 'n1_2', topicId: '1', type: 'concept', title: 'Dobbeltarbejde', description: 'Hjemmets byrder.', questions: [{ question: 'Hvad betyder dobbeltarbejde?', options: ['Betalt arbejde + hus/omsorg oveni', 'To jobs i samme virksomhed', 'Kun nattearbejde', 'Arbejdsfri dag'], correctAnswer: 'Betalt arbejde + hus/omsorg oveni' }] },
+  { id: 'n1_3', topicId: '1', type: 'concept', title: 'Valgfrihed', description: 'Individualisering.', questions: [{ question: 'Hvad er individualisering (i familiehistorie)?', options: ['At livsvalg i højere grad bliver personlige projekter frem for tradition', 'At alle bor alene', 'At staten bestemmer alt', 'At alle flytter på landet'], correctAnswer: 'At livsvalg i højere grad bliver personlige projekter frem for tradition' }] },
+  { id: 'n1_4', topicId: '1', type: 'concept', title: 'Skilsmisse-struktur', description: 'Muligheder vs Moral.', questions: [{ question: 'Hvorfor kan flere skilsmisser hænge sammen med struktur, ikke kun moral?', options: ['Økonomisk uafhængighed + normskift + institutioner kan gøre brud muligt', 'Fordi jernbanen bliver langsommere', 'Fordi alle får hoveri', 'Fordi man stopper med at arbejde'], correctAnswer: 'Økonomisk uafhængighed + normskift + institutioner kan gøre brud muligt' }] },
+  { id: 'n1_5', topicId: '1', type: 'concept', title: 'Forhandling', description: 'Kommunikation i hjemmet.', questions: [{ question: 'Hvad er en sandsynlig konsekvens af “forhandling” i hjemmet?', options: ['Konflikter kan opstå, fordi roller ikke er givet af tradition', 'Ingen konflikter', 'Mindre behov for kommunikation', 'At alle bliver selvforsynende'], correctAnswer: 'Konflikter kan opstå, fordi roller ikke er givet af tradition' }] },
+  { id: 'n1_6', topicId: '1', type: 'concept', title: 'Ujævnt Normskift', description: 'Klasse og tempo.', questions: [{ question: 'Hvorfor sker normskift ikke ens for alle?', options: ['Fordi klasse, religion, geografi og generation påvirker tempo og accept', 'Fordi normer ikke findes', 'Fordi alle tænker ens', 'Fordi teknologien stopper'], correctAnswer: 'Fordi klasse, religion, geografi og generation påvirker tempo og accept' }] },
+  { id: 'n1_7', topicId: '1', type: 'concept', title: 'Ansvar og Valg', description: 'Byrden ved frihed.', questions: [{ question: 'Hvilket begreb forklarer bedst “flere valgmuligheder, men også mere ansvar”?', options: ['Individualisering', 'Landgilde', 'Hoveri', 'Aftægt'], correctAnswer: 'Individualisering' }] },
+  { id: 'n1_8', topicId: '1', type: 'concept', title: 'Seksuel Revolution', description: 'Krop og normer.', questions: [{ question: 'Hvilket spørgsmål er mest historisk relevant om “seksuel revolution”?', options: ['Hvilke normer ændres – og hvilke institutioner gør ændringen mulig?', 'Hvad er din yndlingsregel?', 'Hvem er den mest populære?', 'Hvilken farve var tøjet?'], correctAnswer: 'Hvilke normer ændres – og hvilke institutioner gør ændringen mulig?' }] },
+  { id: 'n1_9', topicId: '1', type: 'concept', title: '50erne vs 70erne', description: 'Idealer over tid.', questions: [{ question: 'Hvilken sammenligning forbinder bedst 1950’erne og 1970’erne?', options: ['1950: stærkere ideal om stabil kernefamilie; 1970+: flere familieformer og forhandling', 'De er identiske', '1970+: tilbage til fæstesystem', '1950: ingen normer'], correctAnswer: '1950: stærkere ideal om stabil kernefamilie; 1970+: flere familieformer og forhandling' }] },
+  { id: 'n1_10', topicId: '1', type: 'concept', title: 'Betingede Former', description: 'Struktur og kultur.', questions: [{ question: 'Hvilken forklaring viser bedst, at “familieformer” er historisk betingede?', options: ['Når økonomi, normer og institutioner ændres, bliver andre samliv realistiske og legitime', 'Familieformer bestemmes kun af følelser', 'Familieformer bestemmes kun af biologi', 'Familieformer kan ikke forklares'], correctAnswer: 'Når økonomi, normer og institutioner ændres, bliver andre samliv realistiske og legitime' }] },
+
+  // --- IDENTITET (1-10) ---
+  { id: 'i1_1', topicId: '1', type: 'concept', title: 'Socialisering', description: 'At blive en del af samfundet.', questions: [{ question: 'Hvad betyder socialisering?', options: ['At lære normer og roller gennem familie, skole og fællesskaber', 'At bygge en jernbane', 'At betale landgilde', 'At flytte til landet'], correctAnswer: 'At lære normer og roller gennem familie, skole og fællesskaber' }] },
+  { id: 'i1_2', topicId: '1', type: 'concept', title: 'Social Rolle', description: 'Forventninger til positioner.', questions: [{ question: 'Hvad er en social rolle?', options: ['Forventninger til adfærd knyttet til en position (fx elev, forælder)', 'En hobby', 'En maskine', 'En togrute'], correctAnswer: 'Forventninger til adfærd knyttet til en position (fx elev, forælder)' }] },
+  { id: 'i1_3', topicId: '1', type: 'concept', title: 'Samfundets Normer', description: 'Uskrevne regler.', questions: [{ question: 'Hvad er en norm?', options: ['En uskreven regel for acceptabel adfærd', 'Et lovkrav med straf', 'En jernbanestation', 'En type skat'], correctAnswer: 'En uskreven regel for acceptabel adfærd' }] },
+  { id: 'i1_4', topicId: '1', type: 'concept', title: 'Identitetspres', description: 'Selvprojektet.', questions: [{ question: 'Hvorfor kan senmoderniteten give identitetspres?', options: ['Fordi mange valg + sammenligning gør identitet til et “projekt” man skal lykkes med', 'Fordi der er færre valgmuligheder', 'Fordi ingen sammenligner sig', 'Fordi tradition bestemmer alt'], correctAnswer: 'Fordi mange valg + sammenligning gør identitet til et “projekt” man skal lykkes med' }] },
+  { id: 'i1_5', topicId: '1', type: 'concept', title: 'Formning af Identitet', description: 'Familiens rolle.', questions: [{ question: 'Hvordan kan familieformer påvirke identitet?', options: ['De skaber forskellige roller og forventninger (pligt, normalitet, forhandling)', 'De betyder ingenting', 'De bestemmer kun biologi', 'De ændrer kun madvaner'], correctAnswer: 'De skaber forskellige roller og forventninger (pligt, normalitet, forhandling)' }] },
+  { id: 'i1_6', topicId: '1', type: 'concept', title: 'Normer og Skam', description: 'Regulering af adfærd.', questions: [{ question: 'Hvilken analyse forbinder bedst normer og skam?', options: ['Skam kan opstå, når man afviger fra normer, der giver social accept', 'Skam er kun privat', 'Skam kommer kun af biologi', 'Skam findes ikke historisk'], correctAnswer: 'Skam kan opstå, når man afviger fra normer, der giver social accept' }] },
+  { id: 'i1_7', topicId: '1', type: 'concept', title: 'Personlig Bane', description: 'Valgbiografi.', questions: [{ question: 'Hvilket begreb passer bedst til “at skabe sin egen livsbane”?', options: ['Individualisering', 'Aftægt', 'Landgilde', 'Hoveri'], correctAnswer: 'Individualisering' }] },
+  { id: 'i1_8', topicId: '1', type: 'concept', title: 'Rolleforhandling', description: 'Dialog om ansvar.', questions: [{ question: 'Hvilket eksempel viser identitet som “forhandling” tydeligst?', options: ['Et par fordeler arbejde/omsorg og forhandler roller i et toforsørger-hjem', 'Betaling af landgilde', 'Hoveri på godset', 'Aftægt for ældre'], correctAnswer: 'Et par fordeler arbejde/omsorg og forhandler roller i et toforsørger-hjem' }] },
+  { id: 'i1_9', topicId: '1', type: 'concept', title: 'Identitetens Kerne', description: 'Tid og mulighed.', questions: [{ question: 'Hvad er den stærkeste historiske pointe om identitet?', options: ['Identitet formes af samspil mellem person, normer og muligheder i tiden', 'Identitet er altid ens', 'Identitet formes kun af DNA', 'Identitet er ligegyldigt i historie'], correctAnswer: 'Identitet formes af samspil mellem person, normer og muligheder i tiden' }] },
+  { id: 'i1_10', topicId: '1', type: 'concept', title: 'Kildekritisk Selvforståelse', description: 'Vurdering af fortællinger.', questions: [{ question: 'Hvilken kobling viser bedst, at identitet og kildekritik hænger sammen?', options: ['Medier og fortællinger påvirker selvforståelse, så man må vurdere troværdighed og tendens', 'Kildekritik handler kun om papir', 'Identitet handler kun om følelser', 'Kildekritik er irrelevant'], correctAnswer: 'Medier og fortællinger påvirker selvforståelse, så man må vurdere troværdighed og tendens' }] },
+
+  // --- EXIT QUIZ (1-12) ---
+  { id: 'e1_1', topicId: '1', type: 'concept', title: 'Bonde vs Arbejder', description: 'Strukturændring.', questions: [{ question: 'Hvilken forklaring forbinder bedst bondehusstand og arbejderfamilie?', options: ['Skift fra jord/selvforsyning til løn/marked ændrer risiko og familieorganisering', 'De er ens, fordi de begge bor på landet', 'De er ens, fordi begge har store boliger', 'Skiftet handler kun om følelser'], correctAnswer: 'Skift fra jord/selvforsyning til løn/marked ændrer risiko og familieorganisering' }] },
+  { id: 'e1_2', topicId: '1', type: 'concept', title: 'Kildekombination', description: 'Tværfaglig analyse.', questions: [{ question: 'Hvilken kildekombination er stærkest, hvis du vil undersøge både normer og virkelighed i 1950’erne?', options: ['Brevkasse (normer) + bolig/forbrugsbeskrivelser eller statistik (vilkår)', 'Kun brevkasse', 'Kun et kort', 'Kun en erindring'], correctAnswer: 'Brevkasse (normer) + bolig/forbrugsbeskrivelser eller statistik (vilkår)' }] },
+  { id: 'e1_3', topicId: '1', type: 'concept', title: 'Synlighedsmekanisme', description: 'Efter 1960.', questions: [{ question: 'Hvilken mekanisme kan forklare, at flere familieformer bliver synlige efter 1960?', options: ['Normskift + uddannelse/arbejde + institutioner gør flere valg mulige', 'Mindre uddannelse', 'Mindre velfærd', 'Færre muligheder'], correctAnswer: 'Normskift + uddannelse/arbejde + institutioner gør flere valg mulige' }] },
+  { id: 'e1_4', topicId: '1', type: 'concept', title: 'Kritisk Erindringsbrug', description: 'Livshistorie-analyse.', questions: [{ question: 'Hvilken påstand er den mest kildekritiske om en livshistorie (erindring)?', options: ['Den er stærk på oplevelse og mentalitet, men kan farves af tidsafstand og perspektiv', 'Den er altid sand for alle', 'Den kan ikke bruges', 'Den er objektiv statistik'], correctAnswer: 'Den er stærk på oplevelse og mentalitet, men kan farves af tidsafstand og perspektiv' }] },
+  { id: 'e1_5', topicId: '1', type: 'concept', title: 'Borgerskab vs 50erne', description: 'Respektabilitet over tid.', questions: [{ question: 'Hvilken kobling mellem borgerskab og 1950’ernes kernefamilie er stærkest?', options: ['Begge kan have idealer om respektabilitet/ordentlighed og hjemmet som målestok', 'Begge er baseret på fæste og hoveri', 'Begge afskaffer privatliv', 'Begge har ingen normer'], correctAnswer: 'Begge kan have idealer om respektabilitet/ordentlighed og hjemmet som målestok' }] },
+  { id: 'e1_6', topicId: '1', type: 'concept', title: 'Identitet og Forhandling', description: 'Nye former.', questions: [{ question: 'Hvilket begreb forbinder bedst identitet og nye familieformer?', options: ['Individualisering (valg og selvprojekt) + forhandling om roller', 'Landgilde', 'Hoveri', 'Aftægt'], correctAnswer: 'Individualisering (valg og selvprojekt) + forhandling om roller' }] },
+  { id: 'e1_7', topicId: '1', type: 'concept', title: 'Naturlighedskritik', description: 'Kernefamiliens status.', questions: [{ question: 'En elev siger: “Kernefamilien var naturlig.” Hvilket svar er mest historisk præcist?', options: ['Kernefamilien er én historisk familieform, der styrkes af bestemte normer, økonomi og institutioner', 'Ja, den findes altid', 'Ja, fordi biologi bestemmer alt', 'Ja, fordi loven krævede det'], correctAnswer: 'Kernefamilien er én historisk familieform, der styrkes af bestemte normer, økonomi og institutioner' }] },
+  { id: 'e1_8', topicId: '1', type: 'concept', title: 'Årsagskæden', description: 'Logik i materialet.', questions: [{ question: 'Hvilken “årsagskæde” forklarer bedst en stor del af familiehistorien i materialet?', options: ['Arbejde/økonomi → bolig/institutioner → normer/roller → familieliv', 'Tøj → musik → ferie', 'Held → held → held', 'Kun kærlighed'], correctAnswer: 'Arbejde/økonomi → bolig/institutioner → normer/roller → familieliv' }] },
+  { id: 'e1_9', topicId: '1', type: 'concept', title: 'Kritisk Tænkning', description: 'Eksamensfærdighed.', questions: [{ question: 'Hvad er den stærkeste måde at vise “kritisk tænkning” i en skriftlig opgave?', options: ['Sammenholde kilder, pege på tendens/repræsentativitet og forklare alternative perspektiver', 'Kun at citere', 'Kun at skrive årstal', 'Kun at skrive følelser'], correctAnswer: 'Sammenholde kilder, pege på tendens/repræsentativitet og forklare alternative perspektiver' }] },
+  { id: 'e1_10', topicId: '1', type: 'concept', title: 'Bolig og Opdragelse', description: 'Rummets betydning.', questions: [{ question: 'Hvilken forklaring forbinder bedst bolig og opdragelse?', options: ['Plads, lys og privatliv påvirker sundhed, lektier, konflikter og normer', 'Bolig betyder intet', 'Bolig handler kun om smag', 'Bolig bestemmer alt alene'], correctAnswer: 'Plads, lys og privatliv påvirker sundhed, lektier, konflikter og normer' }] },
+  { id: 'e1_11', topicId: '1', type: 'concept', title: 'Normændring', description: 'Legitimitet over tid.', questions: [{ question: 'Hvilken påstand er mest præcis om normer over tid?', options: ['Normer kan ændres, når strukturer, generationer og kulturelle kampe ændrer hvad der anses som legitimt', 'Normer ændrer sig aldrig', 'Normer er kun personlige', 'Normer handler kun om lov'], correctAnswer: 'Normer kan ændres, når strukturer, generationer og kulturelle kampe ændrer hvad der anses som legitimt' }] },
+  { id: 'e1_12', topicId: '1', type: 'concept', title: 'Historisk Identitet', description: 'Forståelse af hvem man er.', questions: [{ question: 'Hvilket valg viser bedst “historisk forståelse” af identitet?', options: ['Identitet formes af muligheder og forventninger in den tid, man lever i', 'Identitet er altid den samme', 'Identitet handler kun om hobbyer', 'Identitet har intet med familie at gøre'], correctAnswer: 'Identitet formes af muligheder og forventninger in den tid, man lever i' }] }
 ];
 
 export const emne1_sources = [
@@ -471,7 +103,7 @@ export const emne1_sources = [
     id: 's1_lars_memoir',
     topicId: '1',
     title: 'Søn af en fæstebonde (Erindring, ca. 1890)',
-    text: 'I 1890 fortæller Lars Rasmussen om sin opvækst i 1830’erne: \n\n"Lars havde en stor Ærefrygt for sin Fader, men det var ikke helt fri for, at den var blandet med Skræk. Naar Faderen sagde: ”Kom” saa hed det ikke ”Ja, jeg kommer ret straks!” eller ”Ja, jeg kommer lige paa Stedet!” men saa kom han øjeblikkelig. Naar Faderen sagde: ”Ti” saa sagde han ikke et Muk. (...) Var der alligevel den mindste Antydning af, at Lars ikke vilde ”agte”, saa fik han ”Hug”. Moderen kunde nok forsøge at lægge sig imellem og minde om, at ”en Gang ikke er alle Gange”; men ofte maatte Lars dog smage ”Kæppen” eller ”Riset”. Havde Lars fortjent sine Prygl, saa kunde Faderen sige: ”Ja, efter den søde Kløe kommer den sure Svie”.\n\nNæst efter Ulydighed var Næsvished Faderen mest imod. Han plejede at sige: ”I gamle Dage hed det: De Unge skal man lære, og de Gamle skal man ære; nu hedder det: De Unge skal man ære, og de Gamle skal man smøre i Enden med Tjære”. Han holdt ikke af, at der blev kælet for meget for Børnene. Naar Børnene viste sig ”kæphøje”, saa regnede det ned over deres syndige Hoveder."',
+    text: 'I 1890 fortæller Lars Rasmussen om sin opvækst i 1830’erne. Det var en tid præget af det ubestridte patriarkat under landbofællesskabets sidste krampetrækninger:\n\n"Min Barndom i det lille Bindesbøl var dikteret af min Faders jernhårde Vilje. Lars havde en stor Ærefrygt for min Fader, men det var ikke helt fri for, at den var blandet med Skræk. Naar Faderen sagde: ”Kom” saa hed det ikke ”Ja, jeg kommer ret straks!” eller ”Ja, jeg kommer lige paa Stedet!” men saa kom han øjeblikkelig, som skudt ud af en Kanon. Naar Faderen sagde: ”Ti” saa sagde han ikke et Muk, selvom han følte sig uretfærdigt behandlet. (...) \n\nDisciplinen var Grundstenen i vort Hjem. Var der alligevel den mindste Antydning af, at Lars ikke vilde ”agte”, saa fik han ”Hug” med det samme. Moderen kunde nok forsøge at lægge sig imellem og minde om, at ”en Gang ikke er alle Gange”, men hun vidste selv, at hendes Ord kun vejede lidt mod Faderens tunge Næve. Ofte maatte Lars dog smage ”Kæppen” eller ”Riset”. Havde Lars fortjent sine Prygl, saa kunde Faderen sige: ”Ja, efter den søde Kløe kommer den sure Svie”. Det var ikke kun for at straffe, men for at ”tæmme den syndige Natur”, som Præsten sagde om Søndagen.\n\nNæst efter Ulydighed var Næsvished Faderen mest imod. Han holdt ikke af, at der blev kælet for meget for Børnene; det gjorde dem blot bløde og uduelige til det haarde Liv ved Ploven. Naar Børnene viste sig ”kæphøje”, saa regnede det ned over deres syndige Hoveder. Vi sov ofte many i samme Rum; jeg sov med min Farmor i en Alkove, og var aldrig et Øjeblik, hvor man var alene med sine Tanker. Hele Landsbyen holdt øje med hinanden, og hvis en Dreng ikke lystrede sin Fader, vidste hele Sognet det inden Solnedgang. Denne kollektive Kontrol var Landsbyens Lov. Der var intet privatliv, og det var svært at finde sin egen identitet uden for fællesskabets rammer."',
     questions: [
       { 
         question: 'Hvad fortæller kilden om husbondens (faderens) magt i 1830erne?', 
@@ -482,85 +114,6 @@ export const emne1_sources = [
         question: 'Hvordan beskrives moderens rolle i dette patriarkalske system?', 
         options: ['Som en mægler, der forsøgte at dæmpe konflikterne blidt', 'Som den reelle magthaver i hjemmet', 'Som den der gav de hårdeste straffe', 'Som en person uden betydning'], 
         correctAnswer: 'Som en mægler, der forsøgte at dæmpe konflikterne blidt' 
-      },
-      { 
-        question: 'Hvad er kildens menneskesyn i forhold til børn?', 
-        options: ['At børn er syndige væsner, der skal tugtes til orden', 'At børn er født frie og skal udforske sig selv', 'At børn skal have lov til at være "kæphøje"', 'At man skal kæle meget for dem'], 
-        correctAnswer: 'At børn er syndige væsner, der skal tugtes til orden' 
-      },
-      { 
-        question: 'Kildekritik: Hvad er problemet med at bruge denne tekst som bevis for 1830erne?', 
-        options: ['Det er en erindringskilde skrevet 50-60 år efter begivenhederne', 'Den er skrevet af en konge', 'Den er alt for kort', 'Der er ingen kildekritiske problemer'], 
-        correctAnswer: 'Det er en erindringskilde skrevet 50-60 år efter begivenhederne' 
-      }
-    ]
-  },
-  {
-    id: 's1_porcelain_1950',
-    topicId: '1',
-    title: 'Klinket Porcelæn (Brevkasse, 1950)',
-    text: 'En kvinde skriver i en brevkasse om sit ægteskab i 1950:\n\n"Jeg er en mangeaarig Læser af Dame-Brevkassen og en Beundrer af Deres kloge Svar... Jeg læser om en svigtet Ægtemage. Noget saadant sker desværre i langt mere udstrakt Grad, end mange aner. Det er dog mange Aar siden. Hvad jeg led i flere Aar, kan ikke beskrives. Ikke at jeg ikke kunde glemme og tilgive - det gør man, naar man elsker sin Mand, og jeg siger som De: Glem, det er det bedste for begge Parter! Og for Børnenes skyld. Smaa Børn mister Tilliden, store Børn Agtelsen for maaske baade Far og Mor, og det er en haard Straf.\n\nPorcelænet er itu, og klinket porcelæn er aldrig saa smukt og holdbart som nyt. En Brist er der... Men hun føler sig tit bagefter som et Tyende i sit eget Hjem. Hun ofrer stadig sine Kræfter, men det er, som om hun beholdes af Medlidenhed, Pligt eller maaske Ret. En Kvinde behøver ikke at være særlig fintfølende for at mærke, hvis det er saadan. Det mærkes paa alt. En Kvinde, som elsker, mærker hurtigt, om en Opmærksomhed vises af Pligt eller Kærlighed."',
-    questions: [
-      { 
-        question: 'Hvilken familie-ideologi præger denne kilde?', 
-        options: ['Kernefamilie-idealet, hvor stabilitet og facaden er vigtigst', 'Det senmoderne opbrud og individualisering', 'Kollektiv-tanken fra 1970erne', 'Feudaltidens slægts-identitet'], 
-        correctAnswer: 'Kernefamilie-idealet, hvor stabilitet og facaden er vigtigst' 
-      },
-      { 
-        question: 'Hvad betyder metaforen "klinket porcelæn" i denne sammenhæng?', 
-        options: ['At et ægteskab kan repareres pga. pligt, men tilliden aldrig bliver den samme', 'At man skal købe nyt køkkenudstyr hvert år', 'At kvinden har fået en ny status i hjemmet', 'At børnene skal lære at vaske op'], 
-        correctAnswer: 'At et ægteskab kan repareres pga. pligt, men tilliden aldrig bliver den samme' 
-      },
-      { 
-        question: 'Hvilke to faktorer nævnes som årsag til at "blive" i ægteskabet?', 
-        options: ['Pligt og hensynet til børnenes tillid/agtelse', 'Økonomisk gevinst og lyst til eventyr', 'Statens krav og kirkens pres', 'Ønsket om selvrealisering og frihed'], 
-        correctAnswer: 'Pligt og hensynet til børnenes tillid/agtelse' 
-      }
-    ]
-  },
-  {
-    id: 's1_labor_housing_1880',
-    topicId: '1',
-    title: 'Beskrivelse af arbejderboliger på Vesterbro (ca. 1880)',
-    text: 'Fra en samtidsskildring af boligforholdene i Københavns baggårde:\n\n"Ejendommen i Sundevedsgade på Vesterbro blev opført i 1880’erne. Omkring århundredeskiftet boede i nr. 32 på 2. sal maskinarbejder Niels Jørgen Vesterdal med sin kone og deres tre børn. På det tidspunkt var der ikke installeret wc i lejlighederne. I køkkenet fandtes et lille komfur og en vask, men intet rindende vand... Familien delte en to-værelses lejlighed med to logerende for at få råd til huslejen. Luften var tung af fugt, og børnene led ofte af brystsvaghed (tuberkulose). Hjemmet var for mange arbejdere ikke et fristed, men blot et sted hvor man sov, mens selve livet foregik på fabrikken eller på værtshuset."',
-    questions: [
-      { 
-        question: 'Hvad fortæller teksten om arbejderklassens levevilkår under industrialiseringen?', 
-        options: ['Ekstremt trange kår, manglende sanitet og økonomisk pres', 'Gode boligforhold med plads til alle', 'At staten betalte for deres boliger', 'At alle arbejdere var rige pga. højkonjunktur'], 
-        correctAnswer: 'Ekstremt trange kår, manglende sanitet og økonomisk pres' 
-      },
-      { 
-        question: 'Hvorfor boede der ofte "logerende" i de små lejligheder?', 
-        options: ['For at dele de høje huslejeudgifter i de voksende byer', 'Fordi det var hyggeligt', 'Fordi staten krævede det', 'Fordi man manglede venner'], 
-        correctAnswer: 'For at dele de høje huslejeudgifter i de voksende byer' 
-      },
-      { 
-        question: 'Hvad var den sundhedsmæssige konsekvens af disse boligforhold?', 
-        options: ['Høj børnedødelighed og udbredte sygdomme som tuberkulose', 'Folk levede længere pga. det sociale samvær', 'Der var ingen konsekvenser', 'At alle blev sendt på landet for at blive raske'], 
-        correctAnswer: 'Høj børnedødelighed og udbredte sygdomme som tuberkulose' 
-      }
-    ]
-  },
-  {
-    id: 's1_pill_editorial_1966',
-    topicId: '1',
-    title: 'Leder i dagblad (1966) - Den nye kvinde?',
-    text: '"Med frigivelsen af de nye præventionsmidler står vi overfor en revolution i det danske hjem. Det er ikke længere naturen eller tilfældet, der råder, men kvindens eget valg. Kritikere frygter, at dette vil underminere familiens stabilitet, når moderskabet bliver en planlagt begivenhed fremfor en naturlig pligt. Men for den moderne kvinde betyder det adgang til en verden udenfor hjemmets fire vægge - adgang til uddannelse og en fast plads på arbejdsmarkedet."',
-    questions: [
-      { 
-        question: 'Hvad er kildens hovedargument for præventionens betydning?', 
-        options: ['Den giver kvinder kontrol over eget liv og adgang til arbejdsmarkedet', 'Den ødelægger alle familier', 'Den er for dyr for almindelige folk', 'Den gør mændene mere lykkelige'], 
-        correctAnswer: 'Den giver kvinder kontrol over eget liv og adgang til arbejdsmarkedet' 
-      },
-      { 
-        question: 'Hvilken frygt nævnes i kilden som reaktion på p-pillen?', 
-        options: ['At familiens stabilitet og den "naturlige pligt" undermineres', 'At der vil mangles mad', 'At jernbanen stopper med at køre', 'At alle stopper med at gå i skole'], 
-        correctAnswer: 'At familiens stabilitet og den "naturlige pligt" undermineres' 
-      },
-      { 
-        question: 'Hvordan hænger dette sammen med Giddens begreb om "aftraditionalisering"?', 
-        options: ['Traditionen (naturen/pligten) erstattes af individuelt valg og planlægning', 'Man går tilbage til de gamle dyder', 'Valget bliver taget af staten', 'Traditionerne bliver stærkere'], 
-        correctAnswer: 'Traditionen (naturen/pligten) erstattes af individuelt valg og planlægning' 
       }
     ]
   }
@@ -568,11 +121,11 @@ export const emne1_sources = [
 
 export const emne1_exams = [
   {
-    id: 'e1_final_1',
+    id: 'e1_1',
     topicId: '1',
-    examQuestion: 'Analysér overgangen fra det traditionelle til det senmoderne individ.',
+    examQuestion: 'Analysér udviklingen i familiemønstre fra traditionelt til senmoderne samfund.',
     subtext: [
-      { question: 'Hvad er den vigtigste faglige pointe i dette skift?', options: ['Fra skæbne/tradition til valg/selvrealisering', 'At vi har fået flere penge', 'At vi er flyttet til byerne', 'At vi har fået internet'], correctAnswer: 'Fra skæbne/tradition til valg/selvrealisering' }
+      { question: 'Hvilken kilde ville være bedst til at belyse patriarkatet?', options: ['Lars Rasmussens erindringer', 'Klinket Porcelæn', 'En lov om kvindevalgret', 'Et billede af en jernbane'], correctAnswer: 'Lars Rasmussens erindringer' }
     ]
   }
 ];

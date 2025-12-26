@@ -1,49 +1,50 @@
 
 export const emne3_entries = [
   { id: 'hol_1', topicId: '3', type: 'event', title: 'Wannsee-konferencen', date: '1942', description: 'Konference i Berlin hvor man fastlagde "Den endelige løsning" på jødespørgsmålet.', questions: [
-    { question: 'Hvad var formålet med Wannsee-konferencen i 1942?', options: ['At koordinere den industrielle udryddelse af Europas jøder', 'At forhandle fred med England', 'At planlægge invasionen af USA', 'At bygge jernbaner i Polen'], correctAnswer: 'At koordinere den industrielle udryddelse af Europas jøder' },
-    { question: 'Hvem fik fuldmagt til at forberede "die Endlösung"?', options: ['Reinhardt Heydrich', 'Adolf Hitler personligt', 'Albert Speer', 'Joseph Goebbels'], correctAnswer: 'Reinhardt Heydrich' }
-  ]},
-  { id: 'hol_2', topicId: '3', type: 'concept', title: 'Gasbiler (Sonderwagen)', description: 'Tidlig metode til massemord før udryddelseslejrene blev fuldt udbygget.', questions: [
-    { question: 'Hvorfor gik man væk fra skydning og over til gasbiler?', options: ['Det var for psykisk belastende for soldaterne og for synligt', 'Det var billigere', 'Det gik langsommere', 'Soldaterne løb tør for ammunition'], correctAnswer: 'Det var for psykisk belastende for soldaterne og for synligt' }
-  ]},
-  { id: 'hol_3', topicId: '3', type: 'concept', title: 'Auschwitz-Birkenau', description: 'Både arbejdslejr og udryddelseslejr. Centret for det industrielle massemord.', questions: [
-    { question: 'Hvad var den maksimale kapacitet i Auschwitz i 1944?', options: ['Op mod 20.000 mennesker i døgnet', '1000 mennesker om ugen', '5000 mennesker om året', 'Man gassede ingen i 1944'], correctAnswer: 'Op mod 20.000 mennesker i døgnet' },
-    { question: 'Hvilken gas blev brugt i Auschwitz?', options: ['Zyklon B', 'CO2', 'Lattergas', 'Sennepsgas'], correctAnswer: 'Zyklon B' }
-  ]},
-  { id: 'hol_4', topicId: '3', type: 'concept', title: 'I.G. Farben', description: 'Tysk kemikoncern der brugte slavearbejdere fra koncentrationslejrene.', questions: [
-    { question: 'Hvilken rolle spillede I.G. Farben i Holocaust?', options: ['De nød godt af billig arbejdskraft fra fangerne', 'De var modstandsfolk', 'De byggede hospitaler', 'De havde intet med det at gøre'], correctAnswer: 'De nød godt af billig arbejdskraft fra fangerne' }
+    { question: 'Hvad var det formelle formål med Wannsee-konferencen?', options: ['At koordinere den industrielle udryddelse logistisk', 'At forhandle frem til en fredsaftale', 'At give jøderne deres egne landområder', 'At stoppe krigen i Øst'], correctAnswer: 'At koordinere den industrielle udryddelse logistisk' }
   ]}
 ];
 
 export const emne3_sources = [
   {
-    id: 's3_goebbels',
+    id: 's3_wansee_proto',
     topicId: '3',
-    title: 'Goebbels Dagbog (13. dec. 1941)',
-    text: '"Hvad angår jødespørgsmålet er Føreren fast besluttet på at gøre rent bord. Han har spået jøderne, at de - hvis de endnu en gang var årsag til en verdenskrig - ville opleve deres egen tilintetgørelse. Det var ikke nogen tom floskel. Verdenskrigem er en realitet, tilintetgørelse af jødedommen må være den nødvendige konsekvens. Dette spørgsmål bør betragtes uden nogen form for sentimentalitet."',
+    title: 'Wannsee-konferencens Protokol (1942) - Officielt uddrag',
+    text: 'Jødeudryddelsen – Hvem har skylden? Prøveeksamen – tema 3\n\nKILDE 1: Wansee-konferencen 20. januar 1942\nI januar 1942 afholdtes en konference om "den endelige løsning" af jødespørgsmålet. Heri deltog repræsentanter fra en række berørte ministerier og 6 ledende SS-officerer.\n\nHemmelig rigssag! Forhandlingsprotokol\nVed forhandlingerne om den endelige løsning på jødespørgsmålet, som fandt sted den 20. januar 1942 i Berlin, Grossen Wansee nr. 56-58, deltog:\n(Navnene på de i alt 15 deltagere).\n\nChefen for sikkerhedspolitiet og SD, SS-Obergruppenführer Heydrich, fortalte indledningsvis, at han af rigsmarskallen var blevet beskikket til befuldmægtiget for forberedelsen af den endelige løsning på det europæiske jødespørgsmål, og påpegede, at man havde indkaldt til dette møde for at nå til klarhed i principielle spørgsmål. Rigsmarskallens ønske om at få tilsendt et udkast om, hvad der organisatorisk, sagligt og materielt krævedes med henblik på den endelige løsning af det europæiske jødespørgsmål, gjorde det påkrævet, at samtlige centrale instanser, der direkte berørtes af disse spørgsmål, i forvejen mødtes for at drøfte en koordinering af de enkelte instansers indsats.\n\nDet afgørende ord under udarbejdelsen af den endelige løsning på jødespørgsmålet ligger uden hensyntagen til geografiske grænser hos Reichsführer-SS og chef for det tyske politi (chefen for sikkerhedspolitiet og SD). (...)\n\nIII. I stedet for emigration er der nu, med Førerens indhentede billigelse, som en anden mulighed for en løsning trådt evakueringen af jøderne til Østeuropa. Disse aktioner bør dog udelukkende betragtes som en slags reservemuligheder, men man høster dog allerede ved dem de praktiske erfaringer, som er af stor betydning med henblik på den forestående endelige løsning på jødespørgsmålet. (...)\n\nUnder passende ledelse skal jøderne, efterhånden som den endelige løsning gennemføres, på formålstjenlig måde sættes ind i arbejdet i øst. I store arbejdskolonner, med mænd og kvinder hver for sig, skal de arbejdsdygtige jøder, under stadig beskæftigelse med vejbygning, føres til disse områder. En stor del af dem vil utvivlsomt udgå ved naturligt frafald.\n\nDe, som eventuelt er blevet tilbage, må, da det uden tvivl drejer sig om den mest modstandsdygtige del, behandles i overensstemmelse hermed, da de, som repræsenterende en naturlig elite, ved frigivelse måtte betragtes som en kimcelle til en ny jødisk opbygning (jf. historiske erfaringer). Under den rent praktiske gennemførelse af den endelige løsning finkæmmes Europa fra vest mod øst.',
     questions: [
-      { question: 'Hvad mener Goebbels med "uden sentimentalitet"?', options: ['At man skal dræbe koldblodigt og effektivt', 'At man skal være ked af det', 'At man skal give gaver', 'At man skal synge sange'], correctAnswer: 'At man skal dræbe koldblodigt og effektivt' },
-      { question: 'Hvilket argument bruger han for udryddelsen?', options: ['At jøderne selv er skyld i verdenskrigen', 'At de er for mange', 'At de er fattige', 'At de skal flyttes til Madagaskar'], correctAnswer: 'At jøderne selv er skyld i verdenskrigen' }
+      { question: 'Hvilken betydning har eufemismen "naturligt frafald" i kilden?', options: ['Død ved udmattelse og hårdt arbejde', 'At folk vælger at flytte selv', 'At de bliver syge men overlever', 'At de rejser hjem'], correctAnswer: 'Død ved udmattelse og hårdt arbejde' },
+      { question: 'Hvem havde det overordnede ansvar for "Den endelige løsning"?', options: ['Reichsführer-SS (Himmler) og Chefen for sikkerhedspolitiet (Heydrich)', 'Kun de lokale politimestre', 'Den tyske hær (Værnemagten) alene', 'De allierede'], correctAnswer: 'Reichsführer-SS (Himmler) og Chefen for sikkerhedspolitiet (Heydrich)' }
     ]
   },
   {
-    id: 's3_bergen_belsen',
+    id: 's3_goldhagen',
     topicId: '3',
-    title: 'Befrielsen af Bergen-Belsen (1945)',
-    text: 'Da englænderne befriede koncentrationslejren Bergen-Belsen den 15. april 1945, flød det med lig overalt. På engelsk kommando blev tyske fangevogtere tvunget til at begrave ligene i massegrave for at stoppe sygdomsspredning.',
+    title: 'Daniel Goldhagen: Hitlers villige bødler (1996)',
+    text: 'Kilde 2: Daniel Goldhagen: Hitlers villige bødler, 1996\n\nDen jødisk-amerikanske historiker Daniel Goldhagen hævder i sin bog, at antisemitismen i Tyskland var stærkere og mere yderligtgående end i andre europæiske lande. Det var en antisemitisme, der under naziregimet blev "eliminatorisk", dvs. at den indeholdt en overbevisning om, at jøderne burde elimineres. Goldhagens bog affødte en storm af protester fra tyske faghistorikere, der mente, han på et meget spinkelt grundlag tillagde det tyske folk en kollektiv skyld.\n\nDenne bog (...) bygger på mine undersøgelser af en lang række forskellige enheder og institutioner, der var indblandet i holocaust: mere end 35 politibataljoner, der var involveret i massemord; alle atten "Einsatzkommandoer", som var de mord-enheder, der blev opstillet med henblik på at udrydde jøderne i Sovjetunionen. (...)\n\nMin undersøgelse er blevet styret af overbevisningen om, at jeg ved at undersøge de mænd (og kvinder), der arbejdede i forskellige institutioner med forskellige opgaver, kunne (...) få en indsigt, der ikke kunne nås, hvis jeg fokuserede på én bestemt institution. (...) De enheder, jeg studerede mest indgående, syntes at have en række træk tilfælles, skønt ikke alle enheder havde alle disse træk. Vigtigst blandt dem var enheder, hvor det med sikkerhed kunne påvises, at mændene vidste, at de ikke var tvunget til at dræbe. (...)\n\nJeg ofrede megen opmærksomhed på de enheder, der bestod af mænd, der i kraft af deres baggrund forekom at have mindst sandsynlighed for at blive villige bødler. Det er en af grundene til at fokusere på politibataljoner, for mange af dem var sammensat af "almindelige" tyskere. Mange politibataljoner var enheder af mænd, der tilfældigt var blevet placeret i dem. De var indkaldte, som ikke havde nogen ideologisk skoling, ingen særlig militær baggrund, som ofte var ældre, dvs. midt i trediverne, og som var familiefædre ... ikke let påvirkelige attenårige, som hære elsker at forme.\n\nEt medlem af politibataljon 105 skrev fra Sovjetunionen til sin kone d. 7. august 1941 om den totale udslettelse af jøderne og tilføjede: "Kære H. Lig ikke søvnløs på grund af det. Det er nødvendigt".',
     questions: [
-      { question: 'Hvad er det kildekritiske perspektiv på fotos af døde fanger i 1945?', options: ['De fungerer som uafviselige levn for Holocausts rædsler', 'De er falske billeder fra en film', 'De viser at fangerne sov', 'De viser at tyskerne passede godt på fangerne'], correctAnswer: 'De fungerer som uafviselige levn for Holocausts rædsler' }
+      { question: 'Hvad betyder "eliminatorisk antisemitisme"?', options: ['En overbevisning om at jøderne skulle udryddes helt', 'At man kun ville have jøderne ud af Tyskland', 'At man var ligeglad med jøderne', 'En mild form for racisme'], correctAnswer: 'En overbevisning om at jøderne skulle udryddes helt' },
+      { question: 'Hvilken gruppe fokuserer Goldhagen på for at bevise sin tese?', options: ['"Almindelige" tyskere i politibataljoner', 'Kun de øverste SS-ledere', 'Adolf Hitler personligt', 'Udenlandske frivillige'], correctAnswer: '"Almindelige" tyskere i politibataljoner' }
+    ]
+  },
+  {
+    id: 's3_gotz_aly_folkestat',
+    topicId: '3',
+    title: 'Götz Aly: Hitlers folkestat (2005) - Udvidet analyse',
+    text: 'Kilde 3: Götz Aly: Hitlers folkestat, 2005\n\nDen tyske historiker Götz Aly har undersøgt den økonomiske side af nazi-regimets jødeforfølgelser. Han viser, hvordan tyskerne under Anden Verdenskrig systematisk udplyndrede de besatte områder. Det betød, at krigen kunne finansieres samtidig med, at den tyske befolknings levestandard kunne opretholdes igennem det meste af krigen.\n\nJødeforfølgelserne gav tyskerne betydelige indtægter. Allerede i 1938 indkasserede den tyske stat en milliard guldmark igennem en bod, der blev pålagt jøderne. De skulle betale 20% af deres formue som erstatning for de ødelæggelser, der var sket ved overfaldene på dem under den såkaldte "Krystalnat". Senere blev al jødisk ejendom i Tyskland og i de besatte lande beslaglagt af tyskerne: Fra fast ejendom over værdipapirer til smykker, sølvtøj, møbler, ja, selv til guldplomber i tænderne på de myrdede. Den sidste økonomiske udnyttelse af jøderne bestod så i tvangsarbejde i kz-lejrene, hvor der var tale om "udryddelse gennem arbejde".\n\nRovmordet på jøderne: Når jødisk husgeråd og konfiskerede varer tilhørende jødiske forretningsfolk blev sat til salg overalt i Europa, kunne de mærkbart reducere de forsyningsmangler, der var et resultat af tyskernes rovgriskhed. Altså sank priserne, eller de forblev kortvarigt stabile. Det er en simpel markedsøkonomisk mekanisme, som tyskerne i deres propaganda udnyttede og fordrejede.\n\nI spørgsmålet om, i hvilken udstrækning værnemagten (og ikke blot SS) medvirkede ved holocaust, kan diskussionen om, hvor mange eller hvor få soldater, der har deltaget, ganske vist afklare noget. Mere lærerigt er det dog at forestille sig de strukturelle elementer, der forstærkede værnemagtens ønske om jødernes forsvinden. Det er blevet påvist, hvordan den "etniske udskillelse" og røveriet af levnedsmidler fremskyndede "den endelige løsning".\n\nDe betydelige pengestrømme smurte den tyske krigsmaskine i kriseåret 1942-43. (...) I Grækenland lykkedes det i nogle måneder af dække 70% af besættelsesomkostningerne på denne måde. Set ud fra den betragtning kan "ariseringen" betragtes som en del af en enorm mobilisering.',
+    questions: [
+      { question: 'Hvad er Götz Alys hovedtese om Holocaust?', options: ['At det var et økonomisk motiveret rovmord der sikrede velfærd for tyskere', 'At det kun handlede om ideologi', 'At krigen var for dyr til at udrydde jøder', 'At tyskere blev fattigere af Holocaust'], correctAnswer: 'At det var et økonomisk motiveret rovmord der sikrede velfærd for tyskere' },
+      { question: 'Hvilken rolle spillede Værnemagten (hæren) ifølge Aly?', options: ['De medvirkede aktivt pga. logistiske og økonomiske interesser', 'De anede intet om hvad der foregik', 'De forsøgte at stoppe SS', 'De deltog kun i kampene ved fronten'], correctAnswer: 'De medvirkede aktivt pga. logistiske og økonomiske interesser' }
     ]
   }
 ];
 
 export const emne3_exams = [
   {
-    id: 'e3_1', topicId: '3',
-    examQuestion: 'Analysér årsagerne til at Holocaust kunne lade sig gøre logistisk og administrativt.',
+    id: 'e3_1',
+    topicId: '3',
+    examQuestion: 'Diskutér om Holocaust var resultatet af en bevidst plan (intentionalisme) eller en gradvis radikalisering (funktionalisme).',
     subtext: [
-      { question: 'Hvilken faktor var afgørende for logistikken?', options: ['Det tyske bureaukrati og administrative apparat fungerede uden protest', 'Soldaterne handlede på egen hånd', 'Man brugte kun heste', 'Det skete helt tilfældigt'], correctAnswer: 'Det tyske bureaukrati og administrative apparat fungerede uden protest' }
+      { question: 'Hvad taler for den funktionalistiske forklaring?', options: ['At der ikke findes en skriftlig ordre fra Hitler om den endelige løsning', 'At Hitler altid havde hadet jøder', 'At Wannsee-konferencen var hurtig', 'At krigen gik godt'], correctAnswer: 'At der ikke findes en skriftlig ordre fra Hitler om den endelige løsning' }
     ]
   }
 ];

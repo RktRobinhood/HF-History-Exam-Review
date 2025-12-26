@@ -13,7 +13,7 @@ export const emne2_sources = [
     questions: [
       {
         question: 'Hvad legitimerer kongens magt i denne kilde?',
-        options: ['Gud alene (Guddommelig ret)', 'En kontrakt med folket', 'Valg i Rigsrådet', 'Militær sejr'],
+        options: ['Gud alene (Guddommelig ret)', 'En kontrakt med folket', 'Valg i Rigsrådet', 'Militær sag'],
         correctAnswer: 'Gud alene (Guddommelig ret)'
       },
       {
@@ -27,12 +27,12 @@ export const emne2_sources = [
     id: 's2_junigrundloven',
     topicId: '2',
     title: 'Junigrundloven (1849) - Uddrag',
-    text: '§ 1. Regeringsformen er indskrænket monarkisk. Kongemagten er arvelig.\n\n§ 2. Den lovgivende magt er hos kongen og rigsdagen i forening. Den udøvende magt er hos kongen. Den dømmende magt er hos domstolene.\n\n§ 35. Valgret til Folketinget har enhver uberygtet mand, som har indfødsret, når han har fyldt sit 30. år, medmindre han:\na) uden at have egen husstand står i privat tjenesteforhold;\nb) nyder eller har nydt understøttelse af fattigvæsenet, som ikke er enten eftergivet eller tilbagebetalt;\nc) er ude af rådighed over sit bo;\nd) ikke har haft fast bopæl i et år i den valgkreds...',
+    text: '§ 1. Regeringsformen er indskrænket monarkisk. Kongemagten er arvelig.\n\n§ 2. Den lovgivende magt er hos kongen og rigsdagen i forening. Den udøvende magt er hos kongen. Den dømmende magt er hos domstolene.\n\n§ 35. Valgret til Folketinget har enhver uberygtet mand, som har indfødsret, når han har fyldt sit 30. år, medmindre han:\na) uden at have egen husstand står i privat tjenesteforhold;\nb) nyder eller har nydt understøttelse af fattigvæsenet, som ikke er enten eftergivet eller tilbagebetalt;\nc) er ude af rådighed over sit bo;\ d) ikke har haft fast bopæl i et år i den valgkreds...',
     questions: [
       {
         question: 'Hvad betyder "indskrænket monarkisk" i § 1?',
         options: ['At kongens magt er begrænset af forfatningen (Konstitutionelt monarki)', 'At kongen slet ingen magt har', 'At der kun er én konge', 'At kongen kun må bestemme i København'],
-        correctAnswer: 'At kongens magt is begrænset af forfatningen (Konstitutionelt monarki)'
+        correctAnswer: 'At kongens magt er begrænset af forfatningen (Konstitutionelt monarki)'
       },
       {
         question: 'Hvorfor var tjenestefolk og fattige udelukket fra valgretten i § 35?',
