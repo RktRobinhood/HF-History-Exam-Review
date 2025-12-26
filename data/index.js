@@ -37,6 +37,7 @@ import { emne4_globalization_entries } from './emne4_globalization.js';
 import { emne4_immigration_entries } from './emne4_immigration_debate.js';
 import { emne4_pia_k_sources } from './emne4_pia_k_source.js';
 import { emne4_reintoft_sources } from './emne4_reintoft_source.js';
+import { emne4_deep_dive_entries } from './emne4_deep_dive.js';
 
 export const TOPICS = [
   { id: '0', title: 'Historisk Metode & Teori', description: 'Kildekritik, billedanalyse og historiebrug.' },
@@ -81,6 +82,7 @@ export const HISTORY_ENTRIES = [
   ...emne4_entries,
   ...emne4_globalization_entries,
   ...emne4_immigration_entries,
+  ...emne4_deep_dive_entries,
 ];
 
 export const PRIMARY_SOURCES = [
