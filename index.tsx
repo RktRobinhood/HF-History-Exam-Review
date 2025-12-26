@@ -18,6 +18,7 @@ const scrubDate = (text) => text.replace(/\d{4}/g, '').trim();
 // --- AUDIO ENGINE ---
 const playSound = (type) => {
   try {
+    // Fix: Cast window to any to access webkitAudioContext for broader browser support in TypeScript
     const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -295,7 +296,8 @@ const SourceAnalysis = ({ sources, onExit }) => {
 // --- MAIN APP ---
 
 const App = () => {
-  const [stats, setStats] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
+  // Fix: Add explicit typing for stats to prevent 'unknown' errors during mastery calculation
+  const [stats, setStats] = useState<Record<string, {count: number, correct: number}>>(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
   const [selIds, setSelIds] = useState(() => TOPICS.map(t => t.id));
   const [view, setView] = useState('menu');
 
@@ -319,7 +321,8 @@ const App = () => {
     const relevantStats = Object.entries(stats).filter(([id]) => HISTORY_ENTRIES.map(e => e.id).includes(id));
     if (!relevantStats.length) return { percent: 0, attempts: 0, correct: 0 };
     let att = 0; let corr = 0;
-    relevantStats.forEach(([_, v]: [any, any]) => { att += v.count; corr += v.correct; });
+    // Fix: Using properly typed stats ensures count and correct are recognized
+    relevantStats.forEach(([_, v]) => { att += v.count; corr += v.correct; });
     return { 
       percent: att > 0 ? Math.round((corr / att) * 100) : 0,
       attempts: att,
@@ -415,5 +418,9 @@ const App = () => {
   );
 };
 
-const root = createRoot(document.getElementById('root')!);
-root.render(<App />);
+// Removed '!' to fix Babel in-browser transformation
+const rootElement = document.getElementById('root');
+if (rootElement) {
+  const root = createRoot(rootElement);
+  root.render(<App />);
+}
