@@ -23,7 +23,11 @@ import { emne2_enlightenment_entries } from './emne2_enlightenment.js';
 import { emne2_difficult_democracy_entries } from './emne2_difficult_democracy.js';
 import { emne2_welfare_timeline_entries } from './emne2_welfare_timeline.js';
 import { emne2_exam_concepts_entries } from './emne2_exam_concepts.js';
+import { emne2_social_control_entries, emne2_social_control_sources } from './emne2_social_control.js';
 import { emne3_entries, emne3_sources, emne3_exams } from './emne3.js';
+import { emne3_hitler_youth_entries } from './emne3_hitler_youth.js';
+import { emne3_nuremberg_entries } from './emne3_nuremberg.js';
+import { emne3_holocaust_deep_sources } from './emne3_holocaust_deep.js';
 import { emne4_entries, emne4_sources, emne4_exams } from './emne4.js';
 
 export const TOPICS = [
@@ -59,7 +63,10 @@ export const HISTORY_ENTRIES = [
   ...emne2_difficult_democracy_entries,
   ...emne2_welfare_timeline_entries,
   ...emne2_exam_concepts_entries,
+  ...emne2_social_control_entries,
   ...emne3_entries,
+  ...emne3_hitler_youth_entries,
+  ...emne3_nuremberg_entries,
   ...emne4_entries,
 ];
 
@@ -67,7 +74,9 @@ export const PRIMARY_SOURCES = [
   ...emne0_sources,
   ...emne1_sources,
   ...emne2_sources,
+  ...emne2_social_control_sources,
   ...emne3_sources,
+  ...emne3_holocaust_deep_sources,
   ...emne4_sources,
 ];
 
