@@ -1,93 +1,200 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { PRIMARY_SOURCES } from './data/index.js';
+import React, { useState, useMemo } from 'react';
+import { EXAM_SETS } from './data/examSets.js';
+import { shuffle } from './utils.ts';
 
 export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any) => {
-  const [selectedPack, setSelectedPack] = useState<string | null>(null);
+  const [selectedId, setSelectedId] = useState<string | null>(null);
   const [phase, setPhase] = useState<'select' | 'prep' | 'exam' | 'result'>('select');
   const [activeSourceIdx, setActiveSourceIdx] = useState(0);
   const [examStep, setExamStep] = useState(0);
-  const [gradePoints, setGradePoints] = useState(0);
+  const [points, setPoints] = useState(0);
+  const [matchingState, setMatchingState] = useState<Record<number, string>>({});
 
-  const packs = useMemo(() => [
-    { id: 'p1', topicId: '1', title: 'Identitet & Tradition', desc: 'Analyse af bondesamfund, køn og familieliv.', sources: PRIMARY_SOURCES.filter(s => s.topicId === '1').slice(0, 3) },
-    { id: 'p3', topicId: '3', title: 'Holocaust & Gerningsmænd', desc: 'Den endelige løsning og den almindelige tysker.', sources: PRIMARY_SOURCES.filter(s => s.topicId === '3').slice(0, 3) }
-  ], []);
+  const currentSet = useMemo(() => EXAM_SETS.find(s => s.id === selectedId), [selectedId]);
 
-  const currentPack = packs.find(p => p.id === selectedPack);
-  const allExamQuestions = useMemo(() => currentPack?.sources.flatMap(s => (s.questions || []).map(q => ({ ...q, sourceTitle: s.title, id: s.id }))) || [], [currentPack]);
+  const handleGrade = () => {
+    if (!currentSet) return "00";
+    const total = currentSet.questions.length;
+    const ratio = points / total;
+    if (ratio >= 0.9) return "12";
+    if (ratio >= 0.75) return "10";
+    if (ratio >= 0.6) return "7";
+    if (ratio >= 0.45) return "4";
+    if (ratio >= 0.25) return "02";
+    if (ratio >= 0.1) return "00";
+    return "-3";
+  };
 
-  const currentGrade = useMemo(() => {
-    const totalPossible = allExamQuestions.length + 4;
-    const ratio = gradePoints / Math.max(1, totalPossible);
-    if (ratio > 0.88) return "12"; if (ratio > 0.72) return "10"; if (ratio > 0.55) return "7";
-    if (ratio > 0.38) return "4"; if (ratio > 0.18) return "02"; return "00";
-  }, [gradePoints, allExamQuestions.length]);
+  const handleNext = (correct: boolean) => {
+    if (correct) {
+      setPoints(p => p + 1);
+      playSound('success');
+    } else {
+      playSound('damage');
+    }
+    
+    if (examStep < (currentSet?.questions.length || 0) - 1) {
+      setExamStep(s => s + 1);
+      setMatchingState({});
+    } else {
+      setPhase('result');
+      playSound('victory');
+    }
+  };
 
   if (phase === 'select') return (
-    <div className="max-w-4xl mx-auto py-12 px-4">
-      <button onClick={onExit} className="border-4 border-slate-900 px-6 py-2 mb-12 bg-white font-black uppercase text-xs">✕ TILBAGE</button>
-      <h2 className="text-5xl font-black uppercase italic mb-12 tracking-tighter underline decoration-blue-500">VÆLG EKSAMENSSÆT</h2>
+    <div className="max-w-5xl mx-auto py-12 px-6 animate-pop">
+      <header className="flex justify-between items-center mb-12 border-b-8 border-slate-900 pb-8">
+        <h2 className="text-6xl font-black uppercase italic tracking-tighter text-slate-900 underline decoration-blue-500">EKSAMENS-OPGAVER</h2>
+        <button onClick={onExit} className="bg-white border-4 border-slate-900 px-6 py-2 font-black uppercase text-xs shadow-[4px_4px_0px_black] hover:bg-slate-50 transition-all">✕ AFSLUT</button>
+      </header>
+      
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {packs.map(p => (
-          <button key={p.id} onClick={() => { setSelectedPack(p.id); setPhase('prep'); playSound('start'); }} className="bg-white border-4 border-slate-900 p-8 text-left shadow-[12px_12px_0px_black] flex flex-col h-full hover:-translate-y-2 transition-all">
-            <h3 className="text-2xl font-black mb-4 uppercase">{p.title}</h3>
-            <p className="flex-1 text-sm font-bold text-slate-600 mb-8 italic">"{p.desc}"</p>
-            <div className="bg-slate-900 text-white py-4 text-center font-black uppercase text-xs shadow-[4px_4px_0px_#3b82f6]">TRÆK OPGAVESÆT</div>
+        {EXAM_SETS.map(set => (
+          <button 
+            key={set.id} 
+            onClick={() => { setSelectedId(set.id); setPhase('prep'); playSound('start'); }}
+            className="group bg-white border-4 border-slate-900 p-8 text-left shadow-[12px_12px_0px_black] flex flex-col h-full hover:-translate-y-2 transition-all hover:bg-blue-50"
+          >
+            <div className="bg-slate-900 text-white inline-block px-3 py-1 font-black text-[10px] uppercase mb-4 w-fit">Emne {set.topicId}</div>
+            <h3 className="text-3xl font-black mb-4 uppercase leading-tight group-hover:text-blue-600 transition-colors">{set.title}</h3>
+            <p className="text-sm font-bold text-slate-500 mb-8 italic">"{set.description}"</p>
+            <div className="mt-auto bg-slate-900 text-white py-4 text-center font-black uppercase text-sm shadow-[4px_4px_0px_#3b82f6] group-hover:bg-blue-600">LÆS KILDER OG FORBERED DIG</div>
           </button>
         ))}
       </div>
     </div>
   );
 
-  if (phase === 'prep') return (
-    <div className="max-w-6xl mx-auto py-6 h-full flex flex-col px-4">
-      <div className="flex justify-between border-b-8 border-slate-900 pb-6 mb-8">
-        <h2 className="text-4xl font-black italic uppercase">FORBEREDELSE (24 T)</h2>
-        <button onClick={() => setPhase('exam')} className="bg-green-400 border-4 border-slate-900 px-8 py-4 font-black uppercase shadow-[4px_4px_0px_black]">GÅ TIL EKSAMEN →</button>
-      </div>
-      <div className="flex-1 flex flex-col md:flex-row gap-8 overflow-hidden">
-        <div className="w-full md:w-80 flex flex-col gap-3">
-          {currentPack?.sources.map((s, i) => (
-            <button key={s.id} onClick={() => setActiveSourceIdx(i)} className={`p-6 border-4 font-black text-left uppercase text-[10px] ${activeSourceIdx === i ? 'bg-slate-900 text-white shadow-[4px_4px_0px_blue]' : 'bg-white border-slate-300 text-slate-400'}`}>KILDE {i+1}</button>
-          ))}
+  if (phase === 'prep' && currentSet) return (
+    <div className="max-w-6xl mx-auto py-6 flex flex-col h-full px-4 animate-pop">
+      <header className="flex justify-between items-center mb-8 border-b-8 border-slate-900 pb-6">
+        <div className="flex items-center gap-4">
+          <button onClick={() => setPhase('select')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs">← TILBAGE</button>
+          <h2 className="text-3xl font-black italic uppercase text-slate-400">FASE 1: FORBEREDELSE</h2>
         </div>
-        <div className="flex-1 bg-white border-4 border-slate-900 p-12 overflow-y-auto shadow-inner rounded-xl">
-          <h3 className="text-3xl font-black mb-12 underline decoration-blue-200">{currentPack?.sources[activeSourceIdx]?.title}</h3>
-          <p className="font-serif italic text-2xl leading-relaxed whitespace-pre-wrap">"{currentPack?.sources[activeSourceIdx]?.text}"</p>
+        <button 
+          onClick={() => { setPhase('exam'); playSound('start'); }}
+          className="bg-green-400 border-4 border-slate-900 px-10 py-5 font-black uppercase shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+        >
+          START EKSAMINATION →
+        </button>
+      </header>
+
+      <div className="flex-1 flex flex-col lg:flex-row gap-8 overflow-hidden pb-12">
+        <div className="w-full lg:w-80 flex flex-col gap-3">
+          <span className="text-[10px] font-black uppercase text-slate-400 tracking-widest mb-2">Kildemateriale</span>
+          {currentSet.sources.map((s, i) => (
+            <button 
+              key={s.id} 
+              onClick={() => setActiveSourceIdx(i)}
+              className={`p-6 border-4 font-black text-left uppercase text-xs transition-all ${activeSourceIdx === i ? 'bg-slate-900 text-white shadow-[4px_4px_0px_#3b82f6] -translate-x-1' : 'bg-white border-slate-300 text-slate-400 hover:border-slate-900'}`}
+            >
+              KILDE {i+1}: {s.title.substring(0, 30)}...
+            </button>
+          ))}
+          <div className="mt-auto bg-blue-50 border-4 border-dashed border-blue-400 p-6 text-[11px] font-bold text-blue-800 uppercase italic leading-relaxed">
+            Husk: Under selve eksamen kan du ikke se kildeteksterne. Brug tiden på at forstå kildernes tendens og repræsentativitet nu.
+          </div>
+        </div>
+
+        <div className="flex-1 bg-white border-4 border-slate-900 p-12 overflow-y-auto shadow-inner rounded-3xl relative no-scrollbar">
+          <div className="absolute top-4 right-6 text-[10px] font-black text-slate-200 uppercase tracking-[0.2em]">Primærkilde-arkiv</div>
+          <h3 className="text-4xl font-black mb-8 underline decoration-blue-200 decoration-8">{currentSet.sources[activeSourceIdx].title}</h3>
+          <div className="bg-slate-50 border-l-[16px] border-slate-900 p-10 mb-10 shadow-sm rounded-r-xl">
+             <p className="font-serif italic text-2xl leading-relaxed text-slate-800 whitespace-pre-wrap">"{currentSet.sources[activeSourceIdx].text}"</p>
+          </div>
+          <div className="border-t-4 border-slate-100 pt-8">
+            <h4 className="font-black text-blue-600 uppercase text-xs mb-3 tracking-widest">Historiefaglig analysehjælp</h4>
+            <p className="text-slate-500 font-bold italic leading-relaxed">{currentSet.sources[activeSourceIdx].analysis}</p>
+          </div>
         </div>
       </div>
     </div>
   );
 
-  if (examStep < allExamQuestions.length) {
-    const q = allExamQuestions[examStep];
+  if (phase === 'exam' && currentSet) {
+    const q = currentSet.questions[examStep];
+    
     return (
-      <div className="max-w-3xl mx-auto py-12 px-4 h-full">
-        <div className="flex justify-between mb-8 items-center border-b-4 border-slate-100 pb-4">
-          <h2 className="font-black text-4xl italic text-blue-600 drop-shadow-sm">KARAKTER: {currentGrade}</h2>
-          <span className="font-black text-xs uppercase text-slate-400">{examStep + 1} / {allExamQuestions.length}</span>
-        </div>
-        <div className="bg-white border-4 border-slate-900 p-12 shadow-[16px_16px_0px_black] rounded-xl">
-          <h2 className="text-3xl font-black mb-12 leading-tight uppercase tracking-tighter">{q.question}</h2>
-          <div className="space-y-4">
-            {q.options.map((o: string) => (
-              <button key={o} onClick={() => { const ok = o === q.correctAnswer; if (ok) { setGradePoints(p => p + 1); playSound('success'); } else playSound('damage'); onRecord(q.id, ok); setExamStep(s => s + 1); }} className="w-full text-left p-8 border-4 border-slate-900 font-black text-lg hover:bg-blue-50 transition-all shadow-[6px_6px_0px_black] active:translate-y-1 active:shadow-none">
-                {o}
-              </button>
-            ))}
+      <div className="max-w-4xl mx-auto py-12 px-6 h-full animate-pop">
+        <header className="flex justify-between items-center mb-12 border-b-8 border-slate-900 pb-8">
+          <div className="flex items-center gap-4">
+            <button onClick={() => setPhase('prep')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs shadow-[2px_2px_0px_black]">← SE KILDER IGEN</button>
+            <h2 className="text-4xl font-black italic text-blue-600 uppercase">PROGNOSE: {handleGrade()}</h2>
           </div>
+          <div className="text-right">
+            <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Spørgsmål</span>
+            <span className="text-3xl font-black italic leading-none">{examStep + 1} / {currentSet.questions.length}</span>
+          </div>
+        </header>
+
+        <div className="bg-white border-8 border-slate-900 p-12 shadow-[25px_25px_0px_black] rounded-3xl relative overflow-hidden">
+          <div className="absolute top-0 right-0 bg-yellow-400 border-l-8 border-b-8 border-slate-900 px-4 py-1 text-[10px] font-black uppercase tracking-widest">Det Grønne Bord</div>
+          <h2 className="text-4xl font-black mb-12 leading-tight uppercase italic tracking-tighter underline decoration-yellow-300 decoration-8">"{q.question}"</h2>
+          
+          {q.type === 'mcq' ? (
+            <div className="space-y-4">
+              {q.options.map((o: string) => (
+                <button 
+                  key={o} 
+                  onClick={() => handleNext(o === q.correctAnswer)}
+                  className="w-full text-left p-8 border-4 border-slate-900 font-black text-xl hover:bg-blue-50 transition-all shadow-[8px_8px_0px_black] active:translate-y-1 active:shadow-none"
+                >
+                  {o}
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className="space-y-6 bg-slate-50 p-8 border-4 border-slate-900 rounded-xl shadow-inner">
+               {q.pairs.map((p: any, i: number) => (
+                 <div key={i} className="flex flex-col md:flex-row items-center gap-4">
+                    <div className="bg-slate-900 text-white p-4 font-black uppercase text-sm flex-1 text-center md:text-left">{p.item}</div>
+                    <div className="text-2xl font-black text-slate-300">↔</div>
+                    <select 
+                      value={matchingState[i] || ""}
+                      onChange={(e) => {
+                        const newMatching = {...matchingState, [i]: e.target.value};
+                        setMatchingState(newMatching);
+                        if (Object.keys(newMatching).length === q.pairs.length) {
+                           const isAllCorrect = q.pairs.every((pair: any, idx: number) => newMatching[idx] === pair.match);
+                           setTimeout(() => handleNext(isAllCorrect), 800);
+                        }
+                      }}
+                      className="p-4 border-4 border-slate-900 font-bold text-xs bg-white flex-1 outline-none focus:ring-4 ring-blue-200"
+                    >
+                      <option value="">Vælg match...</option>
+                      {shuffle(q.pairs.map((p: any) => p.match)).map((m: string) => <option key={m} value={m}>{m}</option>)}
+                    </select>
+                 </div>
+               ))}
+            </div>
+          )}
         </div>
       </div>
     );
   }
 
-  return (
-    <div className="max-w-3xl mx-auto py-20 text-center px-4">
-      <div className="bg-white border-[12px] border-slate-900 p-16 rounded-3xl shadow-[24px_24px_0px_rgba(0,0,0,0.1)]">
-        <h2 className="text-4xl font-black mb-6 uppercase text-slate-400 italic">CENSORENS DOM</h2>
-        <div className="text-[12rem] font-black text-blue-600 mb-10 leading-none drop-shadow-2xl">{currentGrade}</div>
-        <button onClick={() => { setStats((p: any) => ({ ...p, completedExams: [...(p.completedExams || []), selectedPack] })); onExit(); playSound('victory'); }} className="bg-slate-900 text-white px-16 py-8 text-2xl font-black uppercase italic border-4 border-slate-900 shadow-[8px_8px_0px_#3b82f6]">GEM OG AFSLUT</button>
+  if (phase === 'result') return (
+    <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm flex items-center justify-center z-[200] p-6 animate-pop">
+      <div className="bg-white border-[16px] border-slate-900 p-20 rounded-[4rem] shadow-[40px_40px_0px_#3b82f6] text-center max-w-2xl w-full transform -rotate-1">
+        <h2 className="text-4xl font-black mb-8 uppercase text-slate-400 italic tracking-widest leading-none">PRØVEN ER SLUT</h2>
+        <div className="text-[18rem] font-black text-slate-900 mb-10 leading-none drop-shadow-[15px_15px_0_#fde047]">{handleGrade()}</div>
+        <p className="text-2xl font-bold mb-12 text-slate-600 uppercase tracking-wider italic">
+          {parseInt(handleGrade()) >= 7 ? 'Censoren er imponeret. Du har et stærkt historisk overblik.' : 'Du er bestået, men husk at bruge flere metodiske begreber næste gang.'}
+        </p>
+        <button 
+          onClick={() => { 
+            setStats((p: any) => ({ ...p, completedExams: [...(p.completedExams || []), selectedId] })); 
+            onExit(); 
+          }} 
+          className="bg-slate-900 text-white px-20 py-8 text-4xl font-black uppercase italic border-8 border-slate-900 shadow-[10px_10px_0px_#3b82f6] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+        >
+          GEM OG AFSLUT
+        </button>
       </div>
     </div>
   );
+
+  return null;
 };

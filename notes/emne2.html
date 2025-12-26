@@ -10,49 +10,49 @@
     --accent:#3b82f6;--good:#22c55e;--bad:#ef4444;--yellow:#fde047;
   }
   *{box-sizing:border-box}
-  body{margin:0;font-family:system-ui,-apple-system,sans-serif;background:var(--bg);color:var(--fg);line-height:1.75;padding:10px}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.75;padding:10px}
   .wrap{max-width:1000px;margin:0 auto;padding-bottom:100px}
-  .tabs{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0 20px;border-bottom:4px solid var(--line);padding-bottom:10px}
-  .tabs button{border:3px solid var(--line);background:white;color:var(--fg);padding:8px 12px;border-radius:0px;cursor:pointer;font-size:11px;font-weight:900;text-transform:uppercase;box-shadow:2px 2px 0px var(--line)}
-  .tabs button[aria-selected="true"]{background:var(--yellow);transform:translate(1px,1px);box-shadow:none}
-  .panel{display:none;background:var(--panel);border:4px solid var(--line);padding:30px;box-shadow:10px 10px 0px rgba(0,0,0,0.05)}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 20px;border-bottom:4px solid var(--line);padding-bottom:12px}
+  .tabs button{border:3px solid var(--line);background:white;color:var(--line);padding:8px 14px;border-radius:0px;cursor:pointer;font-size:11px;font-weight:900;text-transform:uppercase;box-shadow:3px 3px 0px var(--line);transition:all 0.1s}
+  .tabs button[aria-selected="true"]{background:var(--yellow);transform:translate(2px,2px);box-shadow:none}
+  .panel{display:none;background:var(--panel);border:4px solid var(--line);padding:30px;box-shadow:12px 12px 0px rgba(0,0,0,0.05);animation: pop 0.3s ease-out;}
   .panel.active{display:block}
-  h2{margin:0 0 15px;font-size:28px;font-weight:900;text-transform:uppercase;letter-spacing:-0.05em;border-bottom:8px solid var(--yellow);display:inline-block}
-  h3{margin:25px 0 10px;font-size:18px;font-weight:900;text-transform:uppercase;color:var(--accent)}
-  p{margin:10px 0}
-  ul{margin:8px 0 10px 18px}
+  @keyframes pop { 0% { opacity: 0; transform: scale(0.98); } 100% { opacity: 1; transform: scale(1); } }
+  h2{margin:0 0 15px;font-size:32px;font-weight:900;text-transform:uppercase;letter-spacing:-0.05em;border-bottom:8px solid var(--yellow);display:inline-block;color:var(--line);line-height:1}
+  h3{margin:30px 0 12px;font-size:20px;font-weight:900;text-transform:uppercase;color:var(--accent)}
+  p{margin:12px 0}
+  ul{margin:10px 0 12px 20px}
   .muted{color:var(--muted)}
   .keygrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:20px 0}
-  .box, .callout{border:3px solid var(--line);padding:20px;background:#f8fafc;font-size:14px;margin:15px 0}
-  .box b, .callout b{color:var(--accent);text-transform:uppercase}
-  .quote{border-left:10px solid var(--yellow);padding:20px;margin:25px 0;background:#fffbeb;font-family:serif;font-size:18px;font-style:italic}
-  .think{border:4px dashed var(--accent);padding:15px;margin:20px 0;background:#eff6ff}
-  .think b{color:var(--accent);text-transform:uppercase}
-  .qblock, .quiz{margin-top:40px;border-top:8px solid var(--line);padding-top:20px}
-  .qrow{border:3px solid var(--line);padding:20px;margin:15px 0;background:white;box-shadow:4px 4px 0px var(--line)}
-  .meta{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;margin-bottom:15px}
-  .tag{font-size:10px;font-weight:900;background:var(--line);color:white;padding:2px 6px;text-transform:uppercase}
-  .opts{list-style:none;padding:0;margin:10px 0 0}
-  .opt{padding:12px;border:2px solid var(--line);margin:8px 0;cursor:pointer;font-weight:700;font-size:14px;transition:all 0.1s}
-  .opt:hover{background:var(--yellow)}
-  .opt.correct{background:var(--good);color:white;border-color:var(--line)}
-  .opt.wrong{background:var(--bad);color:white;border-color:var(--line)}
-  .feedback{margin-top:10px;font-size:12px;font-weight:800;color:var(--muted);text-transform:uppercase;display:none}
-  .btn{border:4px solid var(--line);background:var(--line);color:white;padding:10px 20px;font-weight:900;text-transform:uppercase;cursor:pointer;box-shadow:4px 4px 0px var(--yellow)}
-  .score, .scoreline{margin-top:20px;font-weight:900;font-style:italic;display:block}
-  .small{font-size:13px}
-  table.gloss { width: 100%; border-collapse: collapse; margin: 20px 0; border: 3px solid var(--line); }
-  table.gloss td { padding: 12px; border: 1px solid #e2e8f0; font-size: 13px; }
-  table.gloss tr:nth-child(even) { background: #f8fafc; }
-  textarea { width: 100%; border: 3px solid var(--line); padding: 15px; font-family: inherit; margin-top: 10px; min-height: 100px; }
-  .hint { font-size: 11px; font-weight: 800; color: var(--accent); text-transform: uppercase; margin-bottom: 5px; }
+  .box, .callout{border:3px solid var(--line);padding:24px;background:#f8fafc;font-size:14px;margin:15px 0;color:var(--line)}
+  .box b, .callout b{color:var(--accent);text-transform:uppercase;font-weight:900}
+  .quote{border-left:12px solid var(--yellow);padding:24px;margin:25px 0;background:#fffbeb;font-family:serif;font-size:20px;font-style:italic;color:var(--line);line-height:1.5}
+  .think{border:4px dashed var(--accent);padding:20px;margin:25px 0;background:#eff6ff;color:var(--line)}
+  .think b{color:var(--accent);text-transform:uppercase;font-weight:900}
+  .qblock{margin-top:50px;border-top:8px solid var(--line);padding-top:30px}
+  .qrow{border:3px solid var(--line);padding:24px;margin:20px 0;background:white;box-shadow:6px 6px 0px var(--line);color:var(--line)}
+  .qrow .meta{display:flex;gap:12px;align-items:flex-start;justify-content:space-between;margin-bottom:15px}
+  .tag{font-size:10px;font-weight:900;background:var(--line);color:var(--yellow);padding:3px 8px;text-transform:uppercase;letter-spacing:0.05em}
+  .opts{list-style:none;padding:0;margin:15px 0 0}
+  .opt{padding:14px;border:3px solid var(--line);margin:10px 0;cursor:pointer;font-weight:700;font-size:15px;transition:all 0.1s;background:white;color:var(--line);box-shadow:3px 3px 0px rgba(0,0,0,0.1)}
+  .opt:hover{background:var(--yellow);transform:translate(-1px,-1px);box-shadow:4px 4px 0px var(--line)}
+  .opt.correct{background:var(--good);color:var(--line);border-color:var(--line);box-shadow:none}
+  .opt.wrong{background:var(--bad);color:white;border-color:var(--line);box-shadow:none}
+  .feedback{margin-top:12px;font-size:13px;font-weight:800;color:var(--muted);text-transform:uppercase}
+  .btn{border:4px solid var(--line);background:var(--yellow);color:var(--line);padding:12px 24px;font-weight:900;text-transform:uppercase;cursor:pointer;box-shadow:6px 6px 0px var(--line);transition:all 0.1s}
+  .btn:hover{transform:translate(2px,2px);box-shadow:none}
+  .score, .scoreline{margin-top:25px;font-weight:900;font-style:italic;display:block;color:var(--line);font-size:18px}
+  table.gloss{width:100%;border-collapse:collapse;margin:20px 0;border:3px solid var(--line)}
+  table.gloss td{padding:10px;border:1px solid var(--line);font-size:13px;background:white;color:var(--line)}
+  textarea{width:100%;border:3px solid var(--line);padding:15px;font-family:inherit;margin:10px 0;min-height:100px;background:#f8fafc;color:var(--line)}
+  .hint{font-size:12px;font-style:italic;color:var(--muted);margin-bottom:8px}
   @media (max-width:820px){.keygrid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
 <div class="wrap">
 
-  <div class="tabs" role="tablist" aria-label="Indhold">
+    <div class="tabs" role="tablist" aria-label="Indhold">
     <button role="tab" aria-selected="true" aria-controls="p-overblik" id="t-p-overblik">Overblik</button>
     <button role="tab" aria-selected="false" aria-controls="p-staender" id="t-p-staender">Stændersamfund & 1660</button>
     <button role="tab" aria-selected="false" aria-controls="p-ideer" id="t-p-ideer">Naturret & oplysning</button>
@@ -110,171 +110,845 @@
       </ul>
     </div>
 
-    <h3>Kontrolspørgsmål (hurtig start)</h3>
-    <div class="quiz" id="quiz-start">
-      <h3>Spørgsmål (stigende sværhedsgrad)</h3>
-      <div class="qrow mcq" data-answer="A">
-        <div class="meta"><b>1) Hvad er den mest dækkende “røde tråd” i temaet?</b><span class="tag">Overblik</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Kampen om legitimitet: hvem har ret til magten, og hvilke rettigheder/pligter følger af det</li><li class="opt" data-choice="B">At Danmark altid har været demokratisk og derfor udvikler sig uden konflikter</li><li class="opt" data-choice="C">At krige alene forklarer alle samfundsforandringer</li><li class="opt" data-choice="D">At idéer ikke betyder noget, kun økonomi</li></ul>
-        <div class="feedback">Legitimitet er kernen: hvem må styre og hvorfor?</div>
+    <h3>Sådan bruger du materialet</h3>
+    <ol>
+      <li>Læs fanerne i rækkefølge (de er lagt som en progression).</li>
+      <li>Stop ved “Eksamenstræning” og skriv korte, præcise svar.</li>
+      <li>Tag MCQ-spørgsmålene, men forklar altid <i>hvorfor</i> de forkerte svar er forkerte.</li>
+      <li>Til sidst: “Exit quiz” som mini-prøve under tid.</li>
+    </ol>
+
+    <div class="qblock">
+      <h3>Kontrolspørgsmål (hurtig start)</h3>
+      <div class="quiz">
+        <div class="qrow mcq" data-answer="A">
+          <div class="meta"><b>1) Hvad er den mest dækkende “røde tråd” i temaet?</b><span class="tag">Overblik</span></div>
+          <ul class="opts"><li class="opt" data-choice="A">Kampen om legitimitet: hvem har ret til magten, og hvilke rettigheder/pligter følger af det</li><li class="opt" data-choice="B">At Danmark altid har været demokratisk og derfor udvikler sig uden konflikter</li><li class="opt" data-choice="C">At krige alene forklarer alle samfundsforandringer</li><li class="opt" data-choice="D">At idéer ikke betyder noget, kun økonomi</li></ul>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+        <div class="qrow mcq" data-answer="A">
+          <div class="meta"><b>2) Hvilken kombination passer bedst til historiefaglig forklaring?</b><span class="tag">Metode</span></div>
+          <ul class="opts"><li class="opt" data-choice="A">Årsag → aktør/struktur → konsekvens (med belæg og eksempler)</li><li class="opt" data-choice="B">Mening → følelse → holdning</li><li class="opt" data-choice="C">Dato → dato → dato</li><li class="opt" data-choice="D">Personlig erfaring → generalisering</li></ul>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+        <div class="qrow mcq" data-answer="A">
+          <div class="meta"><b>3) Hvad skal du kunne til eksamen ud over at huske årstal?</b><span class="tag">Eksamen</span></div>
+          <ul class="opts"><li class="opt" data-choice="A">Forklare sammenhænge, bruge begreber, og argumentere med konkrete eksempler</li><li class="opt" data-choice="B">Kun gengive teksten ordret</li><li class="opt" data-choice="C">Kun nævne navne uden forklaring</li><li class="opt" data-choice="D">Kun lave multiple choice</li></ul>
+          <div class="feedback" aria-live="polite"></div>
+        </div>
+        <div class="qcontrols">
+          <button class="btn score" onclick="showScore('#p-overblik .quiz', '#p-overblik .scoreline')">Tjek svar</button>
+          <span class="scoreline" aria-live="polite"></span>
+        </div>
       </div>
-      <div class="qrow mcq" data-answer="A">
-        <div class="meta"><b>2) Hvilken kombination passer bedst til historiefaglig forklaring?</b><span class="tag">Metode</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Årsag → aktør/struktur → konsekvens (med belæg og eksempler)</li><li class="opt" data-choice="B">Mening → følelse → holdning</li><li class="opt" data-choice="C">Dato → dato → dato</li><li class="opt" data-choice="D">Personlig erfaring → generalisering</li></ul>
-        <div class="feedback">Historie handler om at koble årsager til resultater gennem konkrete beviser.</div>
-      </div>
-      <button class="btn" onclick="showScore('#quiz-start', '#score-start')">Tjek svar</button>
-      <div class="scoreline" id="score-start"></div>
     </div>
   </div>
+
 
   <div class="panel" id="p-staender" role="tabpanel" aria-labelledby="t-p-staender">
     <h2>Stændersamfundet → Enevælde (før 1660 og bruddet i 1660)</h2>
+
     <h3>Stændersamfund: samfundet som “lag” med forskellige rettigheder</h3>
-    <p>I stændersamfundet er mennesker ikke først og fremmest “borgere” med lige rettigheder, men medlemmer af en stand med bestemte pligter og privilegier.</p>
-    <div class="think"><b>Stop & tænk:</b> Hvordan ville din hverdag se ud, hvis dine rettigheder afhang af din fars job?</div>
-    <div class="quiz" id="quiz-staender">
+    <p>
+      I stændersamfundet er mennesker ikke først og fremmest “borgere” med lige rettigheder, men medlemmer af en stand
+      med bestemte pligter og privilegier. Typisk arbejder man med: <b>adel</b>, <b>gejstlighed</b>, <b>borgere</b> og
+      <b>bønder</b>. For eksamen er det centralt at kunne forklare, hvorfor netop denne ordning kunne fungere:
+      økonomien var agrar, mobiliteten lav, og kongemagten byggede på samarbejde med især adelen.
+    </p>
+
+    <h3>Hvorfor opstår enevælden i 1660?</h3>
+    <p>
+      Enevælden indføres ikke “ud af det blå”. Forklaringen ligger i en kombination af:
+    </p>
+    <ul>
+      <li><b>Statskriser og krig</b>: store militære udgifter og nederlag skaber behov for en mere effektiv stat.</li>
+      <li><b>Magtspil mellem stænder</b>: borgerskab og præster kan støtte en stærkere konge for at svække adelens privilegier.</li>
+      <li><b>Centralisering</b>: skatteopkrævning, embedsapparat og lovgivning kan effektiviseres med en stærk kongemagt.</li>
+      <li><b>Legitimitet</b>: kongen kan argumentere for, at han “redder staten” og skaber orden.</li>
+    </ul>
+
+    <h3>Hvad betyder enevælde (i praksis)?</h3>
+    <p>
+      “Enevælde” betyder, at kongen har den øverste politiske magt uden at være bundet af en repræsentativ forsamling.
+      I Danmark udvikles et embedsapparat, lovgivningen samles, og staten bliver mere gennemgribende. Men enevælde
+      er ikke kun “magt”: den kræver også <b>administration</b>, <b>skat</b>, <b>lov</b>, <b>hær</b> og en fortælling
+      om, hvorfor kongen bør styre.
+    </p>
+
+    <div class="callout">
+      <b>Eksamen-tip:</b> Når du forklarer enevælde, så vis både (1) ideen om suveræn magt og (2) hvordan det
+      bliver til et <i>system</i> med embedsmænd, skatter og regulering.
+    </div>
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Forklar forskellen på at være <i>undersåt</i> i et stændersamfund og at være <i>borger</i> i et demokrati.</li>
+      <li>Lav en årsagsforklaring: “Hvorfor 1660?” – med mindst 3 årsager og én konsekvens.</li>
+      <li>Diskutér: Kan enevælde ses som en effektiv løsning på krise – og hvad er prisen?</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
       <div class="qrow mcq" data-answer="A">
         <div class="meta"><b>1) Hvad kendetegner et stændersamfund?</b><span class="tag">Begreb</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Samfundet er opdelt i grupper med forskellige rettigheder og pligter</li><li class="opt" data-choice="B">Alle har lige stemmeret</li><li class="opt" data-choice="C">Staten blander sig ikke i religion</li><li class="opt" data-choice="D">Magt udøves kun lokalt</li></ul>
-        <div class="feedback">Rettigheder var knyttet til gruppen, ikke individet.</div>
+        <ul class="opts"><li class="opt" data-choice="A">Samfundet er opdelt i grupper med forskellige rettigheder og pligter, ofte arveligt bestemt</li><li class="opt" data-choice="B">Alle har lige stemmeret og samme lovgrundlag</li><li class="opt" data-choice="C">Staten blander sig ikke i økonomi og religion</li><li class="opt" data-choice="D">Magt udøves kun lokalt uden central stat</li></ul>
+        <div class="feedback" aria-live="polite"></div>
       </div>
-      <button class="btn" onclick="showScore('#quiz-staender', '#score-staender')">Tjek svar</button>
-      <div class="scoreline" id="score-staender"></div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvilken forklaring passer bedst på indførelsen af enevælde i 1660?</b><span class="tag">Årsag</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Krise/krig + magtspil mellem stænder + behov for centralisering</li><li class="opt" data-choice="B">Fordi bønderne krævede demokrati</li><li class="opt" data-choice="C">Fordi Danmark var isoleret fra Europa</li><li class="opt" data-choice="D">Fordi industrialiseringen gjorde kongen stærk</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Hvad er en undersåt i enevælden?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">En person med pligter over for kongen, uden politisk medbestemmelse som udgangspunkt</li><li class="opt" data-choice="B">En borger med universelle menneskerettigheder og stemmeret</li><li class="opt" data-choice="C">Et medlem af en fagforening i industrisamfundet</li><li class="opt" data-choice="D">En soldat i en moderne værnepligtshær</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Hvilken pointe er bedst historiefagligt?</b><span class="tag">Metode</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Enevælde handler både om ideologi (legitimitet) og praksis (statsapparat)</li><li class="opt" data-choice="B">Enevælde er bare ‘ondt’, og det er forklaring nok</li><li class="opt" data-choice="C">Enevælde kan kun forklares med én faktor</li><li class="opt" data-choice="D">Enevælde er irrelevant for senere demokrati</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-staender .quiz', '#p-staender .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
+
 
   <div class="panel" id="p-ideer" role="tabpanel" aria-labelledby="t-p-ideer">
-    <h2>Naturret og oplysningstid</h2>
+    <h2>Naturret og oplysningstid: idéerne der sprænger den gamle orden</h2>
+
+    <h3>Naturret: “regler” der gælder før staten</h3>
+    <p>
+      Naturretstænkning er ideen om, at mennesker har visse rettigheder (og nogle gange pligter) <b>i kraft af at være mennesker</b>,
+      ikke fordi en konge giver dem. Det er et brud med et rent standssamfund, hvor rettigheder afhænger af fødsel og rang.
+      I naturretten spørger man typisk: Hvordan ville mennesker leve uden en stat? Hvorfor accepterer de statsmagt?
+      Og hvad må staten gøre – og ikke gøre – overfor individet?
+    </p>
+
     <h3>Hobbes vs. Locke: to forskellige “kontrakter”</h3>
-    <p>Thomas Hobbes (Leviathan) forsvarer en stærk stat for at skabe orden. John Locke argumenterer for naturlige rettigheder (liv, frihed, ejendom) som staten skal beskytte.</p>
-    <div class="keygrid">
-        <div class="box"><b>Montesquieu</b><br>Magtens tredeling: Lovgivende, udøvende og dømmende.</div>
-        <div class="box"><b>Rousseau</b><br>Folkesuverænitet: Magten kommer fra folket.</div>
+    <p>
+      Thomas Hobbes (1588–1679) beskriver et “naturstadie” præget af frygt, usikkerhed og konflikt: uden en stærk magt
+      vil mennesket kæmpe for overlevelse. Derfor må mennesker give magt til en suveræn (en “Leviathan”), som kan skabe
+      fred gennem orden. Hos Hobbes bliver det derfor logisk at forsvare en stærk stat.
+    </p>
+    <p>
+      John Locke (1632–1704) har et andet syn: mennesker har naturlige rettigheder (liv, frihed, ejendom), og staten
+      skabes for at beskytte disse. Hvis staten krænker rettighederne, mister den sin legitimitet. Dermed ligger der
+      hos Locke et princip om <b>modstand mod tyranni</b> og en tidlig legitimering af mere begrænset regering.
+    </p>
+
+    <h3>Oplysningstænkning: fornuft, kritik og fremskridt</h3>
+    <p>
+      Oplysningstidens tænkere bruger naturret og fornuft som våben mod tradition, autoritet og ubegrundede privilegier.
+      Nøgleord til eksamen: <b>fornuft</b>, <b>kritik</b>, <b>fremskridt</b>, <b>tolerance</b>, <b>ytringsfrihed</b>
+      og ideen om, at samfund kan reformeres ved viden og lovgivning.
+    </p>
+
+    <h3>Montesquieu: magtens tredeling</h3>
+    <p>
+      Montesquieu (1689–1755) argumenterer for, at magt skal begrænses gennem en fordeling i <b>lovgivende</b>,
+      <b>udøvende</b> og <b>dømmende</b> magt. Formålet er at forhindre magtmisbrug. Det bliver en nøgleidé i senere
+      forfatninger og demokratiske systemer. Til eksamen skal du kunne forklare, hvordan tredelingen både er en teori
+      om frihed and et praktisk “design” af institutioner.
+    </p>
+
+    <h3>Rousseau: folkesuverænitet og den almene vilje</h3>
+    <p>
+      Rousseau (1712–1778) udvikler ideen om, at legitim magt udspringer af folket. I hans samfundskontrakt er frihed
+      ikke bare at gøre, hvad man vil, men at være del af et fællesskab, hvor loven udtrykker <b>den almene vilje</b>.
+      Det kan læses demokratisk (folkestyre), men rummer også en spænding: hvem bestemmer, hvad “den almene vilje” er?
+    </p>
+
+    <h3>Voltaire: kritik, tolerance og satire</h3>
+    <p>
+      Voltaire (1694–1778) står stærkt i kampen mod religiøs intolerance og dogmer. Han bruger ofte satire til at
+      udstille magtmisbrug og overtro. Det er vigtigt til eksamen at kunne knytte Voltaire til idéen om
+      <b>ytringsfrihed</b> og det kritiske offentlige rum.
+    </p>
+
+    <div class="callout">
+      <b>Eksamen-tip:</b> Når du bruger filosofferne, så gør det som “værktøjer”:
+      <ul>
+        <li>Hobbes → orden/sikkerhed kan legitimere stærk stat.</li>
+        <li>Locke → rettigheder og begrænset magt; modstand hvis staten krænker.</li>
+        <li>Montesquieu → institutionelt værn mod magtmisbrug.</li>
+        <li>Rousseau → folkets suverænitet, men også risiko ved at definere “folket”.</li>
+        <li>Voltaire → tolerance, kritik, offentlighedens betydning.</li>
+      </ul>
     </div>
-    <div class="quiz" id="quiz-ideer">
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Sammenlign Hobbes og Locke: naturstadie, menneskesyn, statens rolle, legitimitet.</li>
+      <li>Forklar Montesquieus tredeling og giv et nutidigt eksempel på “checks and balances”.</li>
+      <li>Diskutér Rousseau: hvordan kan folkesuverænitet både styrke og true frihed?</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
       <div class="qrow mcq" data-answer="A">
-        <div class="meta"><b>1) Hvad er kernen i magtens tredeling?</b><span class="tag">Idé</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">At forhindre magtmisbrug gennem gensidig kontrol</li><li class="opt" data-choice="B">At gøre kongen stærkere</li><li class="opt" data-choice="C">At afskaffe domstole</li><li class="opt" data-choice="D">At erstatte lov med tradition</li></ul>
-        <div class="feedback">Tredelingen skaber "checks and balances".</div>
+        <div class="meta"><b>1) Hvilken kerneidé hører mest til naturretstænkning?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Mennesker har rettigheder i kraft af at være mennesker – før staten</li><li class="opt" data-choice="B">Rettigheder bestemmes kun af fødsel og stand</li><li class="opt" data-choice="C">Rettigheder findes kun, hvis kongen giver them</li><li class="opt" data-choice="D">Rettigheder er identiske med økonomisk vækst</li></ul>
+        <div class="feedback" aria-live="polite"></div>
       </div>
-      <button class="btn" onclick="showScore('#quiz-ideer', '#score-ideer')">Tjek svar</button>
-      <div class="scoreline" id="score-ideer"></div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hobbes’ naturtilstand bruges til at argumentere for…</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">En stærk statsmagt, der skaber orden og sikkerhed</li><li class="opt" data-choice="B">At staten altid skal være minimal</li><li class="opt" data-choice="C">At folket altid ved bedst</li><li class="opt" data-choice="D">At magtens tredeling er unødvendig</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Locke forbinder især statens legitimitet med…</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Beskyttelse af naturlige rettigheder (liv, frihed, ejendom)</li><li class="opt" data-choice="B">Arvelige privilegier</li><li class="opt" data-choice="C">En konges guddommelige ret</li><li class="opt" data-choice="D">At staten kontrollerer al handel</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Montesquieus magtens tredeling handler først og fremmest om…</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At forhindre magtmisbrug gennem institutionelle begrænsninger</li><li class="opt" data-choice="B">At gøre kongen stærkere</li><li class="opt" data-choice="C">At afskaffe domstole</li><li class="opt" data-choice="D">At erstatte lov med tradition</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>5) En central pointe hos Rousseau er…</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Folkesuverænitet: legitim magt udspringer af folket</li><li class="opt" data-choice="B">At individet aldrig skal følge fælles regler</li><li class="opt" data-choice="C">At religion skal styre staten</li><li class="opt" data-choice="D">At censur er den bedste vej til fred</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-ideer .quiz', '#p-ideer .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
+
 
   <div class="panel" id="p-oplyst" role="tabpanel" aria-labelledby="t-p-oplyst">
-    <h2>Oplyst enevælde og reformer</h2>
-    <h3>Landboreformer: vejen mod modernisering</h3>
+    <h2>Oplyst enevælde og reformer (1700-tallet)</h2>
+
+    <h3>Hvad er “oplyst enevælde”?</h3>
+    <p>
+      Oplyst enevælde er et forsøg på at kombinere en stærk central kongemagt med oplysningstidens idéer om fornuft,
+      nytte og reform. Kongen (og hans rådgivere/embedsmænd) ser sig selv som “statens første tjener”: de vil modernisere
+      lovgivning, økonomi og uddannelse – men uden at opgive enevældens grundprincip om, at magten kommer oppefra.
+    </p>
+
+    <h3>Hvorfor reformere?</h3>
+    <p>
+      Reformerne skal typisk løse konkrete problemer: lav produktivitet i landbruget, fattigdom, ineffektiv administration
+      og international konkurrence. Reformlogikken er ofte: <b>mere viden → bedre lovgivning → stærkere stat → mere velstand</b>.
+      Men reformer skaber også konflikt, fordi de ændrer på gamle rettigheder og magtforhold.
+    </p>
+
+    <h3>Struensee og reformtempo</h3>
+    <p>
+      Johann Friedrich Struensee forbindes ofte med en meget hurtig reformperiode. Det er et godt eksempel på, at reformer
+      ikke kun handler om “gode idéer”, men også om politisk støtte, legitimitet og modstand. Til eksamen kan du bruge
+      Struensee som case på, at oplysningstidens reformpolitik kan møde modreaktion, når den opleves som for hurtig eller
+      truende for etablerede interesser.
+    </p>
+
+    <h3>Landboreformer: hvorfor er de så vigtige?</h3>
+    <p>
+      Landboreformerne er en af de mest centrale dele af temaet, fordi de ændrer livet på landet og skaber grundlaget for
+      senere økonomisk udvikling. Vigtige begreber du skal kunne forklare: <b>stavnsbånd</b>, <b>udskiftning</b>,
+      <b>udflytning</b>, og sammenhængen mellem reformer, produktion og social struktur.
+    </p>
     <ul>
-      <li><b>Udskiftning</b>: Omlægning fra fælles jord til sammenhængende private lodder.</li>
-      <li><b>Udflytning</b>: Gårde flytter ud til markerne.</li>
-      <li><b>Stavnsbåndet (1788)</b>: Løsnes og ophæves; giver bønderne mobilitet.</li>
+      <li><b>Udskiftning</b>: fællesskabet om jord opdeles i mere sammenhængende lodder.</li>
+      <li><b>Udflytning</b>: gårde flytter ud fra landsbyen til markerne – ændrer landskabet og arbejdslivet.</li>
+      <li><b>Stavnsbånd</b>: begrænser især unge mænds mobilitet; løsnes/ophæves i reformperioden (1788 er nøgleår).</li>
     </ul>
-    <div class="quiz" id="quiz-oplyst">
+
+    <h3>Reformernes dobbelte effekt</h3>
+    <p>
+      Reformerne kan både ses som <b>fremskridt</b> og som <b>ny kontrol</b>. På den ene side øges produktiviteten, nogle bønder
+      får bedre muligheder, og staten moderniseres. På den anden side kan reformer skabe nye skel (fx mellem gårdmænd og husmænd),
+      og de kan gennemføres “oppefra”, hvor almindelige mennesker ikke har politisk indflydelse.
+    </p>
+
+    <div class="callout">
+      <b>Eksamensgreb:</b> Brug landboreformerne til at vise, at “det gode samfund” altid er omstridt:
+      Hvem bliver friere? Hvem får flere muligheder? Hvem mister sikkerhed eller fællesskab?
+    </div>
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Forklar begreberne udskiftning, udflytning og stavnsbånd – og hvorfor de hænger sammen.</li>
+      <li>Vurder: I hvilken forstand kan enevælde være “oplyst”? Hvad er begrænsningen?</li>
+      <li>Lav en mini-essayplan: “Landboreformer som forudsætning for industrialisering” (mindst 3 led i kæden).</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
       <div class="qrow mcq" data-answer="A">
-        <div class="meta"><b>1) Hvad var målet med landboreformerne?</b><span class="tag">Analyse</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">At øge produktionen gennem motivation og selveje</li><li class="opt" data-choice="B">At tvinge bønderne til byerne</li><li class="opt" data-choice="C">At afskaffe jernbanen</li><li class="opt" data-choice="D">At give adelen mere magt</li></ul>
-        <div class="feedback">Effektivitet krævede friere bønder.</div>
+        <div class="meta"><b>1) Hvad er den bedste definition på ‘oplyst enevælde’?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Enevælde, der forsøger at reformere samfundet efter fornuft og nytte, uden at give folket politisk magt</li><li class="opt" data-choice="B">Demokrati med direkte folkeafstemninger</li><li class="opt" data-choice="C">En stat uden lovgivning</li><li class="opt" data-choice="D">En stat styret af kirken alene</li></ul>
+        <div class="feedback" aria-live="polite"></div>
       </div>
-      <button class="btn" onclick="showScore('#quiz-oplyst', '#score-oplyst')">Tjek svar</button>
-      <div class="scoreline" id="score-oplyst"></div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvorfor var landboreformerne vigtige i temaet?</b><span class="tag">Forklaring</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">De ændrede produktion, ejerskab og sociale relationer på landet og påvirkede senere økonomisk udvikling</li><li class="opt" data-choice="B">De handlede kun om at ændre militære uniformer</li><li class="opt" data-choice="C">De gjorde byerne mindre vigtige</li><li class="opt" data-choice="D">De afskaffede alle skatter</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Hvad beskriver ‘udskiftning’?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Omlægning fra fælles jord til mere sammenhængende private jordlodder</li><li class="opt" data-choice="B">At kongen udskifter ministre</li><li class="opt" data-choice="C">At man skifter religion</li><li class="opt" data-choice="D">At man flytter til en anden stand</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Hvad beskriver ‘udflytning’ bedst?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Gårde flytter ud fra landsbyen til markerne – ændrer bosætning og arbejdsformer</li><li class="opt" data-choice="B">At bønder flytter til udlandet</li><li class="opt" data-choice="C">At adelen flytter ind til byen</li><li class="opt" data-choice="D">At staten flytter hovedstad</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>5) Hvorfor kan reformer skabe modstand?</b><span class="tag">Analyse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">De ændrer magtforhold, økonomiske interesser og sociale traditioner</li><li class="opt" data-choice="B">Fordi reformer aldrig påvirker nogen</li><li class="opt" data-choice="C">Fordi alle reformer giver alle det samme</li><li class="opt" data-choice="D">Fordi reformer kun handler om naturvidenskab</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-oplyst .quiz', '#p-oplyst .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
+
 
   <div class="panel" id="p-revolution" role="tabpanel" aria-labelledby="t-p-revolution">
-    <h2>Den danske revolution 1750–1866</h2>
-    <p>Fra enevælde til Grundlov. 1849 markerer skiftet til konstitutionelt monarki.</p>
-    <div class="quiz" id="quiz-rev">
-        <div class="qrow mcq" data-answer="A">
-            <div class="meta"><b>1) Hvad ændrer Grundloven af 1849?</b><span class="tag">Fakta</span></div>
-            <ul class="opts"><li class="opt" data-choice="A">Indfører repræsentativt styre og borgerrettigheder</li><li class="opt" data-choice="B">Gør kongen enevældig igen</li><li class="opt" data-choice="C">Afskaffer alle skatter</li><li class="opt" data-choice="D">Indfører stemmeret for alle kvinder</li></ul>
-            <div class="feedback">Grundloven var et kæmpe skridt, men valgretten var stadig begrænset.</div>
-        </div>
-        <button class="btn" onclick="showScore('#quiz-rev', '#score-rev')">Tjek svar</button>
-        <div class="scoreline" id="score-rev"></div>
+    <h2>Den danske revolution (ca. 1750–1866): fra reformstat til forfatningsstat</h2>
+
+    <h3>Hvorfor kaldes det en “revolution” i Danmark?</h3>
+    <p>
+      Danmark oplever ikke en enkelt dramatisk omvæltning som i Frankrig 1789, men en længere proces hvor styreform,
+      politiske rettigheder og statens selvforståelse ændres markant. Man kan derfor tale om en “revolution” som
+      en <b>gradvis systemændring</b>: fra enevælde til en forfatningsstat med repræsentation og (begrænset) politisk deltagelse.
+    </p>
+
+    <h3>Internationale impulser: idéer og chokbølger</h3>
+    <p>
+      Revolutionerne i USA og Frankrig samt Napoleonskrigene påvirker Europa både ideologisk og geopolitisk.
+      Oplysningstidens tanker om rettigheder, folkesuverænitet og forfatninger bliver pludselig konkrete politiske
+      projekter. Samtidig skaber krig og blokader økonomisk pres, som får stater til at reformere og mobilisere.
+    </p>
+
+    <h3>1807–1814: krise og ny realitet</h3>
+    <p>
+      Perioden omkring 1807–1814 er vigtig, fordi den viser, hvordan krig kan presse en stat: København bombarderes,
+      handel påvirkes, og staten ender i en dyb økonomisk og politisk krise, hvor tabet af Norge i 1814 bliver en
+      traumatisk milepæl. Til eksamen kan du bruge perioden som forklaring på, hvorfor staten må tænke nyt om økonomi,
+      sammenhængskraft og legitimitet.
+    </p>
+
+    <h3>Stænderforsamlinger: repræsentation uden magt</h3>
+    <p>
+      De rådgivende stænderforsamlinger markerer et mellemtrin: der opstår politiske rum, hvor interesser kan formuleres
+      og debatteres, men den endelige magt ligger stadig hos kongen. Det er centralt at kunne forklare, hvorfor denne
+      type institution både kan dæmpe konflikt (ventil) og samtidig opbygge forventninger om mere medbestemmelse.
+    </p>
+
+    <h3>1848–1849: bruddet</h3>
+    <p>
+      1848 er præget af revolutionære bevægelser i Europa og en national konflikt om Slesvig-Holsten. I Danmark betyder
+      det, at enevælden afvikles, og 5. juni 1849 får Danmark en grundlov. Til eksamen skal du kunne forklare:
+      <ul>
+        <li>Hvilke kræfter presser på (national-liberale, bondestand, borgerskab, internationale begivenheder)?</li>
+        <li>Hvad ændrer grundloven (repræsentation, rettigheder, magtens organisering)?</li>
+        <li>Hvilke begrænsninger består (stemmeret, social ulighed, to-kammersystem)?</li>
+      </ul>
+    </p>
+
+    <h3>1866: revideret grundlov og begyndelsen på forfatningskampen</h3>
+    <p>
+      Efter 1864-nederlaget ændres den politiske balance. Den reviderede grundlov af 1866 styrker især Landstinget og
+      gør det sværere for brede grupper at få afgørende indflydelse. Det bliver et vigtigt punkt i temaet, fordi det viser,
+      at demokratisering ikke er en lige linje – den kan gå frem og tilbage og formes af krig, nederlag og magtinteresser.
+    </p>
+
+    <div class="callout">
+      <b>Eksamen-tip:</b> Brug “gradvis revolution” som begreb: vis, hvordan institutioner og idéer ændrer sig over tid,
+      og hvordan kriser (krig/national konflikt) kan accelerere forandring.
+    </div>
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Forklar hvorfor 1849 kan ses som både brud og kontinuitet.</li>
+      <li>Lav en årsagskæde: 1807/1814 → politisk udvikling → 1848/49 → 1866.</li>
+      <li>Diskutér: Hvor “demokratisk” er et system med begrænset stemmeret og et stærkt Landsting?</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>1) Hvorfor kan man kalde udviklingen i DK 1750–1866 for en ‘gradvis revolution’?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Fordi styreform og politiske rettigheder ændres grundlæggende over tid uden én enkelt voldsom omvæltning</li><li class="opt" data-choice="B">Fordi intet ændrer sig</li><li class="opt" data-choice="C">Fordi Danmark får republik i 1750</li><li class="opt" data-choice="D">Fordi revolution kun betyder krig</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvad er stænderforsamlingernes centrale rolle?</b><span class="tag">Forklaring</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">De giver et politisk rum for debat/krav, men uden egentlig beslutningsmagt</li><li class="opt" data-choice="B">De indfører universel stemmeret</li><li class="opt" data-choice="C">De afskaffer kongemagten</li><li class="opt" data-choice="D">De er rene militære råd</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Hvad markerer Grundloven 1849 primært?</b><span class="tag">Årstal</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Overgangen fra enevælde til forfatningsstat med repræsentation og rettigheder</li><li class="opt" data-choice="B">Starten på industrialiseringen</li><li class="opt" data-choice="C">Afslutningen på nationalisme</li><li class="opt" data-choice="D">Oprettelsen af velfærdsstaten</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Hvad er en væsentlig pointe ved 1866-grundloven?</b><span class="tag">Analyse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Demokratisering kan bremses/omformes; Landstinget styrkes efter 1864</li><li class="opt" data-choice="B">Alle får stemmeret</li><li class="opt" data-choice="C">Kongen får absolut magt tilbage</li><li class="opt" data-choice="D">Danmark bliver en føderation</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-revolution .quiz', '#p-revolution .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
+
 
   <div class="panel" id="p-slesvig" role="tabpanel" aria-labelledby="t-p-slesvig">
-    <h2>Nationalisme & Slesvig</h2>
-    <p>1864 og nederlaget ved Dybbøl ændrer dansk identitet: "Hvad udad tabes, skal indad vindes".</p>
-    <div class="quiz" id="quiz-sles">
-        <div class="qrow mcq" data-answer="A">
-            <div class="meta"><b>1) Hvad betød nederlaget i 1864 for Danmark?</b><span class="tag">Konsekvens</span></div>
-            <ul class="opts"><li class="opt" data-choice="A">Tab af hertugdømmerne og et nationalt traume der formede politikken</li><li class="opt" data-choice="B">Danmark blev en stormagt</li><li class="opt" data-choice="C">Man indførte enevælde igen</li><li class="opt" data-choice="D">Ingen betydning</li></ul>
-            <div class="feedback">1864 er det største territoriale tab i nyere tid.</div>
-        </div>
-        <button class="btn" onclick="showScore('#quiz-sles', '#score-sles')">Tjek svar</button>
-        <div class="scoreline" id="score-sles"></div>
+    <h2>Nationalisme og Slesvig-Holsten: hvem er “folket” – og hvor går grænsen?</h2>
+
+    <h3>Nationalisme som idé og politik</h3>
+    <p>
+      Nationalisme er både en følelse af fællesskab (“vi”) og en politisk ide om, at staten bør svare til en nation.
+      I 1800-tallet bliver nationalisme en stærk kraft i Europa, og den påvirker Danmark direkte gennem spørgsmålet om
+      Slesvig og Holsten. Til eksamen skal du kunne forklare nationalisme som:
+      <ul>
+        <li><b>Kulturel</b>: sprog, historie, symboler, fortællinger (romantikken).</li>
+        <li><b>Politisk</b>: krav om forfatning, rettigheder og national selvbestemmelse.</li>
+        <li><b>Konfliktskabende</b>: forskellige grupper kan gøre krav på samme område.</li>
+      </ul>
+    </p>
+
+    <h3>Hvorfor er Slesvig-Holsten så komplekst?</h3>
+    <p>
+      Konflikten handler ikke kun om geografi, men om identitet, historiske rettigheder og statsretlige konstruktioner.
+      Slesvig og Holsten har forskellige tilknytninger, og der findes både dansk- og tysksindede befolkningsgrupper.
+      Det gør området til et “laboratorium” for nationalisme: Hvilket sprog skal styre? Hvilke love? Hvilken stat?
+    </p>
+
+    <h3>De slesvigske krige: aktører og konsekvenser</h3>
+    <p>
+      Til eksamen er det vigtigt at kunne identificere:
+      <ul>
+        <li><b>Direkte parter</b>: Danmark vs. slesvig-holstenske/tyske kræfter.</li>
+        <li><b>Stormagter</b>: europæisk magtpolitik påvirker udfaldet og mulighederne for kompromis.</li>
+        <li><b>Indenrigspolitik</b>: national-liberale, Ejder-politik og forfatningsspørgsmål hænger sammen.</li>
+      </ul>
+    </p>
+
+    <h3>1864: nederlagets betydning</h3>
+    <p>
+      Nederlaget i 1864 (Dybbøl som symbol) påvirker dansk politik og selvforståelse. Det kan læses som:
+      <ul>
+        <li>Et chok, der ændrer forventninger til Danmarks rolle i Europa.</li>
+        <li>En omformning af indenrigspolitik (fx 1866-grundloven og magtbalancen).</li>
+        <li>En forstærkning af nationale fortællinger om tab, sammenhold og “det lille land”.</li>
+      </ul>
+    </p>
+
+    <div class="callout">
+      <b>Eksamen-tip:</b> Brug nationalisme til at koble “det gode samfund” til spørgsmålet: Hvem tæller som
+      “folket”? Hvem inkluderes/ekskluderes – og hvad sker der, når nationale projekter kolliderer?
+    </div>
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Forklar Ejder-politik og hvorfor den var konfliktfyldt.</li>
+      <li>Notér aktører i de slesvigske krige: interne grupper + internationale aktører.</li>
+      <li>Diskutér: Hvordan kan romantik/kultur styrke nationalisme?</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>1) Hvad er nationalisme (i temaets forstand)?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Ideen om et nationalt fællesskab og at staten bør svare til ‘nationen’</li><li class="opt" data-choice="B">At religion skal styre staten</li><li class="opt" data-choice="C">At kongen altid har absolut magt</li><li class="opt" data-choice="D">At økonomi er det eneste vigtige</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvorfor er Slesvig-Holsten-konflikten kompleks?</b><span class="tag">Forklaring</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Forskellig historisk tilknytning, blandet befolkning, statsret og national identitet kolliderer</li><li class="opt" data-choice="B">Fordi området var ubeboet</li><li class="opt" data-choice="C">Fordi Danmark ikke havde nogen interesser</li><li class="opt" data-choice="D">Fordi industrialiseringen stoppede konflikten</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Hvad bliver Dybbøl typisk et symbol på?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Nederlaget i 1864 og det nationale traume/selvforståelse</li><li class="opt" data-choice="B">Starten på enevælden</li><li class="opt" data-choice="C">Ophævelsen af stavnsbåndet</li><li class="opt" data-choice="D">Septemberforliget</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Hvordan kan nationalisme kobles til ‘det gode samfund’?</b><span class="tag">Analyse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Ved at spørge hvem ‘folket’ er, og hvem der inkluderes/ekskluderes i rettigheder og fællesskab</li><li class="opt" data-choice="B">Nationalisme handler ikke om mennesker</li><li class="opt" data-choice="C">Nationalisme handler kun om sport</li><li class="opt" data-choice="D">Nationalisme afskaffer konflikter</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-slesvig .quiz', '#p-slesvig .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
+
 
   <div class="panel" id="p-industri" role="tabpanel" aria-labelledby="t-p-industri">
-    <h2>Industrialisering & demokrati</h2>
-    <p>Systemskiftet 1901: Parlamentarisme indføres i praksis. Septemberforliget 1899: Arbejdsmarkedets grundlov.</p>
-    <div class="quiz" id="quiz-ind">
-        <div class="qrow mcq" data-answer="A">
-            <div class="meta"><b>1) Hvad er kernen i parlamentarisme?</b><span class="tag">Begreb</span></div>
-            <ul class="opts"><li class="opt" data-choice="A">Regeringen må ikke have et flertal imod sig</li><li class="opt" data-choice="B">Kongen udpeger altid hvem han vil</li><li class="opt" data-choice="C">Der findes intet parlament</li><li class="opt" data-choice="D">Kun rige må stemme</li></ul>
-            <div class="feedback">Magten ligger nu reelt i Folketinget.</div>
-        </div>
-        <button class="btn" onclick="showScore('#quiz-ind', '#score-ind')">Tjek svar</button>
-        <div class="scoreline" id="score-ind"></div>
+    <h2>Industrialisering og demokrati (ca. 1866–1914): massepolitik, klasse og kompromis</h2>
+
+    <h3>Hvad betyder industrialisering for samfundet?</h3>
+    <p>
+      Industrialisering handler ikke kun om fabrikker. Det er en samlet omformning af produktion, arbejde, bosætning
+      og sociale relationer. Når produktion flyttes fra hushold/landbrug til industri og byer, opstår nye grupper:
+      <b>arbejdere</b>, et voksende <b>borgerskab</b>, og nye former for organisering (fagforeninger, partier).
+    </p>
+
+    <h3>Fra stand til klasse</h3>
+    <p>
+      I industrisamfundet bliver “klasse” en vigtig måde at forstå ulighed på: adgang til ejendom, lønarbejde, uddannelse,
+      politisk indflydelse og levevilkår. Konflikter handler i stigende grad om løn, arbejdstid, organisering og politiske
+      rettigheder.
+    </p>
+
+    <h3>Forfatningskampen og vejen til parlamentarisme</h3>
+    <p>
+      Efter 1866 opstår en langvarig konflikt om, hvem der reelt skal styre: regering/kongemagt eller et flertal i Folketinget.
+      “Visnepolitikken” og andre strategier kan forstås som politiske våben i kampen om forfatningens praksis.
+      Vendepunktet er <b>systemskiftet 1901</b>, hvor princippet om parlamentarisme slår igennem: en regering må ikke have
+      et flertal imod sig i Folketinget.
+    </p>
+
+    <h3>Septemberforliget 1899: arbejdsmarkedets “grundlov”</h3>
+    <p>
+      Septemberforliget er centralt, fordi det viser, hvordan samfundet kan stabiliseres gennem kompromis mellem
+      arbejdsgivere og arbejdere: retten til at lede og fordele arbejdet på den ene side – og retten til at organisere
+      sig og forhandle kollektivt på den anden. Det er et historisk eksempel på, at “det gode samfund” også handler om
+      institutioner, der gør konflikt håndterbar.
+    </p>
+
+    <h3>Andelsbevægelse og landets modernisering</h3>
+    <p>
+      Samtidig ændres landbruget: andelsbevægelsen organiserer produktion og eksport, og Danmark finder nye økonomiske
+      veje. Det er vigtigt at kunne koble landets udvikling til tidligere landboreformer: reformer → produktivitet →
+      markedsorientering → organisationsformer.
+    </p>
+
+    <div class="callout">
+      <b>Eksamen-tip:</b> Når du forklarer perioden, så bind tre spor sammen:
+      (1) økonomi/industrialisering, (2) politik/demokrati, (3) sociale konflikter/kompromiser.
+    </div>
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Forklar systemskiftet 1901: problem → princip → konsekvens.</li>
+      <li>Forklar Septemberforliget 1899 og hvorfor det stadig omtales som en “grundlov” for arbejdsmarkedet.</li>
+      <li>Diskutér: Hvordan kan kompromiser både skabe fred og fastholde ulighed?</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>1) Hvad er en vigtig konsekvens af industrialisering?</b><span class="tag">Forklaring</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Nye sociale grupper (arbejdere/borgerskab), urbanisering og nye konflikter om arbejde og rettigheder</li><li class="opt" data-choice="B">At alle bliver bønder</li><li class="opt" data-choice="C">At staten ophører</li><li class="opt" data-choice="D">At nationalisme forsvinder</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvad betyder ‘parlamentarisme’ i praksis?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Regeringen kan ikke blive siddende, hvis et flertal i Folketinget er imod den</li><li class="opt" data-choice="B">Kongen bestemmer altid alene</li><li class="opt" data-choice="C">Domstole bestemmer lovene</li><li class="opt" data-choice="D">Kun Landstinget har magt</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Systemskiftet 1901 forbindes især med…</b><span class="tag">Årstal</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Parlamentarismens gennembrud i Danmark</li><li class="opt" data-choice="B">Ophævelsen af stavnsbåndet</li><li class="opt" data-choice="C">Grundloven 1849</li><li class="opt" data-choice="D">Nederlaget i 1864</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Hvad er Septemberforliget 1899 kendt for?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Et kompromis der danner ramme for kollektiv forhandling mellem arbejdsgivere og arbejdere</li><li class="opt" data-choice="B">Afskaffelse af monarkiet</li><li class="opt" data-choice="C">Indførelse af enevælde</li><li class="opt" data-choice="D">Krig mod Sverige</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>5) Hvilken sammenhæng er mest fagligt relevant?</b><span class="tag">Sammenhæng</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Landboreformer → ændret produktion → andelsbevægelse → økonomisk modernisering</li><li class="opt" data-choice="B">Landboreformer → afskaffelse af byer</li><li class="opt" data-choice="C">Andelsbevægelse → enevælde</li><li class="opt" data-choice="D">Septemberforliget → 1849-grundloven</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-industri .quiz', '#p-industri .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
+
 
   <div class="panel" id="p-social" role="tabpanel" aria-labelledby="t-p-social">
-    <h2>Socialstat & velfærd</h2>
-    <p>Fra fattighjælp (skøn) til velfærdsrettigheder (ret). Steinckes socialreform (1933) er en milepæl.</p>
-    <div class="quiz" id="quiz-soc">
-        <div class="qrow mcq" data-answer="A">
-            <div class="meta"><b>1) Hvad ændrede sig med Steinckes reform i 1933?</b><span class="tag">Fakta</span></div>
-            <ul class="opts"><li class="opt" data-choice="A">Hjælp gik fra at være et nådes-skøn til at være en lovbestemt ret</li><li class="opt" data-choice="B">Hjælp blev afskaffet</li><li class="opt" data-choice="C">Alle skulle betale deres hjælp tilbage</li><li class="opt" data-choice="D">Hjælp var kun for adelen</li></ul>
-            <div class="feedback">Rettighedsprincippet er fundamentet for velfærdsstaten.</div>
-        </div>
-        <button class="btn" onclick="showScore('#quiz-soc', '#score-soc')">Tjek svar</button>
-        <div class="scoreline" id="score-soc"></div>
+    <h2>Socialstat og velfærdsstat: ansvar, rettigheder og “det gode liv”</h2>
+
+    <h3>Fra fattighjælp til socialstat</h3>
+    <p>
+      Et centralt spor i temaet er, hvordan staten gradvist tager større ansvar for borgernes vilkår: fattigdom, sygdom,
+      arbejdsløshed og uddannelse. Tidlige ordninger kan være præget af kontrol og moral (fx fattiggårde og skel mellem
+      “værdigt” og “uværdigt” trængende). Senere udvikles mere universelle ordninger.
+    </p>
+
+    <h3>Velfærdsstatens idé</h3>
+    <p>
+      Velfærdsstaten forbindes ofte med universelle rettigheder: adgang til uddannelse, sundhed, social sikkerhed og
+      et sikkerhedsnet, der reducerer risiko. Men velfærdsstat er også et politisk og økonomisk projekt, som altid er
+      genstand for debat: Hvor meget skal staten hjælpe? Hvem skal betale? Hvilke krav kan man stille til borgeren?
+    </p>
+
+    <h3>Ideologier i socialpolitikken</h3>
+    <p>
+      Til eksamen er det stærkt at kunne analysere socialstaten gennem ideologiske briller:
+    </p>
+    <ul>
+      <li><b>Liberalisme</b>: individets frihed; hjælp kan være målrettet og kombineret med ansvar/arbejde.</li>
+      <li><b>Konservatisme</b>: vægt på orden, tradition og gradvise reformer; ofte fokus på pligter og social stabilitet.</li>
+      <li><b>Socialisme/socialdemokrati</b>: kollektiv sikkerhed, lighed og rettigheder; stærkere statslig rolle.</li>
+    </ul>
+
+    <h3>Det evige spørgsmål: hvem bærer ansvaret?</h3>
+    <p>
+      En klassisk eksamensvinkel er at diskutere årsager til sociale problemer: struktur (økonomi, arbejdsløshed,
+      boligforhold), individ (valg, adfærd), kultur (normer), og politik (rettigheder/ydelser). Her kan du vise
+      historiefaglig forståelse ved at koble debatten til periodens institutioner og ideologier.
+    </p>
+
+    <div class="callout">
+      <b>Eksamen-tip:</b> Når du taler om velfærdsstaten, så undgå rene værdidomme. Vis i stedet:
+      <ul>
+        <li>hvilke problemer den skal løse</li>
+        <li>hvilke institutioner den bruger</li>
+        <li>hvilke dilemmaer den skaber (frihed vs. sikkerhed, rettigheder vs. pligter, skat vs. service)</li>
+      </ul>
+    </div>
+
+    <h3>Eksamenstræning</h3>
+    <ul>
+      <li>Beskriv udviklingen fra fattighjælp til velfærdsstat i 4–6 trin (med eksempler og begreber).</li>
+      <li>Diskutér: Er velfærd primært en rettighed eller en investering i samfundet?</li>
+      <li>Forklar hvordan ideologier kan give forskellige løsninger på samme sociale problem.</li>
+    </ul>
+
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>1) Hvad er en typisk forskel på tidlig fattighjælp og senere velfærdsstat?</b><span class="tag">Forklaring</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Tidlig hjælp kan være moraliserende/kontrollerende; velfærdsstatens ideal er mere universelle rettigheder</li><li class="opt" data-choice="B">Tidlig hjælp var altid universel</li><li class="opt" data-choice="C">Velfærdsstaten afskaffer alle skatter</li><li class="opt" data-choice="D">Velfærdsstaten handler kun om militær</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvilket dilemma er klassisk i velfærdsdebatten?</b><span class="tag">Analyse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Frihed vs. sikkerhed; rettigheder vs. pligter; skat vs. service</li><li class="opt" data-choice="B">Sommer vs. vinter</li><li class="opt" data-choice="C">Fodbold vs. håndbold</li><li class="opt" data-choice="D">By vs. land uden politiske konsekvenser</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Hvilken ideologi vil typisk betone kollektiv sikkerhed og lighed?</b><span class="tag">Ideologi</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Socialdemokrati/socialisme</li><li class="opt" data-choice="B">Absolutisme</li><li class="opt" data-choice="C">Merkantilisme</li><li class="opt" data-choice="D">Feudalisme</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Hvad er en god historiefaglig måde at forklare sociale problemer på?</b><span class="tag">Metode</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Koble individ, struktur, ideologi og institutioner (med konkrete eksempler)</li><li class="opt" data-choice="B">Kun give en moralsk dom</li><li class="opt" data-choice="C">Kun nævne ét årstal</li><li class="opt" data-choice="D">Kun sige ‘det er tilfældigt’</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-social .quiz', '#p-social .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
 
+
   <div class="panel" id="p-begreber" role="tabpanel" aria-labelledby="t-p-begreber">
-    <h2>Begrebsbank</h2>
-    <table class="gloss">
-      <thead><tr><th>Begreb</th><th>Betydning</th></tr></thead>
-      <tbody>
-        <tr><td><b>Enevælde</b></td><td>Kongen har absolut magt (1660-1849).</td></tr>
-        <tr><td><b>Naturret</b></td><td>Medfødte rettigheder før staten.</td></tr>
-        <tr><td><b>Magtens tredeling</b></td><td>Lovgivende, udøvende, dømmende.</td></tr>
-        <tr><td><b>Stavnsbånd</b></td><td>Bønders pligt til at blive på godset.</td></tr>
-        <tr><td><b>Parlamentarisme</b></td><td>Folketinget kontrollerer regeringen.</td></tr>
-      </tbody>
-    </table>
-    <div class="think"><b>Selvtest:</b> Kan du forklare forskellen på "skøn" og "ret" for en ven?</div>
+    <h2>Begrebsbank (alle nøgleord fra materialet)</h2>
+    <p class="muted">
+      Brug denne fane som “tjekliste” før eksamen. Målet er, at du kan forklare hvert begreb med 1–3 præcise sætninger
+      og give et eksempel (årstal/aktør/begivenhed).
+    </p>
+
+    <h3>Kernebegreber du skal kunne definere (med mini-forklaringer)</h3>
+    <div class="callout">
+      <ul>
+        <li><b>Enevælde</b>: kongen har øverste magt; legitimeres og udøves gennem stat/embedsapparat.</li>
+        <li><b>Naturret</b>: rettigheder/”regler” der gælder før staten; grundlag for kritik af privilegier.</li>
+        <li><b>Samfundskontrakt</b>: ide om at staten opstår gennem en aftale (Hobbes/Locke/Rousseau i forskellige versioner).</li>
+        <li><b>Magtens tredeling</b>: lovgivende/udøvende/dømmende magt (Montesquieu) som værn mod magtmisbrug.</li>
+        <li><b>Nationalisme</b>: nation som politisk og kulturelt fællesskab; kan skabe nationalstat og konflikt.</li>
+        <li><b>Parlamentarisme</b>: regering kan ikke styre imod et folketingsflertal (systemskiftet 1901).</li>
+        <li><b>Kapitalisme</b>: privat ejendom/marked/produktion for profit; skaber nye klasser og konflikter.</li>
+        <li><b>Socialstat/velfærdsstat</b>: statens ansvar for borgernes sociale sikkerhed og muligheder.</li>
+      </ul>
+    </div>
+
+    <h3>Komplet begrebsliste (fra materialet)</h3>
+    <p>Tip: Sæt et ✅ når du kan forklare begrebet højt uden at kigge.</p>
+    <table class='gloss'><tbody>
+<tr><td>Demokrati</td><td>Demografisk transition</td><td>1993  Der gøres op med den ubegrænsede dagpengeperiode. Længden fastsættes nu</td></tr>
+<tr><td>Den florissante handelsperiode</td><td>Fagforeninger</td><td>1997  Der indføres en aktiv socialpolitik, hvor ansvaret for at finde et arbejde flyttes over</td></tr>
+<tr><td>Den reviderede grundlov af 1866</td><td>Fattiggård</td><td>2010  Dagpengeperioden fastsættes til den nuværende længde 2 år. Efter beskæringer i</td></tr>
+<tr><td>Ejder-politik</td><td>Gudelige vækkelser</td><td>1891  Lov om Alderdomsunderstøttelse  gav en statsfinansieret pension til alle værdigt</td></tr>
+<tr><td>Folketinget</td><td>Industri</td><td>1922  Lov om aldersrente flyttede understøttelsen af ældre fra fattigforsorgen til</td></tr>
+<tr><td>Fri forfatning</td><td>Konseilspræsident</td><td>1956  Med indførslen af  Folkepension enblev pension en universel ydelse, der</td></tr>
+<tr><td>Fælleden</td><td>Lockout</td><td>1989/91  Indføres  arbejdsmarkedspension er, hvor pensionsoptjeningen er afhængig af</td></tr>
+<tr><td>Kapitalisme</td><td>Overenskomst</td><td>1892  Lov om sygekasser  gav for første gang statsstøtte til, at almindelige mennesker</td></tr>
+<tr><td>Landboreformer</td><td>Parlamentarisme</td><td>1933  Socialreformen styrkede statens økonomiske bidrag til sygekasserne, og der</td></tr>
+<tr><td>Landstinget</td><td>Septemberforliget</td><td>1971  Sygekasserne afskaffes, og der indføres i stedet et universelt skattefinansieret</td></tr>
+<tr><td>Nationalisme</td><td>Slaget på Fælleden</td><td>1992  Der indføres  frit sygehusvalg . Den enkelte patient vælger selv, hvor han/hun vil</td></tr>
+<tr><td>National-liberal</td><td>Systemskiftet</td><td>2002  Det frie sygehusvalg ændres til også at omfatte  privathospitaler .</td></tr>
+<tr><td>Novemberforfatningen</td><td>Visnepolitikken</td><td>Fattigvæsenet</td></tr>
+<tr><td>Oplysningstiden</td><td>Have fokus på, hvordan socialisten, venstremanden og højrevælgeren opfattede</td><td>Nye fattigordninger</td></tr>
+<tr><td>Romantikken</td><td>Første klasse:  Bestod af gamle, syge og kronisk invalide. Dvs. mennesker uden reel</td><td>Grundloven</td></tr>
+<tr><td>Rådgivende stænderforsamlinger</td><td>Anden klasse:  Bestod af forældreløse børn og børn, hvis forældre ikke drog omsorg for</td><td>Fattiggården bliver</td></tr>
+<tr><td>Slaget på Rheden</td><td>Tredje klasse:  Bestod af personer, der stadig besad arbejdsevne, men undtagelsesvis</td><td>Sygekasser:</td></tr>
+<tr><td>Stormen på Dybbøl</td><td>Støtte i naturalier</td><td>Arbejdsløsheds -</td></tr>
+<tr><td>Udflytning</td><td>Støtte i penge</td><td>Folkepensionen</td></tr>
+<tr><td>Udskiftning</td><td>Omgangsforsørgelse</td><td>Sygesikring: Der</td></tr>
+<tr><td>Universelle menneskerettigheder</td><td>Udlicitering til lavestbydende</td><td>Bistandsloven giver</td></tr>
+<tr><td>Ytringsfrihed</td><td>1907  Arbejdsløshedskasseloven  gav for første gang en beskeden statsstøtte til</td><td>Den ubegrænsede</td></tr>
+<tr><td>Ånden fra 1848</td><td>1932  Året inden socialreformen indførtes en 200 -dages dagpengeperiode for</td><td>Aktiverings -</td></tr>
+<tr><td>Andelsbevægelsen</td><td>1976  Bistandsloven vedtages af et samlet Folketing. Loven bygger på princippet om</td><td>Dagpengeperioden</td></tr>
+</tbody></table>
+
+    <h3>Selvtest (åbne svar)</h3>
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
+      <div class="qrow short">
+        <div class="meta"><b>1) Vælg 6 begreber fra tabellen og skriv en 2-sætnings forklaring til hver (med eksempel).</b><span class="tag">Selvtest</span></div>
+        <div class="hint">Sigt efter: definition + konkret historisk eksempel (årstal/begivenhed/aktør).</div>
+        <textarea placeholder="Skriv dit svar her..."></textarea>
+      </div>
+      <div class="qrow short">
+        <div class="meta"><b>2) Forklar sammenhængen: naturret → oplysning → forfatning/demokrati.</b><span class="tag">Sammenhæng</span></div>
+        <div class="hint">Lav en kæde i 4–6 led. Brug mindst to tænkere (fx Locke/Montesquieu/Rousseau).</div>
+        <textarea placeholder="Skriv dit svar her..."></textarea>
+      </div>
+      <div class="qrow short">
+        <div class="meta"><b>3) Forklar sammenhængen: landboreformer → økonomi → industrialisering → klasse/arbejdsmarked.</b><span class="tag">Sammenhæng</span></div>
+        <div class="hint">Lav en årsagskæde og peg på mindst én ‘mellemliggende mekanisme’ (fx produktivitet, marked, urbanisering).</div>
+        <textarea placeholder="Skriv dit svar her..."></textarea>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="alert('Brug dine noter til at vurdere dine svar. En god historisk forklaring binder altid årsag og konsekvens sammen.')">Tjek svar</button>
+      </div>
+    </div>
   </div>
 
   <div class="panel" id="p-exit" role="tabpanel" aria-labelledby="t-p-exit">
     <h2>Exit quiz (mini-prøve)</h2>
-    <div class="quiz" id="quiz-exit">
+    <p class="muted">
+      Tag den her som en samlet repetition. Sigt efter at kunne forklare hvert rigtigt svar med 1–2 sætninger.
+      Hvis du kan det, er du i god form til eksamen.
+    </p>
+    <div class="quiz">
+      <h3>Spørgsmål</h3>
       <div class="qrow mcq" data-answer="A">
-        <div class="meta"><b>1) Hvilket årstal markerer Grundloven?</b><span class="tag">Årstal</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">1849</li><li class="opt" data-choice="B">1660</li><li class="opt" data-choice="C">1901</li><li class="opt" data-choice="D">1788</li></ul>
-        <div class="feedback">5. juni 1849.</div>
+        <div class="meta"><b>1) Hvilket udsagn passer bedst på Hobbes?</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Orden kræver en stærk suveræn statsmagt</li><li class="opt" data-choice="B">Staten skal altid være minimal</li><li class="opt" data-choice="C">Magt skal deles i tre grene</li><li class="opt" data-choice="D">Folket er altid suverænt</li></ul>
+        <div class="feedback" aria-live="polite"></div>
       </div>
-      <div class="qrow mcq" data-answer="A">
-        <div class="meta"><b>2) Hvem udtænkte magtens tredeling?</b><span class="tag">Person</span></div>
-        <ul class="opts"><li class="opt" data-choice="A">Montesquieu</li><li class="opt" data-choice="B">Hobbes</li><li class="opt" data-choice="C">Locke</li><li class="opt" data-choice="D">Struensee</li></ul>
-        <div class="feedback">Charles-Louis de Secondat, Baron de Montesquieu.</div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>2) Hvilket udsagn passer bedst på Locke?</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Staten skal beskytte naturlige rettigheder; ellers mister den legitimitet</li><li class="opt" data-choice="B">Kongen har guddommelig ret</li><li class="opt" data-choice="C">Frihed kræver censur</li><li class="opt" data-choice="D">Stænder bestemmer rettigheder</li></ul>
+        <div class="feedback" aria-live="polite"></div>
       </div>
-      <button class="btn" onclick="showScore('#quiz-exit', '#score-exit')">Afslut prøve</button>
-      <div class="scoreline" id="score-exit"></div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Montesquieu forbindes især med…</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Magtens tredeling</li><li class="opt" data-choice="B">Stavnsbånd</li><li class="opt" data-choice="C">Septemberforliget</li><li class="opt" data-choice="D">Ejder-politik</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>4) Rousseaus kerneidé i kontrakten er…</b><span class="tag">Idé</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Folkesuverænitet/‘den almene vilje’</li><li class="opt" data-choice="B">Enevældens guddommelige ret</li><li class="opt" data-choice="C">Markedet løser alt</li><li class="opt" data-choice="D">Ingen love er nødvendige</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>5) Hvad markerer 1849 i Danmark?</b><span class="tag">Årstal</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Grundloven og afvikling af enevælde</li><li class="opt" data-choice="B">Ophævelsen af stavnsbåndet</li><li class="opt" data-choice="C">Systemskiftet</li><li class="opt" data-choice="D">Septemberforliget</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>6) Hvad markerer 1788 i reformperioden?</b><span class="tag">Årstal</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Ophævelse/løsning af stavnsbåndet som central milepæl i landboreformerne</li><li class="opt" data-choice="B">Grundlovens indførelse</li><li class="opt" data-choice="C">Nederlaget ved Dybbøl</li><li class="opt" data-choice="D">Systemskiftet</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>7) Hvad er ‘udskiftning’?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Omlægning af fælles jord til sammenhængende lodder</li><li class="opt" data-choice="B">Nyt folketingsvalg</li><li class="opt" data-choice="C">Krigserklæring</li><li class="opt" data-choice="D">Indførelse af Landsting</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>8) Hvad er ‘udflytning’?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Gårde flytter ud til markerne efter reformer</li><li class="opt" data-choice="B">Borgere flytter til udlandet</li><li class="opt" data-choice="C">Adelen flytter til København</li><li class="opt" data-choice="D">Staten flytter hovedstad</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>9) Hvad er en central pointe ved 1866-grundloven?</b><span class="tag">Analyse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Demokratisering kan bremses/omformes; Landstinget styrkes</li><li class="opt" data-choice="B">Alle får stemmeret</li><li class="opt" data-choice="C">Enevælden genindføres</li><li class="opt" data-choice="D">Slesvig bliver selvstændigt</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>10) 1864 forbindes især med…</b><span class="tag">Årstal</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Nederlag i 2. slesvigske krig (Dybbøl)</li><li class="opt" data-choice="B">Bombardementet af København 1807</li><li class="opt" data-choice="C">Statsbankerot 1813</li><li class="opt" data-choice="D">Systemskifte 1901</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>11) Hvad betyder ‘parlamentarisme’?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Regeringen må ikke have et flertal imod sig i Folketinget</li><li class="opt" data-choice="B">Kongen bestemmer alt</li><li class="opt" data-choice="C">Kun domstole bestemmer</li><li class="opt" data-choice="D">Kun Landstinget bestemmer</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>12) Systemskiftet 1901 betyder…</b><span class="tag">Årstal</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Parlamentarismens gennembrud i praksis</li><li class="opt" data-choice="B">Afskaffelse af monarki</li><li class="opt" data-choice="C">Ophævelse af stavnsbånd</li><li class="opt" data-choice="D">Grundlov 1849</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>13) Septemberforliget 1899 er vigtigt fordi…</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Det etablerer rammer for arbejdsmarkedets konflikt og forhandling</li><li class="opt" data-choice="B">Det indfører enevælde</li><li class="opt" data-choice="C">Det skaber nationalstat</li><li class="opt" data-choice="D">Det afskaffer fagforeninger</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>14) Nationalisme i 1800-tallet handler bl.a. om…</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At staten og ‘nationen’ bør hænge sammen; sprog/kultur/identitet politiseres</li><li class="opt" data-choice="B">At stænder skal bestemme alt</li><li class="opt" data-choice="C">At ideer er ligegyldige</li><li class="opt" data-choice="D">At handel stopper</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>15) Hvilket er en historiefaglig stærk forklaring?</b><span class="tag">Metode</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Kombinere aktører, strukturer og idéer med konkrete eksempler</li><li class="opt" data-choice="B">Kun holdning uden belæg</li><li class="opt" data-choice="C">Kun datoer</li><li class="opt" data-choice="D">Kun moral</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>16) Hvad er velfærdsstatens klassiske dilemma?</b><span class="tag">Analyse</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Frihed vs. sikkerhed; rettigheder vs. pligter; skat vs. service</li><li class="opt" data-choice="B">Sommer vs. vinter</li><li class="opt" data-choice="C">By vs. land uden politik</li><li class="opt" data-choice="D">Sport vs. kultur</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>17) Hvad er ‘forfatningskampen’ grundlæggende?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Konflikt om hvem der reelt styrer: regering/kongemagt vs. parlamentarisk flertal</li><li class="opt" data-choice="B">En krig mod Sverige</li><li class="opt" data-choice="C">En naturkatastrofe</li><li class="opt" data-choice="D">En handelstraktat</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>18) Hvilken kæde giver bedst mening?</b><span class="tag">Sammenhæng</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Landboreformer → produktivitet/marked → økonomisk modernisering → industrialisering/klasse</li><li class="opt" data-choice="B">Landboreformer → afskaffelse af byer</li><li class="opt" data-choice="C">Nationalisme → stavnsbånd</li><li class="opt" data-choice="D">Septemberforliget → 1849</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>19) Hvilken rolle kan stænderforsamlinger spille?</b><span class="tag">Forklaring</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Ventil og politisk læring: debat uden afgørende magt, men opbygger forventninger</li><li class="opt" data-choice="B">Universel stemmeret</li><li class="opt" data-choice="C">Afskaffelse af lov</li><li class="opt" data-choice="D">Kun militær</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+<div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>20) Hvad er den bedste definition på ‘det gode samfund’ som tema?</b><span class="tag">Overblik</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Et stridspunkt: hvilke rettigheder, pligter og magtformer der skal skabe et godt fællesskab</li><li class="opt" data-choice="B">Et fast svar der aldrig ændrer sig</li><li class="opt" data-choice="C">Kun økonomi</li><li class="opt" data-choice="D">Kun religion</li></ul>
+        <div class="feedback" aria-live="polite"></div>
+      </div>
+      <div class="qcontrols">
+        <button class="btn score" onclick="showScore('#p-exit .quiz', '#p-exit .scoreline')">Tjek svar</button>
+        <span class="scoreline" aria-live="polite"></span>
+      </div>
     </div>
   </div>
 
 </div>
 
 <script>
-  // Tabs logic
+  // Tabs
   const tabs = [...document.querySelectorAll('.tabs button[role="tab"]')];
   const panels = [...document.querySelectorAll('.panel')];
   function activateTab(btn){
@@ -286,36 +960,39 @@
   }
   tabs.forEach(btn=>btn.addEventListener('click', ()=>activateTab(btn)));
 
-  // MCQ handler
-  document.querySelectorAll('.mcq').forEach(mcq => {
+  // MCQ
+  function handleMCQ(mcq){
     const answer = mcq.dataset.answer;
     const opts = mcq.querySelectorAll('.opt');
-    opts.forEach(opt => {
-      opt.addEventListener('click', () => {
-        opts.forEach(o => o.classList.remove('correct','wrong'));
-        if(opt.dataset.choice === answer){
+    opts.forEach(opt=>{
+      opt.addEventListener('click', ()=>{
+        opts.forEach(o=>o.classList.remove('correct','wrong'));
+        const choice = opt.dataset.choice;
+        if(choice===answer){
           opt.classList.add('correct');
-          mcq.dataset.correct = "1";
-        } else {
+          mcq.dataset.correct="1";
+        }else{
           opt.classList.add('wrong');
-          mcq.dataset.correct = "0";
-          [...opts].find(o => o.dataset.choice === answer).classList.add('correct');
+          mcq.dataset.correct="0";
+          const right = [...opts].find(o=>o.dataset.choice===answer);
+          if(right) right.classList.add('correct');
         }
       });
     });
-  });
+  }
+  document.querySelectorAll('.mcq').forEach(handleMCQ);
 
-  // Score display
+  // Score
   function showScore(scopeSelector, outSelector){
     const scope = document.querySelector(scopeSelector);
     const out = document.querySelector(outSelector);
     if(!scope || !out) return;
     const qs = [...scope.querySelectorAll('.mcq')];
-    const answered = qs.filter(q => q.dataset.correct).length;
-    const correct = qs.filter(q => q.dataset.correct === "1").length;
-    out.textContent = `Resultat: ${correct} af ${qs.length} rigtige. (${answered} besvaret)`;
-    scope.querySelectorAll('.feedback').forEach(fb => fb.style.display = 'block');
+    const answered = qs.filter(q=>q.dataset.correct==="1" || q.dataset.correct==="0").length;
+    const correct = qs.filter(q=>q.dataset.correct==="1").length;
+    out.textContent = `Svar: ${answered}/${qs.length}. Korrekte: ${correct}/${qs.length}.`;
   }
+  window.showScore = showScore;
 </script>
 </body>
 </html>
