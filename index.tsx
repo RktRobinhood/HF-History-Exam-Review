@@ -5,7 +5,7 @@ import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from '
 
 // --- UTILS ---
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_master_quest_final_v4';
+const STORAGE_KEY = 'hf_master_quest_final_v5';
 
 const getYear = (dateStr) => {
   if (!dateStr) return 0;
@@ -67,7 +67,7 @@ const UI = {
   success: "bg-green-300 text-slate-900 hover:bg-green-400",
   warning: "bg-yellow-300 text-slate-900 hover:bg-yellow-400",
   card: "bg-white border-2 border-slate-900 p-6 mb-4",
-  sidebar: "w-72 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full overflow-y-auto",
+  sidebar: "w-80 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full overflow-hidden",
   main: "flex-1 p-8 bg-white overflow-y-auto"
 };
 
@@ -89,7 +89,6 @@ const FlashcardSession = ({ entries, onExit, onRecord }) => {
     onRecord(current.id, false);
     setRevealed(false);
     playSound('damage');
-    // We stay on the current card (index 0)
   };
 
   const handleResponse = (ok) => {
@@ -422,8 +421,7 @@ const App = () => {
     sources: PRIMARY_SOURCES.filter(e => selIds.includes(e.topicId))
   }), [selIds]);
 
-  // Robust Mastery Logic: Includes Entries, Sources, and Exams for total calculation
-  const { masteryData, recommendation, topicDetails } = useMemo(() => {
+  const { masteryData, topicDetails } = useMemo(() => {
     const allContentInScope = [
       ...HISTORY_ENTRIES.filter(e => selIds.includes(e.topicId)),
       ...PRIMARY_SOURCES.filter(e => selIds.includes(e.topicId)),
@@ -457,12 +455,9 @@ const App = () => {
       return { id: t.id, title: t.title, percent: tPercent, count: masteredInTopic, total: topicIds.length };
     });
 
-    const lowestTopic = [...topicResults].filter(t => selIds.includes(t.id)).sort((a, b) => a.percent - b.percent)[0];
-
     return { 
       masteryData: { percent: masteryPercent, masteredCount, total: totalContentIds.length },
-      topicDetails: topicResults.filter(t => selIds.includes(t.id)),
-      recommendation: lowestTopic ? lowestTopic.title : "Ingen data endnu"
+      topicDetails: topicResults.filter(t => selIds.includes(t.id))
     };
   }, [stats, selIds]);
 
@@ -500,54 +495,53 @@ const App = () => {
   return (
     <div className="flex h-screen bg-white">
       <aside className={UI.sidebar}>
-        <div className="mb-10 pb-6 border-b-4 border-slate-900 flex-shrink-0">
-          <h1 className="text-2xl font-black uppercase italic tracking-tighter leading-none">HF Historie</h1>
-          <p className="text-[10px] font-black text-blue-900 uppercase mt-2">Dansk Eksamen Mastery</p>
+        <div className="mb-6 pb-4 border-b-2 border-slate-900 flex-shrink-0">
+          <h1 className="text-xl font-black uppercase italic tracking-tighter leading-none">HF Historie</h1>
+          <p className="text-[9px] font-black text-blue-900 uppercase mt-1">Dansk Eksamen Mastery</p>
         </div>
         
-        <div className="flex-1 overflow-y-auto pr-2 mb-6 space-y-2">
-          <p className="text-[10px] font-black text-slate-400 uppercase mb-2">Vælg Emner i Pensum</p>
-          {TOPICS.map(t => (
-            <label key={t.id} className={`flex items-center gap-3 p-3 border-2 cursor-pointer transition-all ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
-              <input type="checkbox" checked={selIds.includes(t.id)} onChange={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} />
-              <span className="text-[11px] font-black uppercase leading-tight">{t.title}</span>
-            </label>
-          ))}
-          <div className="pt-4 flex flex-col gap-2">
-            <button onClick={() => setSelIds(TOPICS.map(t => t.id))} className="text-[10px] font-black text-blue-900 underline uppercase text-left hover:text-blue-500">Markér Alle</button>
-            <button onClick={() => setSelIds([])} className="text-[10px] font-black text-red-900 underline uppercase text-left hover:text-red-500">Fravælg Alle</button>
+        {/* Most Important: Topic Selection */}
+        <div className="flex-1 overflow-y-auto pr-2 mb-6 min-h-0">
+          <p className="text-[10px] font-black text-slate-500 uppercase mb-3 tracking-widest">Vælg Emner i Pensum</p>
+          <div className="space-y-2">
+            {TOPICS.map(t => (
+              <label key={t.id} className={`flex items-start gap-3 p-3 border-2 cursor-pointer transition-all ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
+                <input type="checkbox" className="mt-1" checked={selIds.includes(t.id)} onChange={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} />
+                <span className="text-[10px] font-black uppercase leading-snug">{t.title}</span>
+              </label>
+            ))}
+          </div>
+          <div className="pt-4 flex gap-4">
+            <button onClick={() => setSelIds(TOPICS.map(t => t.id))} className="text-[9px] font-black text-blue-900 underline uppercase hover:text-blue-500">Markér Alle</button>
+            <button onClick={() => setSelIds([])} className="text-[9px] font-black text-red-900 underline uppercase hover:text-red-500">Fravælg Alle</button>
           </div>
         </div>
 
-        <div className="flex-shrink-0 mt-auto pt-6 border-t-4 border-slate-900 bg-slate-100 -mx-6 px-6 pb-6">
-          <div className="p-4 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] mb-6">
-            <span className="text-[10px] font-black uppercase text-slate-500 block mb-1">Total Mestring</span>
-            <span className="text-5xl font-black text-blue-900 italic leading-none">{masteryData.percent}%</span>
+        {/* Compact Mastery Section */}
+        <div className="flex-shrink-0 mt-auto pt-4 border-t-2 border-slate-200">
+          <div className="flex items-center justify-between mb-4 bg-white p-3 border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
+            <span className="text-[10px] font-black uppercase text-slate-500">Mestring</span>
+            <span className="text-2xl font-black text-blue-900 italic">{masteryData.percent}%</span>
           </div>
           
-          <div className="bg-white border-2 border-slate-900 p-4 shadow-[4px_4px_0px_0px_rgba(203,213,225,1)]">
-            <h4 className="font-black text-[10px] uppercase mb-4 border-b border-slate-200 pb-2 flex justify-between">
-              <span>Fremgang per emne</span>
+          <div className="bg-white border-2 border-slate-900 p-3">
+            <h4 className="font-black text-[9px] uppercase mb-3 border-b border-slate-100 pb-1 flex justify-between">
+              <span>Fremgang</span>
               <span className="text-blue-900">{masteryData.masteredCount}/{masteryData.total}</span>
             </h4>
             
-            <div className="space-y-4 max-h-60 overflow-y-auto pr-1">
+            <div className="space-y-2 max-h-40 overflow-y-auto pr-1 text-[9px]">
               {topicDetails.map(td => (
                 <div key={td.id} className="space-y-1">
-                  <div className="flex justify-between text-[9px] font-black uppercase">
+                  <div className="flex justify-between font-black uppercase">
                     <span className="truncate w-3/4">{td.title}</span>
                     <span className={td.percent > 70 ? "text-green-600" : td.percent > 30 ? "text-yellow-600" : "text-red-600"}>{td.percent}%</span>
                   </div>
-                  <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+                  <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
                     <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${td.percent}%` }}></div>
                   </div>
                 </div>
               ))}
-            </div>
-
-            <div className="mt-4 pt-3 border-t-2 border-slate-100">
-              <span className="text-slate-400 font-bold uppercase text-[8px] block mb-1 italic">Anbefalet fokus nu:</span>
-              <span className="font-black text-blue-900 uppercase text-[10px] leading-tight block">{recommendation}</span>
             </div>
           </div>
         </div>
