@@ -18,7 +18,6 @@ const scrubDate = (text) => text.replace(/\d{4}/g, '').trim();
 // --- AUDIO ENGINE ---
 const playSound = (type) => {
   try {
-    // Fix: Cast window to any to access webkitAudioContext for broader browser support in TypeScript
     const ctx = new (window.AudioContext || (window as any).webkitAudioContext)();
     const osc = ctx.createOscillator();
     const gain = ctx.createGain();
@@ -68,7 +67,7 @@ const UI = {
   success: "bg-green-300 text-slate-900 hover:bg-green-400",
   warning: "bg-yellow-300 text-slate-900 hover:bg-yellow-400",
   card: "bg-white border-2 border-slate-900 p-6 mb-4",
-  sidebar: "w-64 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0",
+  sidebar: "w-64 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full",
   main: "flex-1 p-8 bg-white overflow-y-auto"
 };
 
@@ -296,7 +295,6 @@ const SourceAnalysis = ({ sources, onExit }) => {
 // --- MAIN APP ---
 
 const App = () => {
-  // Fix: Add explicit typing for stats to prevent 'unknown' errors during mastery calculation
   const [stats, setStats] = useState<Record<string, {count: number, correct: number}>>(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
   const [selIds, setSelIds] = useState(() => TOPICS.map(t => t.id));
   const [view, setView] = useState('menu');
@@ -317,16 +315,43 @@ const App = () => {
   const quizQs = useMemo(() => filtered.entries.flatMap(e => (e.questions || []).map(q => ({ ...q, entryId: e.id }))), [filtered]);
   const examQs = useMemo(() => filtered.exams.flatMap(e => (e.subtext || []).map(s => ({ ...s, entryId: e.id }))), [filtered]);
 
-  const masteryData = useMemo(() => {
+  // Advanced Mastery Logic
+  const { masteryData, recommendation } = useMemo(() => {
+    // Overall Stats
     const relevantStats = Object.entries(stats).filter(([id]) => HISTORY_ENTRIES.map(e => e.id).includes(id));
-    if (!relevantStats.length) return { percent: 0, attempts: 0, correct: 0 };
-    let att = 0; let corr = 0;
-    // Fix: Using properly typed stats ensures count and correct are recognized
-    relevantStats.forEach(([_, v]) => { att += v.count; corr += v.correct; });
+    let totalAtt = 0; let totalCorr = 0;
+    // Fix: Explicitly cast 'v' to the expected object shape to resolve property access errors
+    relevantStats.forEach(([_, v]) => { 
+      const val = v as {count: number, correct: number};
+      totalAtt += val.count; 
+      totalCorr += val.correct; 
+    });
+    
+    // Per-Topic Mastery for Recommendation
+    const topicMastery = TOPICS.map(t => {
+      const topicEntries = HISTORY_ENTRIES.filter(e => e.topicId === t.id).map(e => e.id);
+      let tAtt = 0; let tCorr = 0;
+      Object.entries(stats).forEach(([id, v]) => {
+        // Fix: Explicitly cast 'v' to the expected object shape to resolve property access errors
+        const val = v as {count: number, correct: number};
+        if (topicEntries.includes(id)) {
+          tAtt += val.count;
+          tCorr += val.correct;
+        }
+      });
+      return { id: t.id, title: t.title, percent: tAtt > 0 ? (tCorr / tAtt) * 100 : 0, attempts: tAtt };
+    });
+
+    // Lowest Mastery Topic
+    const lowest = [...topicMastery].sort((a, b) => a.percent - b.percent)[0];
+
     return { 
-      percent: att > 0 ? Math.round((corr / att) * 100) : 0,
-      attempts: att,
-      correct: corr
+      masteryData: { 
+        percent: totalAtt > 0 ? Math.round((totalCorr / totalAtt) * 100) : 0,
+        attempts: totalAtt,
+        correct: totalCorr
+      },
+      recommendation: lowest ? lowest.title : "Ingen data endnu"
     };
   }, [stats]);
 
@@ -351,11 +376,11 @@ const App = () => {
           <h1 className="text-2xl font-black uppercase italic tracking-tighter leading-none">HF Historie</h1>
           <p className="text-[10px] font-black text-blue-900 uppercase mt-2">Dansk Eksamen Mastery</p>
         </div>
-        <div className="space-y-2 mb-10">
+        <div className="space-y-2 mb-10 overflow-y-auto pr-2">
           {TOPICS.map(t => (
-            <label key={t.id} className={`flex items-center gap-3 p-3 border-2 cursor-pointer ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
+            <label key={t.id} className={`flex items-center gap-3 p-3 border-2 cursor-pointer transition-all ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
               <input type="checkbox" checked={selIds.includes(t.id)} onChange={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} />
-              <span className="text-[11px] font-black uppercase">{t.title}</span>
+              <span className="text-[11px] font-black uppercase leading-tight">{t.title}</span>
             </label>
           ))}
           <div className="pt-4 flex flex-col gap-2">
@@ -363,13 +388,29 @@ const App = () => {
             <button onClick={() => setSelIds([])} className="text-[10px] font-black text-red-900 underline uppercase text-left hover:text-red-500">Fravælg Alle</button>
           </div>
         </div>
-        <div className="mt-auto p-6 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] group relative cursor-help">
-          <span className="text-xs font-black uppercase text-slate-500 block mb-2">Total Mestring</span>
-          <span className="text-4xl font-black text-blue-900 italic">{masteryData.percent}%</span>
-          {/* Tooltip on Hover */}
-          <div className="hidden group-hover:block absolute bottom-full left-0 w-full bg-slate-900 text-white p-3 text-[10px] mb-2 font-bold uppercase tracking-wider rounded border-2 border-slate-900 shadow-xl">
-             Resultater: {masteryData.correct} / {masteryData.attempts}<br/>
-             Bliv ved til 100%!
+
+        {/* Fixed Mastery Tooltip UI */}
+        <div className="mt-auto group relative pt-4">
+          <div className="p-5 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] cursor-help transition-transform group-hover:-translate-y-1">
+            <span className="text-[10px] font-black uppercase text-slate-500 block mb-1">Mestring</span>
+            <span className="text-4xl font-black text-blue-900 italic leading-none">{masteryData.percent}%</span>
+          </div>
+          
+          {/* Tooltip content - Fixed hidden/group-hover behavior */}
+          <div className="absolute bottom-full left-0 w-64 p-4 bg-slate-900 text-white rounded border-2 border-slate-900 shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-y-4 z-50">
+            <h4 className="font-black text-xs uppercase mb-3 border-b border-slate-700 pb-2 text-blue-300 tracking-widest">Mastery Detaljer</h4>
+            <div className="space-y-3">
+              <div className="flex justify-between items-center text-[10px]">
+                <span className="text-slate-400 font-bold uppercase">Svar:</span>
+                <span className="font-black">{masteryData.correct} / {masteryData.attempts}</span>
+              </div>
+              <div className="flex flex-col gap-1">
+                <span className="text-slate-400 font-bold uppercase text-[9px]">Anbefalet fokus næste gang:</span>
+                <span className="font-black text-yellow-400 uppercase text-[10px] leading-tight">{recommendation}</span>
+              </div>
+            </div>
+            {/* Arrow */}
+            <div className="absolute top-full left-10 w-4 h-4 bg-slate-900 rotate-45 -translate-y-2 border-r-2 border-b-2 border-slate-900"></div>
           </div>
         </div>
       </aside>

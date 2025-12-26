@@ -33,6 +33,10 @@ import { emne3_stanton_entries } from './emne3_stanton_stages.js';
 import { emne3_postwar_entries } from './emne3_postwar_continuity.js';
 import { emne3_ks_exam_logic } from './emne3_ks_exam_trainer.js';
 import { emne4_entries, emne4_sources, emne4_exams } from './emne4.js';
+import { emne4_globalization_entries } from './emne4_globalization.js';
+import { emne4_immigration_entries } from './emne4_immigration_debate.js';
+import { emne4_pia_k_sources } from './emne4_pia_k_source.js';
+import { emne4_reintoft_sources } from './emne4_reintoft_source.js';
 
 export const TOPICS = [
   { id: '0', title: 'Historisk Metode & Teori', description: 'Kildekritik, billedanalyse og historiebrug.' },
@@ -75,6 +79,8 @@ export const HISTORY_ENTRIES = [
   ...emne3_stanton_entries,
   ...emne3_postwar_entries,
   ...emne4_entries,
+  ...emne4_globalization_entries,
+  ...emne4_immigration_entries,
 ];
 
 export const PRIMARY_SOURCES = [
@@ -85,6 +91,8 @@ export const PRIMARY_SOURCES = [
   ...emne3_sources,
   ...emne3_holocaust_deep_sources,
   ...emne4_sources,
+  ...emne4_pia_k_sources,
+  ...emne4_reintoft_sources,
 ];
 
 export const EXAM_INTERPRETATIONS = [
