@@ -1,32 +1,1223 @@
+<!DOCTYPE html>
 
-<!doctype html>
 <html lang="da">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Kulturmøder – Noter</title>
-  <style>
-    :root {
-      --bg: #ffffff;
-      --slate-900: #0f172a;
-      --blue-300: #93c5fd;
-      --slate-50: #f8fafc;
-    }
-    body { font-family: 'Inter', sans-serif; margin: 0; color: var(--slate-900); background: var(--bg); line-height: 1.6; }
-    main { max-width: 900px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-    .card { border: 4px solid var(--slate-900); padding: 40px; background: var(--slate-50); box-shadow: 8px 8px 0px 0px var(--slate-900); }
-    h1 { text-transform: uppercase; font-weight: 900; font-size: 32px; margin-bottom: 20px; }
-    p { font-weight: 700; color: #64748b; }
-  </style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Kulturmøder – Tema 4 | Quiz &amp; begreber</title>
+<style>
+:root{
+  --bg:#0b0d10;--panel:#11151b;--muted:#9aa4b2;--fg:#e9eef6;--line:#243041;
+  --accent:#7dd3fc;--good:#86efac;--bad:#fca5a5;
+ }
+ *{box-sizing:border-box}
+ body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.75}
+ .wrap{max-width:1040px;margin:0 auto;padding:12px 12px 46px}
+ .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
+ .tabs button{border:1px solid var(--line);background:transparent;color:var(--fg);padding:8px 10px;border-radius:10px;cursor:pointer;font-size:14px}
+ .tabs button[aria-selected="true"]{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in oklab,var(--accent),transparent 70%)}
+ .panel{display:none;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 16px 18px}
+ .panel.active{display:block}
+ h2{margin:0 0 10px;font-size:20px}
+ h3{margin:18px 0 8px;font-size:16px}
+ p{margin:10px 0}
+ ul{margin:8px 0 10px 18px}
+ .muted{color:var(--muted)}
+ .keygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+ .box{border:1px solid var(--line);border-radius:14px;padding:12px;background:rgba(255,255,255,.02)}
+ .box b{color:var(--accent)}
+ .quote{border-left:3px solid var(--accent);padding:8px 10px;margin:10px 0;background:rgba(125,211,252,.06);border-radius:10px}
+ .think{border:1px dashed color-mix(in oklab,var(--accent),var(--line) 55%);border-radius:14px;padding:10px 12px;margin:12px 0;background:rgba(125,211,252,.05)}
+ .think b{color:var(--accent)}
+ .qblock{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+ .qrow{border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;background:rgba(255,255,255,.02)}
+ .qrow .meta{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+ .tag{font-size:12px;color:var(--muted);white-space:nowrap}
+ .opts{list-style:none;padding:0;margin:10px 0 0}
+ .opt{padding:9px 10px;border:1px solid var(--line);border-radius:12px;margin:8px 0;cursor:pointer}
+ .opt:hover{border-color:color-mix(in oklab,var(--accent),var(--line) 55%)}
+ .opt.correct{border-color:var(--good);background:rgba(134,239,172,.12)}
+ .opt.wrong{border-color:var(--bad);background:rgba(252,165,165,.10)}
+ .feedback{margin-top:8px;color:var(--muted)}
+ .btn{border:1px solid var(--line);background:transparent;color:var(--fg);padding:8px 10px;border-radius:10px;cursor:pointer}
+ .btn:hover{border-color:var(--accent)}
+ .score{margin-top:10px;color:var(--muted)}
+ .small{font-size:13px}
+ @media (max-width:820px){.keygrid{grid-template-columns:1fr}}
+
+.longread{margin:14px 0 18px 0;padding:14px 14px;border:1px solid var(--border);border-radius:14px;background:rgba(255,255,255,0.02)}
+.longread h4{margin:10px 0 6px 0;font-size:1.02rem}
+.longread p{margin:8px 0;line-height:1.55}
+.longread .muted{opacity:.85}
+</style>
 </head>
 <body>
-<main>
-  <div class="card">
-    <h1>Emne 4: Kulturmøder</h1>
-    <p>Noter til dette emne er ved at blive forberedt.</p>
-    <div style="font-size: 64px; margin: 20px;">🏗️</div>
-    <p style="font-size: 14px; font-style: italic;">Indhold: Globalisering, Migration & Dansk identitet i en foranderlig verden.</p>
-  </div>
+<header>
+<div class="wrap">
+<h1>Kulturmøder – Tema 4</h1>
+<p class="muted">Læs teksten. Svar på spørgsmålene.</p>
+</div>
+</header>
+<main class="wrap">
+<div aria-label="Indhold" class="tabs" role="tablist">
+<button aria-controls="p-0" aria-selected="true" role="tab">Overblik &amp; tidslinje</button>
+<button aria-controls="p-1" aria-selected="false" role="tab">1760–1960: Indvandringens historie</button>
+<button aria-controls="p-2" aria-selected="false" role="tab">1967–1973: Fremmedarbejdere</button>
+<button aria-controls="p-3" aria-selected="false" role="tab">1973–1983: Krisetider og indvandrerstop</button>
+<button aria-controls="p-4" aria-selected="false" role="tab">1983–1993: Udlændingelov og trusselsdiskurs</button>
+<button aria-controls="p-5" aria-selected="false" role="tab">1993–2001: Integration og Dansk Folkeparti</button>
+<button aria-controls="p-6" aria-selected="false" role="tab">2001–2011: Terror, værdikamp og stramninger</button>
+<button aria-controls="p-7" aria-selected="false" role="tab">2011–2020: Flygtningekrise og nutidige dilemmaer</button>
+<button aria-controls="p-8" aria-selected="false" role="tab">Begrebsbank (koncepter)</button>
+<button aria-controls="p-9" aria-selected="false" role="tab">Eksamens-træning (blandet)</button>
+</div>
+<div aria-label="Overblik &amp; tidslinje" class="panel active" id="p-0" role="tabpanel">
+<h2>Overblik &amp; tidslinje</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Hvad betyder kulturmøder i dette tema?</h4><p>Kulturmøder handler om, hvad der sker, når mennesker og grupper med forskellige erfaringer, normer og identiteter møder hinanden – i hverdagen, på arbejdspladsen, i skolen, i medierne og i politik. I Danmark bliver kulturmøder ofte diskuteret i forbindelse med indvandring, flygtninge, minoriteter og national identitet.</p><p>Et kulturmøde er ikke automatisk positivt eller negativt. Det kan give nye muligheder (arbejdskraft, nye idéer, blandede identiteter), men kan også skabe konflikter, hvis der opstår uenighed om værdier, adfærd, religion, køn, sprog eller magt.</p><h4>Kernebegreber du skal kunne bruge</h4><p>Push- og pull-faktorer: Push forklarer, hvad der presser mennesker ud af et land (krig, fattigdom, politisk undertrykkelse). Pull forklarer, hvad der trækker mod et andet land (arbejde, sikkerhed, løn, uddannelse, familie).</p><p>Integration, assimilation og segregation: Integration betyder at kunne deltage i samfundet (arbejde, uddannelse, demokrati) uden nødvendigvis at opgive alt fra ens baggrund. Assimilation betyder, at minoriteten forventes at blive som majoriteten. Segregation/parallel-samfund beskriver, at grupper lever adskilt og har begrænset kontakt.</p><p>Stereotyper, fordomme og diskrimination: En stereotype er en forenklet forestilling om en gruppe. En fordom er en vurdering/følelse knyttet til stereotypen. Diskrimination er handlinger eller strukturer, der stiller nogen ringere på grund af gruppetilhørsforhold.</p><h4>Sådan læser du udviklingen som en tidslinje</h4><p>1760–1960: Indvandring er mindre omfattende, men Danmark har alligevel minoriteter og tilflytning (fx handelsfolk, håndværkere, nabofolk og flygtninge). Debatter handler ofte om religion, loyalitet og 'at passe ind'.</p><p>1967–1973: 'Fremmedarbejdere' rekrutteres, fordi dansk økonomi vokser og mangler arbejdskraft. Der opstår hurtigt debat om bolig, vilkår, sprog og om opholdet er midlertidigt eller permanent.</p><p>1973–1983: Økonomisk krise og indvandrerstop ændrer tonen. Indvandring fortsætter især via familiesammenføring og flygtninge. Spørgsmålet bliver: Hvem har ret til at blive – og på hvilke betingelser?</p><p>1983–1993: Udlændingeloven fra 1983 bliver et vendepunkt, ofte beskrevet som liberal. Samtidig vokser en trusselsdiskurs: indvandring kobles til kultur, værdier og til tider sikkerhed.</p><p>1993–2001: 'Integration' bliver centralt ord. Der kommer flere krav og politikker, og partipolitisk konflikt skærpes. Dansk Folkeparti bliver en vigtig aktør i debatten.</p><p>2001–2011: Terror, værdipolitik og markante stramninger præger perioden (fx familiesammenføring og ophold). Muhammed-tegningerne bliver en international konflikt og et tydeligt kulturmøde.</p><p>2011–2020: Flygtningekrisen (især 2015) genaktiverer de store spørgsmål: ansvar, grænser, solidaritet, national identitet og sammenhængskraft. Der gennemføres nye tiltag om midlertidighed, kontrol og håndtering af udsatte boligområder.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>1) Hvad dækker begrebet 'kulturmøder' bedst i temaet om indvandring?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Møder mellem mennesker/grupper med forskellige kulturelle normer og positioner, ofte med magtforhold</li><li class="opt" data-choice="B">Kun ferierejser til udlandet</li><li class="opt" data-choice="C">Kun møder mellem religioner</li><li class="opt" data-choice="D">Kun konflikter, aldrig samarbejde</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvad er den mest præcise forskel på indvandring og flygtninge/asyl?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Indvandring handler altid om EU-borgere, asyl aldrig</li><li class="opt" data-choice="B">Indvandring kan ske af flere grunde (arbejde, familie m.m.), mens asyl handler om beskyttelse mod forfølgelse/krig</li><li class="opt" data-choice="C">Asyl er kun for arbejdskraft</li><li class="opt" data-choice="D">Der er ingen forskel</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>3) Hvilken udvikling beskriver temaets lange linje bedst?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fra åben indvandring til gradvis regulering og værdipolitisk konflikt</li><li class="opt" data-choice="B">Fra total lukning til total åbning</li><li class="opt" data-choice="C">Ingen politiske ændringer siden 1900</li><li class="opt" data-choice="D">Kun økonomi betyder noget, aldrig kultur</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvilken rækkefølge passer bedst til perioderne i materialet?</b><span class="tag">Tidslinje</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">1760-1960 → 1967-73 → 1973-83 → 1983-93 → 1993-2001 → 2001-11 → 2011-20</li><li class="opt" data-choice="B">2011-20 → 1760-1960 → 1967-73 → 1993-2001 → 1983-93 → 1973-83 → 2001-11</li><li class="opt" data-choice="C">1967-73 → 1760-1960 → 1973-83 → 1983-93 → 2011-20 → 1993-2001 → 2001-11</li><li class="opt" data-choice="D">Der er kun én periode</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>5) Hvad menes der typisk med 'push' og 'pull' i migrationsforklaringer?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Push = tiltrækning, Pull = frastødning</li><li class="opt" data-choice="B">Push = forhold der presser mennesker væk; Pull = forhold der trækker dem til et nyt sted</li><li class="opt" data-choice="C">Begge betyder det samme</li><li class="opt" data-choice="D">Kun relevant for turisme</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Hvad beskriver 'assimilation' bedst?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At minoriteter forventes at opgive centrale træk og blive som majoriteten</li><li class="opt" data-choice="B">At forskellige grupper lever helt adskilt uden kontakt</li><li class="opt" data-choice="C">At staten ikke har nogen politik på området</li><li class="opt" data-choice="D">At man kun lærer sproget, intet andet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>7) Hvad beskriver 'integration' bedst i dansk debat?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At alle skal leve i parallelle samfund</li><li class="opt" data-choice="B">At minoriteter deltager i samfundets centrale institutioner (arbejde, uddannelse, sprog) uden nødvendigvis at opgive al kultur</li><li class="opt" data-choice="C">At man altid vender tilbage til hjemlandet</li><li class="opt" data-choice="D">At asyl automatisk gives</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>8) Hvad er 'strukturel diskrimination'?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">En enkelt persons grove kommentar</li><li class="opt" data-choice="B">Systematiske mønstre i institutioner/regler, der stiller grupper ringere, også uden bevidst hensigt</li><li class="opt" data-choice="C">Når to kulturer mødes og spiser sammen</li><li class="opt" data-choice="D">Når man lærer dansk</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>9) Hvorfor fylder familiesammenføring ofte meget i udlændingepolitik?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi det altid er ulovligt</li><li class="opt" data-choice="B">Fordi det påvirker befolkningssammensætning og integration, og derfor bliver et politisk stridspunkt</li><li class="opt" data-choice="C">Fordi det kun handler om turister</li><li class="opt" data-choice="D">Fordi det kun vedrører EU-regler</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>10) Exit: Hvilken påstand er mest fagligt holdbar?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kulturmøder er altid harmoniske</li><li class="opt" data-choice="B">Udlændingedebat kan forstås som en kombination af økonomi, politik, værdier og historie</li><li class="opt" data-choice="C">Historie er irrelevant for nutidige konflikter</li><li class="opt" data-choice="D">Kun religion forklarer migration</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>11) Exit: En elev siger: 'Danmark var altid et indvandringsland.' Hvad er den bedste nuancering?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Helt forkert – der kom ingen før 2015</li><li class="opt" data-choice="B">Delvist: der har været indvandring længe, men omfang, grupper og politiske rammer har ændret sig markant</li><li class="opt" data-choice="C">Helt rigtigt – reglerne har aldrig ændret sig</li><li class="opt" data-choice="D">Kun rigtigt efter 2001</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>12) Exit: Hvad er den bedste måde at bruge temaets perioder til eksamen?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kun at kunne årstal uden kontekst</li><li class="opt" data-choice="B">At kunne forklare brud og kontinuitet: hvad ændrer sig, hvorfor, og med hvilke konsekvenser</li><li class="opt" data-choice="C">At undgå begreber</li><li class="opt" data-choice="D">At fokusere på enkeltpersoner frem for strukturer</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-0 .quiz', '#p-0 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="1760–1960: Indvandringens historie" class="panel" id="p-1" role="tabpanel">
+<h2>1760–1960: Indvandringens historie</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Indvandring før velfærdsstaten</h4><p>I perioden 1760–1960 er Danmark ikke et stort indvandringsland i moderne forstand, men der findes tydelige kulturmøder. Tilflytning sker typisk gennem handel, håndværk, landbrugsarbejde, naboskab (Sverige/Norge/Tyskland) og i perioder gennem flugt fra krig og forfølgelse.</p><p>En vigtig pointe er, at 'indvandring' historisk ofte handlede om arbejdsfunktioner og lokal økonomi: Nogle kom som specialister, andre som sæsonarbejdere, og mange blev først synlige i debatten, når de blev opfattet som konkurrenter eller kulturelt anderledes.</p><h4>Minoriteter, religion og 'at passe ind'</h4><p>Jøder i Danmark er et centralt eksempel på en minoritet, der både møder muligheder og begrænsninger. De kan bidrage som handelsfolk og håndværkere, men møder også perioder med mistro og krav om tilpasning. Her ser man tidlige former for debat om loyalitet, religion og national identitet.</p><p>I samme periode opstår også kulturmøder med andre grupper, fx tyske tilflyttere i grænselandet og forskellige øst- og centraleuropæiske arbejdere. Kulturmøder handler ikke kun om 'udlændinge', men også om hvordan majoritetssamfundet definerer normer.</p><h4>Krig, flygtninge og politiske brud</h4><p>1. og 2. verdenskrig skaber flygtningestrømme og ændrer Europas grænser. Danmark modtager i perioder flygtninge, og diskussioner om ansvar, sikkerhed og ressourcer ligner på flere måder senere tiders debat.</p><p>Når du læser perioden, skal du kunne forklare, hvordan synet på minoriteter varierer: I nogle sammenhænge opfattes de som en ressource; i andre ses de som en 'fremmed' gruppe. Det er et godt sted at træne begreberne stereotype, fordom og diskrimination med historiske eksempler.</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne forklare, at kulturmøder også findes før 1960, men at omfang og politisk ramme er anderledes. Du skal kunne give konkrete eksempler på minoriteter/tilflytning, og du skal kunne analysere, hvordan debat om 'tilpasning' og 'danskhed' kan spores langt tilbage i historien.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>1) Hvilket tema kendetegner perioden 1760–1960 i materialet?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Primært store flygtningestrømme fra Syrien</li><li class="opt" data-choice="B">Relativt begrænset indvandring, men vigtige minoriteter og regulering (fx indfødsret/arbejdsvilkår)</li><li class="opt" data-choice="C">EU’s frie bevægelighed</li><li class="opt" data-choice="D">24-års reglen</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvad var formålet med indfødsretslovgivning i denne tid (overordnet)?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At gøre alle borgere verdensborgere</li><li class="opt" data-choice="B">At definere hvem der havde rettigheder/loyalitet i staten (statsborgerskab/indfødsret)</li><li class="opt" data-choice="C">At afskaffe staten</li><li class="opt" data-choice="D">At give asyl automatisk</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>3) Hvad var 'Polakloven' (1908) et eksempel på?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Regulering af arbejdsvilkår for udenlandske arbejdere</li><li class="opt" data-choice="B">Afskaffelse af fagforeninger</li><li class="opt" data-choice="C">Forbud mod al handel</li><li class="opt" data-choice="D">EU-direktiv om fri bevægelighed</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvorfor blev jøders rettigheder et centralt spørgsmål i 1800-tallet?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi grundloven 1849 ændrede borgerrettigheder og ligestilling</li><li class="opt" data-choice="B">Fordi Danmark blev medlem af EU</li><li class="opt" data-choice="C">Fordi indvandrerstop blev indført</li><li class="opt" data-choice="D">Fordi Muhammed-krisen skete</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>5) Hvilket begreb passer bedst til, når en gruppe får formel ligestilling i loven, men stadig møder social modstand?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Juridisk integration vs. social inkludering</li><li class="opt" data-choice="B">Asylprocedure</li><li class="opt" data-choice="C">Schengen</li><li class="opt" data-choice="D">Konjunktur</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Hvad er et rimeligt eksempel på et kulturmøde i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Debat om minoriteters rettigheder og national tilhørsforhold</li><li class="opt" data-choice="B">Diskussion om sociale medier</li><li class="opt" data-choice="C">Stramninger efter 11. september</li><li class="opt" data-choice="D">Flygtningekrisen i 2015</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>7) Hvilken kilde-/opgavekompetence træner kapitlerne typisk?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kun at memorere</li><li class="opt" data-choice="B">At læse historiske fremstillinger og diskutere datidens syn på 'de fremmede'</li><li class="opt" data-choice="C">At lave matematiske beviser</li><li class="opt" data-choice="D">At skrive skønlitteratur</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>8) Hvad er den bedste definition på 'majoritet' i denne sammenhæng?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Den gruppe der har mest magt/definitionsmagt i samfundet</li><li class="opt" data-choice="B">Den gruppe der altid er størst globalt</li><li class="opt" data-choice="C">Den nyeste gruppe i landet</li><li class="opt" data-choice="D">Den gruppe der har mindst adgang til ressourcer</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>9) Hvilket begreb beskriver bedst en stat, der forsøger at beskytte 'national sammenhængskraft' via regler om indfødsret?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Nationalstat og grænsekontrol</li><li class="opt" data-choice="B">Anarki</li><li class="opt" data-choice="C">Total global frihed</li><li class="opt" data-choice="D">Ingen politisk styring</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>10) Exit: En elev konkluderer: 'Der var ingen kulturmøder før 1960.' Hvad er bedste modargument?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kulturmøder kræver internettet</li><li class="opt" data-choice="B">Kulturmøder kan være små i omfang men store i betydning (rettigheder, arbejdsforhold, minoriteter)</li><li class="opt" data-choice="C">Kulturmøder sker kun i krig</li><li class="opt" data-choice="D">Kulturmøder handler kun om sprog</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: Hvilken eksamenvinkel passer bedst til perioden?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Brug konkrete eksempler til at diskutere statens syn på tilhørsforhold og rettigheder</li><li class="opt" data-choice="B">Undgå begreber og kontekst</li><li class="opt" data-choice="C">Fokusér kun på 2015</li><li class="opt" data-choice="D">Sammenbland alle perioder</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>12) Exit: Hvad er den mest præcise måde at beskrive kontinuitet på?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Alt er nyt efter 1960</li><li class="opt" data-choice="B">Spørgsmål om 'hvem hører til' og regulering findes tidligt og ændrer form over tid</li><li class="opt" data-choice="C">Der findes ingen politiske diskussioner i historien</li><li class="opt" data-choice="D">Kun økonomi er konstant</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-1 .quiz', '#p-1 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="1967–1973: Fremmedarbejdere" class="panel" id="p-2" role="tabpanel">
+<h2>1967–1973: Fremmedarbejdere</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Økonomisk boom og mangel på arbejdskraft</h4><p>I slutningen af 1960’erne og starten af 1970’erne har Danmark høj vækst og stor efterspørgsel efter arbejdskraft. Den vigtigste pull-faktor er derfor arbejde: fabrikker og servicefag mangler hænder, og virksomheder rekrutterer arbejdere udefra.</p><p>Betegnelsen 'fremmedarbejdere' bruges om arbejdsmigranter, som typisk forventes at være midlertidige. Mange kommer fra Tyrkiet, Pakistan og Jugoslavien (samt andre lande), og de får ofte jobs i industri, rengøring og andre lavtlønsområder.</p><h4>Hverdagskulturmøder: bolig, sprog og vilkår</h4><p>Debatten handler hurtigt om boligforhold (trange boliger, arbejderbarakker, udlejning), arbejdsforhold, sprog og skole. Når opholdet går fra midlertidigt til mere permanent, bliver spørgsmålet: Hvordan skal samfundet håndtere forskelle i religion, familieliv og normer?</p><p>Du skal kunne forklare, at konflikt ikke kun opstår pga. 'kultur', men også pga. strukturer: arbejdsmarked, boligmarked og institutioner. Det er forskellen på kulturforklaringer og struktur-/samfundsforklaringer.</p><h4>Det lille indvandrerstop (1970) og vejen mod 1973</h4><p>Allerede i 1970 forsøger man at begrænse tilstrømningen – ofte omtalt som 'det lille indvandrerstop'. Formålet er at bremse ny rekruttering i en periode med stigende politisk debat og begyndende usikkerhed om økonomien.</p><p>Efter oliekrisen og økonomisk nedtur skærpes politikken, og indvandrerstoppet i 1973 bliver en klar markør: arbejdskraftindvandring begrænses, men indvandring fortsætter via familiesammenføring og flygtninge.</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne forklare pull-faktoren (arbejdskraftbehov), definere 'fremmedarbejdere', forklare hvad 1970-tiltaget forsøgte, og bruge begreber som push/pull, struktur vs. kulturforklaring og begyndende integrationsudfordringer med konkrete eksempler.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>1) Hvad var den vigtigste 'pull'-faktor for indvandring til Danmark i slut-1960’erne?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Arbejdskraftmangel i højkonjunktur</li><li class="opt" data-choice="B">Borgerkrig i Syrien</li><li class="opt" data-choice="C">EU’s østudvidelse</li><li class="opt" data-choice="D">Muhammed-tegninger</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Begrebet 'fremmedarbejdere' henviser typisk til …</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Turister</li><li class="opt" data-choice="B">Arbejdsmigranter rekrutteret til industrien m.m.</li><li class="opt" data-choice="C">Kun studerende</li><li class="opt" data-choice="D">Kun flygtninge</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>3) Hvad var 'det lille indvandrerstop' (1970) et forsøg på?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At afskaffe velfærdsstaten</li><li class="opt" data-choice="B">At begrænse tilstrømningen af udenlandsk arbejdskraft</li><li class="opt" data-choice="C">At åbne for fri indvandring</li><li class="opt" data-choice="D">At indføre 24-års regel</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvilken problemstilling nævnes ofte om fremmedarbejderne i debatten?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Underbetaling/arbejdsvilkår og pres på standarder</li><li class="opt" data-choice="B">At de ikke kunne lære matematik</li><li class="opt" data-choice="C">At de kom via asyl</li><li class="opt" data-choice="D">At de alle var diplomater</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>5) Når man forklarer 1960’ernes indvandring primært via konjunkturer og arbejdsmarked, er det en …</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kulturel forklaring</li><li class="opt" data-choice="B">Økonomisk/strukturel forklaring</li><li class="opt" data-choice="C">Psykologisk forklaring</li><li class="opt" data-choice="D">Religiøs forklaring</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>6) Hvilken typisk eftervirkning fik perioden for senere politik?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Ingen – arbejdsmigranter forsvandt uden familie</li><li class="opt" data-choice="B">Efter stop blev familie og ophold et centralt politisk tema</li><li class="opt" data-choice="C">EU overtog alt i 1971</li><li class="opt" data-choice="D">Asyl blev afskaffet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>7) Hvad betyder 'pull-faktor' mest præcist her?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Forhold i Danmark der tiltrækker (job, løn, stabilitet)</li><li class="opt" data-choice="B">Forhold i hjemlandet der presser folk ud</li><li class="opt" data-choice="C">Et lovkrav om tvang</li><li class="opt" data-choice="D">Et mediebegreb</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>8) Hvad er en rimelig kildekritisk pointe om perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Begreber som 'fremmedarbejder' er neutrale og uden effekt</li><li class="opt" data-choice="B">Sprogbrug kan afspejle magt og syn på tilhørsforhold</li><li class="opt" data-choice="C">Kilder behøver aldrig kontekst</li><li class="opt" data-choice="D">Man kan ikke diskutere perspektiver</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>9) Hvilket dilemma opstår ofte mellem virksomheder og stat i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Behov for arbejdskraft vs. politisk kontrol over indvandring</li><li class="opt" data-choice="B">Behov for kunst vs. censur</li><li class="opt" data-choice="C">Behov for krig vs. fred</li><li class="opt" data-choice="D">Behov for EU vs. NATO</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>10) Exit: En klassekammerat siger: 'Fremmedarbejdere kom bare for at få velfærd.' Hvad er bedste faglige respons?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Enig – det var hovedformålet</li><li class="opt" data-choice="B">Nuancér: i materialet kobles tilstrømningen især til arbejde/konjunkturer; velfærd bliver en del af den senere debat</li><li class="opt" data-choice="C">Det kan ikke diskuteres</li><li class="opt" data-choice="D">Det handler kun om religion</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: Hvilket spørgsmål er mest relevant til eksamen om 1967–73?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Hvordan påvirkede højkonjunktur og arbejdskraftmangel migrationsmønstre?</li><li class="opt" data-choice="B">Hvorfor kom TikTok til Danmark?</li><li class="opt" data-choice="C">Hvad skete i 2015?</li><li class="opt" data-choice="D">Hvilken sportsgren var mest populær?</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>12) Exit: Hvilken kobling er mest præcis?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Arbejdskraftindvandring → senere debatter om ophold, familie og integration</li><li class="opt" data-choice="B">Arbejdskraftindvandring → ingen politiske konsekvenser</li><li class="opt" data-choice="C">Arbejdskraftindvandring → kun EU-udvidelse</li><li class="opt" data-choice="D">Arbejdskraftindvandring → terrorlovgivning</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-2 .quiz', '#p-2 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="1973–1983: Krisetider og indvandrerstop" class="panel" id="p-3" role="tabpanel">
+<h2>1973–1983: Krisetider og indvandrerstop</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Krise og indvandrerstop</h4><p>I 1973 rammer oliekrisen og den økonomiske nedtur. Arbejdsløshed stiger, og politisk bliver det sværere at argumentere for arbejdskraftindvandring. Indvandrerstoppet handler især om at stoppe ny rekruttering af arbejdsmigranter.</p><p>Det er vigtigt at forstå: Indvandring stopper ikke. Den ændrer karakter. Der kommer fortsat mennesker gennem familiesammenføring og som flygtninge, og derfor bliver politikken i højere grad et spørgsmål om ophold, rettigheder og krav.</p><h4>Familiesammenføring og nye konflikter</h4><p>Når en gruppe først har etableret sig, kan familie komme til gennem regler om familiesammenføring. Det skaber en overgang fra 'arbejdsmigration' til 'bosættelse'. Det betyder, at skole, boligområder, arbejdsmarked og socialpolitik bliver centrale arenaer for kulturmøder.</p><p>I krisetider vokser risikoen for syndebukke: minoriteter kan blive gjort ansvarlige for arbejdsløshed, kriminalitet eller pres på velfærdsstaten. Her er det relevant at bruge begreberne trusselsdiskurs og diskrimination.</p><h4>Velfærdsstat og rettigheder</h4><p>I 1970’erne udbygges velfærdsstaten, og debatten bliver: Hvem er omfattet af rettighederne? Er velfærd koblet til statsborgerskab, arbejde, opholdstid – eller til universelle principper?</p><p>Du skal kunne forklare, at mange diskussioner i perioden handler om institutioner og økonomi (struktur), men at de ofte udtrykkes i kulturelle termer (normer, værdier, 'danskhed').</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne forklare hvorfor 1973 bliver et vendepunkt, hvad 'indvandrerstop' reelt betød, og hvordan indvandring i krisetider typisk ændrer debat: fra arbejdskraftbehov til rettigheder, krav og national sammenhængskraft.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>1) Hvad er hovedpointen ved indvandrerstoppet i 1973?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At asyl blev afskaffet</li><li class="opt" data-choice="B">At rekruttering af ny udenlandsk arbejdskraft blev stoppet/stramt reguleret pga. krise</li><li class="opt" data-choice="C">At Danmark blev medlem af EU</li><li class="opt" data-choice="D">At Grundloven blev ændret</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvilken type indvandring fylder relativt mere efter 1973?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Arbejdskraftrekruttering</li><li class="opt" data-choice="B">Familiesammenføring og flygtninge/asyl</li><li class="opt" data-choice="C">Kun studerende</li><li class="opt" data-choice="D">Kun turisme</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>3) Hvilken baggrundsfaktor er central i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Højkonjunktur</li><li class="opt" data-choice="B">Økonomisk krise/arbejdsløshed</li><li class="opt" data-choice="C">EU’s Schengen-samarbejde</li><li class="opt" data-choice="D">Sociale medier</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Når debatten skifter fra 'mangel på arbejdskraft' til 'belastning af velfærden', er det et eksempel på …</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Diskursskifte</li><li class="opt" data-choice="B">Matematisk fejl</li><li class="opt" data-choice="C">Naturvidenskabelig metode</li><li class="opt" data-choice="D">Ingen ændring</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>5) Hvad er et typisk politisk dilemma i 1970’erne?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Hvordan kombinerer man internationalt ansvar (flygtninge) med indenrigspolitisk pres i krisetid?</li><li class="opt" data-choice="B">Hvordan laver man flere motorveje?</li><li class="opt" data-choice="C">Hvordan forbyder man al migration globalt?</li><li class="opt" data-choice="D">Hvordan gør man alle til statsborgere ved fødslen uanset ophold?</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>6) Hvilken påstand passer bedst til materialets linje?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Indvandring stoppede helt efter 1973</li><li class="opt" data-choice="B">Mønsteret ændrede sig: færre arbejdsmigranter, men fortsat migration via familie og asyl</li><li class="opt" data-choice="C">Der kom ingen flygtninge til Europa</li><li class="opt" data-choice="D">DF blev grundlagt i 1973</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>7) Hvad betyder 'konjunktur' i denne sammenhæng?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Svingninger i økonomisk aktivitet (opsving/krise)</li><li class="opt" data-choice="B">En religiøs regel</li><li class="opt" data-choice="C">En lov fra 1983</li><li class="opt" data-choice="D">Et medieformat</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>8) Hvorfor kan 'krisetider' påvirke holdninger til indvandring?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi økonomisk usikkerhed kan øge konkurrencefortællinger og politisk konflikt</li><li class="opt" data-choice="B">Fordi krise altid gør folk mere positive</li><li class="opt" data-choice="C">Fordi krise kun påvirker vejret</li><li class="opt" data-choice="D">Fordi krise betyder, at lovgivning ikke gælder</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>9) Hvad er den bedste beskrivelse af 'familiesammenføring'?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Når virksomheder ansætter udenlandske arbejdere</li><li class="opt" data-choice="B">Når en person i Danmark søger om at få nære familiemedlemmer til landet under bestemte regler</li><li class="opt" data-choice="C">Når man flytter indenfor Danmark</li><li class="opt" data-choice="D">Når man rejser på udveksling</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>10) Exit: En politiker siger: 'Indvandrerstop løste problemet.' Hvad er det bedste historiske modspørgsmål?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Hvilke migrationsveje fortsatte efter stoppet (familie/asyl), og hvordan ændrede debatten sig?</li><li class="opt" data-choice="B">Hvad er dit yndlingsårstal?</li><li class="opt" data-choice="C">Hvilken farve har flaget?</li><li class="opt" data-choice="D">Hvorfor findes matematik?</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: Hvilken analyse er mest præcis?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Krise → ændret politik → ændret migrationsmønster → ny værdipolitisk debat</li><li class="opt" data-choice="B">Krise → ingen politiske ændringer</li><li class="opt" data-choice="C">Krise → kun flere job</li><li class="opt" data-choice="D">Krise → EU overtager alt</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>12) Exit: Hvad er den bedste måde at bruge begrebet diskurs på her?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Til at forklare hvordan sprog og problemforståelser ændrer sig (fx fra arbejdskraft til trussel/belastning)</li><li class="opt" data-choice="B">Som et synonym for 'årstal'</li><li class="opt" data-choice="C">Til at undgå argumenter</li><li class="opt" data-choice="D">Som et naturfænomen</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-3 .quiz', '#p-3 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="1983–1993: Udlændingelov og trusselsdiskurs" class="panel" id="p-4" role="tabpanel">
+<h2>1983–1993: Udlændingelov og trusselsdiskurs</h2><section class="reading longread"><h3>Læsetekst</h3><h4>1983: Udlændingeloven som vendepunkt</h4><p>1983 nævnes ofte som et vendepunkt, fordi Danmark får en udlændingelov, der i samtiden og eftertiden ofte omtales som relativt liberal. Den styrker bl.a. rettigheder og procedurer for flygtninge og for ophold, hvilket kan øge antallet af personer, der får en stabil status.</p><p>Når loven gør ophold mere forudsigeligt, kan den også indirekte øge familiesammenføring: mennesker tør etablere sig og hente familie, fordi fremtiden virker mere sikker.</p><h4>Trusselsdiskurs og kulturkonflikt</h4><p>Samtidig vokser en trusselsdiskurs: Indvandring fremstilles som en risiko for kultur, værdier, sikkerhed eller velfærd. Trusselsdiskurs betyder ikke, at problemer er opfundet, men at sproget og fortællingen systematisk fremhæver fare, 'os vs. dem' og tab af kontrol.</p><p>I perioden opstår typiske konfliktlinjer mellem humanitære argumenter (rettigheder, ansvar) og restriktive argumenter (kontrol, sammenhængskraft, økonomi).</p><h4>Islam som fokuspunkt</h4><p>Islam bliver ofte et fokus i debatten i 1980’erne og 1990’erne, dels fordi flere indvandrere har muslimsk baggrund, dels fordi diskussioner om tørklæde, køn, skole og religiøse normer bliver symboler på større spørgsmål om integration.</p><p>Det er centralt at kunne forklare, at religion i politisk debat ofte fungerer som markør for identitet og grænser – og ikke kun som privat tro.</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne forklare, hvorfor 1983 fremhæves, definere trusselsdiskurs, og analysere hvordan lovgivning, mediedebat og identitetspolitik påvirker hinanden. Du skal også kunne bruge begreberne stereotyper/fordomme og strukturforklaringer i din analyse.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>1) Hvorfor fremhæves 1983 ofte i dansk udlændingehistorie?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Danmark fik euroen</li><li class="opt" data-choice="B">Der kom en meget liberal udlændingelov/flygtningelov sammenlignet med mange andre lande</li><li class="opt" data-choice="C">Indvandrerstop blev indført</li><li class="opt" data-choice="D">EU lukkede grænserne</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvad er en typisk konfliktlinje i perioden 1983–93?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Sport vs. kultur</li><li class="opt" data-choice="B">Humanitære hensyn/retssikkerhed vs. bekymringer om kontrol, velfærd og kultur</li><li class="opt" data-choice="C">By vs. landbrug</li><li class="opt" data-choice="D">Skole vs. arbejde</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>3) Hvad betyder 'trusselsdiskurs' bedst?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At indvandring beskrives som en risiko/trussel mod samfund, værdier eller sikkerhed</li><li class="opt" data-choice="B">At indvandring altid er en økonomisk gevinst</li><li class="opt" data-choice="C">At indvandring ikke kan diskuteres</li><li class="opt" data-choice="D">At alle er enige</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>4) Hvilken institutionel effekt kan en liberal lov give?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Færre sager og mindre behov for administration</li><li class="opt" data-choice="B">Flere rettigheder/procedurer – og dermed politisk debat om omfang og kontrol</li><li class="opt" data-choice="C">Afskaffelse af domstole</li><li class="opt" data-choice="D">Ingen effekt</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>5) Hvorfor bliver islam ofte et fokus i 1980’erne/90’erne debatmateriale?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi islam opfinder EU</li><li class="opt" data-choice="B">Fordi nye grupper, synlig religion og identitetspolitik bliver del af kultur- og værdidebatten</li><li class="opt" data-choice="C">Fordi alle indvandrere var buddhister</li><li class="opt" data-choice="D">Fordi religion var forbudt</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Hvad er 'definitionsmagt' i kulturmøder?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Evnen til at bestemme hvilke problemer der 'tæller' og hvordan grupper beskrives</li><li class="opt" data-choice="B">At kunne definere ord i en ordbog</li><li class="opt" data-choice="C">At kunne stemme i Eurovision</li><li class="opt" data-choice="D">At kunne ændre vejret</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>7) Hvilken påstand er mest plausibel ud fra periodens udvikling?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Debatten bliver mindre politiseret</li><li class="opt" data-choice="B">Udlændingepolitik bliver gradvist mere værdipolitisk og konfliktfyldt</li><li class="opt" data-choice="C">Familiesammenføring forsvinder som tema</li><li class="opt" data-choice="D">Asyl er ikke længere relevant</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>8) Hvad menes der med 'majoritetskultur' i denne sammenhæng?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Den kultur der har størst global udbredelse</li><li class="opt" data-choice="B">Den kultur der sætter normer og rammer i samfundets institutioner</li><li class="opt" data-choice="C">En kultur uden politik</li><li class="opt" data-choice="D">En kultur uden historie</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>9) Hvilken analytisk metode passer bedst til en avisartikel om indvandrere som trussel?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Diskursanalyse (sprog, framing, os/dem)</li><li class="opt" data-choice="B">Kun matematik</li><li class="opt" data-choice="C">Kun naturvidenskabelig laboratorietest</li><li class="opt" data-choice="D">Ingen analyse</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>10) Exit: En tekst bruger ord som 'bølge' eller 'strøm' om indvandring. Hvad kan du analysere?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Metaforbrug og framing: hvordan sproget skaber forestillinger om ukontrol og trussel</li><li class="opt" data-choice="B">Kun stavning</li><li class="opt" data-choice="C">Kun forfatterens alder</li><li class="opt" data-choice="D">Kun layout</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: Hvilket eksamengreb er bedst i perioden?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Vis bruddet omkring 1983 og diskuter argumenter for/imod (humanitet, kontrol, konsekvenser)</li><li class="opt" data-choice="B">Lær kun religionsnavne</li><li class="opt" data-choice="C">Undgå lovgivning</li><li class="opt" data-choice="D">Fokusér kun på 1960’erne</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>12) Exit: Hvad er den bedste påstand om kulturmøder her?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kulturmøder er kun privatliv</li><li class="opt" data-choice="B">Kulturmøder handler både om hverdagsliv og politiske rammer, der bestemmer muligheder og konflikter</li><li class="opt" data-choice="C">Kulturmøder kan ikke undersøges historisk</li><li class="opt" data-choice="D">Kulturmøder er det samme som kriminalitet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-4 .quiz', '#p-4 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="1993–2001: Integration og Dansk Folkeparti" class="panel" id="p-5" role="tabpanel">
+<h2>1993–2001: Integration og Dansk Folkeparti</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Integration bliver nøgleordet</h4><p>I 1990’erne bliver 'integration' et centralt politisk mål. Fokus flytter sig fra spørgsmålet 'må de være her?' til 'hvordan lever vi sammen?'. Samtidig bliver der flere konkrete krav og programmer: sprog, arbejdsmarkedstilknytning, uddannelse og deltagelse i civilsamfund.</p><p>Integration kan forstås som både en social proces og en politisk strategi. Det er her vigtigt at skelne: integration som ideal (deltagelse) vs. integration som kontrol (krav, sanktioner).</p><h4>Partipolitik og Dansk Folkeparti</h4><p>I denne periode skærpes partipolitisk konflikt. Dansk Folkeparti bliver stiftet i 1995 og får stor betydning for at gøre udlændinge- og værdipolitik til en hovedkonfliktlinje. Debatten handler ofte om 'danskhed', velfærdsstatens bæredygtighed og kriminalitet – men også om rettigheder og ligebehandling.</p><p>Du skal kunne forklare, hvorfor et parti kan få stor indflydelse uden nødvendigvis at være størst: dagsordensættelse, støtteparti-rolle og mediedynamik.</p><h4>Udfordringer i praksis</h4><p>På lokalt plan bliver boligområder, skoler og arbejdsmarked centrale steder for kulturmøder. Segregation kan opstå, hvis adgang til job og uddannelse er svag, og hvis boligmarkedet samler grupper i bestemte områder.</p><p>Her er det vigtigt at kunne bruge begreber som strukturel diskrimination: ikke nødvendigvis enkeltpersoners racisme, men systemer der giver ulige muligheder (fx netværk, arbejdsgivere, boligregler).</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne definere integration, forklare Dansk Folkepartis rolle, og analysere sammenhængen mellem politiske fortællinger, konkrete krav og de sociale konsekvenser i hverdagen.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>1) Hvad er en central udvikling i 1990’erne ifølge materialets linje?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Udlændingepolitik forsvinder fra dagsordenen</li><li class="opt" data-choice="B">Integration bliver et nøgleord, og DF får stigende betydning i debatten</li><li class="opt" data-choice="C">Indvandrerstop ophæves uden debat</li><li class="opt" data-choice="D">Asyl afskaffes</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvorfor kan partier som DF vokse i denne periode (typisk forklaring)?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi alle var enige om åben indvandring</li><li class="opt" data-choice="B">Fordi udlændingepolitik kobles til velfærd, tryghed og national identitet</li><li class="opt" data-choice="C">Fordi EU forbød debat</li><li class="opt" data-choice="D">Fordi indvandring stoppede helt</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>3) Hvad er forskellen på integration og assimilation (kort)?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Integration = deltagelse; assimilation = opgivelse af egen kultur for at blive som majoriteten</li><li class="opt" data-choice="B">Integration = isolation; assimilation = deltagelse</li><li class="opt" data-choice="C">De betyder det samme</li><li class="opt" data-choice="D">Assimilation er kun økonomi</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvilket område bliver ofte brugt som mål for integration?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Arbejde/uddannelse og sprog</li><li class="opt" data-choice="B">Kun musiksmag</li><li class="opt" data-choice="C">Kun ferievaner</li><li class="opt" data-choice="D">Kun pasfarve</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>5) Hvilken type konflikt er typisk i 1990’erne?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Konkurrence om arbejdskraft i opsving</li><li class="opt" data-choice="B">Debat om krav, rettigheder og kulturel tilpasning</li><li class="opt" data-choice="C">Kun militær konflikt</li><li class="opt" data-choice="D">Kun EU’s landbrugspolitik</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Når en gruppe fremstilles som 'ikke rigtig dansk' uanset adfærd, handler det om …</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Essentialisme (fastlåste forestillinger om identitet)</li><li class="opt" data-choice="B">Konjunktur</li><li class="opt" data-choice="C">Schengen</li><li class="opt" data-choice="D">Neutralitet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>7) Hvilken kildevinkel er ofte relevant i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At sammenligne politiske taler/medietekster for at se argumentmønstre</li><li class="opt" data-choice="B">At ignorere afsender</li><li class="opt" data-choice="C">At undgå kontekst</li><li class="opt" data-choice="D">At bruge kun én kilde</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>8) Hvad betyder 'velfærdsnationalisme' i debatten (typisk)?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At velfærden bør være global og uden grænser</li><li class="opt" data-choice="B">At velfærdsstaten kobles til nationalt tilhørsforhold: hvem har ret til ydelser?</li><li class="opt" data-choice="C">At velfærden afskaffes</li><li class="opt" data-choice="D">At velfærd kun er privat</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>9) Hvilken påstand er mest præcis om 1993–2001 i en tidslinjeanalyse?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fokus flytter fra lovens liberalitet til krav/stramninger og politisk mobilisering</li><li class="opt" data-choice="B">Alt bliver mindre politisk</li><li class="opt" data-choice="C">Udlændingelov 1983 mister al betydning i historieskrivningen</li><li class="opt" data-choice="D">Flygtninge bliver irrelevant</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>10) Exit: Hvis du skal skrive en kort analyse, hvad er bedst fokus?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Hvordan integration bliver et nøglebegreb, og hvordan partier bruger det til at definere problemer og løsninger</li><li class="opt" data-choice="B">Kun at liste alle partier</li><li class="opt" data-choice="C">Kun at nævne 1908</li><li class="opt" data-choice="D">Kun at beskrive din mening</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: Hvilket spørgsmål tester bedst forståelse (ikke udenad)?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Hvordan kan økonomi og identitet tilsammen forklare stramningsønsker i 1990’erne?</li><li class="opt" data-choice="B">Hvad er 1997 i romertal?</li><li class="opt" data-choice="C">Hvem vandt Eurovision i 1999?</li><li class="opt" data-choice="D">Hvad er dit yndlingsord?</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>12) Exit: Hvad er den bedste kritik af en tekst der 'forklarer alt med kultur'?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At den kan overse struktur: arbejdsmarked, lovgivning, mediers framing og politiske interesser</li><li class="opt" data-choice="B">At kultur aldrig betyder noget</li><li class="opt" data-choice="C">At historie ikke findes</li><li class="opt" data-choice="D">At begreber er ligegyldige</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-5 .quiz', '#p-5 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="2001–2011: Terror, værdikamp og stramninger" class="panel" id="p-6" role="tabpanel">
+<h2>2001–2011: Terror, værdikamp og stramninger</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Terror, sikkerhed og værdipolitik</h4><p>Efter 2001 påvirker global terrorisme den politiske debat i Europa. Udlændinge- og integrationspolitik kobles oftere til sikkerhed og national sammenhængskraft. Samtidig bliver værdipolitik stærkere: politiske konflikter handler i højere grad om normer, kultur og identitet end om klassisk fordelingspolitik.</p><p>I Danmark fører perioden til markante stramninger, især omkring familiesammenføring og ophold. Pointen i materialets logik er ofte, at debatten om 1983-loven bruges som forklaring på, hvorfor stramninger anses som nødvendige.</p><h4>Eksempler på stramninger: 24-års regel og tilknytningskrav</h4><p>24-års reglen (indført i 2002) er et eksempel på en stramning af familiesammenføring: man skal være mindst 24 år for at få ægtefællesammenføring, og formålet præsenteres ofte som at modvirke tvangsægteskaber og sikre stærkere tilknytning til Danmark.</p><p>Tilknytningskrav og andre regler handler om at dokumentere, at parrets samlede tilknytning til Danmark er større end til et andet land. Det viser, hvordan politik i perioden ikke kun handler om antal, men også om at styre hvilke typer familier der etablerer sig.</p><h4>Muhammed-tegningerne som kulturmøde</h4><p>Muhammed-tegningerne (2005/06) kan ses som et kulturmøde, fordi de udløser konflikt mellem forskellige normer: ytringsfrihed, religionsrespekt, satire og minoriteters oplevelse af stigmatisering. Konflikten bliver både national og international og viser, hvordan globale medier kan forstærke kulturmøder.</p><p>Som analysepunkt er det centralt at kunne skelne mellem handling (tegningerne), fortolkning (hvad de betyder), og diskurs (hvordan politikere og medier rammesætter konflikten).</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne forklare, hvorfor terror bliver et tema efter 2001, hvad 24-års reglen er, hvad værdipolitik betyder i denne sammenhæng, og hvordan Muhammed-tegningerne kan analyseres som et kulturmøde med magt- og perspektivkonflikter.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>1) Hvilket globalt tema påvirker udlændinge- og integrationsdebatten efter 2001?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kolonitiden</li><li class="opt" data-choice="B">Terror og sikkerhedspolitik</li><li class="opt" data-choice="C">Vikingetiden</li><li class="opt" data-choice="D">Den franske revolution</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>2) Hvad er 24-års reglen et eksempel på?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">En regel der skulle begrænse muligheder for ægtefællesammenføring</li><li class="opt" data-choice="B">En EU-regel om landbrug</li><li class="opt" data-choice="C">En regel om skolepligt</li><li class="opt" data-choice="D">En regel om pension</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>3) Hvordan fremstilles 1983-loven ofte i 2000’ernes politiske argumentation (ifølge materialets linje)?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Som helt irrelevant</li><li class="opt" data-choice="B">Som noget der skulle gøres op med/strammes</li><li class="opt" data-choice="C">Som en sportslov</li><li class="opt" data-choice="D">Som en naturvidenskabelig teori</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>4) Hvad er 'værdipolitik' i denne sammenhæng?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Politik om valuta</li><li class="opt" data-choice="B">Politik der handler om normer, identitet, kultur og 'danske værdier'</li><li class="opt" data-choice="C">Kun miljøpolitik</li><li class="opt" data-choice="D">Kun skattepolitik</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>5) Hvorfor kan Muhammed-tegningerne (2005/06) ses som et kulturmøde i materialets logik?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi det kun handlede om sport</li><li class="opt" data-choice="B">Fordi ytringsfrihed, religion, identitet og global reaktion kolliderede</li><li class="opt" data-choice="C">Fordi alle var enige</li><li class="opt" data-choice="D">Fordi det kun var lokalt uden omverden</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Når en gruppe kobles til sikkerhedstrusler uden direkte bevis, hvilken mekanisme er relevant?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Securitization (sikkerhedsliggørelse)</li><li class="opt" data-choice="B">Fotosyntese</li><li class="opt" data-choice="C">Konjunktur</li><li class="opt" data-choice="D">Metodekritik i fysik</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>7) Hvilken udvikling passer bedst til 2001–2011?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Flere stramninger og flere krav til integration/permanent ophold</li><li class="opt" data-choice="B">Total afregulering</li><li class="opt" data-choice="C">Indvandring stopper helt</li><li class="opt" data-choice="D">Udlændingepolitik afskaffes</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>8) Hvorfor kan 'nærområde-strategi' dukke op i debatten?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Som argument for hjælp tæt på konfliktområder frem for modtagelse i Danmark</li><li class="opt" data-choice="B">Som et argument for flere motorveje</li><li class="opt" data-choice="C">Som et argument for EU’s landbrugspolitik</li><li class="opt" data-choice="D">Som et argument for skolehjem-samarbejde</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>9) Hvad betyder 'retssikkerhed' i asyl/udlændingesager?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At staten kan gøre hvad den vil</li><li class="opt" data-choice="B">At sagsbehandling følger regler, begrundelser og klagemuligheder</li><li class="opt" data-choice="C">At man aldrig må klage</li><li class="opt" data-choice="D">At alle får ophold automatisk</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>10) Exit: Hvad er den bedste analyse af 24-års reglen som politik?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Den kan ses som styring af familieindvandring og som signalpolitik i værdidebatten</li><li class="opt" data-choice="B">Den handler kun om vejret</li><li class="opt" data-choice="C">Den påvirker ikke integration</li><li class="opt" data-choice="D">Den er ligegyldig i historien</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: En avistekst kobler 'muslimer' og 'terror' generelt. Hvilket begreb er mest relevant?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Stereotypisering og securitization</li><li class="opt" data-choice="B">Konjunktur</li><li class="opt" data-choice="C">Indfødsret</li><li class="opt" data-choice="D">Kolonialisme</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>12) Exit: Hvad er den bedste måde at vise årsagssammenhæng på i 2000’erne?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Koble globale begivenheder + indenrigspolitik + lovændringer + mediedebat</li><li class="opt" data-choice="B">Kun at nævne et årstal</li><li class="opt" data-choice="C">Kun at give din holdning</li><li class="opt" data-choice="D">Undgå eksempler</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-6 .quiz', '#p-6 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="2011–2020: Flygtningekrise og nutidige dilemmaer" class="panel" id="p-7" role="tabpanel">
+<h2>2011–2020: Flygtningekrise og nutidige dilemmaer</h2><section class="reading longread"><h3>Læsetekst</h3><h4>Flygtningekrisen og 2015 som brud</h4><p>I 2010’erne bliver flygtningestrømme igen et hovedtema, især med borgerkrigen i Syrien og større bevægelser mod Europa. I 2015 omtales situationen ofte som en flygtningekrise, fordi antallet af asylansøgere stiger, og fordi EU-landes grænse- og asylsystemer kommer under pres.</p><p>Diskussionen handler om ansvar (internationalt og nationalt), kapacitet (bolig, kommuner, økonomi) og identitet (hvad betyder nationalt fællesskab?).</p><h4>Midlertidighed og kontrol</h4><p>I perioden bliver midlertidighed et centralt princip: ophold skal i højere grad være midlertidigt, og hjemsendelse skal være realistisk, når forholdene i hjemlandet ændrer sig. Det ændrer kulturmødet, fordi usikkerhed om fremtid kan svække integration og tilknytning.</p><p>Derudover får bolig- og områdepolitik større rolle. Debatter om 'ghettoer', parallelsamfund og kriminalitet kobles til spørgsmål om sociale strukturer, uddannelse og arbejdsmarked – men også til kultur og værdier.</p><h4>Nutidige dilemmaer: rettigheder, lighed og sammenhængskraft</h4><p>Du skal kunne analysere de typiske dilemmaer: 1) Humanitært ansvar vs. national kontrol, 2) Lige rettigheder vs. differentierede krav, 3) Ytringsfrihed vs. hensyn til minoriteter, 4) Integration som deltagelse vs. integration som krav og sanktioner.</p><p>Et stærkt eksamenssvar viser, at du kan bruge begreber (push/pull, diskurs, stereotyper, strukturel diskrimination, integration/assimilation) til at forklare, hvorfor konflikter opstår – og hvilke løsninger der foreslås.</p><h4>Eksamenstræning: hvad skal du kunne?</h4><p>Du skal kunne forklare, hvorfor 2015 er centralt, hvad midlertidighed betyder som politisk strategi, og hvordan områdepolitik og mediedebat påvirker kulturmøder i praksis.</p></section>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>1) Hvad er et centralt vendepunkt i perioden ifølge materialet?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">1908</li><li class="opt" data-choice="B">Flygtningekrisen i 2015 i Europa</li><li class="opt" data-choice="C">1849</li><li class="opt" data-choice="D">1970</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>2) Hvilken rute/scene nævnes ofte fra 2015 i Danmark?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Både på motorveje og tog mod Sverige, hvor mange ønskede at søge asyl</li><li class="opt" data-choice="B">Sejlads over Atlanten til USA</li><li class="opt" data-choice="C">Fly til Grønland</li><li class="opt" data-choice="D">Kun intern flytning i Danmark</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>3) Hvad bliver et gentaget politisk tema i 2010’erne?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At indvandring slet ikke findes</li><li class="opt" data-choice="B">Stramninger, kontrol og debat om hvem der er 'reelle flygtninge'</li><li class="opt" data-choice="C">At alle regler ophæves</li><li class="opt" data-choice="D">At EU ikke spiller nogen rolle</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvad betyder 'asyl' i kerneforstand?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Ret til beskyttelse når man risikerer forfølgelse/krig og opfylder kriterier</li><li class="opt" data-choice="B">En arbejdsmarkedsordning</li><li class="opt" data-choice="C">En turistvisum-type</li><li class="opt" data-choice="D">En automatisk statsborgerskabsret</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>5) Hvorfor kan EU nævnes i 2011–2020 kapitlet?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi migration og grænsepolitik påvirkes af EU-samarbejde og europæiske kriser</li><li class="opt" data-choice="B">Fordi EU bestemmer dansk kultur</li><li class="opt" data-choice="C">Fordi EU afskaffer asyl</li><li class="opt" data-choice="D">Fordi EU ikke har nogen relevans</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Hvad er 'konventionsforpligtelser' i flygtningepolitik?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Internationale regler (fx flygtningekonventioner) der sætter rammer for staters handlinger</li><li class="opt" data-choice="B">En musikfestival</li><li class="opt" data-choice="C">En lokal skoleaftale</li><li class="opt" data-choice="D">En økonomisk opskrift</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>7) Hvilken type argument ses ofte i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Humanitært ansvar vs. national kapacitet og sammenhængskraft</li><li class="opt" data-choice="B">Kun sport</li><li class="opt" data-choice="C">Kun middelalderhistorie</li><li class="opt" data-choice="D">Kun naturkatastrofer i Danmark</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>8) Hvad er 'scapegoating' (syndebukmekanisme) relevant for?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Når komplekse problemer forklares ved at skyde skylden på en bestemt gruppe</li><li class="opt" data-choice="B">Når man laver statistik korrekt</li><li class="opt" data-choice="C">Når man oversætter en tekst</li><li class="opt" data-choice="D">Når man lærer kemi</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>9) Hvad er en typisk problemstilling i nutidig integrationsdebat?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Adgang til arbejde/uddannelse, ghettodannelse/parallelle miljøer og social tillid</li><li class="opt" data-choice="B">Kun antallet af ferieuger</li><li class="opt" data-choice="C">Kun hvilken farve pas har</li><li class="opt" data-choice="D">Kun EU’s landbrugspolitik</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>10) Exit: Hvilken påstand er mest faglig om 2015?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Krisen var kun et mediefænomen uden realitet</li><li class="opt" data-choice="B">Krisen blev et konkret pres (antal/flow) og et symbolsk konfliktpunkt i værdidebatten</li><li class="opt" data-choice="C">Krisen handlede kun om økonomi, aldrig værdier</li><li class="opt" data-choice="D">Krisen betød at alle blev statsborgere</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: En tekst kalder alle der kommer 'terrorister'. Hvad er bedste analysegreb?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Undersøg generalisering, evidens, framing og politisk funktion (sikkerhedsliggørelse)</li><li class="opt" data-choice="B">Accepter påstanden uden spørgsmål</li><li class="opt" data-choice="C">Ignorer afsender</li><li class="opt" data-choice="D">Undgå begreber</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>12) Exit: Hvad er den bedste eksamensstrategi med nutiden?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Brug nutidige cases til at vise lange linjer og brydninger tilbage til tidligere perioder</li><li class="opt" data-choice="B">Lad som om historie starter i 2015</li><li class="opt" data-choice="C">Undgå sammenligning</li><li class="opt" data-choice="D">Kun at bruge statistik uden kontekst</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-7 .quiz', '#p-7 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="Begrebsbank (koncepter)" class="panel" id="p-8" role="tabpanel">
+<h2>Begrebsbank (koncepter)</h2>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>1) Hvad er forskellen på stereotype og fordom?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Stereotype = generalisering; fordom = vurdering/holdning (ofte negativ)</li><li class="opt" data-choice="B">Fordom = altid neutral</li><li class="opt" data-choice="C">Stereotype = kun individuel</li><li class="opt" data-choice="D">Der er ingen forskel</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvad er mest præcis definition af diskrimination?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At være uenig</li><li class="opt" data-choice="B">At behandle personer forskelligt på en måde der stiller dem ringere pga. gruppe/tilhørsforhold</li><li class="opt" data-choice="C">At have en mening</li><li class="opt" data-choice="D">At diskutere politik</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>3) Hvad er 'kulturrelativisme' som faglig tilgang?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At dømme andre kulturer ud fra egne normer</li><li class="opt" data-choice="B">At forsøge at forstå praksisser i deres egen kontekst før man vurderer</li><li class="opt" data-choice="C">At mene at alt er lige godt uden diskussion</li><li class="opt" data-choice="D">At afskaffe kritik</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvad er 'etnocentrisme'?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At sætte egen kultur som målestok og rangere andre ud fra den</li><li class="opt" data-choice="B">At forstå andre på deres egne præmisser</li><li class="opt" data-choice="C">At være globalt neutral</li><li class="opt" data-choice="D">At være apolitisk</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>5) Hvad beskriver 'parallelle samfund' bedst i integrationsdebatten?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Når grupper lever adskilt med begrænset kontakt til majoritetens institutioner</li><li class="opt" data-choice="B">Når alle er fuldt integreret</li><li class="opt" data-choice="C">Når alle taler samme sprog</li><li class="opt" data-choice="D">Når man flytter fra by til land</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Hvad er en 'diskurs'?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Et sæt af sprog og idéer der former hvordan et problem forstås og diskuteres</li><li class="opt" data-choice="B">En lovparagraf</li><li class="opt" data-choice="C">Et tal i statistik</li><li class="opt" data-choice="D">Et geografisk sted</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>7) Hvad betyder 'framing' i medieanalyse?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Hvordan en sag vinkles, så bestemte forklaringer/ansvar bliver mere oplagte</li><li class="opt" data-choice="B">Hvordan man hænger billeder op</li><li class="opt" data-choice="C">Hvordan man laver en lov</li><li class="opt" data-choice="D">Hvordan man laver en tidslinje</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>8) Hvilket udsagn passer bedst til 'os/dem'-tænkning?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At identitet ofte skabes ved at definere, hvem der hører til – og hvem der ikke gør</li><li class="opt" data-choice="B">At alle grupper altid er enige</li><li class="opt" data-choice="C">At kultur aldrig betyder noget</li><li class="opt" data-choice="D">At politik ikke påvirker identitet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>9) Hvad er 'hybrid identitet'?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At man kun kan have én identitet</li><li class="opt" data-choice="B">At identitet kan være sammensat af flere tilhørsforhold på én gang</li><li class="opt" data-choice="C">At identitet altid er biologisk</li><li class="opt" data-choice="D">At identitet kun handler om pas</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>10) Hvad er den bedste forklaring på 'definitionsmagt'?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At kunne bestemme hvilke kategorier, problemer og fortællinger der dominerer</li><li class="opt" data-choice="B">At kunne tale højt</li><li class="opt" data-choice="C">At kunne rejse uden pas</li><li class="opt" data-choice="D">At kunne vinde en debat</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>11) Exit: Hvilken kombination er mest brugbar til at analysere en debattekst om flygtninge?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Diskurs + framing + afsender/intentionsanalyse</li><li class="opt" data-choice="B">Kun årstal</li><li class="opt" data-choice="C">Kun følelser</li><li class="opt" data-choice="D">Kun tal uden kontekst</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-8 .quiz', '#p-8 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
+<div aria-label="Eksamens-træning (blandet)" class="panel" id="p-9" role="tabpanel">
+<h2>Eksamens-træning (blandet)</h2>
+<div class="grid">
+</div>
+<h3>Multiple choice</h3>
+<div class="quiz">
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>1) Hvad dækker begrebet 'kulturmøder' bedst i temaet om indvandring?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Møder mellem mennesker/grupper med forskellige kulturelle normer og positioner, ofte med magtforhold</li><li class="opt" data-choice="B">Kun ferierejser til udlandet</li><li class="opt" data-choice="C">Kun møder mellem religioner</li><li class="opt" data-choice="D">Kun konflikter, aldrig samarbejde</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>2) Hvad er den mest præcise forskel på indvandring og flygtninge/asyl?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Indvandring handler altid om EU-borgere, asyl aldrig</li><li class="opt" data-choice="B">Indvandring kan ske af flere grunde (arbejde, familie m.m.), mens asyl handler om beskyttelse mod forfølgelse/krig</li><li class="opt" data-choice="C">Asyl er kun for arbejdskraft</li><li class="opt" data-choice="D">Der er ingen forskel</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>3) Hvilken udvikling beskriver temaets lange linje bedst?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fra åben indvandring til gradvis regulering og værdipolitisk konflikt</li><li class="opt" data-choice="B">Fra total lukning til total åbning</li><li class="opt" data-choice="C">Ingen politiske ændringer siden 1900</li><li class="opt" data-choice="D">Kun økonomi betyder noget, aldrig kultur</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>4) Hvilken rækkefølge passer bedst til perioderne i materialet?</b><span class="tag">Tidslinje</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">1760-1960 → 1967-73 → 1973-83 → 1983-93 → 1993-2001 → 2001-11 → 2011-20</li><li class="opt" data-choice="B">2011-20 → 1760-1960 → 1967-73 → 1993-2001 → 1983-93 → 1973-83 → 2001-11</li><li class="opt" data-choice="C">1967-73 → 1760-1960 → 1973-83 → 1983-93 → 2011-20 → 1993-2001 → 2001-11</li><li class="opt" data-choice="D">Der er kun én periode</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>5) Hvad menes der typisk med 'push' og 'pull' i migrationsforklaringer?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Push = tiltrækning, Pull = frastødning</li><li class="opt" data-choice="B">Push = forhold der presser mennesker væk; Pull = forhold der trækker dem til et nyt sted</li><li class="opt" data-choice="C">Begge betyder det samme</li><li class="opt" data-choice="D">Kun relevant for turisme</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>6) Hvad beskriver 'assimilation' bedst?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At minoriteter forventes at opgive centrale træk og blive som majoriteten</li><li class="opt" data-choice="B">At forskellige grupper lever helt adskilt uden kontakt</li><li class="opt" data-choice="C">At staten ikke har nogen politik på området</li><li class="opt" data-choice="D">At man kun lærer sproget, intet andet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>7) Hvad beskriver 'integration' bedst i dansk debat?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At alle skal leve i parallelle samfund</li><li class="opt" data-choice="B">At minoriteter deltager i samfundets centrale institutioner (arbejde, uddannelse, sprog) uden nødvendigvis at opgive al kultur</li><li class="opt" data-choice="C">At man altid vender tilbage til hjemlandet</li><li class="opt" data-choice="D">At asyl automatisk gives</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>8) Hvad er 'strukturel diskrimination'?</b><span class="tag">Begreber</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">En enkelt persons grove kommentar</li><li class="opt" data-choice="B">Systematiske mønstre i institutioner/regler, der stiller grupper ringere, også uden bevidst hensigt</li><li class="opt" data-choice="C">Når to kulturer mødes og spiser sammen</li><li class="opt" data-choice="D">Når man lærer dansk</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>9) Hvorfor fylder familiesammenføring ofte meget i udlændingepolitik?</b><span class="tag">Overblik</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi det altid er ulovligt</li><li class="opt" data-choice="B">Fordi det påvirker befolkningssammensætning og integration, og derfor bliver et politisk stridspunkt</li><li class="opt" data-choice="C">Fordi det kun handler om turister</li><li class="opt" data-choice="D">Fordi det kun vedrører EU-regler</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>10) Hvilket tema kendetegner perioden 1760–1960 i materialet?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Primært store flygtningestrømme fra Syrien</li><li class="opt" data-choice="B">Relativt begrænset indvandring, men vigtige minoriteter og regulering (fx indfødsret/arbejdsvilkår)</li><li class="opt" data-choice="C">EU’s frie bevægelighed</li><li class="opt" data-choice="D">24-års reglen</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>11) Hvad var formålet med indfødsretslovgivning i denne tid (overordnet)?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At gøre alle borgere verdensborgere</li><li class="opt" data-choice="B">At definere hvem der havde rettigheder/loyalitet i staten (statsborgerskab/indfødsret)</li><li class="opt" data-choice="C">At afskaffe staten</li><li class="opt" data-choice="D">At give asyl automatisk</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>12) Hvad var 'Polakloven' (1908) et eksempel på?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Regulering af arbejdsvilkår for udenlandske arbejdere</li><li class="opt" data-choice="B">Afskaffelse af fagforeninger</li><li class="opt" data-choice="C">Forbud mod al handel</li><li class="opt" data-choice="D">EU-direktiv om fri bevægelighed</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>13) Hvorfor blev jøders rettigheder et centralt spørgsmål i 1800-tallet?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Fordi grundloven 1849 ændrede borgerrettigheder og ligestilling</li><li class="opt" data-choice="B">Fordi Danmark blev medlem af EU</li><li class="opt" data-choice="C">Fordi indvandrerstop blev indført</li><li class="opt" data-choice="D">Fordi Muhammed-krisen skete</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>14) Hvilket begreb passer bedst til, når en gruppe får formel ligestilling i loven, men stadig møder social modstand?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Juridisk integration vs. social inkludering</li><li class="opt" data-choice="B">Asylprocedure</li><li class="opt" data-choice="C">Schengen</li><li class="opt" data-choice="D">Konjunktur</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>15) Hvad er et rimeligt eksempel på et kulturmøde i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Debat om minoriteters rettigheder og national tilhørsforhold</li><li class="opt" data-choice="B">Diskussion om sociale medier</li><li class="opt" data-choice="C">Stramninger efter 11. september</li><li class="opt" data-choice="D">Flygtningekrisen i 2015</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>16) Hvilken kilde-/opgavekompetence træner kapitlerne typisk?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kun at memorere</li><li class="opt" data-choice="B">At læse historiske fremstillinger og diskutere datidens syn på 'de fremmede'</li><li class="opt" data-choice="C">At lave matematiske beviser</li><li class="opt" data-choice="D">At skrive skønlitteratur</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>17) Hvad er den bedste definition på 'majoritet' i denne sammenhæng?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Den gruppe der har mest magt/definitionsmagt i samfundet</li><li class="opt" data-choice="B">Den gruppe der altid er størst globalt</li><li class="opt" data-choice="C">Den nyeste gruppe i landet</li><li class="opt" data-choice="D">Den gruppe der har mindst adgang til ressourcer</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>18) Hvilket begreb beskriver bedst en stat, der forsøger at beskytte 'national sammenhængskraft' via regler om indfødsret?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Nationalstat og grænsekontrol</li><li class="opt" data-choice="B">Anarki</li><li class="opt" data-choice="C">Total global frihed</li><li class="opt" data-choice="D">Ingen politisk styring</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>19) Hvad var den vigtigste 'pull'-faktor for indvandring til Danmark i slut-1960’erne?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Arbejdskraftmangel i højkonjunktur</li><li class="opt" data-choice="B">Borgerkrig i Syrien</li><li class="opt" data-choice="C">EU’s østudvidelse</li><li class="opt" data-choice="D">Muhammed-tegninger</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>20) Begrebet 'fremmedarbejdere' henviser typisk til …</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Turister</li><li class="opt" data-choice="B">Arbejdsmigranter rekrutteret til industrien m.m.</li><li class="opt" data-choice="C">Kun studerende</li><li class="opt" data-choice="D">Kun flygtninge</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>21) Hvad var 'det lille indvandrerstop' (1970) et forsøg på?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At afskaffe velfærdsstaten</li><li class="opt" data-choice="B">At begrænse tilstrømningen af udenlandsk arbejdskraft</li><li class="opt" data-choice="C">At åbne for fri indvandring</li><li class="opt" data-choice="D">At indføre 24-års regel</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>22) Hvilken problemstilling nævnes ofte om fremmedarbejderne i debatten?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Underbetaling/arbejdsvilkår og pres på standarder</li><li class="opt" data-choice="B">At de ikke kunne lære matematik</li><li class="opt" data-choice="C">At de kom via asyl</li><li class="opt" data-choice="D">At de alle var diplomater</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>23) Når man forklarer 1960’ernes indvandring primært via konjunkturer og arbejdsmarked, er det en …</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Kulturel forklaring</li><li class="opt" data-choice="B">Økonomisk/strukturel forklaring</li><li class="opt" data-choice="C">Psykologisk forklaring</li><li class="opt" data-choice="D">Religiøs forklaring</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>24) Hvilken typisk eftervirkning fik perioden for senere politik?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Ingen – arbejdsmigranter forsvandt uden familie</li><li class="opt" data-choice="B">Efter stop blev familie og ophold et centralt politisk tema</li><li class="opt" data-choice="C">EU overtog alt i 1971</li><li class="opt" data-choice="D">Asyl blev afskaffet</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>25) Hvad betyder 'pull-faktor' mest præcist her?</b><span class="tag">Begreb</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Forhold i Danmark der tiltrækker (job, løn, stabilitet)</li><li class="opt" data-choice="B">Forhold i hjemlandet der presser folk ud</li><li class="opt" data-choice="C">Et lovkrav om tvang</li><li class="opt" data-choice="D">Et mediebegreb</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>26) Hvad er en rimelig kildekritisk pointe om perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Begreber som 'fremmedarbejder' er neutrale og uden effekt</li><li class="opt" data-choice="B">Sprogbrug kan afspejle magt og syn på tilhørsforhold</li><li class="opt" data-choice="C">Kilder behøver aldrig kontekst</li><li class="opt" data-choice="D">Man kan ikke diskutere perspektiver</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>27) Hvilket dilemma opstår ofte mellem virksomheder og stat i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Behov for arbejdskraft vs. politisk kontrol over indvandring</li><li class="opt" data-choice="B">Behov for kunst vs. censur</li><li class="opt" data-choice="C">Behov for krig vs. fred</li><li class="opt" data-choice="D">Behov for EU vs. NATO</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>28) Hvad er hovedpointen ved indvandrerstoppet i 1973?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At asyl blev afskaffet</li><li class="opt" data-choice="B">At rekruttering af ny udenlandsk arbejdskraft blev stoppet/stramt reguleret pga. krise</li><li class="opt" data-choice="C">At Danmark blev medlem af EU</li><li class="opt" data-choice="D">At Grundloven blev ændret</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>29) Hvilken type indvandring fylder relativt mere efter 1973?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Arbejdskraftrekruttering</li><li class="opt" data-choice="B">Familiesammenføring og flygtninge/asyl</li><li class="opt" data-choice="C">Kun studerende</li><li class="opt" data-choice="D">Kun turisme</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>30) Hvilken baggrundsfaktor er central i perioden?</b><span class="tag">Fakta</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Højkonjunktur</li><li class="opt" data-choice="B">Økonomisk krise/arbejdsløshed</li><li class="opt" data-choice="C">EU’s Schengen-samarbejde</li><li class="opt" data-choice="D">Sociale medier</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>31) Exit: Du får en ukendt tekst der argumenterer for stramninger. Hvad gør du først?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">Identificér afsender, formål og centrale begreber (integration, sikkerhed, velfærd) før du vurderer argumenter</li><li class="opt" data-choice="B">Skriv din mening uden belæg</li><li class="opt" data-choice="C">Gæt på årstal</li><li class="opt" data-choice="D">Ignorér teksten</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="B">
+<div class="meta"><b>32) Exit: Hvad er en stærk konklusion til en historisk vurdering af udlændingepolitik 1960–2020?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At der kun findes én årsag</li><li class="opt" data-choice="B">At politikken ændrer sig i samspil mellem økonomi, internationale kriser, partipolitik og værdidebat – med både brud og kontinuitet</li><li class="opt" data-choice="C">At intet ændrer sig</li><li class="opt" data-choice="D">At historie ikke kan bruges</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+<div class="qrow mcq" data-answer="A">
+<div class="meta"><b>33) Exit: Hvilken fejl skal du undgå i en kort analyse?</b><span class="tag">Exit</span></div>
+<ul class="opts">
+<li class="opt" data-choice="A">At bruge begreber uden at knytte dem til konkrete eksempler fra perioderne</li><li class="opt" data-choice="B">At forklare med både struktur og kultur</li><li class="opt" data-choice="C">At sammenligne perioder</li><li class="opt" data-choice="D">At lave en tydelig pointe</li>
+</ul>
+<div aria-live="polite" class="fb"></div>
+</div>
+</div>
+<div class="row">
+<button class="btn score" onclick="showScore('#p-9 .quiz', '#p-9 .scoreline')">Tjek svar</button>
+<span aria-live="polite" class="scoreline"></span>
+</div>
+</div>
 </main>
+<script>
+// Tabs
+ const tabs = [...document.querySelectorAll('.tabs button[role="tab"]')];
+ const panels = [...document.querySelectorAll('.panel')];
+ function activateTab(btn){
+  tabs.forEach(b=>b.setAttribute('aria-selected','false'));
+  btn.setAttribute('aria-selected','true');
+  const id = btn.getAttribute('aria-controls');
+  panels.forEach(p=>p.classList.toggle('active', p.id===id));
+  window.scrollTo({top:0, behavior:'instant'});
+ }
+ tabs.forEach(btn=>btn.addEventListener('click', ()=>activateTab(btn)));
+
+ // MCQ
+ function handleMCQ(mcq){
+  const answer = mcq.dataset.answer;
+  const opts = mcq.querySelectorAll('.opt');
+  opts.forEach(opt=>{
+   opt.addEventListener('click', ()=>{
+    opts.forEach(o=>o.classList.remove('correct','wrong'));
+    const choice = opt.dataset.choice;
+    if(choice===answer){
+     opt.classList.add('correct');
+     mcq.dataset.correct="1";
+    }else{
+     opt.classList.add('wrong');
+     mcq.dataset.correct="0";
+     const right = [...opts].find(o=>o.dataset.choice===answer);
+     if(right) right.classList.add('correct');
+    }
+   });
+  });
+ }
+ document.querySelectorAll('.mcq').forEach(handleMCQ);
+
+ // Score
+ function showScore(scopeSelector, outSelector){
+  const scope = document.querySelector(scopeSelector);
+  const out = document.querySelector(outSelector);
+  if(!scope || !out) return;
+  const qs = [...scope.querySelectorAll('.mcq')];
+  const answered = qs.filter(q=>q.dataset.correct==="1" || q.dataset.correct==="0").length;
+  const correct = qs.filter(q=>q.dataset.correct==="1").length;
+  out.textContent = `Svar: ${answered}/${qs.length}. Korrekte: ${correct}/${qs.length}.`;
+ }
+ window.showScore = showScore;
+</script>
 </body>
 </html>

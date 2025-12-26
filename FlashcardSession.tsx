@@ -1,6 +1,7 @@
+
 import React, { useState } from 'react';
 
-export const FlashcardSession = ({ entries, onExit, onRecord, playSound }: any) => {
+export const FlashcardSession = ({ entries, onExit, onRecord }: any) => {
   const [queue, setQueue] = useState([...entries]);
   const [revealed, setRevealed] = useState(false);
   const current = queue[0];
@@ -12,8 +13,8 @@ export const FlashcardSession = ({ entries, onExit, onRecord, playSound }: any) 
   );
   const handleResponse = (ok: boolean) => {
     onRecord(current.id, ok);
-    if (ok) { playSound('success'); setRevealed(false); setQueue((prev: any[]) => prev.slice(1)); } 
-    else { playSound('damage'); setRevealed(false); }
+    if (ok) { setRevealed(false); setQueue((prev: any[]) => prev.slice(1)); } 
+    else { setRevealed(false); }
   };
   return (
     <div className="max-w-2xl mx-auto py-8 px-4 h-full overflow-y-auto">

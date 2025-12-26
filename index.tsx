@@ -1,4 +1,3 @@
-
 import React, { useState, useMemo, useEffect, useCallback } from 'react';
 import { createRoot } from 'react-dom/client';
 import { TOPICS, HISTORY_ENTRIES, EXAM_SETS, PRIMARY_SOURCES } from './data/index.js';
@@ -37,7 +36,7 @@ const NoteViewer = ({ selectedTopicId }: { selectedTopicId: string }) => {
       {error ? (
         <div className="p-20 text-center font-black h-full flex items-center justify-center flex-col gap-4">
            <span className="text-6xl">🏜️</span>
-           <span className="uppercase text-slate-400">NOTER MANGLER FOR DETTE EMNE</span>
+           <span className="uppercase text-slate-400 font-bold">NOTER MANGLER FOR DETTE EMNE</span>
         </div>
       ) : <iframe srcDoc={content || ''} className="w-full h-full border-none" title="Notes" />}
     </div>
@@ -51,18 +50,18 @@ const FlashcardSession = ({ entries, onExit, onRecord }: any) => {
   if (!current) return (
     <div className="max-w-xl mx-auto py-20 text-center animate-pop">
       <h2 className="text-4xl font-black text-slate-900 mb-8 uppercase italic tracking-tighter">Session Færdig!</h2>
-      <button onClick={onExit} className="bg-blue-300 border-4 border-slate-900 px-12 py-6 text-xl font-black shadow-[8px_8px_0px_black] uppercase italic">TILBAGE TIL DOCK</button>
+      <button onClick={onExit} className="bg-blue-300 border-4 border-slate-900 px-12 py-6 text-xl font-black shadow-[8px_8px_0px_black] uppercase italic text-slate-900">TILBAGE TIL DOCK</button>
     </div>
   );
   const handleResponse = (ok: boolean) => {
     onRecord(current.id, ok);
-    if (ok) { playSound('success'); setRevealed(false); setQueue((prev: any[]) => prev.slice(1)); } 
-    else { playSound('damage'); setRevealed(false); }
+    if (ok) { setRevealed(false); setQueue((prev: any[]) => prev.slice(1)); } 
+    else { setRevealed(false); }
   };
   return (
     <div className="max-w-2xl mx-auto py-8 px-4 h-full overflow-y-auto no-scrollbar">
       <div className="flex justify-between items-center mb-8">
-        <button onClick={onExit} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs shadow-[4px_4px_0px_black]">✕ LUK</button>
+        <button onClick={onExit} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs shadow-[4px_4px_0px_black] text-slate-900">✕ LUK</button>
         <span className="font-black text-slate-900 uppercase text-xs bg-white px-4 py-2 border-4 border-slate-900 shadow-[4px_4px_0px_black]">Kort tilbage: {queue.length}</span>
       </div>
       <div className="bg-white border-4 border-slate-900 p-10 min-h-[400px] flex flex-col justify-center text-center shadow-[12px_12px_0px_black] rounded-xl transform transition-transform">
@@ -70,7 +69,7 @@ const FlashcardSession = ({ entries, onExit, onRecord }: any) => {
           <div>
             <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest block mb-4 border-b-2 border-slate-50 pb-2">Hvad betyder...?</span>
             <h2 className="text-3xl md:text-5xl font-black text-slate-900 mb-16 px-4 uppercase leading-tight tracking-tighter">{current.title}</h2>
-            <button onClick={() => setRevealed(true)} className="bg-blue-300 border-4 border-slate-900 w-full py-8 text-2xl font-black uppercase italic shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all">Vis Svar</button>
+            <button onClick={() => setRevealed(true)} className="bg-blue-300 border-4 border-slate-900 w-full py-8 text-2xl font-black uppercase italic shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-slate-900">Vis Svar</button>
           </div>
         ) : (
           <div className="animate-pop p-4">
@@ -78,8 +77,8 @@ const FlashcardSession = ({ entries, onExit, onRecord }: any) => {
             <p className="text-xl md:text-2xl text-slate-900 font-bold mb-12 italic leading-relaxed text-left border-l-8 border-blue-200 pl-6">"{current.description}"</p>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
               <button onClick={() => handleResponse(false)} className="bg-red-400 text-white border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-red-500">IGEN</button>
-              <button onClick={() => handleResponse(false)} className="bg-yellow-300 border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-yellow-400">SVÆRT</button>
-              <button onClick={() => handleResponse(true)} className="bg-green-400 border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-green-500">OK</button>
+              <button onClick={() => handleResponse(false)} className="bg-yellow-300 border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-yellow-400 text-slate-900">SVÆRT</button>
+              <button onClick={() => handleResponse(true)} className="bg-green-400 border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-green-500 text-slate-900">OK</button>
               <button onClick={() => handleResponse(true)} className="bg-blue-400 text-white border-4 border-slate-900 p-4 font-black text-[10px] shadow-[4px_4px_0px_black] active:shadow-none hover:bg-blue-500">LET</button>
             </div>
           </div>
@@ -109,15 +108,15 @@ const QuizSession = ({ entries, onExit, title, onRecord }: any) => {
   return (
     <div className="max-w-2xl mx-auto py-8 h-full overflow-y-auto no-scrollbar">
       <div className="flex justify-between items-center mb-8">
-        <button onClick={onExit} className="border-4 border-slate-900 px-6 py-2 bg-white font-black uppercase text-xs shadow-[4px_4px_0px_black]">✕ AFBRYD</button>
-        <span className="font-black border-4 border-slate-900 px-6 py-2 uppercase text-xs bg-white shadow-[4px_4px_0px_black]">{idx + 1} / {sessionData.length}</span>
+        <button onClick={onExit} className="border-4 border-slate-900 px-6 py-2 bg-white font-black uppercase text-xs shadow-[4px_4px_0px_black] text-slate-900">✕ AFBRYD</button>
+        <span className="font-black border-4 border-slate-900 px-6 py-2 uppercase text-xs bg-white shadow-[4px_4px_0px_black] text-slate-900">{idx + 1} / {sessionData.length}</span>
       </div>
       <div className="bg-white border-4 border-slate-900 p-10 shadow-[16px_16px_0px_black] rounded-2xl">
         <p className="text-[10px] font-black text-blue-600 uppercase mb-6 tracking-widest border-b-2 border-slate-100 pb-2">{title}</p>
         <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-12 leading-tight tracking-tight">{currentQ.question}</h2>
         <div className="space-y-4">
           {currentQ.options.map((o: string) => (
-            <button key={o} disabled={isAnswered} onClick={() => handleSelect(o)} className={`w-full text-left p-6 border-4 transition-all font-black text-lg shadow-[4px_4px_0px_black] ${isAnswered ? (o === currentQ.correctAnswer ? 'bg-green-400 border-slate-900' : (o === selected ? 'bg-red-400 text-white' : 'opacity-30 grayscale')) : 'bg-white hover:bg-blue-50'}`}>
+            <button key={o} disabled={isAnswered} onClick={() => handleSelect(o)} className={`w-full text-left p-6 border-4 transition-all font-black text-lg shadow-[4px_4px_0px_black] ${isAnswered ? (o === currentQ.correctAnswer ? 'bg-green-400 border-slate-900 text-slate-900' : (o === selected ? 'bg-red-400 text-white' : 'opacity-30 grayscale')) : 'bg-white hover:bg-blue-50 text-slate-900'}`}>
               {o}
             </button>
           ))}
@@ -154,16 +153,16 @@ const SourceAnalysis = ({ sources, onExit, onRecord }: any) => {
     onRecord(currentSource.id, ok);
   };
 
-  if (!currentSource) return <div className="text-center p-20"><button onClick={onExit} className="border-4 p-4 border-slate-900 font-black uppercase">VÆLG EMNER I SIDEBAREN</button></div>;
+  if (!currentSource) return <div className="text-center p-20"><button onClick={onExit} className="border-4 p-4 border-slate-900 font-black uppercase text-slate-900">VÆLG EMNER I SIDEBAREN</button></div>;
 
   return (
     <div className="max-w-4xl mx-auto py-12 h-full overflow-y-auto no-scrollbar pb-48 px-4">
       <div className="flex justify-between items-center mb-10">
-        <button onClick={onExit} className="border-4 border-slate-900 px-6 py-2 bg-white font-black uppercase text-xs shadow-[4px_4px_0px_black]">✕ AFBRYD</button>
-        <span className="font-black bg-yellow-300 border-4 border-slate-900 px-6 py-2 uppercase text-xs shadow-[4px_4px_0px_black]">KILDE {curr + 1} / {sessionSources.length}</span>
+        <button onClick={onExit} className="border-4 border-slate-900 px-6 py-2 bg-white font-black uppercase text-xs shadow-[4px_4px_0px_black] text-slate-900">✕ AFBRYD</button>
+        <span className="font-black bg-yellow-300 border-4 border-slate-900 px-6 py-2 uppercase text-xs shadow-[4px_4px_0px_black] text-slate-900">KILDE {curr + 1} / {sessionSources.length}</span>
       </div>
       <div className="bg-white border-4 border-slate-900 p-12 shadow-[20px_20px_0px_black] rounded-3xl">
-        <h2 className="text-4xl font-black mb-8 underline decoration-blue-400 decoration-8 uppercase italic tracking-tighter leading-tight">{currentSource.title}</h2>
+        <h2 className="text-4xl font-black mb-8 underline decoration-blue-400 decoration-8 uppercase italic tracking-tighter leading-tight text-slate-900">{currentSource.title}</h2>
         <div className="bg-slate-50 border-4 border-slate-900 p-10 mb-12 italic text-2xl leading-relaxed whitespace-pre-wrap border-l-[16px] border-l-slate-900 rounded-r-2xl shadow-inner text-slate-900">
           "{currentSource.text}"
         </div>
@@ -336,28 +335,42 @@ const ExamMaster = ({ stats, setStats, onExit, onRecord }: any) => {
   const [matchingState, setMatchingState] = useState<Record<number, string>>({});
 
   const currentSet = useMemo(() => EXAM_SETS.find(s => s.id === selectedId), [selectedId]);
-  const currentQuestion = currentSet?.questions[examStep];
   
-  const shuffledMatches = useMemo(() => {
-    if (currentQuestion?.type === 'matching') {
-      return shuffle(currentQuestion.pairs.map((p: any) => p.match));
-    }
-    return [];
-  }, [currentQuestion]);
+  const shuffledQuestions = useMemo(() => {
+    if (!currentSet) return [];
+    // Shuffle the questions array and shuffle MCQ options inside each question
+    return shuffle(currentSet.questions.map(q => ({
+      ...q,
+      options: q.type === 'mcq' ? shuffle([...q.options]) : q.options,
+      // For matching, we pre-shuffle the right column for the UI
+      shuffledMatches: q.type === 'matching' ? shuffle(q.pairs.map((p:any) => p.match)) : []
+    })));
+  }, [currentSet]);
+
+  const currentQuestion = shuffledQuestions[examStep];
 
   const handleGrade = () => {
     if (!currentSet) return "00";
     const total = currentSet.questions.length;
     const ratio = points / total;
-    if (ratio >= 0.9) return "12"; if (ratio >= 0.75) return "10"; if (ratio >= 0.6) return "7";
-    if (ratio >= 0.45) return "4"; if (ratio >= 0.25) return "02"; if (ratio >= 0.1) return "00";
+    // Strict Danish 7-point scale mapping
+    if (ratio >= 0.95) return "12";
+    if (ratio >= 0.85) return "10";
+    if (ratio >= 0.70) return "7";
+    if (ratio >= 0.55) return "4";
+    if (ratio >= 0.40) return "02";
+    if (ratio >= 0.15) return "00";
     return "-3";
   };
 
   const handleNext = (correct: boolean) => {
-    if (correct) { setPoints(p => p + 1); playSound('success'); } else { playSound('damage'); }
-    if (examStep < (currentSet?.questions.length || 0) - 1) { setExamStep(s => s + 1); setMatchingState({}); } 
-    else { setPhase('result'); playSound('victory'); }
+    if (correct) { setPoints(p => p + 1); }
+    if (examStep < shuffledQuestions.length - 1) { 
+      setExamStep(s => s + 1); 
+      setMatchingState({}); 
+    } else { 
+      setPhase('result'); 
+    }
   };
 
   if (phase === 'select') return (
@@ -368,10 +381,10 @@ const ExamMaster = ({ stats, setStats, onExit, onRecord }: any) => {
       </header>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {EXAM_SETS.map(set => (
-          <button key={set.id} onClick={() => { setSelectedId(set.id); setPhase('prep'); playSound('start'); }} className="group bg-white border-4 border-slate-900 p-8 text-left shadow-[12px_12px_0px_black] flex flex-col h-full hover:-translate-y-2 transition-all hover:bg-blue-50">
+          <button key={set.id} onClick={() => { setSelectedId(set.id); setPhase('prep'); }} className="group bg-white border-4 border-slate-900 p-8 text-left shadow-[12px_12px_0px_black] flex flex-col h-full hover:-translate-y-2 transition-all hover:bg-blue-50">
             <div className="bg-slate-900 text-white inline-block px-3 py-1 font-black text-[10px] uppercase mb-4 w-fit">Emne {set.topicId}</div>
-            <h3 className="text-3xl font-black mb-4 uppercase leading-tight group-hover:text-blue-600 text-slate-900">{set.title}</h3>
-            <p className="text-sm font-bold text-slate-600 mb-8 italic flex-1">"{set.description}"</p>
+            <h3 className="text-3xl font-black mb-4 uppercase leading-tight group-hover:text-blue-600 text-slate-900" style={{ color: '#0f172a' }}>{set.title}</h3>
+            <p className="text-sm font-bold text-slate-600 mb-8 italic flex-1" style={{ color: '#475569' }}>"{set.description}"</p>
             <div className="mt-auto bg-slate-900 text-white py-4 text-center font-black uppercase text-sm shadow-[4px_4px_0px_#3b82f6] group-hover:bg-blue-600">LÆS KILDER OG FORBERED DIG</div>
           </button>
         ))}
@@ -386,7 +399,7 @@ const ExamMaster = ({ stats, setStats, onExit, onRecord }: any) => {
           <button onClick={() => setPhase('select')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs text-slate-900">← TILBAGE</button>
           <h2 className="text-3xl font-black italic uppercase text-slate-400">FASE 1: FORBEREDELSE</h2>
         </div>
-        <button onClick={() => { setPhase('exam'); playSound('start'); }} className="bg-green-400 border-4 border-slate-900 px-10 py-5 font-black uppercase shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-slate-900">START EKSAMINATION →</button>
+        <button onClick={() => { setPhase('exam'); }} className="bg-green-400 border-4 border-slate-900 px-10 py-5 font-black uppercase shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-slate-900">START EKSAMINATION →</button>
       </header>
       <div className="flex-1 flex flex-col lg:flex-row gap-8 overflow-hidden pb-12">
         <div className="w-full lg:w-80 flex flex-col gap-3">
@@ -416,8 +429,8 @@ const ExamMaster = ({ stats, setStats, onExit, onRecord }: any) => {
         <header className="flex justify-between items-center mb-12 border-b-8 border-slate-900 pb-8">
           <button onClick={() => setPhase('prep')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs shadow-[2px_2px_0px_black] text-slate-900">← SE KILDER IGEN</button>
           <div className="text-right">
-            <h2 className="text-4xl font-black italic text-blue-600 uppercase">PROGNOSE: {handleGrade()}</h2>
-            <span className="text-xs font-black text-slate-400 uppercase tracking-widest">KATEGORI: {currentQuestion.category || 'OPGAVE'} | {examStep + 1} / {currentSet.questions.length}</span>
+            <h2 className="text-4xl font-black italic uppercase" style={{ color: '#1d4ed8' }}>PROGNOSE: {handleGrade()}</h2>
+            <span className="text-xs font-black uppercase tracking-widest" style={{ color: '#475569' }}>KATEGORI: {currentQuestion.category || 'OPGAVE'} | {examStep + 1} / {shuffledQuestions.length}</span>
           </div>
         </header>
         <div className="bg-white border-8 border-slate-900 p-12 shadow-[25px_25px_0px_black] rounded-3xl relative overflow-hidden">
@@ -450,7 +463,7 @@ const ExamMaster = ({ stats, setStats, onExit, onRecord }: any) => {
                       className="p-4 border-4 border-slate-900 font-black text-xs bg-white text-slate-900 flex-[2.5] outline-none h-[60px] focus:ring-4 ring-blue-200"
                     >
                       <option value="">VÆLG MATCH...</option>
-                      {shuffledMatches.map((m: string) => <option key={m} value={m}>{m}</option>)}
+                      {currentQuestion.shuffledMatches.map((m: string) => <option key={m} value={m}>{m}</option>)}
                     </select>
                  </div>
                ))}
@@ -565,15 +578,15 @@ const App = () => {
                   <div className="text-5xl mb-6">⚔️</div>
                   <h3 className="text-2xl font-black mb-3 uppercase italic underline decoration-green-200 text-slate-900">Timeline Quest</h3>
                   <p className="text-[11px] font-bold text-slate-500 mb-8 uppercase tracking-widest flex-1">Placér hændelser kronologisk. Rekord: {stats.bestTimeline || 0}.</p>
-                  <div className="bg-green-300 border-4 border-slate-900 px-6 py-4 text-center font-black mt-auto text-slate-900">START MISSION</div>
+                  <div className="bg-green-300 border-4 border-slate-900 px-6 py-4 text-center font-black mt-auto text-slate-900 text-slate-900">START MISSION</div>
                 </button>
-                <button onClick={() => setView('exam')} className="bg-slate-900 border-4 border-slate-900 p-8 text-left hover:bg-slate-800 shadow-[12px_12px_0px_#3b82f6] group flex flex-col h-full md:col-span-2 aspect-auto lg:aspect-[2.1/1]">
+                <button onClick={() => setView('exam')} className="bg-white border-8 border-slate-900 p-8 text-left hover:bg-slate-50 shadow-[12px_12px_0px_#3b82f6] group flex flex-col h-full md:col-span-2 aspect-auto lg:aspect-[2.1/1]">
                   <div className="flex items-center gap-10 h-full">
                     <div className="text-7xl shrink-0">🎓</div>
                     <div className="flex-1 flex flex-col h-full">
-                      <h3 className="text-3xl font-black mb-3 uppercase italic text-white underline decoration-blue-500">Mundtlig Eksamen (HF)</h3>
-                      <p className="text-sm font-bold text-white mb-8 uppercase opacity-60 italic tracking-widest leading-relaxed flex-1">Fuld simulering med verbøse kilder og metodisk hjælp.</p>
-                      <div className="bg-blue-400 text-slate-900 border-4 border-slate-900 px-10 py-5 text-center font-black text-xl shadow-[6px_6px_0px_white] inline-block mt-auto w-fit">GÅ TIL DET GRØNNE BORD</div>
+                      <h3 className="text-3xl font-black mb-3 uppercase italic text-slate-900 underline decoration-blue-500">Mundtlig Eksamen (HF)</h3>
+                      <p className="text-sm font-bold text-slate-500 mb-8 uppercase italic tracking-widest leading-relaxed flex-1">Fuld simulering med kildemateriale og karakterbedømmelse.</p>
+                      <div className="bg-blue-400 text-slate-900 border-4 border-slate-900 px-10 py-5 text-center font-black text-xl shadow-[6px_6px_0px_black] inline-block mt-auto w-fit">GÅ TIL DET GRØNNE BORD</div>
                     </div>
                   </div>
                 </button>

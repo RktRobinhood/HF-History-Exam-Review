@@ -1,8 +1,9 @@
+
 import React, { useState, useMemo } from 'react';
 import { EXAM_SETS } from './data/examSets.js';
 import { shuffle } from './utils.ts';
 
-export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any) => {
+export const ExamMaster = ({ stats, setStats, onExit, onRecord }: any) => {
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [phase, setPhase] = useState<'select' | 'prep' | 'exam' | 'result'>('select');
   const [activeSourceIdx, setActiveSourceIdx] = useState(0);
@@ -11,34 +12,38 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
   const [matchingState, setMatchingState] = useState<Record<number, string>>({});
 
   const currentSet = useMemo(() => EXAM_SETS.find(s => s.id === selectedId), [selectedId]);
+  
+  const shuffledQuestions = useMemo(() => {
+    if (!currentSet) return [];
+    return shuffle(currentSet.questions.map(q => ({
+      ...q,
+      options: q.type === 'mcq' ? shuffle([...q.options]) : q.options,
+      shuffledMatches: q.type === 'matching' ? shuffle(q.pairs.map((p:any) => p.match)) : []
+    })));
+  }, [currentSet]);
+
+  const currentQuestion = shuffledQuestions[examStep];
 
   const handleGrade = () => {
     if (!currentSet) return "00";
     const total = currentSet.questions.length;
     const ratio = points / total;
-    if (ratio >= 0.9) return "12";
-    if (ratio >= 0.75) return "10";
-    if (ratio >= 0.6) return "7";
-    if (ratio >= 0.45) return "4";
-    if (ratio >= 0.25) return "02";
-    if (ratio >= 0.1) return "00";
+    if (ratio >= 0.95) return "12";
+    if (ratio >= 0.85) return "10";
+    if (ratio >= 0.70) return "7";
+    if (ratio >= 0.55) return "4";
+    if (ratio >= 0.40) return "02";
+    if (ratio >= 0.15) return "00";
     return "-3";
   };
 
   const handleNext = (correct: boolean) => {
-    if (correct) {
-      setPoints(p => p + 1);
-      playSound('success');
-    } else {
-      playSound('damage');
-    }
-    
-    if (examStep < (currentSet?.questions.length || 0) - 1) {
-      setExamStep(s => s + 1);
-      setMatchingState({});
-    } else {
-      setPhase('result');
-      playSound('victory');
+    if (correct) { setPoints(p => p + 1); }
+    if (examStep < shuffledQuestions.length - 1) { 
+      setExamStep(s => s + 1); 
+      setMatchingState({}); 
+    } else { 
+      setPhase('result'); 
     }
   };
 
@@ -53,11 +58,11 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
         {EXAM_SETS.map(set => (
           <button 
             key={set.id} 
-            onClick={() => { setSelectedId(set.id); setPhase('prep'); playSound('start'); }}
+            onClick={() => { setSelectedId(set.id); setPhase('prep'); }}
             className="group bg-white border-4 border-slate-900 p-8 text-left shadow-[12px_12px_0px_black] flex flex-col h-full hover:-translate-y-2 transition-all hover:bg-blue-50"
           >
             <div className="bg-slate-900 text-white inline-block px-3 py-1 font-black text-[10px] uppercase mb-4 w-fit">Emne {set.topicId}</div>
-            <h3 className="text-3xl font-black mb-4 uppercase leading-tight group-hover:text-blue-600 transition-colors">{set.title}</h3>
+            <h3 className="text-3xl font-black mb-4 uppercase leading-tight group-hover:text-blue-600 transition-colors text-slate-900">{set.title}</h3>
             <p className="text-sm font-bold text-slate-500 mb-8 italic">"{set.description}"</p>
             <div className="mt-auto bg-slate-900 text-white py-4 text-center font-black uppercase text-sm shadow-[4px_4px_0px_#3b82f6] group-hover:bg-blue-600">LÆS KILDER OG FORBERED DIG</div>
           </button>
@@ -70,12 +75,12 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
     <div className="max-w-6xl mx-auto py-6 flex flex-col h-full px-4 animate-pop">
       <header className="flex justify-between items-center mb-8 border-b-8 border-slate-900 pb-6">
         <div className="flex items-center gap-4">
-          <button onClick={() => setPhase('select')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs">← TILBAGE</button>
+          <button onClick={() => setPhase('select')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs text-slate-900">← TILBAGE</button>
           <h2 className="text-3xl font-black italic uppercase text-slate-400">FASE 1: FORBEREDELSE</h2>
         </div>
         <button 
-          onClick={() => { setPhase('exam'); playSound('start'); }}
-          className="bg-green-400 border-4 border-slate-900 px-10 py-5 font-black uppercase shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all"
+          onClick={() => { setPhase('exam'); }}
+          className="bg-green-400 border-4 border-slate-900 px-10 py-5 font-black uppercase shadow-[6px_6px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-slate-900"
         >
           START EKSAMINATION →
         </button>
@@ -100,7 +105,7 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
 
         <div className="flex-1 bg-white border-4 border-slate-900 p-12 overflow-y-auto shadow-inner rounded-3xl relative no-scrollbar">
           <div className="absolute top-4 right-6 text-[10px] font-black text-slate-200 uppercase tracking-[0.2em]">Primærkilde-arkiv</div>
-          <h3 className="text-4xl font-black mb-8 underline decoration-blue-200 decoration-8">{currentSet.sources[activeSourceIdx].title}</h3>
+          <h3 className="text-4xl font-black mb-8 underline decoration-blue-200 decoration-8 text-slate-900">{currentSet.sources[activeSourceIdx].title}</h3>
           <div className="bg-slate-50 border-l-[16px] border-slate-900 p-10 mb-10 shadow-sm rounded-r-xl">
              <p className="font-serif italic text-2xl leading-relaxed text-slate-800 whitespace-pre-wrap">"{currentSet.sources[activeSourceIdx].text}"</p>
           </div>
@@ -113,33 +118,31 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
     </div>
   );
 
-  if (phase === 'exam' && currentSet) {
-    const q = currentSet.questions[examStep];
-    
+  if (phase === 'exam' && currentSet && currentQuestion) {
     return (
       <div className="max-w-4xl mx-auto py-12 px-6 h-full animate-pop">
         <header className="flex justify-between items-center mb-12 border-b-8 border-slate-900 pb-8">
           <div className="flex items-center gap-4">
-            <button onClick={() => setPhase('prep')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs shadow-[2px_2px_0px_black]">← SE KILDER IGEN</button>
+            <button onClick={() => setPhase('prep')} className="border-4 border-slate-900 px-4 py-2 bg-white font-black uppercase text-xs shadow-[2px_2px_0px_black] text-slate-900">← SE KILDER IGEN</button>
             <h2 className="text-4xl font-black italic text-blue-600 uppercase">PROGNOSE: {handleGrade()}</h2>
           </div>
           <div className="text-right">
             <span className="block text-[10px] font-black text-slate-400 uppercase tracking-widest">Spørgsmål</span>
-            <span className="text-3xl font-black italic leading-none">{examStep + 1} / {currentSet.questions.length}</span>
+            <span className="text-3xl font-black italic leading-none">{examStep + 1} / {shuffledQuestions.length}</span>
           </div>
         </header>
 
         <div className="bg-white border-8 border-slate-900 p-12 shadow-[25px_25px_0px_black] rounded-3xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 bg-yellow-400 border-l-8 border-b-8 border-slate-900 px-4 py-1 text-[10px] font-black uppercase tracking-widest">Det Grønne Bord</div>
-          <h2 className="text-4xl font-black mb-12 leading-tight uppercase italic tracking-tighter underline decoration-yellow-300 decoration-8">"{q.question}"</h2>
+          <div className="absolute top-0 right-0 bg-yellow-400 border-l-8 border-b-8 border-slate-900 px-4 py-1 text-[10px] font-black uppercase tracking-widest text-slate-900">Det Grønne Bord</div>
+          <h2 className="text-4xl font-black mb-12 leading-tight uppercase italic tracking-tighter underline decoration-yellow-300 decoration-8 text-slate-900">"{currentQuestion.question}"</h2>
           
-          {q.type === 'mcq' ? (
+          {currentQuestion.type === 'mcq' ? (
             <div className="space-y-4">
-              {q.options.map((o: string) => (
+              {currentQuestion.options.map((o: string) => (
                 <button 
                   key={o} 
-                  onClick={() => handleNext(o === q.correctAnswer)}
-                  className="w-full text-left p-8 border-4 border-slate-900 font-black text-xl hover:bg-blue-50 transition-all shadow-[8px_8px_0px_black] active:translate-y-1 active:shadow-none"
+                  onClick={() => handleNext(o === currentQuestion.correctAnswer)}
+                  className="w-full text-left p-8 border-4 border-slate-900 font-black text-xl hover:bg-blue-50 transition-all shadow-[8px_8px_0px_black] active:translate-y-1 active:shadow-none text-slate-900"
                 >
                   {o}
                 </button>
@@ -147,8 +150,8 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
             </div>
           ) : (
             <div className="space-y-6 bg-slate-50 p-8 border-4 border-slate-900 rounded-xl shadow-inner">
-               {q.pairs.map((p: any, i: number) => (
-                 <div key={i} className="flex flex-col md:flex-row items-center gap-4">
+               {currentQuestion.pairs.map((p: any, i: number) => (
+                 <div key={i} className="flex flex-col md:flex-row items-center gap-4 mb-4">
                     <div className="bg-slate-900 text-white p-4 font-black uppercase text-sm flex-1 text-center md:text-left">{p.item}</div>
                     <div className="text-2xl font-black text-slate-300">↔</div>
                     <select 
@@ -156,15 +159,15 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
                       onChange={(e) => {
                         const newMatching = {...matchingState, [i]: e.target.value};
                         setMatchingState(newMatching);
-                        if (Object.keys(newMatching).length === q.pairs.length) {
-                           const isAllCorrect = q.pairs.every((pair: any, idx: number) => newMatching[idx] === pair.match);
+                        if (Object.keys(newMatching).length === currentQuestion.pairs.length) {
+                           const isAllCorrect = currentQuestion.pairs.every((pair: any, idx: number) => newMatching[idx] === pair.match);
                            setTimeout(() => handleNext(isAllCorrect), 800);
                         }
                       }}
-                      className="p-4 border-4 border-slate-900 font-bold text-xs bg-white flex-1 outline-none focus:ring-4 ring-blue-200"
+                      className="p-4 border-4 border-slate-900 font-bold text-xs bg-white text-slate-900 flex-1 outline-none focus:ring-4 ring-blue-200"
                     >
                       <option value="">Vælg match...</option>
-                      {shuffle(q.pairs.map((p: any) => p.match)).map((m: string) => <option key={m} value={m}>{m}</option>)}
+                      {currentQuestion.shuffledMatches.map((m: string) => <option key={m} value={m}>{m}</option>)}
                     </select>
                  </div>
                ))}
@@ -181,7 +184,7 @@ export const ExamMaster = ({ stats, setStats, onExit, onRecord, playSound }: any
         <h2 className="text-4xl font-black mb-8 uppercase text-slate-400 italic tracking-widest leading-none">PRØVEN ER SLUT</h2>
         <div className="text-[18rem] font-black text-slate-900 mb-10 leading-none drop-shadow-[15px_15px_0_#fde047]">{handleGrade()}</div>
         <p className="text-2xl font-bold mb-12 text-slate-600 uppercase tracking-wider italic">
-          {parseInt(handleGrade()) >= 7 ? 'Censoren er imponeret. Du har et stærkt historisk overblik.' : 'Du er bestået, men husk at bruge flere metodiske begreber næste gang.'}
+          {parseInt(handleGrade()) >= 7 ? 'Censoren er imponeret. Du har et stærkt historisk overblik.' : 'Husk at bruge flere metodiske begreber næste gang for at løfte din karakter.'}
         </p>
         <button 
           onClick={() => { 
