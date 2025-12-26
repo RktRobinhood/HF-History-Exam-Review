@@ -36,20 +36,16 @@ const FlashcardSession = ({ entries, onExit, onRecord }) => {
 
   if (!current) return (
     <div className="max-w-xl mx-auto py-20 text-center">
-      <h2 className="text-3xl font-black text-slate-900 mb-6">Session Færdig!</h2>
+      <h2 className="text-3xl font-black text-slate-900 mb-6 uppercase">Session Færdig!</h2>
       <button onClick={onExit} className={`${UI.btn} ${UI.primary} px-10 py-4 text-lg`}>TILBAGE TIL MENU</button>
     </div>
   );
 
   const handleRating = (rating) => {
-    // 0 = Again, 1 = Hard, 2 = Good, 3 = Easy
     onRecord(current.id, rating >= 2);
-    
     if (rating === 0) {
-      // Show SAME card again (flip back to front)
       setRevealed(false);
     } else {
-      // Move to next card
       setRevealed(false);
       const nextQueue = [...queue];
       nextQueue.shift();
@@ -98,7 +94,12 @@ const QuizSession = ({ questions, onExit, title }) => {
   const q = questions[idx];
   const options = useMemo(() => q?.options ? shuffle(q.options) : [], [q]);
 
-  if (!q) return null;
+  if (!q) return (
+    <div className="max-w-xl mx-auto py-20 text-center">
+      <h2 className="text-3xl font-black text-slate-900 mb-6 uppercase">Ingen spørgsmål fundet</h2>
+      <button onClick={onExit} className={`${UI.btn} ${UI.primary} px-10 py-4 text-lg`}>TILBAGE</button>
+    </div>
+  );
 
   return (
     <div className="max-w-2xl mx-auto py-8">
@@ -146,10 +147,15 @@ const TimelineSession = ({ entries, onExit }) => {
   const [selected, setSelected] = useState(null);
 
   useEffect(() => {
-    if (dated.length < 3) return;
+    if (dated.length < 5) {
+      setPlaced([dated[0]]);
+      setPool(shuffle(dated.slice(1)));
+      return;
+    }
     const shuffled = shuffle([...dated]);
-    setPlaced([shuffled[0], shuffled[1]].sort((a, b) => getYear(a.date) - getYear(b.date)));
-    setPool(shuffled.slice(2));
+    // Start with 1 anchor, give 5 to place
+    setPlaced([shuffled[0]]);
+    setPool(shuffled.slice(1, 6));
   }, [dated]);
 
   const handlePlace = (index) => {
@@ -165,7 +171,7 @@ const TimelineSession = ({ entries, onExit }) => {
       setPool(pool.filter(p => p.id !== selected.id));
       setSelected(null);
     } else {
-      alert("Forkert! Den hændelse hører ikke til der.");
+      alert("Forkert! Den hændelse hører ikke til der kronologisk.");
       setSelected(null);
     }
   };
@@ -181,7 +187,7 @@ const TimelineSession = ({ entries, onExit }) => {
     <div className="max-w-6xl mx-auto py-8 px-4 h-screen flex flex-col">
       <div className="flex justify-between items-center mb-8">
         <button onClick={onExit} className={`${UI.btn} ${UI.secondary}`}>✕ LUK</button>
-        <h2 className="text-xl font-black text-slate-900 uppercase italic tracking-tighter">History Chrono</h2>
+        <h2 className="text-xl font-black text-slate-900 uppercase italic tracking-tighter">History Chrono (5 Random Cards)</h2>
         <span className="font-black text-slate-900">Mangler: {pool.length}</span>
       </div>
 
@@ -214,7 +220,12 @@ const TimelineSession = ({ entries, onExit }) => {
 const SourceSession = ({ sources, onExit }) => {
   const [curr, setCurr] = useState(0);
   const s = sources[curr];
-  if (!s) return null;
+  if (!s) return (
+    <div className="max-w-xl mx-auto py-20 text-center">
+      <h2 className="text-3xl font-black text-slate-900 mb-6 uppercase">Ingen kilder fundet</h2>
+      <button onClick={onExit} className={`${UI.btn} ${UI.primary} px-10 py-4 text-lg`}>TILBAGE</button>
+    </div>
+  );
 
   return (
     <div className="max-w-4xl mx-auto py-8">
@@ -224,7 +235,7 @@ const SourceSession = ({ sources, onExit }) => {
       </div>
       <div className={`${UI.card} shadow-[12px_12px_0px_0px_rgba(15,23,42,1)]`}>
         <h2 className="text-3xl font-black text-slate-900 mb-6 uppercase italic tracking-tighter">📜 {s.title}</h2>
-        <div className="bg-slate-50 border-2 border-slate-200 p-10 mb-10 text-slate-900 font-serif italic text-xl leading-relaxed whitespace-pre-wrap">"{s.text}"</div>
+        <div className="bg-slate-50 border-2 border-slate-200 p-8 mb-10 text-slate-900 font-serif italic text-lg leading-relaxed whitespace-pre-wrap max-h-[500px] overflow-y-auto">"{s.text}"</div>
         <div className="space-y-12">
           {s.questions.map((q, i) => (
             <div key={i} className="border-t-4 border-slate-100 pt-10">
@@ -250,7 +261,8 @@ const SourceSession = ({ sources, onExit }) => {
 
 const App = () => {
   const [stats, setStats] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}'));
-  const [selIds, setSelIds] = useState(['1', '2']);
+  // Default: SELECT ALL
+  const [selIds, setSelIds] = useState(() => TOPICS.map(t => t.id));
   const [view, setView] = useState('menu');
 
   useEffect(() => localStorage.setItem(STORAGE_KEY, JSON.stringify(stats)), [stats]);
@@ -308,7 +320,10 @@ const App = () => {
               <span className="text-[11px] font-black uppercase text-slate-900 leading-tight">{t.title}</span>
             </label>
           ))}
-          <button onClick={() => setSelIds(TOPICS.map(t => t.id))} className="text-[10px] font-black text-blue-900 underline mt-4 block w-full text-center uppercase tracking-widest">Markér Alle</button>
+          <div className="flex flex-col gap-2 mt-4">
+            <button onClick={() => setSelIds(TOPICS.map(t => t.id))} className="text-[10px] font-black text-blue-900 underline uppercase tracking-widest">Markér Alle</button>
+            <button onClick={() => setSelIds([])} className="text-[10px] font-black text-red-900 underline uppercase tracking-widest">Fravælg Alle</button>
+          </div>
         </div>
 
         <div className="mt-auto p-6 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
@@ -343,7 +358,7 @@ const App = () => {
             <div className="text-7xl group-hover:rotate-6 transition-transform">⏳</div>
             <div className="flex-1">
               <h3 className="text-4xl font-black mb-4 uppercase italic text-slate-900">History Chrono</h3>
-              <p className="text-md text-slate-700 mb-8 leading-relaxed font-bold max-w-2xl">Sortér begivenheder korrekt i historiens kæde. En visuel træner i kronologi og sammenhæng.</p>
+              <p className="text-md text-slate-700 mb-8 leading-relaxed font-bold max-w-2xl">Sortér 5 tilfældige begivenheder korrekt i historiens kæde. En visuel træner i kronologi.</p>
               <div className={`${UI.btn} ${UI.primary} px-16 py-5 inline-block uppercase tracking-widest text-lg`}>Spil Nu</div>
             </div>
           </button>
@@ -351,7 +366,7 @@ const App = () => {
           <button onClick={() => setView('sources')} className={`${UI.card} text-left hover:bg-slate-50 transition-all shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] group`}>
             <div className="text-5xl mb-6">📜</div>
             <h3 className="text-3xl font-black mb-4 uppercase italic text-slate-900">Kilde Analyse</h3>
-            <p className="text-sm text-slate-700 mb-10 leading-relaxed font-bold">Læs de centrale tekster fra pensum og træn dine kildekritiske færdigheder.</p>
+            <p className="text-sm text-slate-700 mb-10 leading-relaxed font-bold">Læs de centrale tekster fra pensum (lange uddrag) og træn dine kildekritiske færdigheder.</p>
             <div className={`${UI.btn} ${UI.success} w-full text-center uppercase tracking-widest py-4`}>Analysér</div>
           </button>
 
