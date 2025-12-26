@@ -28,6 +28,10 @@ import { emne3_entries, emne3_sources, emne3_exams } from './emne3.js';
 import { emne3_hitler_youth_entries } from './emne3_hitler_youth.js';
 import { emne3_nuremberg_entries } from './emne3_nuremberg.js';
 import { emne3_holocaust_deep_sources } from './emne3_holocaust_deep.js';
+import { emne3_ideology_entries } from './emne3_ideology_radicalization.js';
+import { emne3_stanton_entries } from './emne3_stanton_stages.js';
+import { emne3_postwar_entries } from './emne3_postwar_continuity.js';
+import { emne3_ks_exam_logic } from './emne3_ks_exam_trainer.js';
 import { emne4_entries, emne4_sources, emne4_exams } from './emne4.js';
 
 export const TOPICS = [
@@ -67,6 +71,9 @@ export const HISTORY_ENTRIES = [
   ...emne3_entries,
   ...emne3_hitler_youth_entries,
   ...emne3_nuremberg_entries,
+  ...emne3_ideology_entries,
+  ...emne3_stanton_entries,
+  ...emne3_postwar_entries,
   ...emne4_entries,
 ];
 
@@ -85,5 +92,6 @@ export const EXAM_INTERPRETATIONS = [
   ...emne1_exams,
   ...emne2_exams,
   ...emne3_exams,
+  ...emne3_ks_exam_logic,
   ...emne4_exams,
 ];
