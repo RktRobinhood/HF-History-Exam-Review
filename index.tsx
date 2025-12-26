@@ -5,7 +5,7 @@ import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from '
 
 // --- UTILS ---
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_master_quest_final_v8';
+const STORAGE_KEY = 'hf_master_quest_final_v14';
 
 const getYear = (dateStr) => {
   if (!dateStr) return 0;
@@ -67,8 +67,8 @@ const UI = {
   success: "bg-green-300 text-slate-900 hover:bg-green-400",
   warning: "bg-yellow-300 text-slate-900 hover:bg-yellow-400",
   card: "bg-white border-2 border-slate-900 p-6 mb-4",
-  sidebar: "w-80 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full overflow-hidden",
-  main: "flex-1 p-8 bg-white overflow-y-auto"
+  sidebar: "border-r-2 border-slate-900 bg-slate-50 transition-all duration-300 flex flex-col h-full overflow-hidden",
+  main: "flex-1 p-4 md:p-8 bg-white overflow-y-auto"
 };
 
 // --- SUB-COMPONENTS ---
@@ -99,21 +99,21 @@ const FlashcardSession = ({ entries, onExit, onRecord }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-8">
+    <div className="max-w-2xl mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-6">
         <button onClick={onExit} className={`${UI.btn} ${UI.secondary}`}>✕ AFSLUT</button>
         <span className="font-bold text-slate-900 uppercase text-xs">Kort tilbage: {queue.length}</span>
       </div>
-      <div className={`${UI.card} min-h-[400px] flex flex-col justify-center text-center shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
+      <div className={`${UI.card} min-h-[300px] md:min-h-[400px] flex flex-col justify-center text-center shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
         {!revealed ? (
           <div>
-            <h2 className="text-4xl font-black text-slate-900 mb-12 leading-tight px-4">{current.title}</h2>
+            <h2 className="text-2xl md:text-4xl font-black text-slate-900 mb-12 leading-tight px-4">{current.title}</h2>
             <button onClick={() => setRevealed(true)} className={`${UI.btn} ${UI.primary} w-full py-6 text-xl uppercase`}>Vis Svar</button>
           </div>
         ) : (
           <div className="animate-pop">
-            <p className="text-2xl text-slate-900 leading-relaxed font-bold mb-8 italic">"{current.description}"</p>
-            <div className="grid grid-cols-4 gap-2">
+            <p className="text-lg md:text-2xl text-slate-900 leading-relaxed font-bold mb-8 italic">"{current.description}"</p>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
               <button onClick={handleIgen} className={`${UI.btn} ${UI.danger}`}>IGEN</button>
               <button onClick={() => handleResponse(false)} className={`${UI.btn} ${UI.warning}`}>SVÆRT</button>
               <button onClick={() => handleResponse(true)} className={`${UI.btn} ${UI.success}`}>OK</button>
@@ -136,7 +136,7 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
     const dated = entries.filter(e => e.date).sort((a, b) => getYear(a.date) - getYear(b.date));
     const shuffled = shuffle([...dated]);
     setPlaced([shuffled[0]]);
-    setPool(shuffled.slice(1, 6));
+    setPool(shuffled.slice(1, 4));
     playSound('start');
   }, [entries]);
 
@@ -178,7 +178,7 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
   );
 
   if (pool.length === 0 && placed.length > 1) return (
-    <div className="max-w-xl mx-auto py-20 text-center animate-pop">
+    <div className="max-w-xl mx-auto py-20 text-center animate-pop px-4">
       <div className="text-8xl mb-8">⚔️</div>
       <h2 className="text-4xl font-black text-slate-900 mb-6 uppercase">Level Fuldført!</h2>
       <p className="text-2xl font-black text-blue-900 mb-10 italic">Hjerter tilbage: {hearts} / 3</p>
@@ -188,45 +188,61 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
         setStreak(nextStreak);
         if (nextStreak > highScore) setHighScore(nextStreak);
         setupLevel();
-      }} className={`${UI.btn} ${UI.primary} px-16 py-6 text-2xl uppercase`}>NÆSTE OPGAVE →</button>
+      }} className={`${UI.btn} ${UI.primary} px-16 py-6 text-2xl uppercase w-full md:w-auto`}>NÆSTE OPGAVE →</button>
     </div>
   );
 
   return (
-    <div className={`max-w-6xl mx-auto py-8 px-4 h-screen flex flex-col ${shake ? 'animate-bounce' : ''}`}>
-      <div className="flex justify-between items-center mb-8">
+    <div className={`max-w-6xl mx-auto py-4 px-4 h-full flex flex-col ${shake ? 'animate-bounce' : ''}`}>
+      <div className="flex justify-between items-center mb-6">
         <button onClick={onExit} className={`${UI.btn} ${UI.secondary}`}>✕ LUK</button>
-        <div className="flex gap-2">
+        <div className="flex gap-1 md:gap-2">
           {[...Array(3)].map((_, i) => (
-            <span key={i} className="text-4xl">{i < hearts ? '❤️' : '🖤'}</span>
+            <span key={i} className="text-2xl md:text-4xl">{i < hearts ? '❤️' : '🖤'}</span>
           ))}
         </div>
         <div className="text-right">
-          <p className="text-xs font-black uppercase text-slate-400">Streak: {streak}</p>
-          <p className="text-xs font-black uppercase text-blue-900">High: {highScore}</p>
+          <p className="text-[8px] md:text-xs font-black uppercase text-slate-400">Streak: {streak}</p>
+          <p className="text-[8px] md:text-xs font-black uppercase text-blue-900">High: {highScore}</p>
         </div>
       </div>
 
-      <div className="flex-1 bg-slate-50 border-4 border-slate-900 p-8 flex items-center justify-center overflow-x-auto mb-8 shadow-inner">
-        <div className="flex items-center gap-2 min-w-max px-20">
+      <div className="flex-1 bg-slate-50 border-4 border-slate-900 p-4 md:p-8 flex items-center justify-center overflow-auto mb-6 shadow-inner">
+        <div className="flex flex-col md:flex-row items-center gap-3 md:gap-2 min-w-max px-4 md:px-20">
           {placed.map((p, i) => (
             <React.Fragment key={p.id}>
-              <button disabled={!selected} onClick={() => handlePlace(i)} className={`w-12 h-12 border-4 border-dashed border-slate-900 rounded-full transition-all ${selected ? 'bg-blue-300 hover:scale-125' : 'opacity-20 cursor-not-allowed'}`}>+</button>
-              <div className="bg-white border-4 border-slate-900 p-5 w-48 text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
-                <span className="block text-blue-900 font-black text-xs border-b-2 border-slate-100 mb-3">{p.date}</span>
-                <span className="text-[10px] font-black uppercase text-slate-900 leading-tight block">{p.title}</span>
+              <button 
+                disabled={!selected} 
+                onClick={() => handlePlace(i)} 
+                className={`w-10 h-10 md:w-12 md:h-12 border-4 border-dashed border-slate-900 rounded-full transition-all flex items-center justify-center font-black ${selected ? 'bg-blue-300 hover:scale-125' : 'opacity-20 cursor-not-allowed'}`}
+              >
+                +
+              </button>
+              <div className="bg-white border-4 border-slate-900 p-3 md:p-5 w-40 md:w-48 text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]">
+                <span className="block text-blue-900 font-black text-[10px] md:text-xs border-b-2 border-slate-100 mb-2 md:mb-3">{p.date}</span>
+                <span className="text-[9px] md:text-[10px] font-black uppercase text-slate-900 leading-tight block">{p.title}</span>
               </div>
               {i === placed.length - 1 && (
-                <button disabled={!selected} onClick={() => handlePlace(i + 1)} className={`w-12 h-12 border-4 border-dashed border-slate-900 rounded-full transition-all ${selected ? 'bg-blue-300 hover:scale-125' : 'opacity-20 cursor-not-allowed'}`}>+</button>
+                <button 
+                  disabled={!selected} 
+                  onClick={() => handlePlace(i + 1)} 
+                  className={`w-10 h-10 md:w-12 md:h-12 border-4 border-dashed border-slate-900 rounded-full transition-all flex items-center justify-center font-black ${selected ? 'bg-blue-300 hover:scale-125' : 'opacity-20 cursor-not-allowed'}`}
+                >
+                  +
+                </button>
               )}
             </React.Fragment>
           ))}
         </div>
       </div>
 
-      <div className="p-6 bg-white border-4 border-slate-900 flex flex-wrap gap-3 max-h-56 overflow-y-auto shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
+      <div className="p-4 md:p-6 bg-white border-4 border-slate-900 flex flex-wrap justify-center gap-2 md:gap-3 max-h-48 overflow-y-auto shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]">
         {pool.map(p => (
-          <button key={p.id} onClick={() => setSelected(p)} className={`${UI.btn} ${selected?.id === p.id ? 'bg-blue-300 scale-105' : 'bg-slate-100'}`}>
+          <button 
+            key={p.id} 
+            onClick={() => setSelected(p)} 
+            className={`${UI.btn} ${selected?.id === p.id ? 'bg-blue-300 scale-105 shadow-[4px_4px_0px_0px_rgba(15,23,42,1)]' : 'bg-slate-100'}`}
+          >
             {scrubDate(p.title)}
           </button>
         ))}
@@ -267,21 +283,21 @@ const QuizSession = ({ questions, onExit, title, onRecord }) => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto py-8">
+    <div className="max-w-2xl mx-auto py-8 px-4">
       <div className="flex justify-between items-center mb-6">
         <button onClick={onExit} className={`${UI.btn} ${UI.secondary}`}>✕ AFSLUT</button>
         <span className="font-bold text-slate-900 border-2 border-slate-900 px-4 py-1">{idx + 1} / {questions.length}</span>
       </div>
       <div className={`${UI.card} shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
         <p className="text-xs font-black text-slate-500 uppercase mb-4">{title}</p>
-        <h2 className="text-2xl font-black text-slate-900 mb-10 leading-snug">{q.question}</h2>
+        <h2 className="text-xl md:text-2xl font-black text-slate-900 mb-10 leading-snug">{q.question}</h2>
         <div className="space-y-3">
           {options.map(o => (
             <button 
               key={o} 
               disabled={isAnswered} 
               onClick={(e) => { e.preventDefault(); handleSelect(o); }}
-              className={`w-full text-left p-5 border-2 transition-all font-bold ${
+              className={`w-full text-left p-4 md:p-5 border-2 transition-all font-bold text-sm md:text-base ${
                 isAnswered 
                   ? (o === q.correctAnswer 
                       ? 'bg-green-300 border-slate-900' 
@@ -340,31 +356,31 @@ const SourceAnalysis = ({ sources, onExit, onRecord }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto py-8">
+    <div className="max-w-4xl mx-auto py-8 px-4 pb-20">
       <div className="flex justify-between items-center mb-6">
         <button onClick={onExit} className={`${UI.btn} ${UI.secondary}`}>✕ AFSLUT</button>
-        <span className="font-black text-slate-900 border-2 border-slate-900 px-4 py-1">{curr + 1} / {sources.length}</span>
+        <span className="font-black text-slate-900 border-2 border-slate-900 px-4 py-1 uppercase text-xs">{curr + 1} / {sources.length}</span>
       </div>
       <div className={`${UI.card} shadow-[12px_12px_0px_0px_rgba(15,23,42,1)]`}>
-        <h2 className="text-3xl font-black text-slate-900 mb-6 uppercase italic tracking-tighter">📜 {s.title}</h2>
-        <div className="bg-slate-50 border-2 border-slate-200 p-8 mb-10 text-slate-900 font-serif italic text-lg leading-relaxed whitespace-pre-wrap max-h-[600px] overflow-y-auto border-l-8 border-l-blue-900">
+        <h2 className="text-2xl md:text-3xl font-black text-slate-900 mb-6 uppercase italic tracking-tighter">📜 {s.title}</h2>
+        <div className="bg-slate-50 border-2 border-slate-200 p-4 md:p-8 mb-10 text-slate-900 font-serif italic text-base md:text-lg leading-relaxed whitespace-pre-wrap border-l-8 border-l-blue-900">
           "{s.text}"
         </div>
-        <div className="space-y-12">
+        <div className="space-y-8 md:space-y-12">
           {s.questions.map((q, qIdx) => {
             const selected = answeredMap[qIdx];
             const isAnswered = !!selected;
 
             return (
-              <div key={qIdx} className="border-t-4 border-slate-100 pt-10">
-                <p className="font-black text-xl text-slate-900 mb-6 uppercase tracking-tight">Analyse: {q.question}</p>
+              <div key={qIdx} className="border-t-4 border-slate-100 pt-8 md:pt-10">
+                <p className="font-black text-lg md:text-xl text-slate-900 mb-6 uppercase tracking-tight">Analyse: {q.question}</p>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   {shuffledOptionsPerQuestion[qIdx].map(o => (
                     <button 
                       key={o} 
                       disabled={isAnswered}
                       onClick={() => handleSourceAnswer(qIdx, o)}
-                      className={`p-5 border-2 text-left text-sm font-black transition-all ${
+                      className={`p-4 md:p-5 border-2 text-left text-xs md:text-sm font-black transition-all ${
                         isAnswered
                           ? (o === q.correctAnswer 
                               ? 'bg-green-300 border-slate-900' 
@@ -380,11 +396,11 @@ const SourceAnalysis = ({ sources, onExit, onRecord }) => {
             );
           })}
         </div>
-        <div className="mt-16 pt-8 border-t-4 border-slate-100 flex justify-between">
+        <div className="mt-16 pt-8 border-t-4 border-slate-100 flex justify-between items-center">
           <button 
             disabled={curr === 0} 
             onClick={() => { setCurr(curr - 1); setAnsweredMap({}); }} 
-            className="font-black text-slate-400 uppercase disabled:opacity-0 hover:text-slate-900"
+            className="font-black text-slate-400 uppercase disabled:opacity-0 hover:text-slate-900 text-xs"
           >
             ← Forrige
           </button>
@@ -460,13 +476,13 @@ const NoteViewer = ({ selectedTopicId }) => {
 const App = () => {
   const [stats, setStats] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
   
-  // SEPARATE SELECTION STATES
   const [gameSelIds, setGameSelIds] = useState(() => TOPICS.map(t => t.id));
-  const [noteSelId, setNoteSelId] = useState('1'); // Default to Emne 1 since Emne 0 is theory
+  const [noteSelId, setNoteSelId] = useState('1'); 
   
   const [view, setView] = useState('menu');
   const [menuTab, setMenuTab] = useState<'games' | 'notes'>('games');
   const [shuffledContent, setShuffledContent] = useState(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const [streak, setStreak] = useState(0);
   const [hearts, setHearts] = useState(3);
@@ -542,7 +558,7 @@ const App = () => {
 
   if (view !== 'menu') {
     return (
-      <div className="bg-slate-50 min-h-screen">
+      <div className="bg-slate-50 min-h-screen overflow-y-auto">
         {view === 'flashcards' && <FlashcardSession entries={shuffledContent} onExit={() => setView('menu')} onRecord={recordStat} />}
         {view === 'quiz' && <QuizSession questions={shuffledContent} title="Begrebs Quiz" onExit={() => setView('menu')} onRecord={recordStat} />}
         {view === 'timeline' && <TimelineQuest entries={filtered.entries} streak={streak} setStreak={setStreak} hearts={hearts} setHearts={setHearts} highScore={highScore} setHighScore={setHighScore} onExit={() => setView('menu')} onRecord={recordStat} />}
@@ -553,17 +569,31 @@ const App = () => {
   }
 
   return (
-    <div className="flex h-screen bg-white">
-      <aside className={UI.sidebar}>
-        <div className="mb-6 pb-4 border-b-2 border-slate-900 flex-shrink-0">
-          <h1 className="text-xl font-black uppercase italic tracking-tighter leading-none">HF Historie</h1>
-          <p className="text-[9px] font-black text-blue-900 uppercase mt-1">Dansk Eksamen Mastery</p>
+    <div className="flex h-screen bg-white overflow-hidden relative">
+      
+      {/* SIDEBAR DOCK */}
+      <aside className={`${UI.sidebar} ${isSidebarOpen ? 'w-80' : 'w-16'} relative z-30`}>
+        <button 
+          onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+          className="absolute -right-3 top-1/2 -translate-y-1/2 bg-white border-2 border-slate-900 w-6 h-6 rounded-full flex items-center justify-center z-40 hover:bg-slate-50 shadow-sm"
+        >
+          <span className="text-[10px] font-black">{isSidebarOpen ? '←' : '→'}</span>
+        </button>
+
+        <div className={`p-4 md:p-6 border-b-2 border-slate-900 flex-shrink-0 ${!isSidebarOpen && 'items-center'}`}>
+          <h1 className={`font-black uppercase italic tracking-tighter leading-none ${isSidebarOpen ? 'text-xl' : 'text-[10px] text-center'}`}>
+            {isSidebarOpen ? 'HF Historie' : 'HF-H'}
+          </h1>
+          {isSidebarOpen && <p className="text-[9px] font-black text-blue-900 uppercase mt-1">Dansk Eksamen Mastery</p>}
         </div>
         
-        <div className="flex-1 overflow-y-auto pr-2 mb-6 min-h-0">
-          <p className="text-[10px] font-black text-slate-500 uppercase mb-3 tracking-widest">
-            {menuTab === 'games' ? 'Vælg Emner til Træning' : 'Vælg Noter til Læsning'}
-          </p>
+        <div className="flex-1 overflow-y-auto p-2 md:p-6 min-h-0">
+          {isSidebarOpen && (
+            <p className="text-[10px] font-black text-slate-500 uppercase mb-4 tracking-widest px-2">
+              {menuTab === 'games' ? 'Vælg Træning' : 'Vælg Læsning'}
+            </p>
+          )}
+          
           <div className="space-y-2">
             {TOPICS.map(t => {
               const isMetode = t.id === '0';
@@ -573,14 +603,16 @@ const App = () => {
               return (
                 <label 
                   key={t.id} 
-                  className={`flex items-start gap-3 p-3 border-2 transition-all ${
-                    isDisabled ? 'opacity-30 cursor-not-allowed bg-slate-200 grayscale' : 
-                    isSelected ? 'border-slate-900 bg-blue-50' : 'border-slate-100'
-                  } ${!isDisabled && 'cursor-pointer hover:border-slate-400'}`}
+                  className={`transition-all ${
+                    isSidebarOpen 
+                      ? `flex items-start gap-3 p-2 md:p-3 border-2 ${isDisabled ? 'opacity-30 cursor-not-allowed bg-slate-200 grayscale' : isSelected ? 'border-slate-900 bg-blue-50' : 'border-slate-100'} ${!isDisabled && 'cursor-pointer hover:border-slate-400'}`
+                      : (isSelected ? 'flex justify-center p-0 mb-4' : 'hidden')
+                  }`}
+                  title={t.title}
                 >
                   <input 
                     type={menuTab === 'games' ? "checkbox" : "radio"} 
-                    className="mt-1" 
+                    className={`${isSidebarOpen ? 'mt-1' : 'hidden'}`} 
                     disabled={isDisabled}
                     checked={isSelected} 
                     onChange={() => {
@@ -591,113 +623,129 @@ const App = () => {
                       }
                     }} 
                   />
-                  <div className="flex flex-col">
-                    <span className="text-[10px] font-black uppercase leading-snug">{t.title}</span>
-                    {isDisabled && <span className="text-[8px] font-bold text-red-500 uppercase italic">Ingen noter endnu</span>}
-                  </div>
+                  {!isSidebarOpen && isSelected && (
+                    <div className="w-12 h-12 rounded-full bg-white text-slate-900 flex items-center justify-center font-black text-xl shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] border-4 border-slate-900 animate-pop">
+                      {t.id}
+                    </div>
+                  )}
+                  {isSidebarOpen && (
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-black uppercase leading-snug">{t.title}</span>
+                      {isDisabled && <span className="text-[8px] font-bold text-red-500 uppercase italic">Ingen noter</span>}
+                    </div>
+                  )}
                 </label>
               );
             })}
           </div>
-          {menuTab === 'games' && (
-            <div className="pt-4 flex gap-4">
-              <button onClick={() => setGameSelIds(TOPICS.map(t => t.id))} className="text-[9px] font-black text-blue-900 underline uppercase hover:text-blue-500">Markér Alle</button>
-              <button onClick={() => setGameSelIds([])} className="text-[9px] font-black text-red-900 underline uppercase hover:text-red-500">Fravælg Alle</button>
+          {menuTab === 'games' && isSidebarOpen && (
+            <div className="pt-4 px-2 flex gap-4">
+              <button onClick={() => setGameSelIds(TOPICS.map(t => t.id))} className="text-[9px] font-black text-blue-900 underline uppercase hover:text-blue-500">Alt</button>
+              <button onClick={() => setGameSelIds([])} className="text-[9px] font-black text-red-900 underline uppercase hover:text-red-500">Ingen</button>
             </div>
           )}
         </div>
 
-        <div className="flex-shrink-0 mt-auto pt-4 border-t-2 border-slate-200">
-          <div className="flex items-center justify-between mb-4 bg-white p-3 border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
-            <span className="text-[10px] font-black uppercase text-slate-500">Mestring</span>
-            <span className="text-2xl font-black text-blue-900 italic">{masteryData.percent}%</span>
-          </div>
-          
-          <div className="bg-white border-2 border-slate-900 p-3">
-            <h4 className="font-black text-[9px] uppercase mb-3 border-b border-slate-100 pb-1 flex justify-between">
-              <span>Fremgang</span>
-              <span className="text-blue-900">{masteryData.masteredCount}/{masteryData.total}</span>
-            </h4>
-            
-            <div className="space-y-2 max-h-40 overflow-y-auto pr-1 text-[9px]">
-              {topicDetails.map(td => (
-                <div key={td.id} className="space-y-1">
-                  <div className="flex justify-between font-black uppercase">
-                    <span className="truncate w-3/4">{td.title}</span>
-                    <span className={td.percent > 70 ? "text-green-600" : td.percent > 30 ? "text-yellow-600" : "text-red-600"}>{td.percent}%</span>
-                  </div>
-                  <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
-                    <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${td.percent}%` }}></div>
-                  </div>
+        <div className={`flex-shrink-0 mt-auto p-4 border-t-2 border-slate-200 ${!isSidebarOpen && 'items-center px-2'}`}>
+          {isSidebarOpen ? (
+            <>
+              <div className="flex items-center justify-between mb-4 bg-white p-3 border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
+                <span className="text-[10px] font-black uppercase text-slate-500">Mestring</span>
+                <span className="text-2xl font-black text-blue-900 italic">{masteryData.percent}%</span>
+              </div>
+              
+              <div className="bg-white border-2 border-slate-900 p-3">
+                <h4 className="font-black text-[9px] uppercase mb-3 border-b border-slate-100 pb-1 flex justify-between">
+                  <span>Fremgang</span>
+                  <span className="text-blue-900">{masteryData.masteredCount}/{masteryData.total}</span>
+                </h4>
+                
+                <div className="space-y-2 max-h-32 overflow-y-auto pr-1 text-[9px]">
+                  {topicDetails.map(td => (
+                    <div key={td.id} className="space-y-1">
+                      <div className="flex justify-between font-black uppercase">
+                        <span className="truncate w-3/4">{td.title}</span>
+                        <span className={td.percent > 70 ? "text-green-600" : td.percent > 30 ? "text-yellow-600" : "text-red-600"}>{td.percent}%</span>
+                      </div>
+                      <div className="w-full h-1 bg-slate-100 rounded-full overflow-hidden">
+                        <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${td.percent}%` }}></div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
+            </>
+          ) : (
+             <div className="flex flex-col items-center gap-1">
+                <div className="w-10 h-10 border-2 border-slate-900 flex items-center justify-center font-black text-xs italic bg-blue-50">
+                  {masteryData.percent}%
+                </div>
+             </div>
+          )}
         </div>
       </aside>
 
       <main className={UI.main}>
-        {/* COMPACT CLEAN HEADER */}
-        <div className="mb-8 flex justify-between items-center border-b-8 border-slate-900 pb-4">
-          <div className="flex gap-2">
+        <div className="mb-6 flex flex-col md:flex-row justify-between items-start md:items-center border-b-8 border-slate-900 pb-4 gap-4">
+          <div className="flex gap-1 md:gap-2">
             <button 
               onClick={() => setMenuTab('games')} 
-              className={`px-8 py-3 font-black uppercase text-sm border-4 border-slate-900 transition-all shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${menuTab === 'games' ? 'bg-slate-900 text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white text-slate-900 hover:bg-slate-50'}`}
+              className={`px-4 md:px-8 py-2 md:py-3 font-black uppercase text-[10px] md:text-sm border-2 md:border-4 border-slate-900 transition-all shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${menuTab === 'games' ? 'bg-slate-900 text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white text-slate-900 hover:bg-slate-50'}`}
             >
-              🎮 Træning & Spil
+              🎮 Spil
             </button>
             <button 
               onClick={() => setMenuTab('notes')} 
-              className={`px-8 py-3 font-black uppercase text-sm border-4 border-slate-900 transition-all shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${menuTab === 'notes' ? 'bg-slate-900 text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white text-slate-900 hover:bg-slate-50'}`}
+              className={`px-4 md:px-8 py-2 md:py-3 font-black uppercase text-[10px] md:text-sm border-2 md:border-4 border-slate-900 transition-all shadow-[2px_2px_0px_0px_rgba(15,23,42,1)] md:shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${menuTab === 'notes' ? 'bg-slate-900 text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white text-slate-900 hover:bg-slate-50'}`}
             >
-              📝 Pensum Noter
+              📝 Noter
             </button>
           </div>
-          <div className="text-right">
-             <h2 className="text-xs font-black uppercase text-slate-400">HF Historie Mastery</h2>
-             <p className="text-lg font-black uppercase italic text-slate-900">
-               {menuTab === 'games' ? 'Vælg Træningsmodul' : `Læsning: ${TOPICS.find(t => t.id === noteSelId)?.title}`}
+          <div className="text-left md:text-right w-full md:w-auto overflow-hidden">
+             <h2 className="text-[10px] font-black uppercase text-slate-400">HF Historie Mastery</h2>
+             <p className="text-sm md:text-lg font-black uppercase italic text-slate-900 truncate">
+               {menuTab === 'games' ? 'Vælg Træning' : `${TOPICS.find(t => t.id === noteSelId)?.title}`}
              </p>
           </div>
         </div>
 
         {menuTab === 'games' ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-pop">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8 animate-pop pb-10">
             <button onClick={() => startModule('flashcards')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] transition-transform hover:-translate-y-1`}>
-              <div className="text-5xl mb-6">🗂️</div>
-              <h3 className="text-3xl font-black mb-4 uppercase italic">Flashcards</h3>
-              <p className="text-sm text-slate-700 font-bold mb-8">Test din paratviden og husk de vigtigste begreber fra det feudale til det senmoderne.</p>
-              <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Start Træning</div>
+              <div className="text-3xl md:text-5xl mb-4 md:mb-6">🗂️</div>
+              <h3 className="text-xl md:text-3xl font-black mb-2 md:mb-4 uppercase italic">Flashcards</h3>
+              <p className="text-xs md:text-sm text-slate-700 font-bold mb-6 md:mb-8">Paratviden fra feudaltiden til det senmoderne.</p>
+              <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-3 md:py-4`}>Start</div>
             </button>
             <button onClick={() => startModule('quiz')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] transition-transform hover:-translate-y-1`}>
-              <div className="text-5xl mb-6">🎯</div>
-              <h3 className="text-3xl font-black mb-4 uppercase italic">Videns Quiz</h3>
-              <p className="text-sm text-slate-700 font-bold mb-8">Multiple-choice test i pensum. Få umiddelbar feedback på dine historiske fakta.</p>
-              <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Tag Quiz</div>
+              <div className="text-3xl md:text-5xl mb-4 md:mb-6">🎯</div>
+              <h3 className="text-xl md:text-3xl font-black mb-2 md:mb-4 uppercase italic">Videns Quiz</h3>
+              <p className="text-xs md:text-sm text-slate-700 font-bold mb-6 md:mb-8">Feedback på dine historiske fakta.</p>
+              <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-3 md:py-4`}>Tag Quiz</div>
             </button>
-            <button onClick={() => startModule('timeline')} className={`${UI.card} text-left md:col-span-2 hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-yellow-50 flex items-center gap-10 transition-transform hover:-translate-y-1`}>
-              <div className="text-7xl">⚔️</div>
-              <div className="flex-1">
-                <h3 className="text-4xl font-black mb-4 uppercase italic">Timeline Quest</h3>
-                <p className="text-md text-slate-700 font-bold max-w-2xl mb-8">Beskyt dine hjerter! Sortér begivenheder korrekt for at opnå den højeste streak. 3 liv pr. quest.</p>
-                <div className={`${UI.btn} ${UI.primary} px-16 py-5 uppercase text-lg`}>Start Quest</div>
+            <button onClick={() => startModule('timeline')} className={`${UI.card} text-left md:col-span-2 hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-yellow-50 flex flex-col md:flex-row items-center gap-4 md:gap-10 transition-transform hover:-translate-y-1`}>
+              <div className="text-5xl md:text-7xl">⚔️</div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-2xl md:text-4xl font-black mb-2 md:mb-4 uppercase italic">Timeline Quest</h3>
+                <p className="text-xs md:text-md text-slate-700 font-bold max-w-2xl mb-6 md:mb-8">4 kort pr. level. Beskyt dine liv!</p>
+                <div className={`${UI.btn} ${UI.primary} px-8 md:px-16 py-3 md:py-5 uppercase text-base md:text-lg w-full md:w-auto`}>Start Quest</div>
               </div>
             </button>
             <button onClick={() => startModule('sources')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] transition-transform hover:-translate-y-1`}>
-              <div className="text-5xl mb-6">📜</div>
-              <h3 className="text-3xl font-black mb-4 uppercase italic">Kilde Analyse</h3>
-              <p className="text-sm text-slate-700 font-bold mb-8">Dyk ned i lange uddrag og træn din kildekritik med specifikke analyseopgaver.</p>
-              <div className={`${UI.btn} ${UI.success} w-full text-center uppercase py-4`}>Analysér</div>
+              <div className="text-3xl md:text-5xl mb-4 md:mb-6">📜</div>
+              <h3 className="text-xl md:text-3xl font-black mb-2 md:mb-4 uppercase italic">Kilde Analyse</h3>
+              <p className="text-xs md:text-sm text-slate-700 font-bold mb-6 md:mb-8">Dyk ned i kilder og træn din kildekritik.</p>
+              <div className={`${UI.btn} ${UI.success} w-full text-center uppercase py-3 md:py-4`}>Analysér</div>
             </button>
             <button onClick={() => startModule('exam')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-slate-100 transition-transform hover:-translate-y-1`}>
-              <div className="text-5xl mb-6">💡</div>
-              <h3 className="text-3xl font-black mb-4 uppercase italic">Eksamenstræner</h3>
-              <p className="text-sm text-slate-700 font-bold mb-8">Typiske eksamensspørgsmål og coaching. Forstå censorernes forventninger.</p>
-              <div className={`${UI.btn} ${UI.secondary} w-full text-center uppercase py-4`}>Åbn Fokus</div>
+              <div className="text-3xl md:text-5xl mb-4 md:mb-6">💡</div>
+              <h3 className="text-xl md:text-3xl font-black mb-2 md:mb-4 uppercase italic">Eksamenstræner</h3>
+              <p className="text-xs md:text-sm text-slate-700 font-bold mb-6 md:mb-8">Forstå censorernes forventninger.</p>
+              <div className={`${UI.btn} ${UI.secondary} w-full text-center uppercase py-3 md:py-4`}>Åbn</div>
             </button>
           </div>
         ) : (
-          <div className="animate-pop h-full flex flex-col min-h-0">
+          <div className="animate-pop h-full flex flex-col min-h-0 pb-10">
              <NoteViewer selectedTopicId={noteSelId} />
           </div>
         )}
