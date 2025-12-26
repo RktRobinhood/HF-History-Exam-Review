@@ -5,7 +5,7 @@ import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from '
 
 // --- UTILS ---
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_master_quest_final_v14';
+const STORAGE_KEY = 'hf_master_quest_final_v16';
 
 const getYear = (dateStr) => {
   if (!dateStr) return 0;
@@ -133,12 +133,21 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
   const [shake, setShake] = useState(false);
 
   const setupLevel = useCallback(() => {
+    // Collect all valid entries with dates from the passed entries pool
     const dated = entries.filter(e => e.date).sort((a, b) => getYear(a.date) - getYear(b.date));
-    const shuffled = shuffle([...dated]);
-    setPlaced([shuffled[0]]);
-    setPool(shuffled.slice(1, 4));
+    if (dated.length < 2) {
+      alert("Ikke nok tidslinje-data for dette emne.");
+      onExit();
+      return;
+    }
+    
+    // Shuffle the entire dated pool to ensure total randomness and variety
+    const randomPool = shuffle([...dated]);
+    setPlaced([randomPool[0]]);
+    // Take the next 5 as the playable pool for this level for more diversity
+    setPool(randomPool.slice(1, 6));
     playSound('start');
-  }, [entries]);
+  }, [entries, onExit]);
 
   useEffect(() => {
     if (placed.length === 0) setupLevel();
@@ -727,7 +736,7 @@ const App = () => {
               <div className="text-5xl md:text-7xl">⚔️</div>
               <div className="flex-1 text-center md:text-left">
                 <h3 className="text-2xl md:text-4xl font-black mb-2 md:mb-4 uppercase italic">Timeline Quest</h3>
-                <p className="text-xs md:text-md text-slate-700 font-bold max-w-2xl mb-6 md:mb-8">4 kort pr. level. Beskyt dine liv!</p>
+                <p className="text-xs md:text-md text-slate-700 font-bold max-w-2xl mb-6 md:mb-8">Placer kortene korrekt. Beskyt dine liv!</p>
                 <div className={`${UI.btn} ${UI.primary} px-8 md:px-16 py-3 md:py-5 uppercase text-base md:text-lg w-full md:w-auto`}>Start Quest</div>
               </div>
             </button>
