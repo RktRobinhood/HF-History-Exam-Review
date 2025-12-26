@@ -1,27 +1,396 @@
-
 <!doctype html>
 <html lang="da">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Historisk Metode – Noter</title>
-  <style>
-    :root { --bg: #ffffff; --slate-900: #0f172a; --blue-300: #93c5fd; --slate-50: #f8fafc; }
-    body { font-family: sans-serif; margin: 0; color: var(--slate-900); background: var(--bg); line-height: 1.6; }
-    main { max-width: 900px; margin: 0 auto; padding: 40px 20px; text-align: center; }
-    .card { border: 4px solid var(--slate-900); padding: 40px; background: var(--slate-50); box-shadow: 8px 8px 0px 0px var(--slate-900); }
-    h1 { text-transform: uppercase; font-weight: 900; font-size: 32px; margin-bottom: 20px; }
-    p { font-weight: 700; color: #64748b; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tema 2: Det gode samfund – Kurateret læsning (10 min pr. fane) + quiz</title>
+<style>
+  :root{
+    --bg:#0b0d10;--panel:#11151b;--muted:#9aa4b2;--fg:#e9eef6;--line:#243041;
+    --accent:#7dd3fc;--good:#86efac;--bad:#fca5a5;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--fg);line-height:1.75}
+  .wrap{max-width:1040px;margin:0 auto;padding:12px 12px 46px}
+  .tabs{display:flex;gap:6px;flex-wrap:wrap;margin:6px 0 12px}
+  .tabs button{border:1px solid var(--line);background:transparent;color:var(--fg);padding:8px 10px;border-radius:10px;cursor:pointer;font-size:14px}
+  .tabs button[aria-selected="true"]{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in oklab,var(--accent),transparent 70%)}
+  .panel{display:none;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 16px 18px}
+  .panel.active{display:block}
+  h2{margin:0 0 10px;font-size:20px}
+  h3{margin:18px 0 8px;font-size:16px}
+  p{margin:10px 0}
+  ul{margin:8px 0 10px 18px}
+  .muted{color:var(--muted)}
+  .keygrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:10px 0}
+  .box{border:1px solid var(--line);border-radius:14px;padding:12px;background:rgba(255,255,255,.02)}
+  .box b{color:var(--accent)}
+  .quote{border-left:3px solid var(--accent);padding:8px 10px;margin:10px 0;background:rgba(125,211,252,.06);border-radius:10px}
+  .think{border:1px dashed color-mix(in oklab,var(--accent),var(--line) 55%);border-radius:14px;padding:10px 12px;margin:12px 0;background:rgba(125,211,252,.05)}
+  .think b{color:var(--accent)}
+  .qblock{margin-top:14px;border-top:1px solid var(--line);padding-top:14px}
+  .qrow{border:1px solid var(--line);border-radius:14px;padding:12px;margin:10px 0;background:rgba(255,255,255,.02)}
+  .qrow .meta{display:flex;gap:10px;align-items:flex-start;justify-content:space-between}
+  .tag{font-size:12px;color:var(--muted);white-space:nowrap}
+  .opts{list-style:none;padding:0;margin:10px 0 0}
+  .opt{padding:9px 10px;border:1px solid var(--line);border-radius:12px;margin:8px 0;cursor:pointer}
+  .opt:hover{border-color:color-mix(in oklab,var(--accent),var(--line) 55%)}
+  .opt.correct{border-color:var(--good);background:rgba(134,239,172,.12)}
+  .opt.wrong{border-color:var(--bad);background:rgba(252,165,165,.10)}
+  .feedback{margin-top:8px;color:var(--muted)}
+  .btn{border:1px solid var(--line);background:transparent;color:var(--fg);padding:8px 10px;border-radius:10px;cursor:pointer}
+  .btn:hover{border-color:var(--accent)}
+  .score{margin-top:10px;color:var(--muted)}
+  .small{font-size:13px}
+  @media (max-width:820px){.keygrid{grid-template-columns:1fr}}
+
+  .reading p{margin:10px 0;line-height:1.55}
+  .callout ul{margin:8px 0 0 18px}
+  .ktable{width:100%;border-collapse:collapse;margin:10px 0 14px 0;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.12);border-radius:12px;overflow:hidden}
+  .ktable thead th{font-size:14px;text-align:left;padding:10px 12px;background:rgba(0,0,0,.25);border-bottom:1px solid rgba(255,255,255,.12)}
+  .ktable tbody td{padding:10px 12px;vertical-align:top;border-bottom:1px solid rgba(255,255,255,.08)}
+  .ktable tbody tr:last-child td{border-bottom:none}
+  .ktable .nr{width:44px;color:var(--muted)}
+  .ktable .term{width:210px}
+  .soft{color:var(--muted)}
+</style>
 </head>
 <body>
-<main>
-  <div class="card">
-    <h1>Emne 0: Historisk Metode</h1>
-    <p>Noter til kildekritik, tendens og repræsentativitet er under forberedelse.</p>
-    <div style="font-size: 64px; margin: 20px;">📜</div>
-    <p style="font-size: 14px; font-style: italic;">Indhold: Mondrups skema, Levn vs. Beretning & Drivkræfter.</p>
+
+<div class="wrap">
+  <div class="tabs" role="tablist" aria-label="Indhold">
+  <button role="tab" aria-selected="true" aria-controls="p-overblik" id="t-p-overblik">Overblik</button>
+  <button role="tab" aria-selected="false" aria-controls="p-151" id="t-p-151">1.5.1 Periodisering</button>
+  <button role="tab" aria-selected="false" aria-controls="p-152" id="t-p-152">1.5.2 Årsager</button>
+  <button role="tab" aria-selected="false" aria-controls="p-16" id="t-p-16">1.6 Kildebrug</button>
+  <button role="tab" aria-selected="false" aria-controls="p-161" id="t-p-161">1.6.1 Kildeanalyse</button>
+  <button role="tab" aria-selected="false" aria-controls="p-5x" id="t-p-5x">5.1–5.7 Kildetyper</button>
+  <button role="tab" aria-selected="false" aria-controls="p-exit" id="t-p-exit">Exit quiz</button>
+</div>
+
+  
+<section class="panel active" id="p-overblik" role="tabpanel" aria-labelledby="t-p-overblik">
+  <h2>Historisk metode – lærebogsnoter + forståelsestjek</h2>
+  <p class="muted">
+    Teksten er omskrevet til en mere sammenhængende lærebogsform: korte forklaringer, nøglebegreber og fokus på anvendelse.
+  </p>
+
+  <div class="callout">
+    <h4>Målet</h4>
+    <div class="reading">
+      <p>Du skal kunne periodisere, forklare historiske forandringer med flere årsager og lave kildeanalyse på en systematisk måde.</p>
+      <p class="soft">Tip: Læs hvert afsnit, og tag quizzen direkte efter. Hvis du rammer ved siden af, gå tilbage og find den sætning, der giver svaret.</p>
+    </div>
   </div>
-</main>
+
+  <h3>Indhold</h3>
+  <div class="reading">
+    <p><b>1.5.1</b> Periodisering</p>
+    <p><b>1.5.2</b> Årsager og forklaringer</p>
+    <p><b>1.6</b> Kildebrug i historie</p>
+    <p><b>1.6.1</b> Grundlæggende kildeanalyse</p>
+    <p><b>5.1–5.7</b> Kildetyper i praksis</p>
+  </div>
+</section>
+
+  <section class='panel' id='p-151' role='tabpanel' aria-labelledby='t-p-151'><h2>1.5.1 Periodisering</h2>
+    <div class="callout">
+      <h4>Nøglebegreber</h4>
+      <div class="reading"><p><b>Periodisering:</b> at inddele fortiden i perioder for at skabe overblik og forklaringskraft</p><p><b>Kontinuitet:</b> det der fortsætter på tværs af tid</p><p><b>Brud:</b> tydelig ændring, hvor noget vigtigt skifter retning/struktur</p><p><b>Begivenhed vs. proces:</b> en begivenhed sker på et tidspunkt; en proces udspiller sig over tid</p><p><b>Kriterier:</b> de tegn du bruger til at begrunde, hvornår en periode starter/slutter</p></div>
+    </div>
+    <h3>Kerneidé</h3><div class='reading'><p><b>Periodisering er et valg:</b> du inddeler tid ud fra en problemstilling, ikke fordi perioderne ‘findes af sig selv’.</p><p><b>Gode perioder har kriterier:</b> du kan pege på konkrete tegn på brud eller overgang.</p><p><b>Brud og kontinuitet hænger sammen:</b> selv i store skift er noget ofte stabilt.</p><p>Forskellige fokus (politik, økonomi, kultur) kan give forskellige periodiseringer af det samme forløb.</p></div>
+    <h3>Mini-eksempel</h3>
+    <div class="reading">
+      <p>Hvis du undersøger industrialiseringens betydning for hverdagslivet, kan du periodisere efter ændringer i arbejde, byvækst og teknologi:
+      før industrialisering → overgang → industrialiseret samfund. Grænsen forklares med tegn (fx fabriksarbejde, urbanisering, transportrevolution).</p>
+    </div>
+    
+    <h3>Forståelsestjek</h3>
+    <p class="muted">Klik på et svar. Brug forklaringen til at rette din forståelse. Tryk “Vis score” for overblik.</p>
+    <div class="quiz" id="quiz-151">
+      
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>1) Hvad er formålet med periodisering?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At skabe overblik og forklare udvikling med begrundede perioder.</li><li class="opt" data-choice="B">At finde det ene år hvor alt ændrer sig.</li><li class="opt" data-choice="C">At undgå at arbejde med kilder.</li><li class="opt" data-choice="D">At gøre historien tilfældig.</li></ul>
+        <div class="feedback" aria-live="polite">Periodisering er et analytisk redskab: struktur + forklaring.</div>
+      </div>
+    
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>2) Hvad viser bedst forståelse af brud og kontinuitet?</b><span class="tag">Kerne</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Brud betyder at alt ændrer sig, kontinuitet at intet ændrer sig.</li><li class="opt" data-choice="B">Brud og kontinuitet kan eksistere samtidig: noget ændrer sig, andet fortsætter.</li><li class="opt" data-choice="C">Kontinuitet handler kun om politik.</li><li class="opt" data-choice="D">Brud og kontinuitet er det samme.</li></ul>
+        <div class="feedback" aria-live="polite">Historisk udvikling er sjældent ‘alt eller intet’.</div>
+      </div>
+    
+    </div>
+    <div class="scorebar">
+      <button class="btn" onclick="showScore('#quiz-151', '#score-151')">Vis score</button>
+      <div class="score" id="score-151"></div>
+    </div>
+    </section>
+  <section class='panel' id='p-152' role='tabpanel' aria-labelledby='t-p-152'><h2>1.5.2 Årsager og forklaringer</h2>
+    <div class="callout">
+      <h4>Nøglebegreber</h4>
+      <div class="reading"><p><b>Udløsende årsag:</b> det der sætter noget i gang her og nu</p><p><b>Bagvedliggende årsag:</b> strukturer/forhold der gør en udvikling sandsynlig over tid</p><p><b>Aktør og struktur:</b> individers handlinger vs. rammer (økonomi, institutioner, normer)</p><p><b>Konsekvens:</b> hvad der følger (kort/lang sigt; direkte/indirekte)</p></div>
+    </div>
+    <h3>Kerneidé</h3><div class='reading'><p><b>Historiske forklaringer er ofte flerårsagsforklaringer:</b> flere forhold virker sammen.</p><p>Skeln mellem udløsende og bagvedliggende årsager for at forklare både ‘hvorfor nu?’ og ‘hvorfor overhovedet?’.</p><p><b>Knyt årsager til evidens:</b> vis hvilke kilder der peger på hvad, og hvordan årsagerne hænger sammen.</p></div>
+    <h3>Mini-eksempel</h3>
+    <div class="reading">
+      <p>En revolution kan have en udløsende årsag (fx en krise eller politisk beslutning) og bagvedliggende årsager (fx ulighed, økonomi, idéer, legitimitetskrise).
+      En stærk forklaring viser samspil og prioriterer: hvad var vigtigst – og hvorfor?</p>
+    </div>
+    
+    <h3>Forståelsestjek</h3>
+    <p class="muted">Klik på et svar. Brug forklaringen til at rette din forståelse. Tryk “Vis score” for overblik.</p>
+    <div class="quiz" id="quiz-152">
+      
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>1) Hvad kendetegner en flerårsagsforklaring?</b><span class="tag">Metode</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Den viser flere årsager og deres samspil.</li><li class="opt" data-choice="B">Den undgår kilder for at være neutral.</li><li class="opt" data-choice="C">Den forklarer alt med én person.</li><li class="opt" data-choice="D">Den bruger kun årstal.</li></ul>
+        <div class="feedback" aria-live="polite">Flerårsagsforklaringer er typisk mere realistiske og forklaringsstærke.</div>
+      </div>
+    
+      <div class="qrow mcq" data-answer="C">
+        <div class="meta"><b>2) Hvad er forskellen på udløsende og bagvedliggende årsager?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Udløsende er altid vigtigst.</li><li class="opt" data-choice="B">Bagvedliggende sker efter begivenheden.</li><li class="opt" data-choice="C">Udløsende udløser her-og-nu; bagvedliggende skaber betingelser over tid.</li><li class="opt" data-choice="D">Der er ingen forskel.</li></ul>
+        <div class="feedback" aria-live="polite">Skellet hjælper dig med at forklare timing og forudsætninger.</div>
+      </div>
+    
+    </div>
+    <div class="scorebar">
+      <button class="btn" onclick="showScore('#quiz-152', '#score-152')">Vis score</button>
+      <div class="score" id="score-152"></div>
+    </div>
+    </section>
+  <section class='panel' id='p-16' role='tabpanel' aria-labelledby='t-p-16'><h2>1.6 Kildebrug i historie</h2>
+    <div class="callout">
+      <h4>Nøglebegreber</h4>
+      <div class="reading"><p><b>Kilde:</b> alt materiale der kan bruges til at sige noget om fortiden</p><p><b>Problemstilling:</b> det spørgsmål der styrer hvilke kilder der er relevante</p><p><b>Kontekstualisering:</b> at sætte kilden ind i sin historiske sammenhæng</p><p><b>Belæg:</b> det i kilden der understøtter en påstand</p></div>
+    </div>
+    <h3>Kerneidé</h3><div class='reading'><p><b>Kilder giver ikke automatiske svar:</b> du skal tolke dem og sætte dem i kontekst.</p><p>God kildebrug betyder at bruge kilder som belæg i en forklaring, ikke bare som citatsamling.</p><p>Flere kilder kan nuancere og kontrollere påstande (de kan bekræfte eller modsige hinanden).</p></div>
+    <h3>Mini-eksempel</h3>
+    <div class="reading">
+      <p>Undersøger du “arbejdernes levevilkår”, kan du kombinere forskellige kilder: fabriksreglementer, breve, statistikker, fotos og historiske fremstillinger.
+      Hver type belyser noget forskelligt — og sammen giver de et mere robust billede.</p>
+    </div>
+    
+    <h3>Forståelsestjek</h3>
+    <p class="muted">Klik på et svar. Brug forklaringen til at rette din forståelse. Tryk “Vis score” for overblik.</p>
+    <div class="quiz" id="quiz-16">
+      
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>1) Hvad betyder det at kontekstualisere en kilde?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At oversætte den til moderne dansk.</li><li class="opt" data-choice="B">At placere den i tid, sted og situation for at forstå betydning og begrænsninger.</li><li class="opt" data-choice="C">At ignorere afsender og modtager.</li><li class="opt" data-choice="D">At vælge den kilde der bekræfter ens mening.</li></ul>
+        <div class="feedback" aria-live="polite">Kontekst forklarer ofte hvorfor en kilde siger det, den siger.</div>
+      </div>
+    
+    </div>
+    <div class="scorebar">
+      <button class="btn" onclick="showScore('#quiz-16', '#score-16')">Vis score</button>
+      <div class="score" id="score-16"></div>
+    </div>
+    </section>
+  <section class='panel' id='p-161' role='tabpanel' aria-labelledby='t-p-161'><h2>1.6.1 Grundlæggende kildeanalyse</h2>
+    <div class="callout">
+      <h4>Nøglebegreber</h4>
+      <div class="reading"><p><b>Afsender:</b> hvem laver kilden, og med hvilke interesser/position?</p><p><b>Modtager:</b> hvem var kilden rettet mod?</p><p><b>Tendens:</b> kildens vinkling/bias – hvad vil den opnå?</p><p><b>Repræsentativitet:</b> om kilden er typisk eller særlig for det den skal sige noget om</p><p><b>Afhængighed:</b> om kilden bygger på andrehåndsviden</p><p><b>Brugbarhed:</b> hvad kilden kan bruges til ift. problemstillingen (og hvad den ikke kan)</p></div>
+    </div>
+    <h3>Kerneidé</h3><div class='reading'><p><b>Kildeanalyse er både forståelse og vurdering:</b> hvad er kilden, og hvor stærk er den til dit formål?</p><p>En ‘biased’ kilde kan være meget brugbar — men ofte til noget andet end fakta (fx holdninger, propaganda, legitimering).</p><p><b>Konkludér altid:</b> ‘Kilden kan bruges til X, men har begrænsninger ift. Y’.</p></div>
+    <h3>Sådan gør du (model)</h3>
+    <div class="reading">
+      <p><b>1) Identificér</b> type, afsender, tid, sted, modtager.</p>
+      <p><b>2) Kontekst</b> hvad sker der omkring kilden?</p>
+      <p><b>3) Indhold</b> hovedpointer og nøgleinformation.</p>
+      <p><b>4) Tendens</b> formål, interesser, virkemidler.</p>
+      <p><b>5) Vurder</b> repræsentativitet, afhængighed, troværdighed.</p>
+      <p><b>6) Brugbarhed</b> hvad kan den bruges til – og med hvilke forbehold?</p>
+    </div>
+    
+    <h3>Forståelsestjek</h3>
+    <p class="muted">Klik på et svar. Brug forklaringen til at rette din forståelse. Tryk “Vis score” for overblik.</p>
+    <div class="quiz" id="quiz-161">
+      
+      <div class="qrow mcq" data-answer="C">
+        <div class="meta"><b>1) Hvad er den bedste afslutning på en kildeanalyse?</b><span class="tag">Metode</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">‘Kilden er god’ uden begrundelse.</li><li class="opt" data-choice="B">‘Kilden er biased, så den er ubrugelig’.</li><li class="opt" data-choice="C">En konklusion om brugbarhed ift. problemstillingen, inkl. begrænsninger.</li><li class="opt" data-choice="D">En lang genfortælling af indhold.</li></ul>
+        <div class="feedback" aria-live="polite">Det afgørende er vurderingen: hvad kan den bære i din argumentation?</div>
+      </div>
+    
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>2) Hvad dækker begrebet ‘tendens’ over?</b><span class="tag">Begreb</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At kilden altid lyver.</li><li class="opt" data-choice="B">Kildens vinkling og hvad den forsøger at opnå.</li><li class="opt" data-choice="C">At kilden er gammel.</li><li class="opt" data-choice="D">At kilden er repræsentativ.</li></ul>
+        <div class="feedback" aria-live="polite">Tendens handler om interesser og formål.</div>
+      </div>
+    
+    </div>
+    <div class="scorebar">
+      <button class="btn" onclick="showScore('#quiz-161', '#score-161')">Vis score</button>
+      <div class="score" id="score-161"></div>
+    </div>
+    </section>
+  <section class='panel' id='p-5x' role='tabpanel' aria-labelledby='t-p-5x'><h2>5. Kildetyper i praksis (5.1–5.7)</h2>
+    <div class="reading">
+      <p>Her får du en praktisk oversigt over kildetyper. Pointen er ikke at memorere lister, men at kunne stille de rigtige spørgsmål til den type materiale, du arbejder med.</p>
+    </div>
+    
+    <h3>Hvordan bruger du kildetyperne?</h3>
+    <div class="reading">
+      <p><b>Skriftlige kilder</b> er ofte stærke til at vise argumenter, beslutninger og intentioner — men du skal være opmærksom på retorik og tendens.</p>
+      <p><b>Genstande</b> og <b>billeder</b> kan vise praksis, status og kultur, men kræver ekstra kontekst for at undgå moderne fejltolkning.</p>
+      <p><b>Statistik</b> er stærk til mønstre, men kræver at du tjekker definitioner, registrering og usikkerhed.</p>
+      <p><b>Historiske fremstillinger</b> giver overblik og fortolkning, men skal læses som argumenter, ikke som “rå fakta”.</p>
+      <p><b>Levende billeder</b> og <b>plakater</b> er gode til propaganda/iscenesættelse — virkemidler er en del af budskabet.</p>
+      <p><b>Skønlitteratur</b> kan sige meget om normer og mentalitet, men sjældent direkte om “hvad der skete”.</p>
+    </div>
+    <h3>5.1 Skriftlige kilder</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>1</td><td class='term'><b>Kontekst</b></td><td class='focus'>Hvilken historisk periode eller sammenhæng er kilden en del af? oprindelse Hvor, hvornår og under hvilke forhold er kilden blevet til?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Kildetype</b></td><td class='focus'>Hvilken slags kilde er der tale om? begivenhed troværdig? Hvilke muligheder har afsender for at tale sandt? Hvilke evner og viljer har afsender til at tale sandt eller usandt? Overvej også, hvad der eventuelt er utroværdigt og hvorfor det er utroværdigt? Er upålideligheden overhovedet relevant i forhold til brugen af kilden?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Kildebrug</b></td><td class='focus'>Skal kilden bruges som en frembringelse eller en beretning? Hvilken betydning har det for brugen af kilden?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Kommunikation</b></td><td class='focus'>Hvem er afsender og modtager? Bruges kilden som beretning, skal man være opmærksom på følgende: • Hvilken rolle har afsenderen i det, der skildres i kilden? • Hvilke holdninger og værdier har afsenderen? Hvordan kommer de til udtryk? • Har afsenderen en særlig intention - skjult eller synlig - med det, der skildres i kilden? • Forholder afsenderen sig neutralt til det, der skildres i kilden? • Hvem var oprindeligt tiltænkt som modtager? • Deler modtageren/modtagerne kontekst (ideologisk/kulturelt) med afsender? Nøglebegreb Fokus</td></tr><tr><td class='nr'>7</td><td class='term'><b>Relation</b></td><td class='focus'>Bruges kilden som beretning, er følgende spørgsmål relevant i forhold til kildens brugsværdi: • Er der tale om en første- eller andenhåndskilde? Er kilden samtidig eller senere i forhold til det, der skildres?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Afhængighed</b></td><td class='focus'>Er der tale om en primær- eller sekundærkilde?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Omstændigheder</b></td><td class='focus'>Er kilden institutionel eller privat? Er den offentlig eller fortrolig - og hvad betyder det for kildens værdi?</td></tr><tr><td class='nr'>10</td><td class='term'><b>Intention</b></td><td class='focus'>Hvilket formål har kilden? Skal den informere, legitimere, kritisere, underholde eller agitere?</td></tr><tr><td class='nr'>11</td><td class='term'><b>Tendens</b></td><td class='focus'>Hvilken holdning og synsvinkel udtrykkes i kilden? Afspejler kilden en bestemt diskurs, ideologi eller mentalitet?</td></tr><tr><td class='nr'>12</td><td class='term'><b>Virkemidler</b></td><td class='focus'>Hvilke argumenter og sproglige virkemidler (fx metaforer, sammenligninger, konnotationer) anvendes i kilden?</td></tr><tr><td class='nr'>13</td><td class='term'><b>Repræsentivitet</b></td><td class='focus'>Hvor repræsentativ er kilden? Hvem repræsenteres i kilden? Er der tale om et befolkningsklasse, et gruppemiljø eller enkelte personers holdninger eller udlægninger af fortiden? Er det muligt at generalisere noget om fortiden på baggrund af kilden?</td></tr><tr><td class='nr'>14</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbar er kilden til at besvare den historiefaglige problemstilling? 1. Historiefaglig arbejdsbog 2. 5. Værktøjer til historisk analyse</td></tr></tbody>
+    </table>
+    <h3>5.2 Genstande</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>1</td><td class='term'><b>Kontekst</b></td><td class='focus'>Hvilken historisk periode er genstanden en del af?</td></tr><tr><td class='nr'>2</td><td class='term'><b>Tilblivelse</b></td><td class='focus'>Under hvilke historiske og kulturelle omstændigheder er genstanden blevet til?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Geografi</b></td><td class='focus'>Hvor stammer genstanden fra – og hvor er det fundet? Nøglebegreb Fokus</td></tr><tr><td class='nr'>4</td><td class='term'><b>Brugere</b></td><td class='focus'>Hvem har brugt genstanden – og i hvilke sammenhænge er genstanden blevet brugt?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Materiale</b></td><td class='focus'>Hvilke materialer består genstanden af – og indeholder det brugsspor?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Intention</b></td><td class='focus'>Hvilket formål har genstanden haft?</td></tr><tr><td class='nr'>7</td><td class='term'><b>Design</b></td><td class='focus'>Hvilken betydning har designet for genstanden – funktionelt, æstetisk, kulturelt?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Betydning</b></td><td class='focus'>Hvilken betydning har genstanden haft i fortiden og i nutiden?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbar er genstanden til at besvare den historiefaglige problemstilling?</td></tr></tbody>
+    </table>
+    <h3>5.3 Statistisk materiale</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>1</td><td class='term'><b>Kontekst</b></td><td class='focus'>Hvilken historisk periode eller sammenhæng viser materialet noget om?</td></tr><tr><td class='nr'>2</td><td class='term'><b>Overskrift</b></td><td class='focus'>Hvad skal materialet beskrive?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Talangivelser</b></td><td class='focus'>Er der tale om absolutte tal eller relative tal?</td></tr><tr><td class='nr'>4</td><td class='term'><b>Afkodning</b></td><td class='focus'>Hvad vises i materialet?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Variabler</b></td><td class='focus'>Hvilke variabler indgår i materialet?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Mønstre</b></td><td class='focus'>Er der mønstre eller sammenhænge i materialet?</td></tr><tr><td class='nr'>7</td><td class='term'><b>Forklaring</b></td><td class='focus'>Hvad forklarer materialet?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Afsender</b></td><td class='focus'>og modtager Hvem står bag materialet og hvem er det henvendt til?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Fortolkning</b></td><td class='focus'>Hvordan skal materialet tolkes?</td></tr><tr><td class='nr'>10</td><td class='term'><b>Kildeanalyse</b></td><td class='focus'>• Hvordan er materialet fremkommet? • Hvor pålideligt er materialet? • Hvilke motiver kan ligge til grund for materialet? • Er materialet repræsentativt? Nøglebegreb Fokus • Er materialet sammenligneligt?</td></tr><tr><td class='nr'>11</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbart er materialet til at besvare den historiefaglige problemstilling?</td></tr></tbody>
+    </table>
+    <h3>5.4 Historiske fremstillinger</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>1</td><td class='term'><b>Afsender</b></td><td class='focus'>og modtager Hvem har skrevet fremstillingen? Hvem henvender fremstillingen sig til?</td></tr><tr><td class='nr'>2</td><td class='term'><b>Intention</b></td><td class='focus'>Hvilket formål har fremstillingen? Hvilken historiefaglig tilgang er brugt i fremstillingen?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Udgiver</b></td><td class='focus'>Hvilket forlag har udgivet fremstillingen? Er fremstillingen peer reviewed eller anmeldt?</td></tr><tr><td class='nr'>4</td><td class='term'><b>Kontekst</b></td><td class='focus'>Hvornår er fremstillingen udgivet? Hvilken historisk samtid/periode er fremstillingen en del af? Hvilken betydning har det for fremstillingen?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Geografi</b></td><td class='focus'>Hvordan er fremstillingen geografisk afgrænset?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Periodisering</b></td><td class='focus'>Hvilken form periodisering er brugt i fremstillingen? Hvordan fortolkes brud og kontinuitet i fremstillingen? fremstillingen? Hvilke strukturer undersøges i fremstillingen?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Kildegrundlag</b></td><td class='focus'>Hvilket kildemateriale anvendes i fremstillingen? Hvordan indgår kildematerialet? Hvilken historiefaglig tilgang (politisk historie, diskurshistorie, mentalitetshistorie, mikrohistorie, kønshistorie etc.) er brugt i fremstillingen?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Forklaring</b></td><td class='focus'>Hvilke årsager og historiske forklaringer rummer fremstillingen?</td></tr><tr><td class='nr'>10</td><td class='term'><b>Historiesyn</b></td><td class='focus'>Hvilket historiesyn udtrykker fremstillingen?</td></tr><tr><td class='nr'>11</td><td class='term'><b>Fortæller</b></td><td class='focus'>Hvilken fortælleposition anvendes i fremstillingen?</td></tr><tr><td class='nr'>12</td><td class='term'><b>Genre</b></td><td class='focus'>Hvilken plotstruktur er fremstillingen bygget op efter? Nøglebegreb Fokus</td></tr><tr><td class='nr'>13</td><td class='term'><b>Tendens</b></td><td class='focus'>Hvilken form for tendens (politisk, moralsk, etnocentrisk) præger fremstillingen?</td></tr><tr><td class='nr'>14</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbar er fremstillingen til at besvare den historiefaglige problemstilling? 1. Historiefaglig arbejdsbog 2. 5. Værktøjer til historisk analyse</td></tr></tbody>
+    </table>
+    <h3>5.5 Levende billeder</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>2</td><td class='term'><b>Afsender</b></td><td class='focus'>og modtager Hvem står bag produktionen, og hvem henvender produktionen sig til?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Intention</b></td><td class='focus'>Hvilket formål har filmproduktionen?</td></tr><tr><td class='nr'>4</td><td class='term'><b>Genre</b></td><td class='focus'>Hvilken type produktion er der tale om?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Indhold</b></td><td class='focus'>Hvilke begivenheder/temaer/perioder fortælles der om?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Fakta-</b></td><td class='focus'>og fiktionskoder Hvilke koder dominerer i produktionen?</td></tr><tr><td class='nr'>7</td><td class='term'><b>Billedæstetik</b></td><td class='focus'>Hvilke billedbeskæringer, billedperspektiver?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Lyd</b></td><td class='focus'>Hvilke former for lyd anvendes i produktionen?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Symbolik</b></td><td class='focus'>Hvilke symboler bruges i produktionen – og hvilken funktion har symbolerne?</td></tr><tr><td class='nr'>10</td><td class='term'><b>Historiebrug</b></td><td class='focus'>Hvilken form for historiebrug er der tale om?</td></tr><tr><td class='nr'>11</td><td class='term'><b>Tendens</b></td><td class='focus'>Hvilken tendens (ideologisk, moralsk) præger produktionens indhold?</td></tr><tr><td class='nr'>12</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbar er produktionen til at besvare den historiefaglige problemstilling? 1. Historiefaglig arbejdsbog 2. 5. Værktøjer til historisk analyse</td></tr></tbody>
+    </table>
+    <h3>5.6 Skønlitteratur</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>2</td><td class='term'><b>Forfatter</b></td><td class='focus'>og modtager Hvem har skrevet romanen/novellen/digtet, og hvem er den intenderede modtager?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Intention</b></td><td class='focus'>Hvilket formål har romanen/novellen/digtet - er der tale om underholdning, agitation eller legitimering?</td></tr><tr><td class='nr'>4</td><td class='term'><b>Genre</b></td><td class='focus'>Hvilken type roman/novelle/digt er der tale om?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Indhold</b></td><td class='focus'>Hvilke begivenheder/temaer/perioder fortælles der om?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Autenticitet</b></td><td class='focus'>Hvor autentisk fremstilles virkeligheden i romanen/novellen/digtet?</td></tr><tr><td class='nr'>7</td><td class='term'><b>Virkemidler</b></td><td class='focus'>Hvilke litterære virkemidler bruges - og hvilken funktion har virkemidlerne?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Symbolik</b></td><td class='focus'>Hvilke symboler bruges – og hvilken funktion har symbolerne?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Værdier</b></td><td class='focus'>Hvilke værdier og modsætninger optræder i romanen/novellen/digtet?</td></tr><tr><td class='nr'>10</td><td class='term'><b>Historiebrug</b></td><td class='focus'>Hvilken form for historiebrug er der tale om?</td></tr><tr><td class='nr'>11</td><td class='term'><b>Tendens</b></td><td class='focus'>Hvilken tendens (ideologisk, moralsk) præger romanens/novellens/digtets indhold?</td></tr><tr><td class='nr'>12</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbar er romanen/novellen/digtet til at besvare den historiefaglige problemstilling? 1. Historiefaglig arbejdsbog 2. 5. Værktøjer til historisk analyse</td></tr></tbody>
+    </table>
+    <h3>5.7 Malerier, plakater og fotografier</h3>
+    <h3>Nøglebegreber og fokusspørgsmål</h3>
+    <table class="ktable">
+      <thead><tr><th>#</th><th>Nøglebegreb</th><th>Fokus (hvad du spørger om)</th></tr></thead>
+      <tbody><tr><td class='nr'>1</td><td class='term'><b>Oprindelse</b></td><td class='focus'>Under hvilke historiske omstændigheder er maleriet/plakaten/fotografiet blevet til? Nøglebegreb Fokus</td></tr><tr><td class='nr'>2</td><td class='term'><b>Tid</b></td><td class='focus'>og motiv Hvornår er maleriet/plakaten/fotografiet skabt – og hvordan hænger det sammen med billedets/fotografiets motiv?</td></tr><tr><td class='nr'>3</td><td class='term'><b>Sted</b></td><td class='focus'>og geografi Hvor er maleriet/plakaten/fotografiet skabt?</td></tr><tr><td class='nr'>4</td><td class='term'><b>Pålidelighed</b></td><td class='focus'>Er maleriet/plakaten/fotografiet ægte, falskt eller manipuleret?</td></tr><tr><td class='nr'>5</td><td class='term'><b>Afsender</b></td><td class='focus'>og modtager Hvem står bag maleriet/plakaten/fotografiet, og hvem er tænkt som modtager?</td></tr><tr><td class='nr'>6</td><td class='term'><b>Intention</b></td><td class='focus'>Hvilket formål har maleriet/plakaten/fotografiet?</td></tr><tr><td class='nr'>7</td><td class='term'><b>Indhold</b></td><td class='focus'>Hvilke begivenheder/temaer/perioder forestiller eller fremstiller maleriet/plakaten/fotografiet?</td></tr><tr><td class='nr'>8</td><td class='term'><b>Billedæstetik</b></td><td class='focus'>Hvordan er maleriet/plakaten/fotografiet bygget op med hensyn til forgrund, baggrund, billedlinjer, billedperspektiver?</td></tr><tr><td class='nr'>9</td><td class='term'><b>Værdier</b></td><td class='focus'>Hvilke værdier og modsætninger udtrykker maleriet/plakaten/fotografiet?</td></tr><tr><td class='nr'>10</td><td class='term'><b>Symbolik</b></td><td class='focus'>Hvilke symboler indeholder maleriet/plakaten/fotografiet – og hvilken funktion har symbolerne? Inddrag fx kulturhistorisk viden.</td></tr><tr><td class='nr'>11</td><td class='term'><b>Historiebrug</b></td><td class='focus'>Hvilken form for historiebrug er der tale om?</td></tr><tr><td class='nr'>12</td><td class='term'><b>Tendens</b></td><td class='focus'>Hvilken tendens (ideologisk, moralsk etc.) præger maleriets/plakatens/fotografiets indhold?</td></tr><tr><td class='nr'>13</td><td class='term'><b>Brugbarhed</b></td><td class='focus'>Hvor brugbar er maleriet/plakaten/fotografiet til at besvare den historiefaglige problemstilling? 12. Historiebrug Hvad forstås ved historiebrug? Hvad kan man bruge historie til? Hvor går grænsen mellem historiebrug og historiemisbrug? Hvordan analyserer man historiebrug? Når mennesker bruger fortællinger om fortiden i nutiden, kaldes det historiebrug. Vi gør hele tiden brug af fortiden, ikke kun i forbindelse med historieundervisning, film og underholdning, men også når vi i dagligdagen argumenterer for vores synspunkter og forstår os selv og den virkelighed, vi lever i, trækker vi på vores viden om fortiden. Historiebrug er en uomgængelig betingelse for enhver helstøbt individualitet og funktionsdygtig kultur. Enhver personlig eller kollektiv identitet bygger på en historiebevidsthed, hvor spørgsmålet &quot;hvem er jeg/vi?&quot; besvares gennem spørgsmålet &quot;hvem var jeg/vi?&quot; . Eksempel | Identitetsmæssig historiebrug i renæssancen Historiebrug har ofte en legitimerende funktion, da den kan bruges til at retfærdiggøre bestemte værdier, interesser eller politiske mål. Fordi vi &#x27;var&#x27; det og det, bør vi også sigte mod at &#x27;opnå&#x27; det og det. Nok kan interessen for historien være baseret på en fascination af &#x27;det gamle&#x27; , men brugen af historie vil ofte være styret af ideologiske eller politiske interesser. Det kommer fx til udtryk, når politikere refererer til historiske hændelser med det formål at retfærdiggøre (legitimere) deres egen politik. I politiske debatter ser man ofte, hvordan fortiden bruges som led i et argument for eller imod et synspunkt, enten som forbillede eller skræmmebillede. Debattører kan fx finde på at fremstille deres modstanderes synspunkter som urimelige eller etisk forkastelige ved at sammenligne synspunkterne med bestemte ideologiske opfattelser fra fortiden, som vi alle i dag er enige om er uacceptable, fx racisme, imperialisme, fascisme eller nazisme. Fortiden kan både imponere og irritere os. Vi fascineres af fortiden, når vi fx læser kloge ord af oplysningstidens filosoffer, beundrer romersk arkitektur eller malerier fra renæssancen. Men vi kan også skræmmes af fortiden, når vi fx hører om folkedrab, slaveri eller hekseforfølgelser. Fortiden kan virke overvældende. Den kan til tider provokere os så meget, at vi fristes til at omforme den, så den bekræfter præcis den politiske virkelighed eller de værdier, vi selv bryder os om. Derfor er der kamp om historien, hvilket er pointen med talemåden &quot;Det er sejrherrerne, der skriver historien&quot; . Det kommer fx til udtryk, når autoritære regimer bruger fotomanipulation til at fjerne systemkritikere fra offcielle fotografier, eller når den polske regering vil forbyde enhver omtale af, at polakker var involveret i forfølgelsen af jøder under 2. verdenskrig i Polen, eller da den tidligere iranske præsident Ahmadinejad betvivlede, om holocaust havde fundet sted. Den, der har magten i nutiden, har også magten til at forvalte fortiden, dvs. forme og forandre den, så den imødekommer og legitimerer bestemte politiske og ideologiske målsætninger. Historie kan også bruges som led i nationers politiske opdragelse, når statsmagter eller myndigheder rejser monumenter over mænd eller krige, der har haft betydning for den nationale historie. Faktisk blev historiefaget først et udbredt skolefag i forbindelse med nationalstaternes fremvækst i Europa i 1800-tallet. Faget kunne give statsborgerne en &#x27;fortælling&#x27; om at høre sammen i et nationalt fælleskab, et såkaldt erindringsfællesskab (se erindringshistorie) på baggrund af en gloriøs fortid. Det skete bl.a. i Danmark i 1800-tallet. I forbindelse med afståelsen af Norge (1814) og senere Slesvig-Holsten (1864) fokuserede politikere, historikere og malere på fortællingerne om Danmarks glorværdige fortid i højmiddelalderen, særligt Valdemartiden (1157-1241). Formålet var at fastholde det nationale fælleskab på trods af de politiske og militære nederlag i perioden. Historiebrugen havde her både et politisk og et identitetsmæssigt formål. Definition | Historiemisbrug Gengivelsen af fortiden er ikke altid lige troværdig. Hvornår bliver historiebrug til historiemisbrug? Der er forskel på at bruge historien til at fremme visse synspunkter og direkte at forfalske eller misbruge historien. Historiemisbrug består i en uredelig omgang med fortiden. Uredelighed består først og fremmest i at benægte historiske kendsgerninger eller at tilføje falske oplysninger, dvs. løgn. Der kan også ske misbrug, ved at man manipulerer med historiske forhold (fx at under- eller overdrive) med bevidst henblik på at vinde tilslutning hos sin modtager. Filmindustrien må betegnes som en storforbruger af historie, når historiske begivenheder eller personligheder skildres i film eller tv-serier (se filmanalyse). Undersøgelser viser, at historiske spillefilm skabt til underholdningsbrug har større indflydelse på menneskers historiebevidsthed end faghistorisk formidling. Den indflydelse, som bl.a. de nye medier har fået på folks historiebevidsthed, har medført et vist autoritetstab for videnskabsfaget historie, hvilket har gjort det nødvendigt for faghistorikere at beskæftige sig med andre former for historiebrug end blot den videnskabelige. Det har ført til nye faghistoriske tilgange som fx historiebrugsanalyse, erindringshistorie og analyse af historiebevidsthed. Definition | Historiebrug Historiebrug betegner alle typer brug af fortiden – herunder den private dagligdags brug og den institutionelle brug, fx undervisning og forskning – hvor der med henblik på at fremme visse interesser i nutiden, fx identitetsmæssige, politiske, videnskabelige eller underholdningsmæssige, sker en mere eller mindre bevidst udvælgelse/fravælgelse, fremhævelse/tilsidesættelse, opprioritering/nedprioritering af personer, forhold eller begivenheder i historien. Alle typer historiebrug er derfor forbundet med en bestemt tendens. Når man analyserer historiebrug, fokuserer man især på, hvordan fortiden fortolkes og bruges forskelligt i forskellige sammenhænge til forskellig tid, og særligt hvilke interesser, der ligger bag brugen af fortiden. Både historiografi og erindringshistorie er eksempler på historiefaglige metoder, der fokuserer på analyse af historiebrug. EKSEMPLER PÅ FORSKELLIGE TYPER HISTORIEBRUG Metode | Fremgangsmåde for analyse af historiebrug 1. Hvilken person eller institution står bag historiebrugen? 2. I hvilken sammenhæng foregår historiebrugen? 3. Hvilken &#x27;fortid&#x27; bruges og tematiseres i materialet? Hvilken tendens har tematiseringen af &#x27;fortiden&#x27;? 4. Hvilken type historiebrug er der tale om? 5. Hvem er målgruppe for historiebrugen? 6. Hvad er formålet med historiebrugen? 7. Hvilke opfattelser ønsker historiebrugerne at fremme hos målgruppen?</td></tr></tbody>
+    </table>
+    
+    <h3>Forståelsestjek</h3>
+    <p class="muted">Klik på et svar. Brug forklaringen til at rette din forståelse. Tryk “Vis score” for overblik.</p>
+    <div class="quiz" id="quiz-5x">
+      
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>1) Hvilken kildetype er typisk bedst til mønstre over tid?</b><span class="tag">Kildetype</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Genstande</li><li class="opt" data-choice="B">Statistisk materiale</li><li class="opt" data-choice="C">Skønlitteratur</li><li class="opt" data-choice="D">Malerier</li></ul>
+        <div class="feedback" aria-live="polite">Statistik er velegnet til mønstre og sammenligninger, hvis data/definitioner er stabile.</div>
+      </div>
+    
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>2) Hvad er en central faldgrube ved levende billeder?</b><span class="tag">Kritik</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At de altid mangler afsender.</li><li class="opt" data-choice="B">At klip, kamera og lyd kan styre fortolkning og skabe tendens.</li><li class="opt" data-choice="C">At de ikke kan dateres.</li><li class="opt" data-choice="D">At de ikke har målgruppe.</li></ul>
+        <div class="feedback" aria-live="polite">Virkemidler er styrende for budskab og betydning.</div>
+      </div>
+    
+    </div>
+    <div class="scorebar">
+      <button class="btn" onclick="showScore('#quiz-5x', '#score-5x')">Vis score</button>
+      <div class="score" id="score-5x"></div>
+    </div>
+    </section>
+  
+<section class="panel" id="p-exit" role="tabpanel" aria-labelledby="t-p-exit">
+  <h2>Exit quiz</h2>
+  <div class="reading">
+    <p>En kort samlet test. Hvis du scorer lavt på et område, så gå tilbage til det relevante faneblad og læs kerneidéen + nøglebegreber igen.</p>
+  </div>
+  
+    <h3>Forståelsestjek</h3>
+    <p class="muted">Klik på et svar. Brug forklaringen til at rette din forståelse. Tryk “Vis score” for overblik.</p>
+    <div class="quiz" id="quiz-exit">
+      
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>1) Hvad er den bedste begrundelse for en periodiseringsgrænse?</b><span class="tag">Periodisering</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">At årstallet er rundt.</li><li class="opt" data-choice="B">At der kan påvises et relevant brud/overgang ud fra kriterier knyttet til problemstillingen.</li><li class="opt" data-choice="C">At en bog siger det.</li><li class="opt" data-choice="D">At man kun har kilder efter grænsen.</li></ul>
+        <div class="feedback" aria-live="polite">Grænsen skal begrundes i tegn på ændring i det, du undersøger.</div>
+      </div>
+    
+      <div class="qrow mcq" data-answer="B">
+        <div class="meta"><b>2) Hvilken kombination viser korrekt årsagsanalyse?</b><span class="tag">Årsager</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Kun udløsende årsag</li><li class="opt" data-choice="B">Udløsende + bagvedliggende + samspil</li><li class="opt" data-choice="C">Kun konsekvenser</li><li class="opt" data-choice="D">Kun aktører</li></ul>
+        <div class="feedback" aria-live="polite">Timing og forudsætninger skal med — og de virker sammen.</div>
+      </div>
+    
+      <div class="qrow mcq" data-answer="A">
+        <div class="meta"><b>3) Hvilket begreb handler om kildens vinkling?</b><span class="tag">Kildekritik</span></div>
+        <ul class="opts"><li class="opt" data-choice="A">Tendens</li><li class="opt" data-choice="B">Geografi</li><li class="opt" data-choice="C">Design</li><li class="opt" data-choice="D">Periodisering</li></ul>
+        <div class="feedback" aria-live="polite">Tendens = interesser, formål og retorisk vinkling.</div>
+      </div>
+    
+    </div>
+    <div class="scorebar">
+      <button class="btn" onclick="showScore('#quiz-exit', '#score-exit')">Vis score</button>
+      <div class="score" id="score-exit"></div>
+    </div>
+    
+</section>
+
+</div>
+
+<script>
+  // Tabs
+  const tabs = [...document.querySelectorAll('.tabs button[role="tab"]')];
+  const panels = [...document.querySelectorAll('.panel')];
+  function activateTab(btn){
+    tabs.forEach(b=>b.setAttribute('aria-selected','false'));
+    btn.setAttribute('aria-selected','true');
+    const id = btn.getAttribute('aria-controls');
+    panels.forEach(p=>p.classList.toggle('active', p.id===id));
+    window.scrollTo({top:0, behavior:'instant'});
+  }
+  tabs.forEach(btn=>btn.addEventListener('click', ()=>activateTab(btn)));
+
+  // MCQ
+  function handleMCQ(mcq){
+    const answer = mcq.dataset.answer;
+    const opts = mcq.querySelectorAll('.opt');
+    opts.forEach(opt=>{
+      opt.addEventListener('click', ()=>{
+        opts.forEach(o=>o.classList.remove('correct','wrong'));
+        const choice = opt.dataset.choice;
+        if(choice===answer){
+          opt.classList.add('correct');
+          mcq.dataset.correct="1";
+        }else{
+          opt.classList.add('wrong');
+          mcq.dataset.correct="0";
+          const right = [...opts].find(o=>o.dataset.choice===answer);
+          if(right) right.classList.add('correct');
+        }
+      });
+    });
+  }
+  document.querySelectorAll('.mcq').forEach(handleMCQ);
+
+  // Score
+  function showScore(scopeSelector, outSelector){
+    const scope = document.querySelector(scopeSelector);
+    const out = document.querySelector(outSelector);
+    if(!scope || !out) return;
+    const qs = [...scope.querySelectorAll('.mcq')];
+    const answered = qs.filter(q=>q.dataset.correct==="1" || q.dataset.correct==="0").length;
+    const correct = qs.filter(q=>q.dataset.correct==="1").length;
+    out.textContent = `Svar: ${answered}/${qs.length}. Korrekte: ${correct}/${qs.length}.`;
+  }
+  window.showScore = showScore;
+</script>
 </body>
 </html>
