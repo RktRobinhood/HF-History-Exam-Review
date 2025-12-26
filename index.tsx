@@ -5,7 +5,7 @@ import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from '
 
 // --- UTILS ---
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_master_quest_final_v5';
+const STORAGE_KEY = 'hf_master_quest_final_v8';
 
 const getYear = (dateStr) => {
   if (!dateStr) return 0;
@@ -400,12 +400,72 @@ const SourceAnalysis = ({ sources, onExit, onRecord }) => {
   );
 };
 
+// --- NOTES VIEWER COMPONENT ---
+
+const NoteViewer = ({ selectedTopicId }) => {
+  const [content, setContent] = useState<string | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    if (selectedTopicId === null) return;
+    setLoading(true);
+    setError(null);
+    const noteUrl = `./notes/emne${selectedTopicId}.html`;
+    
+    fetch(noteUrl)
+      .then(res => {
+        if (!res.ok) throw new Error(`Status ${res.status}: Noter ikke fundet.`);
+        return res.text();
+      })
+      .then(html => setContent(html))
+      .catch(err => {
+        console.error(err);
+        setError("Kunne ikke indlæse noter for dette emne. Sørg for at filen findes i /notes/ folderen.");
+      })
+      .finally(() => setLoading(false));
+  }, [selectedTopicId]);
+
+  return (
+    <div className="h-full flex flex-col min-h-0">
+      <div className="flex-1 bg-white border-4 border-slate-900 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] relative flex flex-col overflow-hidden">
+        {loading && (
+          <div className="absolute inset-0 flex items-center justify-center bg-white z-20">
+             <div className="flex flex-col items-center gap-4">
+                <div className="w-12 h-12 border-4 border-slate-900 border-t-blue-400 rounded-full animate-spin"></div>
+                <span className="font-black uppercase text-xs">Henter Pensum...</span>
+             </div>
+          </div>
+        )}
+        {error ? (
+          <div className="p-20 text-center h-full flex flex-col justify-center items-center bg-slate-50">
+             <span className="text-6xl mb-6">🏜️</span>
+             <h3 className="text-xl font-black uppercase text-slate-900 mb-2">Noter Mangler</h3>
+             <p className="text-sm font-bold text-slate-500 max-w-xs">{error}</p>
+          </div>
+        ) : content ? (
+          <iframe 
+            srcDoc={content} 
+            className="w-full h-full border-none"
+            title="Curriculum Noter"
+          />
+        ) : null}
+      </div>
+    </div>
+  );
+};
+
 // --- MAIN APP ---
 
 const App = () => {
   const [stats, setStats] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
-  const [selIds, setSelIds] = useState(() => TOPICS.map(t => t.id));
+  
+  // SEPARATE SELECTION STATES
+  const [gameSelIds, setGameSelIds] = useState(() => TOPICS.map(t => t.id));
+  const [noteSelId, setNoteSelId] = useState('1'); // Default to Emne 1 since Emne 0 is theory
+  
   const [view, setView] = useState('menu');
+  const [menuTab, setMenuTab] = useState<'games' | 'notes'>('games');
   const [shuffledContent, setShuffledContent] = useState(null);
 
   const [streak, setStreak] = useState(0);
@@ -416,16 +476,16 @@ const App = () => {
   useEffect(() => localStorage.setItem(STORAGE_KEY + '_hs', highScore.toString()), [highScore]);
 
   const filtered = useMemo(() => ({
-    entries: HISTORY_ENTRIES.filter(e => selIds.includes(e.topicId)),
-    exams: EXAM_INTERPRETATIONS.filter(e => selIds.includes(e.topicId)),
-    sources: PRIMARY_SOURCES.filter(e => selIds.includes(e.topicId))
-  }), [selIds]);
+    entries: HISTORY_ENTRIES.filter(e => gameSelIds.includes(e.topicId)),
+    exams: EXAM_INTERPRETATIONS.filter(e => gameSelIds.includes(e.topicId)),
+    sources: PRIMARY_SOURCES.filter(e => gameSelIds.includes(e.topicId))
+  }), [gameSelIds]);
 
   const { masteryData, topicDetails } = useMemo(() => {
     const allContentInScope = [
-      ...HISTORY_ENTRIES.filter(e => selIds.includes(e.topicId)),
-      ...PRIMARY_SOURCES.filter(e => selIds.includes(e.topicId)),
-      ...EXAM_INTERPRETATIONS.filter(e => selIds.includes(e.topicId))
+      ...HISTORY_ENTRIES.filter(e => gameSelIds.includes(e.topicId)),
+      ...PRIMARY_SOURCES.filter(e => gameSelIds.includes(e.topicId)),
+      ...EXAM_INTERPRETATIONS.filter(e => gameSelIds.includes(e.topicId))
     ];
     const totalContentIds = allContentInScope.map(c => c.id);
     
@@ -457,9 +517,9 @@ const App = () => {
 
     return { 
       masteryData: { percent: masteryPercent, masteredCount, total: totalContentIds.length },
-      topicDetails: topicResults.filter(t => selIds.includes(t.id))
+      topicDetails: topicResults.filter(t => gameSelIds.includes(t.id))
     };
-  }, [stats, selIds]);
+  }, [stats, gameSelIds]);
 
   const recordStat = (id: string, ok: boolean) => {
     setStats(p => {
@@ -500,24 +560,53 @@ const App = () => {
           <p className="text-[9px] font-black text-blue-900 uppercase mt-1">Dansk Eksamen Mastery</p>
         </div>
         
-        {/* Most Important: Topic Selection */}
         <div className="flex-1 overflow-y-auto pr-2 mb-6 min-h-0">
-          <p className="text-[10px] font-black text-slate-500 uppercase mb-3 tracking-widest">Vælg Emner i Pensum</p>
+          <p className="text-[10px] font-black text-slate-500 uppercase mb-3 tracking-widest">
+            {menuTab === 'games' ? 'Vælg Emner til Træning' : 'Vælg Noter til Læsning'}
+          </p>
           <div className="space-y-2">
-            {TOPICS.map(t => (
-              <label key={t.id} className={`flex items-start gap-3 p-3 border-2 cursor-pointer transition-all ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
-                <input type="checkbox" className="mt-1" checked={selIds.includes(t.id)} onChange={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} />
-                <span className="text-[10px] font-black uppercase leading-snug">{t.title}</span>
-              </label>
-            ))}
+            {TOPICS.map(t => {
+              const isMetode = t.id === '0';
+              const isDisabled = menuTab === 'notes' && isMetode;
+              const isSelected = menuTab === 'games' ? gameSelIds.includes(t.id) : noteSelId === t.id;
+
+              return (
+                <label 
+                  key={t.id} 
+                  className={`flex items-start gap-3 p-3 border-2 transition-all ${
+                    isDisabled ? 'opacity-30 cursor-not-allowed bg-slate-200 grayscale' : 
+                    isSelected ? 'border-slate-900 bg-blue-50' : 'border-slate-100'
+                  } ${!isDisabled && 'cursor-pointer hover:border-slate-400'}`}
+                >
+                  <input 
+                    type={menuTab === 'games' ? "checkbox" : "radio"} 
+                    className="mt-1" 
+                    disabled={isDisabled}
+                    checked={isSelected} 
+                    onChange={() => {
+                      if (menuTab === 'games') {
+                        setGameSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id]);
+                      } else {
+                        setNoteSelId(t.id);
+                      }
+                    }} 
+                  />
+                  <div className="flex flex-col">
+                    <span className="text-[10px] font-black uppercase leading-snug">{t.title}</span>
+                    {isDisabled && <span className="text-[8px] font-bold text-red-500 uppercase italic">Ingen noter endnu</span>}
+                  </div>
+                </label>
+              );
+            })}
           </div>
-          <div className="pt-4 flex gap-4">
-            <button onClick={() => setSelIds(TOPICS.map(t => t.id))} className="text-[9px] font-black text-blue-900 underline uppercase hover:text-blue-500">Markér Alle</button>
-            <button onClick={() => setSelIds([])} className="text-[9px] font-black text-red-900 underline uppercase hover:text-red-500">Fravælg Alle</button>
-          </div>
+          {menuTab === 'games' && (
+            <div className="pt-4 flex gap-4">
+              <button onClick={() => setGameSelIds(TOPICS.map(t => t.id))} className="text-[9px] font-black text-blue-900 underline uppercase hover:text-blue-500">Markér Alle</button>
+              <button onClick={() => setGameSelIds([])} className="text-[9px] font-black text-red-900 underline uppercase hover:text-red-500">Fravælg Alle</button>
+            </div>
+          )}
         </div>
 
-        {/* Compact Mastery Section */}
         <div className="flex-shrink-0 mt-auto pt-4 border-t-2 border-slate-200">
           <div className="flex items-center justify-between mb-4 bg-white p-3 border-2 border-slate-900 shadow-[2px_2px_0px_0px_rgba(15,23,42,1)]">
             <span className="text-[10px] font-black uppercase text-slate-500">Mestring</span>
@@ -548,44 +637,70 @@ const App = () => {
       </aside>
 
       <main className={UI.main}>
-        <div className="mb-12 pb-6 border-b-8 border-slate-900 flex justify-between items-end">
-          <h2 className="text-5xl font-black uppercase italic tracking-tighter">Vælg Modul</h2>
-          <span className="text-xs font-black bg-slate-900 text-white px-4 py-1 uppercase">{filtered.entries.length} Emner valgt</span>
+        {/* COMPACT CLEAN HEADER */}
+        <div className="mb-8 flex justify-between items-center border-b-8 border-slate-900 pb-4">
+          <div className="flex gap-2">
+            <button 
+              onClick={() => setMenuTab('games')} 
+              className={`px-8 py-3 font-black uppercase text-sm border-4 border-slate-900 transition-all shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${menuTab === 'games' ? 'bg-slate-900 text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white text-slate-900 hover:bg-slate-50'}`}
+            >
+              🎮 Træning & Spil
+            </button>
+            <button 
+              onClick={() => setMenuTab('notes')} 
+              className={`px-8 py-3 font-black uppercase text-sm border-4 border-slate-900 transition-all shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] ${menuTab === 'notes' ? 'bg-slate-900 text-white translate-x-1 translate-y-1 shadow-none' : 'bg-white text-slate-900 hover:bg-slate-50'}`}
+            >
+              📝 Pensum Noter
+            </button>
+          </div>
+          <div className="text-right">
+             <h2 className="text-xs font-black uppercase text-slate-400">HF Historie Mastery</h2>
+             <p className="text-lg font-black uppercase italic text-slate-900">
+               {menuTab === 'games' ? 'Vælg Træningsmodul' : `Læsning: ${TOPICS.find(t => t.id === noteSelId)?.title}`}
+             </p>
+          </div>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <button onClick={() => startModule('flashcards')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
-            <div className="text-5xl mb-6">🗂️</div>
-            <h3 className="text-3xl font-black mb-4 uppercase italic">Flashcards</h3>
-            <p className="text-sm text-slate-700 font-bold mb-8">Test din paratviden og husk de vigtigste begreber fra det feudale til det senmoderne.</p>
-            <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Start Træning</div>
-          </button>
-          <button onClick={() => startModule('quiz')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
-            <div className="text-5xl mb-6">🎯</div>
-            <h3 className="text-3xl font-black mb-4 uppercase italic">Videns Quiz</h3>
-            <p className="text-sm text-slate-700 font-bold mb-8">Multiple-choice test i pensum. Få umiddelbar feedback på dine historiske fakta.</p>
-            <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Tag Quiz</div>
-          </button>
-          <button onClick={() => startModule('timeline')} className={`${UI.card} text-left md:col-span-2 hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-yellow-50 flex items-center gap-10`}>
-            <div className="text-7xl">⚔️</div>
-            <div className="flex-1">
-              <h3 className="text-4xl font-black mb-4 uppercase italic">Timeline Quest</h3>
-              <p className="text-md text-slate-700 font-bold max-w-2xl mb-8">Beskyt dine hjerter! Sortér begivenheder korrekt for at opnå den højeste streak. 3 liv pr. quest.</p>
-              <div className={`${UI.btn} ${UI.primary} px-16 py-5 uppercase text-lg`}>Start Quest</div>
-            </div>
-          </button>
-          <button onClick={() => startModule('sources')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
-            <div className="text-5xl mb-6">📜</div>
-            <h3 className="text-3xl font-black mb-4 uppercase italic">Kilde Analyse</h3>
-            <p className="text-sm text-slate-700 font-bold mb-8">Dyk ned i lange uddrag og træn din kildekritik med specifikke analyseopgaver.</p>
-            <div className={`${UI.btn} ${UI.success} w-full text-center uppercase py-4`}>Analysér</div>
-          </button>
-          <button onClick={() => startModule('exam')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-slate-100`}>
-            <div className="text-5xl mb-6">💡</div>
-            <h3 className="text-3xl font-black mb-4 uppercase italic">Eksamenstræner</h3>
-            <p className="text-sm text-slate-700 font-bold mb-8">Typiske eksamensspørgsmål og coaching. Forstå censorernes forventninger.</p>
-            <div className={`${UI.btn} ${UI.secondary} w-full text-center uppercase py-4`}>Åbn Fokus</div>
-          </button>
-        </div>
+
+        {menuTab === 'games' ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 animate-pop">
+            <button onClick={() => startModule('flashcards')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] transition-transform hover:-translate-y-1`}>
+              <div className="text-5xl mb-6">🗂️</div>
+              <h3 className="text-3xl font-black mb-4 uppercase italic">Flashcards</h3>
+              <p className="text-sm text-slate-700 font-bold mb-8">Test din paratviden og husk de vigtigste begreber fra det feudale til det senmoderne.</p>
+              <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Start Træning</div>
+            </button>
+            <button onClick={() => startModule('quiz')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] transition-transform hover:-translate-y-1`}>
+              <div className="text-5xl mb-6">🎯</div>
+              <h3 className="text-3xl font-black mb-4 uppercase italic">Videns Quiz</h3>
+              <p className="text-sm text-slate-700 font-bold mb-8">Multiple-choice test i pensum. Få umiddelbar feedback på dine historiske fakta.</p>
+              <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Tag Quiz</div>
+            </button>
+            <button onClick={() => startModule('timeline')} className={`${UI.card} text-left md:col-span-2 hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-yellow-50 flex items-center gap-10 transition-transform hover:-translate-y-1`}>
+              <div className="text-7xl">⚔️</div>
+              <div className="flex-1">
+                <h3 className="text-4xl font-black mb-4 uppercase italic">Timeline Quest</h3>
+                <p className="text-md text-slate-700 font-bold max-w-2xl mb-8">Beskyt dine hjerter! Sortér begivenheder korrekt for at opnå den højeste streak. 3 liv pr. quest.</p>
+                <div className={`${UI.btn} ${UI.primary} px-16 py-5 uppercase text-lg`}>Start Quest</div>
+              </div>
+            </button>
+            <button onClick={() => startModule('sources')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] transition-transform hover:-translate-y-1`}>
+              <div className="text-5xl mb-6">📜</div>
+              <h3 className="text-3xl font-black mb-4 uppercase italic">Kilde Analyse</h3>
+              <p className="text-sm text-slate-700 font-bold mb-8">Dyk ned i lange uddrag og træn din kildekritik med specifikke analyseopgaver.</p>
+              <div className={`${UI.btn} ${UI.success} w-full text-center uppercase py-4`}>Analysér</div>
+            </button>
+            <button onClick={() => startModule('exam')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-slate-100 transition-transform hover:-translate-y-1`}>
+              <div className="text-5xl mb-6">💡</div>
+              <h3 className="text-3xl font-black mb-4 uppercase italic">Eksamenstræner</h3>
+              <p className="text-sm text-slate-700 font-bold mb-8">Typiske eksamensspørgsmål og coaching. Forstå censorernes forventninger.</p>
+              <div className={`${UI.btn} ${UI.secondary} w-full text-center uppercase py-4`}>Åbn Fokus</div>
+            </button>
+          </div>
+        ) : (
+          <div className="animate-pop h-full flex flex-col min-h-0">
+             <NoteViewer selectedTopicId={noteSelId} />
+          </div>
+        )}
       </main>
     </div>
   );
