@@ -1,140 +1,42 @@
-
 <!doctype html>
 <html lang="da">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Familieliv i Danmark – Noter</title>
+  <title>Familieliv i Danmark – Repetition (tabs + quiz) v4</title>
   <style>
-    :root {
-      --bg: #ffffff;
-      --slate-900: #0f172a;
-      --blue-300: #93c5fd;
-      --green-300: #86efac;
-      --red-300: #fca5a5;
-      --yellow-50: #fefce8;
-      --slate-50: #f8fafc;
-    }
-    * { box-sizing: border-box; }
-    body { 
-      font-family: 'Inter', system-ui, -apple-system, sans-serif; 
-      margin: 0; 
-      color: var(--slate-900); 
-      background: var(--bg); 
-      line-height: 1.6; 
-      padding-bottom: 50px;
-    }
-    main { max-width: 900px; margin: 0 auto; padding: 20px; }
-    
-    .tabs-container { border: 4px solid var(--slate-900); background: white; }
-    .tablist { 
-      display: flex; 
-      flex-wrap: wrap; 
-      gap: 4px; 
-      padding: 12px; 
-      border-bottom: 4px solid var(--slate-900); 
-      background: var(--slate-50);
-      position: sticky;
-      top: 0;
-      z-index: 10;
-    }
-    .tablist button {
-      border: 2px solid var(--slate-900); 
-      background: white;
-      padding: 6px 12px; 
-      cursor: pointer; 
-      font-size: 11px;
-      font-weight: 900;
-      text-transform: uppercase;
-      transition: all 0.1s;
-    }
-    .tablist button:hover { background: var(--blue-300); }
-    .tablist button[aria-selected="true"] { 
-      background: var(--slate-900); 
-      color: white; 
-      transform: translateY(2px);
-    }
-
-    .panel { display: none; padding: 30px; }
-    .panel.active { display: block; animation: pop 0.2s ease-out; }
-    @keyframes pop { from { opacity: 0; transform: scale(0.98); } to { opacity: 1; transform: scale(1); } }
-
-    h2 { margin: 0 0 20px 0; font-size: 28px; font-weight: 900; text-transform: uppercase; italic: true; border-bottom: 4px solid var(--slate-900); display: inline-block; }
-    h3 { margin: 24px 0 12px 0; font-size: 18px; font-weight: 900; text-transform: uppercase; color: var(--slate-900); }
-    p { margin: 16px 0; font-size: 16px; font-weight: 500; }
-    strong { font-weight: 900; color: #1e3a8a; }
-    ul { margin: 12px 0; padding-left: 20px; list-style-type: square; }
-    li { margin-bottom: 8px; }
-
-    .key { 
-      background: var(--yellow-50); 
-      border: 3px solid var(--slate-900); 
-      padding: 20px; 
-      margin: 30px 0; 
-      box-shadow: 6px 6px 0px 0px var(--slate-900);
-    }
-
-    .q-section { margin-top: 40px; border-top: 4px dashed var(--slate-900); pt: 40px; }
-    .mcq { 
-      margin: 20px 0; 
-      padding: 24px; 
-      border: 3px solid var(--slate-900); 
-      background: white; 
-      box-shadow: 6px 6px 0px 0px var(--slate-900);
-    }
-    .prompt { margin: 0 0 16px 0; font-weight: 900; font-size: 16px; }
-    .choices { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
-    .choices li { margin: 0; }
-    .choices label {
-      display: block;
-      padding: 12px;
-      border: 2px solid var(--slate-900);
-      cursor: pointer;
-      font-weight: 700;
-      font-size: 14px;
-      transition: background 0.1s;
-    }
-    .choices label:hover { background: var(--slate-50); }
-    .choices input { margin-right: 10px; }
-
-    .check-btn { 
-      margin-top: 20px; 
-      border: 3px solid var(--slate-900); 
-      background: var(--blue-300); 
-      padding: 10px 20px; 
-      font-weight: 900; 
-      text-transform: uppercase;
-      cursor: pointer;
-      width: 100%;
-    }
-    .check-btn:active { transform: translateY(2px); }
-
-    .fb { 
-      margin-top: 16px; 
-      font-weight: 900; 
-      text-transform: uppercase;
-      padding: 8px;
-      display: none;
-      border: 2px solid var(--slate-900);
-    }
-    .fb.good { display: block; background: var(--green-300); }
-    .fb.bad { display: block; background: var(--red-300); }
-    .explain { 
-      margin-top: 10px; 
-      font-style: italic; 
-      font-weight: 600; 
-      font-size: 14px;
-      color: #475569;
-      display: none;
-    }
-    .active .explain { display: block; }
-
-    .muted { color: #64748b; font-size: 14px; font-weight: 600; margin-bottom: 20px; }
+    :root{--fg:#111;--muted:#555;--bg:#fff;--card:#f6f6f6;--border:#ddd;--good:#067647;--bad:#b42318;}
+    *{box-sizing:border-box;}
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;margin:0;color:var(--fg);background:var(--bg);line-height:1.65;}
+    main{max-width:1050px;margin:0 auto;padding:14px;}
+    .tabs{border:1px solid var(--border);border-radius:14px;overflow:hidden;}
+    .tablist{display:flex;flex-wrap:wrap;gap:8px;padding:10px;border-bottom:1px solid var(--border);background:#fff;}
+    .tablist button{border:1px solid var(--border);background:var(--card);border-radius:999px;padding:8px 12px;cursor:pointer;font-size:13px;}
+    .tablist button[aria-selected="true"]{background:#eaffea;border-color:#bfe8bf;font-weight:700;}
+    .panel{display:none;padding:14px;}
+    .panel.active{display:block;}
+    h2{margin:0 0 10px 0;font-size:18px;}
+    h3{margin:14px 0 6px 0;font-size:15px;}
+    p{margin:10px 0;}
+    ul{margin:6px 0 0 18px;}
+    .muted{color:var(--muted);}
+    .key{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:10px;margin:10px 0;}
+    .q{margin-top:14px;padding:12px;border:1px solid var(--border);border-radius:12px;background:#fff;}
+    .q h3{margin-top:0;}
+    .mcq{margin:10px 0;padding:10px;border:1px solid var(--border);border-radius:12px;background:#fff;}
+    .prompt{margin:0 0 8px 0;font-weight:700;}
+    .choices{list-style:none;padding:0;margin:0;}
+    .choices li{margin:6px 0;}
+    .mcq button{margin-top:8px;border:1px solid var(--border);background:var(--card);padding:8px 10px;border-radius:10px;cursor:pointer;}
+    .fb{margin-top:8px;font-weight:700;}
+    .fb.good{color:var(--good);}
+    .fb.bad{color:var(--bad);}
+    .explain{margin-top:6px;color:var(--muted);font-weight:500;}
   </style>
 </head>
 <body>
 <main>
-  <div class="tabs-container" id="tabs">
+  <div class="tabs" id="tabs">
     <div class="tablist" role="tablist" aria-label="Faner">
       <button role="tab" aria-selected="true"  aria-controls="p-bonde" id="t-bonde">Bondefamilien</button>
       <button role="tab" aria-selected="false" aria-controls="p-kilde1" id="t-kilde1">Kilde: Fæstebonde</button>
@@ -146,33 +48,34 @@
       <button role="tab" aria-selected="false" aria-controls="p-exit" id="t-exit">Exit-quiz</button>
     </div>
 
-    <!-- BONDE -->
     <section class="panel active" role="tabpanel" id="p-bonde" aria-labelledby="t-bonde">
       <h2>Bondefamilien</h2>
 
-      <p>Bondefamilien er først og fremmest en <strong>husstand</strong>: et fællesskab, der både er hjem og arbejdsplads. Den vigtigste pointe er, at familieliv ikke kan forstås adskilt fra økonomi og produktion. Man producerer fødevarer, tøj og andre nødvendigheder, og man betaler sin plads i samfundet gennem afgifter/ydelser (til herremand, kirke og stat). I et sådant system er det afgørende at “høre til”, for uden en husstand har man svært ved at skaffe mad, bolig og beskyttelse.</p>
+      <p>Bondefamilien i det førindustrielle Danmark kan bedst forstås som en <strong>husstand</strong>: et fællesskab, der både er hjem, arbejdsplads og socialt sikkerhedsnet. Husstanden er ikke bare “mor-far-børn”, men ofte et større kollektiv med børn, eventuelle bedsteforældre, og i perioder <strong>karle og piger</strong>. Pointen er, at familieliv ikke kan skilles fra produktion og økonomi. Husstanden skal skaffe mad, tøj, brændsel, foder, og samtidig leve op til krav fra samfundet (afgifter/ydelser).</p>
 
-      <p>Husstanden er typisk bygget op omkring et ægtepar, men størrelsen skifter over tid. Når børnene er små, kan husstanden have brug for hjælp (karle/piger), og når børnene bliver større, kan de selv udgøre en del af arbejdskraften. Ældre kan være på <strong>aftægt</strong>, hvor de forsørges mod at give gården videre. Denne måde at organisere livet på betyder, at familie ikke kun handler om følelser; den handler også om arbejdsdeling, overlevelse og social orden.</p>
+      <p>Et nøglebegreb er <strong>selvforsyning</strong>. Meget af det, man bruger, fremstilles eller forarbejdes i husstanden: korn bliver til brød, mælk til smør/ost, uld til tekstiler, og husets redskaber vedligeholdes. Hvis høsten fejler, eller hvis en vigtig arbejdskraft bliver syg, kan konsekvensen være direkte mangel. Derfor bliver planlægning, arbejdsdisciplin og social kontrol tæt knyttet til hverdagen. Når historietekster beskriver bondefamilien som “arbejdsorienteret”, er det fordi arbejde er forbundet med overlevelse og social status.</p>
 
-      <p>Arbejdet er ofte <strong>kønsopdelt</strong> og hænger sammen med både tradition og praktiske behov. Mænd forbindes typisk med jordbearbejdning, redskaber og tungere markarbejde, mens kvinder står for en stor del af råvareforarbejdningen (mad, mejeriprodukter, tekstiler) og husholdningens daglige drift. Det betyder ikke, at kvinder “ikke arbejder” – tværtimod: husstanden fungerer kun, hvis begge køn bidrager, men de forventes at bidrage på forskellige måder. Børn indgår også tidligt: små opgaver kan begynde tidligt, og gradvist bliver de en del af det “voksne” ansvar.</p>
+      <p>Husstanden har typisk en tydelig <strong>hierarkisk</strong> struktur. I mange beskrivelser er den patriarkalsk: husbonden har formel myndighed, og børn (og ofte tjenestefolk) forventes at adlyde. Men hierarkiet handler også om ansvar: den, der har beslutningsmagt, skal sikre, at gård og husholdning fungerer. Det er vigtigt at se både magt og pligt. Derudover findes der ofte en social rangorden i landsbyen og i forholdet til en godsejer (hvis det er et fæstested).</p>
 
-      <p>Opdragelsen kan være streng. Det hænger sammen med, at fejl kan koste dyrt i en husholdning, hvor ressourcerne er knappe, og hvor arbejdskraft er nødvendig. Samtidig skaber den tætte boligform (få rum, mange mennesker) en hverdag med begrænset privatliv: man ser og hører meget, og sociale normer håndhæves tæt. Man kan derfor sige, at familien er et sted, hvor både arbejde, moral, disciplin og fællesskab væves sammen.</p>
+      <p>Arbejdsdelingen er ofte <strong>kønsopdelt</strong>, men overlappende. Mænd forbindes ofte med pløjning, heste, redskaber og noget af markarbejdet, mens kvinder står for en stor del af husholdningens drift og forarbejdning: mad, bagning, brygning, mejeri, syning, lapning, pasning af mindre husdyr og den daglige orden. Denne opdeling former også identitet: “at være en god husbond” eller “en dygtig husmor” er ikke bare personligt – det er socialt bedømt. Børn trænes ind i det fra tidlig alder gennem små opgaver, der bliver større med alderen.</p>
 
-      <p>Ægteskab er ikke kun et romantisk valg, men også en økonomisk og social institution. Ofte må man vente med at gifte sig, til man kan etablere en husstand (fx overtage gård/hus, have et levebrød). Det giver ofte <strong>sen ægteskabsalder</strong>. På samfundsniveau kan det virke som en “bremse” på befolkningstilvækst i et samfund, hvor der ikke uendeligt kan opdyrkes ny jord. Familien bliver derfor et sted, hvor samfundets strukturer (økonomi, ejendom, normer) kan ses helt konkret.</p>
+      <p>Et andet nøglebegreb er <strong>aftægt</strong>: når en ældre generation giver gården videre (ofte til en søn), får de til gengæld forsørgelse. Det viser, at familien også er et økonomisk system over tid. Ægteskab fungerer ligeledes som en social og økonomisk institution, ikke kun romantik. Mange må vente med at gifte sig, til de kan etablere en husstand (overtage gård/hus, have et stabilt levebrød). Derfor ser man ofte <strong>sen ægteskabsalder</strong>. Historisk kan det også virke som en “regulering” af befolkningens størrelse, fordi man ikke kan forsørge ubegrænset mange nye husstande uden ressourcer.</p>
+
+      <p>Privatliv er begrænset. Boliger kan have få rum, mange mennesker og fælles funktioner. Det betyder, at normer bliver håndhævet tæt, og at “hvad folk siger” i lokalsamfundet kan betyde meget. Der er samtidig et stærkt fællesskab: man hjælper hinanden i travle perioder (høst), men man vurderer også hinanden. Familielivet er derfor både intimt og offentligt: hele landsbyen kan i praksis fungere som et socialt kontrolsystem.</p>
 
       <div class="key">
-        <strong>Husk de vigtigste begreber:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Familien = produktionsenhed + socialt sikkerhedsnet.</li>
-          <li>Husstand, kønsarbejdsdeling, aftægt, sen ægteskabsalder.</li>
-          <li>Børn = tidlig arbejdskraft; disciplin hænger sammen med nødvendighed.</li>
+          <li>Husstand, selvforsyning, karle/piger, patriarkalsk/hierarki, kønsarbejdsdeling.</li>
+          <li>Aftægt, sen ægteskabsalder, social kontrol, normer/ry.</li>
+          <li>Børn som arbejdskraft + socialisering (lære roller og færdigheder).</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="b" data-explain="Husstanden samler arbejde og liv: man får mad, tøj, bolig og beskyttelse gennem at høre til.">
+        <div class="mcq" data-answer="b" data-explain="Husstanden samler arbejde og liv: man får mad, tøj, bolig og beskyttelse gennem at høre til i et fællesskab.">
           <p class="prompt">1) Hvorfor var det afgørende at være medlem af en husstand?</p>
           <ul class="choices">
             <li><label><input type="radio" name="bonde1" value="a"> a) For at kunne stemme</label></li>
@@ -180,12 +83,12 @@
             <li><label><input type="radio" name="bonde1" value="c"> c) For at få gratis skolegang</label></li>
             <li><label><input type="radio" name="bonde1" value="d"> d) For at kunne rejse til byen</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="d" data-explain="Skellet er svagere: arbejde er indlejret i hverdagen og følger rytmer (årstider, dagslys).">
+        <div class="mcq" data-answer="d" data-explain="Skellet er svagere: arbejde er indlejret i hverdagen og følger rytmer (årstider, dagslys, dyr).">
           <p class="prompt">2) Hvad passer bedst til forholdet mellem arbejde og fritid i bondefamilien?</p>
           <ul class="choices">
             <li><label><input type="radio" name="bonde2" value="a"> a) Fritid fylder mere end arbejde</label></li>
@@ -193,38 +96,44 @@
             <li><label><input type="radio" name="bonde2" value="c"> c) Man arbejder mest alene</label></li>
             <li><label><input type="radio" name="bonde2" value="d"> d) Arbejde og hverdag glider sammen; fritid er ikke skarpt adskilt</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Skriv 2 eksempler på “mandsarbejde” og 2 på “kvindearbejde” i husstanden.</li>
+          <li><strong>Sværere:</strong> Forklar i 4–6 linjer, hvorfor sen ægteskabsalder kan hænge sammen med forsørgelse og adgang til jord/ressourcer.</li>
+        </ol>
       </div>
     </section>
 
-    <!-- KILDE 1 -->
     <section class="panel" role="tabpanel" id="p-kilde1" aria-labelledby="t-kilde1">
-      <h2>Kilde: Fæstebonde</h2>
+      <h2>Kilde: Søn af en fæstebonde (erindring)</h2>
 
-      <p>Denne tekst er en <strong>erindringskilde</strong>: en person fortæller i 1890 om oplevelser fra 1830’erne og 1840’erne. Det giver to vigtige konsekvenser. For det første kan kilden være meget stærk til <em>konkrete beskrivelser</em> af hverdagsliv: hvordan man taler til hinanden, hvad der forventes af børn, og hvilke følelser der er forbundet med autoritet. For det andet skal man være kildekritisk, fordi hukommelse ændrer sig, og fordi fortælleren kan “sortere” i fortiden – bevidst eller ubevidst.</p>
+      <p>Denne tekst er en <strong>erindringskilde</strong>: en person skriver i 1890 om barndom/ungdom i 1830’erne og 1840’erne. Den tidsafstand er vigtig. Den betyder, at kilden kan give stærke, levende indblik i hverdagen, men også at den kan være påvirket af senere erfaringer og ændrede normer. Når man bruger erindringer historisk, spørger man derfor ikke kun: “skete det?”, men også: “hvad viser det om livsvilkår og normer – og hvordan kan forfatterens senere liv farve fortællingen?”</p>
 
-      <p>En god måde at læse erindringer på er at adskille <strong>hændelser</strong> fra <strong>fortolkninger</strong>. Hændelser er: “hvad skete der?”, “hvem sagde hvad?”, “hvad gjorde man?”. Fortolkninger er: “hvad synes forfatteren om det?”, “hvilken moral lægger han ned over episoden?”, “hvad får vi at vide om rigtigt/forkert?”. Når du kan adskille de to, kan du bruge kilden mere præcist.</p>
+      <p>Erindringskilder er typisk særligt gode til at vise <strong>mentalitet</strong> og <strong>social praksis</strong>: hvordan man taler til børn, hvad man opfatter som “rigtigt”, hvilke følelser der knytter sig til autoritet, og hvilke konflikter der er almindelige. De kan afsløre normer, som lærebøger ofte kun nævner med overskrifter (fx “patriarkalsk opdragelse”). Her kan man se, hvordan patriarkalsk autoritet <em>føles</em> og <em>udøves</em> i konkrete situationer.</p>
 
-      <p>Erindringen viser typisk et tydeligt <strong>hierarki</strong> i familien. Faderen har en central autoritetsrolle, og børn lærer tidligt at reagere hurtigt og korrekt. Samtidig er følelseslivet komplekst: man kan være bange for en forælder og samtidig respektere og holde af vedkommende. Det er vigtigt, fordi historietekster nogle gange kommer til at lyde “enkle” (fx “patriarkalsk”), men en personlig kilde kan vise, at mennesker kan leve i systemer, der både skaber tryghed og frygt.</p>
+      <p>En god læsestrategi er at skelne mellem <strong>hændelser</strong> og <strong>fortolkninger</strong>. Hændelser er det konkrete forløb (hvad der blev sagt og gjort). Fortolkninger er forfatterens eftertanke, vurdering og moral. Hvis forfatteren fx fremstiller en far som meget streng, kan det både sige noget om farens adfærd, og noget om, hvad forfatteren i 1890 synes om strenghed. Det giver to lag af viden: (1) et glimt af 1830’ernes praksis, (2) et glimt af 1890’ernes vurdering.</p>
 
-      <p>Begrebet <strong>fæste</strong> er også vigtigt. En fæstebonde har ikke nødvendigvis fuld ejendomsret; man har brugsret til gården mod ydelser/afgifter. Det påvirker familiens handlemuligheder: hvis man ikke ejer, kan det være sværere at skabe stabilitet eller forbedre vilkår. Derfor kan en erindringskilde fra et fæstemiljø også sige noget om afhængighed og magtforhold.</p>
+      <p>Kildekritisk arbejder man med begreber som <strong>troværdighed</strong> (hvor sandsynligt er det, at beskrivelserne passer?), <strong>tendens</strong> (hvilken vinkel/agenda kan forfatteren have?), og <strong>repræsentativitet</strong> (er dette “typisk” eller “særligt”?). Erindringer kan være meget troværdige på konkrete dagligdags rutiner, men mindre sikre på præcise formuleringer eller årsagsforklaringer, fordi mennesker husker selektivt. Derudover kan forfatteren vælge episoder, der gør en bestemt pointe tydelig.</p>
+
+      <p>Teksten handler om en <strong>fæstebonde</strong>. Fæste betyder, at man har brugsret til en gård mod ydelser/afgifter og ofte underlagt en godsejers magt. Det skaber et ekstra lag af afhængighed: familien er ikke kun afhængig af natur og arbejdskraft, men also af overordnede magtforhold. Det kan påvirke alt fra økonomiske muligheder til følelsen af frihed og sikkerhed. Når kilden nævner pligter, frygt eller autoritet, kan man derfor spørge: er det kun et “familietræk”, eller hænger det sammen med samfundets struktur?</p>
 
       <div class="key">
-        <strong>Vigtigt for analysen:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Erindring: stærk på detaljer og stemning, men kræver kildekritik.</li>
-          <li>Skeln: hændelse vs. fortolkning.</li>
-          <li>Begreber: tendens, troværdighed, repræsentativitet.</li>
+          <li>Erindringskilde, tidsafstand, mentalitet, social praksis.</li>
+          <li>Hændelse vs. fortolkning, troværdighed, tendens, repræsentativitet.</li>
+          <li>Fæste, afhængighed/magtforhold, autoritet og opdragelse.</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="c" data-explain="Erindringer kan være farvet af senere erfaringer og selektiv hukommelse.">
+        <div class="mcq" data-answer="c" data-explain="Erindringer kan være farvet af senere erfaringer og selektiv hukommelse, så man skal skelne mellem hændelser og vurderinger.">
           <p class="prompt">1) Hvorfor skal man være forsigtig med at bruge erindringer som “bevis”?</p>
           <ul class="choices">
             <li><label><input type="radio" name="k1_1" value="a"> a) De har ingen detaljer</label></li>
@@ -232,12 +141,12 @@
             <li><label><input type="radio" name="k1_1" value="c"> c) Hukommelse og senere oplevelser kan farve fortællingen</label></li>
             <li><label><input type="radio" name="k1_1" value="d"> d) De kan kun handle om politik</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="a" data-explain="Tendens handler om forfatterens vinkel/holdning og hvordan den påvirker teksten.">
+        <div class="mcq" data-answer="a" data-explain="Tendens handler om forfatterens vinkel/holdning: hvad vil teksten få dig til at tænke/føle?">
           <p class="prompt">2) Hvilket spørgsmål undersøger mest kildens “tendens”?</p>
           <ul class="choices">
             <li><label><input type="radio" name="k1_2" value="a"> a) Hvilken holdning/vinkel har fortælleren?</label></li>
@@ -245,38 +154,44 @@
             <li><label><input type="radio" name="k1_2" value="c"> c) Hvilken skrifttype er brugt?</label></li>
             <li><label><input type="radio" name="k1_2" value="d"> d) Hvor ligger landsbyen geografisk?</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Nævn to ting, erindringskilder ofte er gode til at vise (fx stemning, normer, hverdagsrutiner).</li>
+          <li><strong>Sværere:</strong> Forklar med 4–6 linjer, hvordan afhængighed (fæste/godsejer) kan præge familieliv og opdragelse.</li>
+        </ol>
       </div>
     </section>
 
-    <!-- BORGERSKAB -->
     <section class="panel" role="tabpanel" id="p-borg" aria-labelledby="t-borg">
-      <h2>Borgerskabet</h2>
+      <h2>Borgerskabets familie</h2>
 
-      <p>I 1800-tallet bliver borgerskabets familie et tydeligt eksempel på, at hjemmet kan få en ny funktion: ikke primært produktion, men <strong>privatliv, dannelse og respektabilitet</strong>. En afgørende ændring er, at arbejde og hjem i stigende grad adskilles. Mandens arbejde foregår i kontor, butik eller institution, mens hjemmet bliver et sted for familie og social identitet.</p>
+      <p>I 1800-tallet bliver borgerskabets familie et tydeligt eksempel på, at hjemmet får en ny rolle: ikke primært produktion, men <strong>privatliv, dannelse og respektabilitet</strong>. Den centrale ændring er <strong>adskillelse af hjem og arbejde</strong>. Hvor bondefamilien arbejder i og omkring hjemmet, flytter borgerskabets arbejde ud i kontor, butik, virksomhed eller offentlige institutioner. Hjemmet bliver et “privat rum”, der skal vise, hvem man er – og hvilken klasse man tilhører.</p>
 
-      <p>Det betyder ikke, at hjemmet er “frit for arbejde”. Tværtimod kræver det borgerlige hjem en masse praktisk og socialt arbejde: rengøring, mad, tøj, gæster, børns opdragelse og moral. Ofte udføres meget af det praktiske af tjenestefolk, men husmorrollen bliver et ansvar for at <em>organisere</em> og skabe det rigtige miljø. Familien bliver derfor et sted, hvor status vises gennem orden, manerer og kontrol.</p>
+      <p>Det borgerlige hjem kræver både praktisk og socialt arbejde. Selv i familier med tjenestefolk skal der planlægges, styres, repræsenteres og opdrages. Husmoren får ofte en rolle som “hjemmets leder”: hun organiserer husholdning, gæstfrihed, etikette og børnenes opdragelse. Det er vigtigt at forstå, at magt også findes her: den, der definerer normer for hjemmet, former familiens identitet. Samtidig kan rollefordelingen være begrænsende, fordi den binder kvinden til hjemmet og manden til den offentlige sfære.</p>
 
-      <p>Borgerskabets bolig bliver ofte funktionsopdelt. Det gør det muligt at adskille “det pæne” fra “det private”. I repræsentative rum forventes korrekt opførsel; bestemte emner og kropslige funktioner bliver tabu. Det handler ikke kun om “prippenthed”, men om at signalere kultur og selvbeherskelse. Det er en del af borgerskabets identitet: man viser, at man kan styre sig selv.</p>
+      <p>Borgerskabets bolig bliver ofte <strong>funktionsopdelt</strong>. Der er “pæne rum” til gæster og repræsentation og mere private rum til familieliv og praktiske funktioner. Denne opdeling hænger sammen med <strong>tabuer</strong> og moral: bestemte emner (især kropslige og seksuelle) holdes væk fra repræsentationsrum. Det handler ikke kun om “snerpethed”, men om at signalere <strong>selvbeherskelse</strong> og kulturel kapital: man viser, at man kan kontrollere sig selv og sin familie. På den måde bliver privatlivet også et “udstillingsvindue”.</p>
 
-      <p>Barndom får også en ny betydning. Børn ses i højere grad som noget, der skal beskyttes og formes gennem opdragelse, skole og dannelse. Drenges og pigers opdragelse kan være forskellig: drenge forberedes til karriere og offentlig rolle, piger til rollen som hustru/mor med fokus på dannelse, sprog og “passende” adfærd. Derfor bliver familien et sted, hvor samfundets kønsroller og klasseforskelle reproduceres gennem hverdagsrutiner.</p>
+      <p>Begrebet <strong>dannelse</strong> is centralt. Dannelse handler om mere end skolefag: det inkluderer sprog, manerer, musik, litteratur, korrekt opførsel, og at kunne begå sig i samfundets højere lag. Opdragelsen bliver ofte mere målrettet: børn ses som nogen, der skal formes til bestemte roller. Drenges og pigers opdragelse kan være tydeligt kønnet: drenge forberedes til karriere og offentlig rolle; piger forberedes ofte til rollen som hustru og husmor, men med kulturelle færdigheder. Det viser, hvordan klasse og køn reproduceres gennem familien.</p>
+
+      <p>Borgerskabets familie er også et historisk skridt mod en mere <strong>følelsesorienteret</strong> familieideologi: hjemmet bliver et sted for intimitet og “barndom” som en beskyttet fase. Men det sker inden for stærke normer. Barnet skal både elskes og disciplineres, og familien bliver et sted, hvor “det rigtige liv” defineres. Derfor er borgerskabet vigtigt: det viser, hvordan privatliv kan blive en del af social status, ikke kun personlig trivsel.</p>
 
       <div class="key">
-        <strong>Vigtigt:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Adskillelse af hjem og arbejde.</li>
-          <li>Hjemmet som status: selvbeherskelse, tabuer, repræsentation.</li>
-          <li>Dannelse og kønnet opdragelse/uddannelse.</li>
+          <li>Adskillelse af hjem/arbejde, privat/offentligt, funktionsopdelte rum.</li>
+          <li>Repræsentation, tabuer, selvbeherskelse, respektabilitet.</li>
+          <li>Dannelse, kønnet opdragelse, barndom som beskyttet fase.</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="b" data-explain="Kernen er adskillelsen mellem hjem og arbejdsplads.">
+        <div class="mcq" data-answer="b" data-explain="Kernen er adskillelsen mellem hjem og arbejdsplads: hjemmet bliver privat og identitetsskabende.">
           <p class="prompt">1) Hvad er den centrale ændring i borgerskabets familie omkring 1800?</p>
           <ul class="choices">
             <li><label><input type="radio" name="borg1" value="a"> a) Familien bliver selvforsynende igen</label></li>
@@ -284,12 +199,12 @@
             <li><label><input type="radio" name="borg1" value="c"> c) Børn arbejder mere på fabrik</label></li>
             <li><label><input type="radio" name="borg1" value="d"> d) Alle bor i kollektiv</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="c" data-explain="Tabuer og rum-opdeling handler om kontrol og respektabilitet (det pæne vs. det kropslige/private).">
+        <div class="mcq" data-answer="c" data-explain="Tabuer og rum-opdeling signalerer kontrol, kultur og status (det pæne vs. det kropslige/private).">
           <p class="prompt">2) Hvad er den bedste forklaring på borgerlige tabuer og “pæne rum”?</p>
           <ul class="choices">
             <li><label><input type="radio" name="borg2" value="a"> a) Man havde færre møbler</label></li>
@@ -297,38 +212,44 @@
             <li><label><input type="radio" name="borg2" value="c"> c) Det signalerer selvbeherskelse, kultur og status</label></li>
             <li><label><input type="radio" name="borg2" value="d"> d) Det skyldes kun religion</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Forklar “repræsentativ del” vs. “privat del” med ét eksempel på rum og funktion.</li>
+          <li><strong>Sværere:</strong> Hvordan kan “dannelse” både være læring og social kontrol? Forklar med 4–6 linjer.</li>
+        </ol>
       </div>
     </section>
 
-    <!-- ARBEJDER -->
     <section class="panel" role="tabpanel" id="p-arb" aria-labelledby="t-arb">
-      <h2>Arbejderfamilie</h2>
+      <h2>Arbejderfamilien i byerne</h2>
 
-      <p>Industrialisering og urbanisering skaber en ny type familieliv: arbejderfamilien i byen. Hvor bondefamilien producerer meget selv, er arbejderfamilien afhængig af <strong>løn</strong>. Det ændrer alt: hvis lønnen falder, hvis man bliver syg, eller hvis man mister sit arbejde, kan hele familien blive truet. Derfor bliver løn, arbejdstid og arbejdsvilkår centrale “familiespørgsmål” – ikke kun økonomiske emner.</p>
+      <p>Industrialisering og urbanisering skaber en ny type familieliv: arbejderfamilien i byen. Hvor bondefamilien i høj grad kan producere meget selv, er arbejderfamilien afhængig af <strong>løn</strong>. Det ændrer familiens “logik”: hvis lønnen falder, hvis man bliver syg, eller hvis man mister arbejde, kan hele familien blive truet. Derfor bliver arbejdstid, løn, arbejdsvilkår og boligforhold direkte spørgsmål om familieliv, ikke bare økonomi.</p>
 
-      <p>Arbejdet foregår typisk uden for hjemmet (fabrik, værksted, byggeplads). Det betyder, at familien i mindre grad er et arbejdsfællesskab. I stedet bliver hjemmet et sted, hvor man “reparerer” sig selv efter arbejde: søvn, mad, hvile. Når arbejdstiderne er lange, kan familielivet blive presset sammen til aftener og søndage. Det gør også opdragelse vanskeligere, fordi tid og energi er begrænset.</p>
+      <p>Arbejdet foregår typisk uden for hjemmet (fabrik, værksted, byggeplads). Det betyder, at familien ikke længere er et samlet arbejdsfællesskab. Hjemmet bliver mere et sted, hvor man spiser, sover, plejer sygdom, og forsøger at finde ro. Når arbejdstiden er lang, kan familielivet blive “klemt” sammen til aftener og søndage. Det påvirker opdragelse: færre timer, mindre overskud, og ofte mindre mulighed for at følge børn tæt. Samtidig kan det skabe nye former for fællesskab, fx i kvarterer, på arbejdet og gennem foreningsliv.</p>
 
-      <p>Boligforholdene kan være trange. Små lejligheder betyder mindre privatliv, mere støj og større risiko for konflikter. Det påvirker også børns liv: børn kan tidligt blive en økonomisk faktor (arbejde, hjælp i hjemmet), men der kommer gradvist reguleringer og ideer om, at børn skal i skole og beskyttes.</p>
+      <p>Boligforhold i byerne kan være trange. Små lejligheder betyder mindre privatliv, mere støj og større risiko for konflikter. Det kan også påvirke sundhed og trivsel. I historiefaglig forståelse er bolig et nøglepunkt: hvem har plads, ro og privatliv – og hvem har ikke? Det påvirker, hvordan børn lærer, leger og socialiseres. Det påvirker også kønsroller: hvis hjemmet er trangt og tiden er knap, kan husarbejdet blive et konstant pres, og hele familien kan være nødt til at bidrage.</p>
 
-      <p>På arbejdsmarkedet opstår en ny dynamik: arbejdstagere organiserer sig, og arbejdsgivere organiserer sig. <strong>Septemberforliget (1899)</strong> bliver en nøglebegivenhed, fordi det fastlægger spilleregler: organisationsret og arbejdsgivernes ledelsesret. Senere bliver <strong>8-timersdag/48-timers uge (1919)</strong> en milepæl, fordi kortere arbejdstid giver mere fritid og dermed mulighed for mere stabilt familieliv. På den måde bliver politiske og økonomiske kampe direkte forbundet til hverdagslivet.</p>
+      <p>Et vigtigt historisk træk er organisering på arbejdsmarkedet. Arbejdere organiserer sig i fagforeninger, og arbejdsgivere organiserer sig i deres egne organisationer. <strong>Septemberforliget (1899)</strong> er en milepæl, fordi det fastlægger spilleregler: arbejdstagernes <strong>organisationsret</strong> og arbejdsgivernes <strong>ledelsesret</strong> bliver anerkendt. Det betyder ikke, at konflikten forsvinder, men at der skabes rammer for forhandling. Familien bliver indirekte beskyttet, fordi konflikt bliver mere reguleret og fordi forhandling kan skabe mere forudsigelighed.</p>
+
+      <p>En anden milepæl er <strong>8-timersdag/48-timers uge (1919)</strong>. Historisk er pointen ikke kun “kortere arbejdsdag”, men hvad det skaber: mere fritid, mere mulighed for samvær, foreningsliv, opdragelse og hvile. Når du læser om arbejderfamilien, bør du derfor altid tænke i årsagskæder: arbejdstid → energi/overskud → samvær/opdragelse → familiens stabilitet. Det gør også, at politik og økonomi bliver direkte forbundet til hverdagsliv.</p>
 
       <div class="key">
-        <strong>Husk:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Familien = afhængig af løn (sårbarhed).</li>
-          <li>Arbejdsliv uden for hjemmet → skarpere skel mellem arbejde/fritid.</li>
-          <li>1899: spilleregler. 1919: mere tid til familieliv.</li>
+          <li>Lønarbejde, sårbarhed (sygdom/arbejdsløshed), urbanisering, boligtrang.</li>
+          <li>Organisering: fagforeninger, arbejdsgivere, organisationsret/ledelsesret.</li>
+          <li>1899 (spilleregler) og 1919 (tid/overskud) som milepæle for familieliv.</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="d" data-explain="Septemberforliget etablerer spilleregler: organisationsret og ledelsesret.">
+        <div class="mcq" data-answer="d" data-explain="Septemberforliget etablerer spilleregler: organisationsret og ledelsesret. Det påvirker familier gennem mere stabile vilkår.">
           <p class="prompt">1) Hvad var et centralt resultat af Septemberforliget (1899)?</p>
           <ul class="choices">
             <li><label><input type="radio" name="arb1" value="a"> a) Gratis bolig til alle</label></li>
@@ -336,12 +257,12 @@
             <li><label><input type="radio" name="arb1" value="c"> c) Indførelse af 2-dages weekend</label></li>
             <li><label><input type="radio" name="arb1" value="d"> d) Organisationsret og arbejdsgivers ledelsesret anerkendes</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="b" data-explain="Kortere arbejdstid giver mere tid/overskud til samvær og opdragelse.">
+        <div class="mcq" data-answer="b" data-explain="Kortere arbejdstid giver mere tid/overskud til samvær, hvile og opdragelse – og kan derfor stabilisere hverdagen.">
           <p class="prompt">2) Hvad er den bedste forklaring på, hvorfor 8-timersdagen (1919) betyder noget for familieliv?</p>
           <ul class="choices">
             <li><label><input type="radio" name="arb2" value="a"> a) Fordi man producerer mere mad derhjemme</label></li>
@@ -349,38 +270,42 @@
             <li><label><input type="radio" name="arb2" value="c"> c) Fordi børn stoppede med at gå i skole</label></li>
             <li><label><input type="radio" name="arb2" value="d"> d) Fordi kontoret flyttede ind i hjemmet</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Forklar med 2–3 linjer, hvorfor lønarbejde gør familien mere sårbar end selvforsyning.</li>
+          <li><strong>Sværere:</strong> Lav en årsagskæde: lange arbejdstider → (hvad sker der i hjemmet?) → (hvilken konsekvens for børn?).</li>
+        </ol>
       </div>
     </section>
 
-    <!-- KERNE -->
     <section class="panel" role="tabpanel" id="p-kerne" aria-labelledby="t-kerne">
-      <h2>Kernefamilie</h2>
+      <h2>Kernefamilien (1950’erne)</h2>
 
-      <p>I 1950’erne bliver kernefamilien et stærkt ideal: mor, far og børn i en bolig, ofte med et klart mål om stabilitet. Familien forstås som en “normal” ramme for det gode liv. I praksis er der variation, men idealet er vigtigt, fordi det påvirker forventninger, skyld og status. Det handler ikke kun om, hvordan folk lever, men også om, hvordan de føler, de <em>bør</em> leve.</p>
+      <p>I 1950’erne står kernefamilien stærkt som ideal: mor, far og børn i én bolig, ofte med et mål om stabilitet, forudsigelighed og “det normale liv”. Man kan forstå kernefamilien som en kombination af en social norm og en konkret leveform. Normen er vigtig, fordi den skaber forventninger: hvad vil det sige at være “en god far”, “en god mor” og “et ordentligt barn”? Den skaber også pres, fordi afvigelser kan opleves som skam eller fiasko.</p>
 
-      <p>Køn og arbejde er ofte organiseret i en klassisk forsørgermodel: manden har lønarbejde, kvinden har hus- og omsorgsarbejde. Husarbejde kan være omfattende (indkøb, madlavning, rengøring, tøjvask, børnepasning), og netop fordi det ikke giver løn, kan det blive usynligt i økonomiske fortællinger. Det kan skabe magtubalancer: den, der tjener løn, kan også få mere beslutningsmagt – selv om hjemmet ikke fungerer uden husarbejde.</p>
+      <p>Arbejdsdelingen hænger typisk sammen med en <strong>forsørgermodel</strong>: manden har lønarbejde og forbindes med økonomi, autoritet og det offentlige; kvinden forbindes med hjemmet, omsorg og den daglige drift. Det betyder ikke, at kvinder ikke arbejder hårdt – husarbejde er tidskrævende og fysisk. Men fordi det er ulønnet, kan det blive mindre synligt i økonomiske beskrivelser. I praksis kan den økonomiske afhængighed skabe magtubalancer: den, der tjener lønnen, kan få større beslutningsmagt, selv om hjemmet ikke fungerer uden omsorgsarbejdet.</p>
 
-      <p>Opdragelse forbindes ofte med faste rutiner og tydelige regler. Idealet “ro, renlighed og regelmæssighed” peger på kontrol, orden og lydighed. Børn forventes at passe ind i en planlagt hverdag. Set historisk kan det forstås som en reaktion på ønsket om orden efter krise og krig, men også som et udtryk for et samfund, hvor autoriteter (forældre, skole, stat) har en stærk rolle.</p>
+      <p>Opdragelsen forbindes ofte med faste rutiner og tydelige regler. Udtrykket <strong>“ro, renlighed og regelmæssighed”</strong> peger på et ideal om orden: børn skal spise, sove og opføre sig efter faste mønstre. Det kan give tryghed (forudsigelighed), men kan også opleves som strengt, hvis barnets behov ikke passer ind. Historisk kan man se det som et udtryk for et samfund, hvor autoriteter (forældre, skole, læger, stat) har en stærk rolle i at definere “den rigtige barndom”.</p>
 
-      <p>Et nøglepunkt er spændingen mellem tryghed og pres. Tryghed: et forudsigeligt hjem, klar rollefordeling, stabilitet. Pres: hvis man ikke passer ind i idealet, kan der opstå skam eller konflikt (fx ved skilsmisse, utilfredshed i rollen, økonomiske problemer). Derfor er kernefamilien ikke bare et familietype-begreb; det er en norm, man måler sig imod.</p>
+      <p>En anden dimension er forbrug og modernisering: flere husholdninger får adgang til nye forbrugsgoder, nye boligformer og ændrede hverdagsrutiner. Hjemmet bliver et centrum for “det gode liv”, men også et projekt: der skal holdes orden, og familien skal fremstå velfungerende. Det er derfor relevant at tænke i spændingen mellem <strong>tryghed</strong> og <strong>pres</strong>: tryghed gennem klare rammer og stabilitet; pres gennem normer og forventninger til køn, ægteskab og børneopdragelse.</p>
 
       <div class="key">
-        <strong>Husk:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Ideal om stabilitet og “normalitet”.</li>
-          <li>Forsørgermodel og tydelig arbejdsdeling.</li>
-          <li>Opdragelse: rutiner, autoritet, lydighed.</li>
+          <li>Kernefamilie, norm/ideal, stabilitet og normalitet.</li>
+          <li>Forsørgermodel, ulønnet omsorgsarbejde, magt/afhængighed.</li>
+          <li>“Ro, renlighed, regelmæssighed”, autoritet og rutiner i opdragelse.</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="b" data-explain="Udtrykket handler om rutiner, orden og lydighed i opdragelsen.">
+        <div class="mcq" data-answer="b" data-explain="Udtrykket handler om rutiner, orden og lydighed i opdragelsen – det ‘rigtige’ barn passer ind i plan og regler.">
           <p class="prompt">1) Hvad betyder “ro, renlighed og regelmæssighed” bedst?</p>
           <ul class="choices">
             <li><label><input type="radio" name="kerne1" value="a"> a) Børn bestemmer alt selv</label></li>
@@ -388,49 +313,55 @@
             <li><label><input type="radio" name="kerne1" value="c"> c) Ingen regler i hjemmet</label></li>
             <li><label><input type="radio" name="kerne1" value="d"> d) Bofællesskab som ideal</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="c" data-explain="Kernefamilie-idealet forbindes ofte med mand som forsørger og kvinde som husmor.">
+        <div class="mcq" data-answer="c" data-explain="Kernefamilie-idealet forbindes ofte med mand som forsørger og kvinde som husmor/omsorgsperson i hjemmet.">
           <p class="prompt">2) Hvilken kombination passer bedst til kernefamilie-idealet?</p>
           <ul class="choices">
-            <li><label><input type="radio" name="kerne2" value="a"> a) Selvforsyning + mange karle/piger</label></li>
+            <li><label><input type="radio" name="kerne2" value="a"> a) Selvforsyning + many karle/piger</label></li>
             <li><label><input type="radio" name="kerne2" value="b"> b) Kollektiv + ingen kønsroller</label></li>
             <li><label><input type="radio" name="kerne2" value="c"> c) Mand forsørger + kvinde husmor + stabilt hjem</label></li>
             <li><label><input type="radio" name="kerne2" value="d"> d) Barn forsørger forældre</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Nævn tre opgaver, der typisk lå hos husmoren (eller i hjemmets omsorgsarbejde).</li>
+          <li><strong>Sværere:</strong> Forklar med 4–6 linjer, hvordan et ideal om stabilitet kan skabe pres, hvis man afviger (fx skilsmisse, utilfredshed, økonomi).</li>
+        </ol>
       </div>
     </section>
 
-    <!-- KILDE 2 -->
     <section class="panel" role="tabpanel" id="p-kilde2" aria-labelledby="t-kilde2">
-      <h2>Kilde: 1950</h2>
+      <h2>Kilde: “Klinket porcelæn” (brevkasse, 1950)</h2>
 
-      <p>En brevkassekilde er en særlig type tekst: den er offentlig, skrevet med et formål, og den henvender sig til læsere, der søger råd. Derfor er den ofte <strong>normativ</strong>: den fortæller ikke bare, hvad der “er”, men hvad man <em>bør</em> gøre. Det gør den til en stærk kilde til at forstå tidsperiodens normer og forventninger.</p>
+      <p>En brevkassekilde er en særlig type tekst: den er offentlig, skrevet med et formål, og den henvender sig til læsere, der søger råd. Derfor er den ofte <strong>normativ</strong>. Den fortæller ikke kun, hvad der sker i folks liv, men hvad man <em>bør</em> gøre. Historisk er det værdifuldt, fordi man kan se, hvilke værdier og argumenter der fremstår legitime i samtiden. Hvilke ord bruger man om skyld, ansvar, familie og stabilitet? Hvilke hensyn vurderes vigtigst?</p>
 
-      <p>Metaforen “klinket porcelæn” er historisk interessant, fordi den oversætter et socialt problem (utroskab) til et billede, der gør det følelsesmæssigt forståeligt: noget kan repareres, men sporene bliver. Metaforen kan både legitimere at blive (fordi man kan “klinke”) og samtidig understrege, at skaden er alvorlig. I 1950’ernes ideal om stabil familie kan sådan en tekst lægge pres på især den part, der forventes at holde hjemmet samlet.</p>
+      <p>Metaforen “klinket porcelæn” fungerer som et moralsk og følelsesmæssigt redskab. Den siger: noget kan repareres, men det bliver ikke helt som før. Historisk kan man bruge metaforen til at forstå, hvordan utroskab (eller andre brud) blev indrammet: ikke kun som en privat følelse, men som noget, der truer hjemmets og familiens orden. I en periode hvor kernefamilien ofte ses som ideal, kan brevkassen samtidig pege på, at problemer er almindelige – og at samfundet har klare meninger om, hvordan de skal håndteres.</p>
 
-      <p>Kildekritisk skal du især spørge: Hvem skriver? Til hvem? Hvorfor? En brevkasse repræsenterer ikke hele befolkningen. Den repræsenterer en genre, et publikum og en bestemt moralsk tone. Men netop derfor er den god til at vise, hvilke argumenter og værdier der var “troværdige” at bruge i offentligheden på det tidspunkt.</p>
+      <p>Kilden kan både trøste og presse. Den kan trøste ved at sige, at det er muligt at gå videre (“klinke” og leve videre). Men den kan også presse ved at antyde, at man bør blive – måske “for børnenes skyld” eller for at beskytte familiens status. Det er et centralt historiefagligt punkt: normer virker ikke kun gennem love, men gennem sprog, råd, skam og forventninger. Brevkasser, ugeblade og populærkultur kan derfor være vigtige for at forstå hverdagsmoral.</p>
+
+      <p>Kildekritisk skal du især spørge: Hvem skriver? Til hvem? Hvorfor? Hvilken genre er det? En brevkasse er ikke repræsentativ for alle. Den repræsenterer et bestemt publikum, en redaktionel tone og en moralsk ramme. Men netop derfor er den god til at vise, hvad der var “fornuftigt” at sige højt i offentligheden. Hvis du sammenligner med en privat dagbog, kan brevkassen være mere “pædagogisk” og normstyret, mens dagbogen kan være mere rå og personlig. Det er derfor vigtigt at matche kilde til spørgsmål.</p>
 
       <div class="key">
-        <strong>Husk for kildeanalysen:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Brevkasse = normer og “bør”-sprog.</li>
-          <li>Stærk til værdier, svag til repræsentativitet.</li>
-          <li>Metaforer kan påvirke læserens følelser og valg.</li>
+          <li>Brevkasse, normativ tekst, “bør”-sprog, moral og skam.</li>
+          <li>Metafor som styring: trøst + pres, især i et stabilitetsideal.</li>
+          <li>Genre, afsender/modtager, repræsentativitet, normer i offentlighed.</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="a" data-explain="Den viser idealer og normer i samtiden, men kan ikke stå for alle ægteskaber.">
+        <div class="mcq" data-answer="a" data-explain="Den viser idealer og normer i samtiden, men kan ikke stå for alle ægteskaber eller alle sociale grupper.">
           <p class="prompt">1) Hvad er den mest præcise kildekritiske pointe om brevkassekilden?</p>
           <ul class="choices">
             <li><label><input type="radio" name="k2_1" value="a"> a) Den viser normer/idealer, men repræsenterer ikke nødvendigvis alle</label></li>
@@ -438,12 +369,12 @@
             <li><label><input type="radio" name="k2_1" value="c"> c) Den kan kun bruges som statistik</label></li>
             <li><label><input type="radio" name="k2_1" value="d"> d) Den siger intet om moral</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="d" data-explain="Repræsentativitet handler om, hvorvidt kilden kan sige noget generelt om en større gruppe.">
+        <div class="mcq" data-answer="d" data-explain="Repræsentativitet handler om, hvorvidt kilden kan sige noget generelt om en større gruppe, ikke kun en enkelt stemme/genre.">
           <p class="prompt">2) Hvilket spørgsmål handler mest om kildens repræsentativitet?</p>
           <ul class="choices">
             <li><label><input type="radio" name="k2_2" value="a"> a) Hvilke ord bruges i metaforen?</label></li>
@@ -451,38 +382,45 @@
             <li><label><input type="radio" name="k2_2" value="c"> c) Hvilken papirtype er bladet trykt på?</label></li>
             <li><label><input type="radio" name="k2_2" value="d"> d) Kan én brevkasse-stemme sige noget om “alle” ægteskaber?</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Find to ord/udtryk i teksten, der lyder som “bør”/moral eller vurdering.</li>
+          <li><strong>Sværere:</strong> Forklar med 4–6 linjer, hvordan metaforen både kan trøste og presse en læser i et stabilitetsideal.</li>
+        </ol>
       </div>
     </section>
 
-    <!-- NYE -->
     <section class="panel" role="tabpanel" id="p-nye" aria-labelledby="t-nye">
-      <h2>Nye familieformer</h2>
+      <h2>Nye familieformer (1960’erne → 1990’erne)</h2>
 
-      <p>Fra 1960’erne og frem bliver familielivet mere fleksibelt og mere komplekst. Det betyder ikke, at familien “forsvinder”, men at normerne omkring den ændrer sig. Samliv uden ægteskab bliver mere almindeligt, og det bliver mere accepteret, at et forhold kan slutte. Dermed bliver stabilitet i højere grad noget, man <em>forhandler</em> frem, end noget man forventer som livslang norm.</p>
+      <p>Fra 1960’erne og frem bliver familielivet mere fleksibelt og mere komplekst. Det betyder ikke, at familien “forsvinder”, men at normerne omkring den ændrer sig. Samliv uden ægteskab bliver mere almindeligt, og det bliver mere accepteret, at et forhold kan slutte. Derfor bliver stabilitet i højere grad noget, man <strong>forhandler</strong> frem – gennem samtale, aftaler, og (når det går galt) gennem regler om samvær og økonomi.</p>
 
-      <p>En central drivkraft er ændringer i kønsroller og arbejde. Flere kvinder får uddannelse og lønarbejde, hvilket ændrer økonomien i familien og magtbalancen i hverdagen. Når begge forældre arbejder, opstår spørgsmålet: hvem laver husarbejdet, hvem henter børn, hvem har “det usynlige ansvar”? Det kaldes ofte <strong>dobbeltarbejde</strong>, når betalt arbejde kombineres med en stor del af hjemmets arbejde.</p>
+      <p>En central drivkraft er ændringer i kønsroller og arbejde. Flere kvinder får uddannelse og lønarbejde, hvilket ændrer familiens økonomi og magtbalancen i hverdagen. Når begge forældre arbejder, opstår en ny hverdagslogistik: hvem henter børn, hvem laver mad, hvem har overblik? Det er her begrebet <strong>dobbeltarbejde</strong> bliver relevant: betalt arbejde kombineret med en stor del af hus- og omsorgsarbejdet. Historisk er pointen, at modernisering ikke automatisk fjerner husarbejde; den flytter ofte bare opgaver og forhandlinger rundt.</p>
 
-      <p>Der sker også et opbrud i seksualmoral. Seksualitet forbindes i højere grad med lyst og selvbestemmelse, og i mindre grad med ægteskabets rammer. I Danmark nævnes ofte ændringer i lovgivning og debat (fx fri abort i 1973) som en del af den større udvikling. Pointen i historiefaget er ikke at huske én lov, men at forstå: når normer og lovgivning ændrer rammerne, bliver nye valg mulige – og dermed ændres også familielivets risici og konflikter.</p>
+      <p>Der sker også et opbrud i seksualmoral. Seksualitet forbindes i højere grad med lyst og selvbestemmelse og i mindre grad med ægteskabets rammer. Når normer ændrer sig, ændrer det også, hvad der opleves som “skam”, “pligt” og “frihed”. I Danmark nævnes ofte lovgivningsændringer i perioden (fx fri abort i 1973) som en del af det bredere opbrud. I historiefaglig sammenhæng er pointen: når normer, institutioner og lovgivning ændrer rammerne, bliver nye valg mulige – og når nye valg bliver mulige, ændres også konflikter og ansvar.</p>
 
-      <p>Der opstår flere familieformer: enlige forældre, sammenbragte familier, bofællesskaber/kollektiver i perioder, og generelt mere variation. Det kan give frihed, men også kræve nye regler: samarbejde efter skilsmisse, samvær, økonomiske aftaler og følelsesmæssigt arbejde. Historisk set kan man sige, at familielivet får mere <em>valgfrihed</em>, men også mere <em>ansvar</em> og mere behov for kommunikation og planlægning.</p>
+      <p>Der opstår flere familieformer: enlige forældre, sammenbragte familier, nye boformer (fx kollektiver i perioder), og generelt mere variation. Det kan give frihed, men også kræve mere planlægning: hvordan fordeler man økonomi, omsorg, tid og ansvar, hvis familien ikke følger “standardmodellen”? På samme måde kan børn få nye erfaringer: de kan opleve mere frihed og mere samtale, men også usikkerhed, hvis rammer ændrer sig ofte. Derfor er “mere valgfrihed” historisk set både en gevinst og en udfordring.</p>
+
+      <p>Et nyttigt historiebegreb her er <strong>individualisering</strong>: at livsvalg i højere grad bliver personlige projekter fremfor faste traditioner. Individualisering kan styrke selvbestemmelse, men det kan også betyde, at flere beslutninger og konflikter skal løses “inden for familien” uden et færdigt manuskript. Det er derfor oplagt at læse perioden som en ændring i både muligheder og krav: frihed i valg, men krav om kommunikation, forhandling og ansvar.</p>
 
       <div class="key">
-        <strong>Vigtigt:</strong>
+        <strong>Nøgleord og begreber</strong>
         <ul>
-          <li>Mere valgfrihed → flere familieformer.</li>
-          <li>Kvinder i arbejde → ændret hverdagslogistik og magt.</li>
-          <li>Normer/love kan åbne muligheder og skabe nye konflikter.</li>
+          <li>Valgfrihed, forhandling, flere familieformer (enlige/sammenbragte/samliv).</li>
+          <li>Kvindearbejde, ligestilling, dobbeltarbejde, hverdagslogistik.</li>
+          <li>Opbrud i seksualmoral, normer + lovgivning som rammer for nye valg.</li>
+          <li>Individualisering: mere selvbestemmelse, men også mere ansvar/konfliktløsning.</li>
         </ul>
       </div>
 
-      <div class="q-section">
-        <h3>Test din viden</h3>
+      <div class="q">
+        <h3>Spørgsmål (konkrete → sværere)</h3>
 
-        <div class="mcq" data-answer="c" data-explain="Udviklingen peger på flere samlivsformer og mere forhandlingsbare kønsroller.">
+        <div class="mcq" data-answer="c" data-explain="Udviklingen peger på flere samlivsformer og mere forhandlingsbare kønsroller – ikke en tilbagevenden til selvforsyning.">
           <p class="prompt">1) Hvilken påstand passer bedst til udviklingen 1960’erne → 1990’erne?</p>
           <ul class="choices">
             <li><label><input type="radio" name="nye1" value="a"> a) Skilsmisse forsvinder næsten</label></li>
@@ -490,12 +428,12 @@
             <li><label><input type="radio" name="nye1" value="c"> c) Flere samlivsformer opstår, og kønsroller bliver mere forhandlingsbare</label></li>
             <li><label><input type="radio" name="nye1" value="d"> d) Familien bliver igen en selvforsynende produktionsenhed</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
 
-        <div class="mcq" data-answer="b" data-explain="Dobbeltarbejde: betalt job + en stor del af hus-/omsorgsarbejdet oveni.">
+        <div class="mcq" data-answer="b" data-explain="Dobbeltarbejde: betalt job + en stor del af hus-/omsorgsarbejdet oveni (tidspres og konflikt om fordeling).">
           <p class="prompt">2) Hvad betyder “dobbeltarbejde” bedst?</p>
           <ul class="choices">
             <li><label><input type="radio" name="nye2" value="a"> a) To jobs hos samme arbejdsgiver</label></li>
@@ -503,32 +441,36 @@
             <li><label><input type="radio" name="nye2" value="c"> c) Arbejde kun om natten</label></li>
             <li><label><input type="radio" name="nye2" value="d"> d) At børn arbejder dobbelt så meget</label></li>
           </ul>
-          <button type="button" class="check-btn">Tjek Svar</button>
+          <button type="button" class="check">Tjek</button>
           <div class="fb" aria-live="polite"></div>
           <div class="explain"></div>
         </div>
+
+        <ol>
+          <li><strong>Konkrete:</strong> Nævn tre ting, der peger på “mere valgfrihed” (fx samliv, skilsmisse, boformer, kønsroller).</li>
+          <li><strong>Sværere:</strong> Forklar med 4–6 linjer, hvordan normer og lovgivning kan forstærke hinanden og ændre hverdagsvalg.</li>
+        </ol>
       </div>
     </section>
 
-    <!-- EXIT -->
     <section class="panel" role="tabpanel" id="p-exit" aria-labelledby="t-exit">
-      <h2>Exit-quiz</h2>
-      <p class="muted">Her tester vi din evne til at tænke i årsager og virkninger på tværs af hele pensum.</p>
+      <h2>Exit-quiz (kritisk tænkning) — klik og tjek</h2>
+      <p class="muted">Alle spørgsmål er nye (ingen gentagelser fra fanerne). De kræver, at du tænker i årsag → virkning og vælger den bedste forklaring.</p>
 
-      <div class="mcq" data-answer="c" data-explain="I bondehusstanden er familien knyttet til produktion og forsørgelse; uden husstand mister man adgang til livsfornødenheder.">
-        <p class="prompt">1) En 18-årig uden gård/husstand i 1700-tallet får svært ved at “klare sig”. Hvilken forklaring passer bedst?</p>
+      <div class="mcq" data-answer="c" data-explain="I bondehusstanden er familien knyttet til produktion og forsørgelse; uden husstand mister man adgang til livsfornødenheder og social beskyttelse.">
+        <p class="prompt">1) En 18-årig uden gård/husstand i et førindustrielt landsamfund får svært ved at “klare sig”. Hvilken forklaring passer bedst?</p>
         <ul class="choices">
           <li><label><input type="radio" name="ex1" value="a"> a) Fordi man ikke måtte rejse mellem landsbyer</label></li>
           <li><label><input type="radio" name="ex1" value="b"> b) Fordi skolegangen var for lang</label></li>
           <li><label><input type="radio" name="ex1" value="c"> c) Fordi husstanden er adgang til mad/bolig/arbejde og social beskyttelse</label></li>
           <li><label><input type="radio" name="ex1" value="d"> d) Fordi alle boede i byer</label></li>
         </ul>
-        <button type="button" class="check-btn">Tjek Svar</button>
+        <button type="button" class="check">Tjek</button>
         <div class="fb" aria-live="polite"></div>
         <div class="explain"></div>
       </div>
 
-      <div class="mcq" data-answer="b" data-explain="Borgerskabet bruger hjemmet til at vise kultur og selvkontrol; normer/tabuer beskytter det ‘pæne’ rum.">
+      <div class="mcq" data-answer="b" data-explain="Borgerskabet bruger hjemmet til at vise kultur og selvkontrol; normer/tabuer beskytter det ‘pæne’ rum og signalerer status.">
         <p class="prompt">2) Hvorfor bliver “pæne rum” og tabuer et stærkt træk i borgerskabets hjem?</p>
         <ul class="choices">
           <li><label><input type="radio" name="ex2" value="a"> a) Fordi der ikke var plads i boligerne</label></li>
@@ -536,25 +478,25 @@
           <li><label><input type="radio" name="ex2" value="c"> c) Fordi man aldrig havde gæster</label></li>
           <li><label><input type="radio" name="ex2" value="d"> d) Fordi man ikke brugte møbler</label></li>
         </ul>
-        <button type="button" class="check-btn">Tjek Svar</button>
+        <button type="button" class="check">Tjek</button>
         <div class="fb" aria-live="polite"></div>
         <div class="explain"></div>
       </div>
 
-      <div class="mcq" data-answer="d" data-explain="Løn og arbejdstid afgør tid/tryghed; derfor bliver organisering en måde at beskytte familieliv på.">
-        <p class="prompt">3) En arbejderfamilie i 1890’erne har konflikter hjemme, fordi faren sjældent er hjemme og er udmattet. Hvilken historisk forklaring passer bedst?</p>
+      <div class="mcq" data-answer="d" data-explain="Lange arbejdstider + udmattelse reducerer tid og overskud, så konflikter og svagere opdragelsesrum kan opstå.">
+        <p class="prompt">3) En arbejderfamilie i 1890’erne har konflikter hjemme, fordi faren sjældent er hjemme og er udmattet. Hvilken forklaring passer bedst?</p>
         <ul class="choices">
           <li><label><input type="radio" name="ex3" value="a"> a) Fordi familien var selvforsynende</label></li>
           <li><label><input type="radio" name="ex3" value="b"> b) Fordi borgerskabets tabuer blev stærkere</label></li>
           <li><label><input type="radio" name="ex3" value="c"> c) Fordi aftægt blev afskaffet</label></li>
           <li><label><input type="radio" name="ex3" value="d"> d) Lange arbejdstider presser familietid sammen til få timer og øger stress</label></li>
         </ul>
-        <button type="button" class="check-btn">Tjek Svar</button>
+        <button type="button" class="check">Tjek</button>
         <div class="fb" aria-live="polite"></div>
         <div class="explain"></div>
       </div>
 
-      <div class="mcq" data-answer="a" data-explain="Kernefamilie-idealet kan give tryghed, men også normpres: afvigelser kan udløse skam/konflikt.">
+      <div class="mcq" data-answer="a" data-explain="Kernefamilie-idealet kan give tryghed, men også normpres: afvigelser kan udløse skam/konflikt og skjulte problemer.">
         <p class="prompt">4) Hvilken påstand beskriver bedst kernefamilien som historisk norm?</p>
         <ul class="choices">
           <li><label><input type="radio" name="ex4" value="a"> a) Den giver både tryghed og pres, fordi den bliver målestok for “det normale”</label></li>
@@ -562,25 +504,25 @@
           <li><label><input type="radio" name="ex4" value="c"> c) Den gør alle familier identiske</label></li>
           <li><label><input type="radio" name="ex4" value="d"> d) Den betyder, at børn ikke skal opdrages</label></li>
         </ul>
-        <button type="button" class="check-btn">Tjek Svar</button>
+        <button type="button" class="check">Tjek</button>
         <div class="fb" aria-live="polite"></div>
         <div class="explain"></div>
       </div>
 
-      <div class="mcq" data-answer="c" data-explain="Valgfrihed skaber nye valg og derfor også behov for aftaler, forhandling og ansvar (fx efter brud).">
-        <p class="prompt">5) Hvad er den bedste historiske forklaring på, at “mere valgfrihed” kan give nye konflikter i familien?</p>
+      <div class="mcq" data-answer="c" data-explain="Flere muligheder kræver flere aftaler, grænser og ansvar (fx samvær, økonomi, husholdningsfordeling).">
+        <p class="prompt">5) Hvorfor kan “mere valgfrihed” give nye konflikter i familien?</p>
         <ul class="choices">
           <li><label><input type="radio" name="ex5" value="a"> a) Fordi lovgivning forbyder forhandling</label></li>
           <li><label><input type="radio" name="ex5" value="b"> b) Fordi familier bliver selvforsynende igen</label></li>
           <li><label><input type="radio" name="ex5" value="c"> c) Fordi flere muligheder kræver flere aftaler, grænser og ansvar</label></li>
           <li><label><input type="radio" name="ex5" value="d"> d) Fordi børn ikke længere går i skole</label></li>
         </ul>
-        <button type="button" class="check-btn">Tjek Svar</button>
+        <button type="button" class="check">Tjek</button>
         <div class="fb" aria-live="polite"></div>
         <div class="explain"></div>
       </div>
 
-      <div class="mcq" data-answer="b" data-explain="Erindring: stærk til hverdagsdetaljer, men farvet af tid; brevkasse: stærk til normer, men ikke repræsentativ for alle.">
+      <div class="mcq" data-answer="b" data-explain="Erindring: hverdagsdetaljer/stemning men farvet af tid; brevkasse: normer og ‘bør’-sprog, men ikke repræsentativ for alle.">
         <p class="prompt">6) Hvilken kombination af “styrke” passer bedst til: erindringskilde + brevkassekilde?</p>
         <ul class="choices">
           <li><label><input type="radio" name="ex6" value="a"> a) Erindring = statistik; brevkasse = neutral fakta</label></li>
@@ -588,61 +530,57 @@
           <li><label><input type="radio" name="ex6" value="c"> c) Erindring = repræsentativ for alle; brevkasse = uden tendens</label></li>
           <li><label><input type="radio" name="ex6" value="d"> d) Begge er perfekte og objektive</label></li>
         </ul>
-        <button type="button" class="check-btn">Tjek Svar</button>
+        <button type="button" class="check">Tjek</button>
         <div class="fb" aria-live="polite"></div>
         <div class="explain"></div>
       </div>
     </section>
-
   </div>
 </main>
 
 <script>
 (function(){
-  // Tabs logic
   const root = document.getElementById('tabs');
   const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
   const panels = Array.from(root.querySelectorAll('[role="tabpanel"]'));
-
   function activate(btn){
     tabs.forEach(t => t.setAttribute('aria-selected', t === btn ? 'true' : 'false'));
     panels.forEach(p => p.classList.toggle('active', p.id === btn.getAttribute('aria-controls')));
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    btn.focus();
   }
   tabs.forEach(btn => {
     btn.addEventListener('click', () => activate(btn));
+    btn.addEventListener('keydown', (e) => {
+      const i = tabs.indexOf(btn);
+      if(e.key === 'ArrowRight'){ e.preventDefault(); activate(tabs[(i+1)%tabs.length]); }
+      if(e.key === 'ArrowLeft'){ e.preventDefault(); activate(tabs[(i-1+tabs.length)%tabs.length]); }
+    });
   });
 
-  // MCQ logic
   function check(mcq){
     const ans = mcq.getAttribute('data-answer');
     const exp = mcq.getAttribute('data-explain') || '';
     const chosen = mcq.querySelector('input[type="radio"]:checked');
     const fb = mcq.querySelector('.fb');
     const ex = mcq.querySelector('.explain');
-    
     if(!chosen){
-      fb.textContent = "Vælg et svar først!";
+      fb.textContent = "Vælg et svar først.";
       fb.className = "fb bad";
-      fb.style.display = "block";
+      ex.textContent = "";
       return;
     }
-    
-    mcq.classList.add('active'); // Shows explain div
     if(chosen.value === ans){
-      fb.textContent = "✓ Korrekt";
+      fb.textContent = "Korrekt.";
       fb.className = "fb good";
       ex.textContent = exp;
-    } else {
-      fb.textContent = "✗ Forkert";
+    }else{
+      fb.textContent = "Forkert.";
       fb.className = "fb bad";
       ex.textContent = exp;
     }
-    fb.style.display = "block";
   }
-
   document.querySelectorAll('.mcq').forEach(mcq => {
-    mcq.querySelector('.check-btn').addEventListener('click', () => check(mcq));
+    mcq.querySelector('.check').addEventListener('click', () => check(mcq));
   });
 })();
 </script>
