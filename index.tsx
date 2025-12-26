@@ -5,7 +5,7 @@ import { TOPICS, HISTORY_ENTRIES, PRIMARY_SOURCES, EXAM_INTERPRETATIONS } from '
 
 // --- UTILS ---
 const shuffle = (arr) => [...arr].sort(() => Math.random() - 0.5);
-const STORAGE_KEY = 'hf_master_quest_final';
+const STORAGE_KEY = 'hf_master_quest_final_v4';
 
 const getYear = (dateStr) => {
   if (!dateStr) return 0;
@@ -67,14 +67,14 @@ const UI = {
   success: "bg-green-300 text-slate-900 hover:bg-green-400",
   warning: "bg-yellow-300 text-slate-900 hover:bg-yellow-400",
   card: "bg-white border-2 border-slate-900 p-6 mb-4",
-  sidebar: "w-64 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full overflow-visible",
+  sidebar: "w-72 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full overflow-y-auto",
   main: "flex-1 p-8 bg-white overflow-y-auto"
 };
 
 // --- SUB-COMPONENTS ---
 
 const FlashcardSession = ({ entries, onExit, onRecord }) => {
-  const [queue, setQueue] = useState(() => shuffle([...entries]));
+  const [queue, setQueue] = useState(entries);
   const [revealed, setRevealed] = useState(false);
   const current = queue[0];
 
@@ -84,6 +84,20 @@ const FlashcardSession = ({ entries, onExit, onRecord }) => {
       <button onClick={onExit} className={`${UI.btn} ${UI.primary} px-10 py-4 text-lg`}>TILBAGE TIL MENU</button>
     </div>
   );
+
+  const handleIgen = () => {
+    onRecord(current.id, false);
+    setRevealed(false);
+    playSound('damage');
+    // We stay on the current card (index 0)
+  };
+
+  const handleResponse = (ok) => {
+    onRecord(current.id, ok);
+    setRevealed(false);
+    if (ok) playSound('success');
+    setQueue(prev => prev.slice(1));
+  };
 
   return (
     <div className="max-w-2xl mx-auto py-8">
@@ -101,10 +115,10 @@ const FlashcardSession = ({ entries, onExit, onRecord }) => {
           <div className="animate-pop">
             <p className="text-2xl text-slate-900 leading-relaxed font-bold mb-8 italic">"{current.description}"</p>
             <div className="grid grid-cols-4 gap-2">
-              <button onClick={() => { onRecord(current.id, false); setRevealed(false); setQueue(queue.slice(1)); }} className={`${UI.btn} ${UI.danger}`}>IGEN</button>
-              <button onClick={() => { onRecord(current.id, false); setRevealed(false); setQueue(queue.slice(1)); }} className={`${UI.btn} ${UI.warning}`}>SVÆRT</button>
-              <button onClick={() => { onRecord(current.id, true); setRevealed(false); setQueue(queue.slice(1)); }} className={`${UI.btn} ${UI.success}`}>OK</button>
-              <button onClick={() => { onRecord(current.id, true); setRevealed(false); setQueue(queue.slice(1)); }} className={`${UI.btn} ${UI.primary}`}>LET</button>
+              <button onClick={handleIgen} className={`${UI.btn} ${UI.danger}`}>IGEN</button>
+              <button onClick={() => handleResponse(false)} className={`${UI.btn} ${UI.warning}`}>SVÆRT</button>
+              <button onClick={() => handleResponse(true)} className={`${UI.btn} ${UI.success}`}>OK</button>
+              <button onClick={() => handleResponse(true)} className={`${UI.btn} ${UI.primary}`}>LET</button>
             </div>
           </div>
         )}
@@ -113,19 +127,19 @@ const FlashcardSession = ({ entries, onExit, onRecord }) => {
   );
 };
 
-const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, highScore, setHighScore }) => {
-  const dated = useMemo(() => entries.filter(e => e.date).sort((a, b) => getYear(a.date) - getYear(b.date)), [entries]);
+const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, highScore, setHighScore, onRecord }) => {
   const [placed, setPlaced] = useState([]);
   const [pool, setPool] = useState([]);
   const [selected, setSelected] = useState(null);
   const [shake, setShake] = useState(false);
 
   const setupLevel = useCallback(() => {
+    const dated = entries.filter(e => e.date).sort((a, b) => getYear(a.date) - getYear(b.date));
     const shuffled = shuffle([...dated]);
     setPlaced([shuffled[0]]);
     setPool(shuffled.slice(1, 6));
     playSound('start');
-  }, [dated]);
+  }, [entries]);
 
   useEffect(() => {
     if (placed.length === 0) setupLevel();
@@ -139,6 +153,7 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
 
     if (year >= prevYear && year <= nextYear) {
       playSound('success');
+      onRecord(selected.id, true);
       const newPlaced = [...placed];
       newPlaced.splice(index, 0, selected);
       setPlaced(newPlaced);
@@ -146,6 +161,7 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
       setSelected(null);
     } else {
       playSound('damage');
+      onRecord(selected.id, false);
       setShake(true);
       setTimeout(() => setShake(false), 500);
       setHearts(prev => Math.max(0, prev - 1));
@@ -220,14 +236,36 @@ const TimelineQuest = ({ entries, onExit, streak, setStreak, hearts, setHearts, 
   );
 };
 
-const QuizSession = ({ questions, onExit, title }) => {
+const QuizSession = ({ questions, onExit, title, onRecord }) => {
   const [idx, setIdx] = useState(0);
   const [selected, setSelected] = useState(null);
   const [isAnswered, setIsAnswered] = useState(false);
+  
   const q = questions[idx];
   const options = useMemo(() => q?.options ? shuffle(q.options) : [], [q]);
 
   if (!q) return <div className="p-20 text-center"><button onClick={onExit} className={UI.btn}>TILBAGE</button></div>;
+
+  const handleSelect = (o) => {
+    if (isAnswered) return;
+    setSelected(o);
+    setIsAnswered(true);
+    const isCorrect = o === q.correctAnswer;
+    if (isCorrect) playSound('success'); else playSound('damage');
+    if (q.entryId) {
+      onRecord(q.entryId, isCorrect);
+    }
+  };
+
+  const handleNext = () => {
+    if (idx < questions.length - 1) {
+      setIdx(prev => prev + 1);
+      setSelected(null);
+      setIsAnswered(false);
+    } else {
+      onExit();
+    }
+  };
 
   return (
     <div className="max-w-2xl mx-auto py-8">
@@ -240,14 +278,30 @@ const QuizSession = ({ questions, onExit, title }) => {
         <h2 className="text-2xl font-black text-slate-900 mb-10 leading-snug">{q.question}</h2>
         <div className="space-y-3">
           {options.map(o => (
-            <button key={o} disabled={isAnswered} onClick={() => { setSelected(o); setIsAnswered(true); }}
-              className={`w-full text-left p-5 border-2 transition-all font-bold ${isAnswered ? (o === q.correctAnswer ? 'bg-green-300' : (o === selected ? 'bg-red-300' : 'opacity-30')) : 'bg-white hover:bg-slate-50 border-slate-900'}`}>{o}</button>
+            <button 
+              key={o} 
+              disabled={isAnswered} 
+              onClick={(e) => { e.preventDefault(); handleSelect(o); }}
+              className={`w-full text-left p-5 border-2 transition-all font-bold ${
+                isAnswered 
+                  ? (o === q.correctAnswer 
+                      ? 'bg-green-300 border-slate-900' 
+                      : (o === selected ? 'bg-red-300 border-slate-900' : 'opacity-30 border-slate-200')) 
+                  : 'bg-white hover:bg-slate-50 border-slate-900'
+              }`}
+            >
+              {o}
+            </button>
           ))}
         </div>
         {isAnswered && (
           <div className="mt-8 animate-pop">
-            <button onClick={() => { if (idx < questions.length - 1) { setIdx(idx + 1); setSelected(null); setIsAnswered(false); } else onExit(); }}
-              className={`${UI.btn} ${UI.primary} w-full py-6 text-xl uppercase`}>Næste Spørgsmål →</button>
+            <button 
+              onClick={handleNext}
+              className={`${UI.btn} ${UI.primary} w-full py-6 text-xl uppercase`}
+            >
+              Næste Spørgsmål →
+            </button>
           </div>
         )}
       </div>
@@ -255,10 +309,36 @@ const QuizSession = ({ questions, onExit, title }) => {
   );
 };
 
-const SourceAnalysis = ({ sources, onExit }) => {
+const SourceAnalysis = ({ sources, onExit, onRecord }) => {
   const [curr, setCurr] = useState(0);
+  const [answeredMap, setAnsweredMap] = useState<Record<number, string>>({});
+  
   const s = sources[curr];
+
+  const shuffledOptionsPerQuestion = useMemo(() => {
+    if (!s) return [];
+    return s.questions.map(q => shuffle(q.options));
+  }, [s]);
+
   if (!s) return <div className="p-20 text-center"><button onClick={onExit} className={UI.btn}>TILBAGE</button></div>;
+
+  const handleSourceAnswer = (qIdx: number, selected: string) => {
+    if (answeredMap[qIdx]) return;
+    const q = s.questions[qIdx];
+    const isCorrect = selected === q.correctAnswer;
+    if (isCorrect) playSound('success'); else playSound('damage');
+    setAnsweredMap(prev => ({ ...prev, [qIdx]: selected }));
+    onRecord(s.id, isCorrect);
+  };
+
+  const handleNextSource = () => {
+    if (curr < sources.length - 1) {
+      setCurr(prev => prev + 1);
+      setAnsweredMap({});
+    } else {
+      onExit();
+    }
+  };
 
   return (
     <div className="max-w-4xl mx-auto py-8">
@@ -272,20 +352,49 @@ const SourceAnalysis = ({ sources, onExit }) => {
           "{s.text}"
         </div>
         <div className="space-y-12">
-          {s.questions.map((q, i) => (
-            <div key={i} className="border-t-4 border-slate-100 pt-10">
-              <p className="font-black text-xl text-slate-900 mb-6 uppercase tracking-tight">Analyse: {q.question}</p>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                {q.options.map(o => (
-                  <button key={o} onClick={() => alert(o === q.correctAnswer ? "KORREKT!" : "FORKERT.")} className="p-5 border-2 border-slate-900 text-left text-sm font-black text-slate-900 hover:bg-slate-50">{o}</button>
-                ))}
+          {s.questions.map((q, qIdx) => {
+            const selected = answeredMap[qIdx];
+            const isAnswered = !!selected;
+
+            return (
+              <div key={qIdx} className="border-t-4 border-slate-100 pt-10">
+                <p className="font-black text-xl text-slate-900 mb-6 uppercase tracking-tight">Analyse: {q.question}</p>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                  {shuffledOptionsPerQuestion[qIdx].map(o => (
+                    <button 
+                      key={o} 
+                      disabled={isAnswered}
+                      onClick={() => handleSourceAnswer(qIdx, o)}
+                      className={`p-5 border-2 text-left text-sm font-black transition-all ${
+                        isAnswered
+                          ? (o === q.correctAnswer 
+                              ? 'bg-green-300 border-slate-900' 
+                              : (o === selected ? 'bg-red-300 border-slate-900' : 'opacity-30 border-slate-200'))
+                          : 'bg-white border-slate-900 hover:bg-slate-50'
+                      }`}
+                    >
+                      {o}
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
         <div className="mt-16 pt-8 border-t-4 border-slate-100 flex justify-between">
-          <button disabled={curr === 0} onClick={() => setCurr(curr - 1)} className="font-black text-slate-400 uppercase disabled:opacity-0 hover:text-slate-900">← Forrige</button>
-          <button onClick={() => { if (curr < sources.length - 1) setCurr(curr + 1); else onExit(); }} className={`${UI.btn} ${UI.primary} px-10`}>NÆSTE KILDE →</button>
+          <button 
+            disabled={curr === 0} 
+            onClick={() => { setCurr(curr - 1); setAnsweredMap({}); }} 
+            className="font-black text-slate-400 uppercase disabled:opacity-0 hover:text-slate-900"
+          >
+            ← Forrige
+          </button>
+          <button 
+            onClick={handleNextSource} 
+            className={`${UI.btn} ${UI.primary} px-10`}
+          >
+            {curr < sources.length - 1 ? 'NÆSTE KILDE →' : 'AFSLUT →'}
+          </button>
         </div>
       </div>
     </div>
@@ -295,9 +404,10 @@ const SourceAnalysis = ({ sources, onExit }) => {
 // --- MAIN APP ---
 
 const App = () => {
-  const [stats, setStats] = useState<Record<string, {count: number, correct: number}>>(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
+  const [stats, setStats] = useState(() => JSON.parse(localStorage.getItem(STORAGE_KEY + '_stats') || '{}'));
   const [selIds, setSelIds] = useState(() => TOPICS.map(t => t.id));
   const [view, setView] = useState('menu');
+  const [shuffledContent, setShuffledContent] = useState(null);
 
   const [streak, setStreak] = useState(0);
   const [hearts, setHearts] = useState(3);
@@ -312,57 +422,77 @@ const App = () => {
     sources: PRIMARY_SOURCES.filter(e => selIds.includes(e.topicId))
   }), [selIds]);
 
-  const quizQs = useMemo(() => filtered.entries.flatMap(e => (e.questions || []).map(q => ({ ...q, entryId: e.id }))), [filtered]);
-  const examQs = useMemo(() => filtered.exams.flatMap(e => (e.subtext || []).map(s => ({ ...s, entryId: e.id }))), [filtered]);
-
-  // Advanced Mastery Logic
-  const { masteryData, recommendation } = useMemo(() => {
-    // Overall Stats
-    const relevantStats = Object.entries(stats).filter(([id]) => HISTORY_ENTRIES.map(e => e.id).includes(id));
-    let totalAtt = 0; let totalCorr = 0;
-    relevantStats.forEach(([_, v]) => { 
-      const val = v as {count: number, correct: number};
-      totalAtt += val.count; 
-      totalCorr += val.correct; 
-    });
+  // Robust Mastery Logic: Includes Entries, Sources, and Exams for total calculation
+  const { masteryData, recommendation, topicDetails } = useMemo(() => {
+    const allContentInScope = [
+      ...HISTORY_ENTRIES.filter(e => selIds.includes(e.topicId)),
+      ...PRIMARY_SOURCES.filter(e => selIds.includes(e.topicId)),
+      ...EXAM_INTERPRETATIONS.filter(e => selIds.includes(e.topicId))
+    ];
+    const totalContentIds = allContentInScope.map(c => c.id);
     
-    // Per-Topic Mastery for Recommendation
-    const topicMastery = TOPICS.map(t => {
-      const topicEntries = HISTORY_ENTRIES.filter(e => e.topicId === t.id).map(e => e.id);
-      let tAtt = 0; let tCorr = 0;
-      Object.entries(stats).forEach(([id, v]) => {
-        const val = v as {count: number, correct: number};
-        if (topicEntries.includes(id)) {
-          tAtt += val.count;
-          tCorr += val.correct;
+    let masteredCount = 0;
+    Object.entries(stats).forEach(([id, val]) => {
+      if (totalContentIds.includes(id) && (val as any).correct > 0) {
+        masteredCount++;
+      }
+    });
+
+    const masteryPercent = totalContentIds.length > 0 ? Math.round((masteredCount / totalContentIds.length) * 100) : 0;
+
+    const topicResults = TOPICS.map(t => {
+      const topicIds = [
+        ...HISTORY_ENTRIES.filter(e => e.topicId === t.id),
+        ...PRIMARY_SOURCES.filter(e => e.topicId === t.id),
+        ...EXAM_INTERPRETATIONS.filter(e => e.topicId === t.id)
+      ].map(c => c.id);
+      
+      let masteredInTopic = 0;
+      Object.entries(stats).forEach(([id, val]) => {
+        if (topicIds.includes(id) && (val as any).correct > 0) {
+          masteredInTopic++;
         }
       });
-      return { id: t.id, title: t.title, percent: tAtt > 0 ? (tCorr / tAtt) * 100 : 0, attempts: tAtt };
+      const tPercent = topicIds.length > 0 ? Math.round((masteredInTopic / topicIds.length) * 100) : 0;
+      return { id: t.id, title: t.title, percent: tPercent, count: masteredInTopic, total: topicIds.length };
     });
 
-    // Lowest Mastery Topic
-    const lowest = [...topicMastery].sort((a, b) => a.percent - b.percent)[0];
+    const lowestTopic = [...topicResults].filter(t => selIds.includes(t.id)).sort((a, b) => a.percent - b.percent)[0];
 
     return { 
-      masteryData: { 
-        percent: totalAtt > 0 ? Math.round((totalCorr / totalAtt) * 100) : 0,
-        attempts: totalAtt,
-        correct: totalCorr
-      },
-      recommendation: lowest ? lowest.title : "Ingen data endnu"
+      masteryData: { percent: masteryPercent, masteredCount, total: totalContentIds.length },
+      topicDetails: topicResults.filter(t => selIds.includes(t.id)),
+      recommendation: lowestTopic ? lowestTopic.title : "Ingen data endnu"
     };
-  }, [stats]);
+  }, [stats, selIds]);
+
+  const recordStat = (id: string, ok: boolean) => {
+    setStats(p => {
+      const s = p[id] || { count: 0, correct: 0 };
+      return { ...p, [id]: { count: s.count + 1, correct: s.correct + (ok ? 1 : 0) } };
+    });
+  };
+
+  const startModule = (targetView) => {
+    if (targetView === 'flashcards') setShuffledContent(shuffle(filtered.entries));
+    if (targetView === 'quiz') setShuffledContent(shuffle(filtered.entries.flatMap(e => (e.questions || []).map(q => ({ ...q, entryId: e.id })))));
+    if (targetView === 'exam') setShuffledContent(shuffle(filtered.exams.flatMap(e => (e.subtext || []).map(s => ({ ...s, entryId: e.id })))));
+    if (targetView === 'sources') setShuffledContent(shuffle(filtered.sources));
+    if (targetView === 'timeline') {
+      setStreak(0);
+      setHearts(3);
+    }
+    setView(targetView);
+  };
 
   if (view !== 'menu') {
     return (
       <div className="bg-slate-50 min-h-screen">
-        {view === 'flashcards' && <FlashcardSession entries={filtered.entries} onExit={() => setView('menu')} onRecord={(id, ok) => {
-          setStats(p => { const s = p[id] || {count:0,correct:0}; return {...p, [id]: {count:s.count+1,correct:s.correct+(ok?1:0)}}; });
-        }} />}
-        {view === 'quiz' && <QuizSession questions={shuffle(quizQs)} title="Begrebs Quiz" onExit={() => setView('menu')} />}
-        {view === 'timeline' && <TimelineQuest entries={filtered.entries} streak={streak} setStreak={setStreak} hearts={hearts} setHearts={setHearts} highScore={highScore} setHighScore={setHighScore} onExit={() => setView('menu')} />}
-        {view === 'sources' && <SourceAnalysis sources={filtered.sources} onExit={() => setView('menu')} />}
-        {view === 'exam' && <QuizSession questions={examQs} title="Eksamenstræner" onExit={() => setView('menu')} />}
+        {view === 'flashcards' && <FlashcardSession entries={shuffledContent} onExit={() => setView('menu')} onRecord={recordStat} />}
+        {view === 'quiz' && <QuizSession questions={shuffledContent} title="Begrebs Quiz" onExit={() => setView('menu')} onRecord={recordStat} />}
+        {view === 'timeline' && <TimelineQuest entries={filtered.entries} streak={streak} setStreak={setStreak} hearts={hearts} setHearts={setHearts} highScore={highScore} setHighScore={setHighScore} onExit={() => setView('menu')} onRecord={recordStat} />}
+        {view === 'sources' && <SourceAnalysis sources={shuffledContent} onExit={() => setView('menu')} onRecord={recordStat} />}
+        {view === 'exam' && <QuizSession questions={shuffledContent} title="Eksamenstræner" onExit={() => setView('menu')} onRecord={recordStat} />}
       </div>
     );
   }
@@ -375,8 +505,8 @@ const App = () => {
           <p className="text-[10px] font-black text-blue-900 uppercase mt-2">Dansk Eksamen Mastery</p>
         </div>
         
-        {/* Scrollable Topic Section */}
-        <div className="flex-1 overflow-y-auto pr-2 mb-4 space-y-2">
+        <div className="flex-1 overflow-y-auto pr-2 mb-6 space-y-2">
+          <p className="text-[10px] font-black text-slate-400 uppercase mb-2">Vælg Emner i Pensum</p>
           {TOPICS.map(t => (
             <label key={t.id} className={`flex items-center gap-3 p-3 border-2 cursor-pointer transition-all ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
               <input type="checkbox" checked={selIds.includes(t.id)} onChange={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} />
@@ -389,28 +519,36 @@ const App = () => {
           </div>
         </div>
 
-        {/* Fixed Mastery Tooltip UI at the very bottom */}
-        <div className="flex-shrink-0 relative group mt-2 pt-4 border-t-2 border-slate-100">
-          <div className="p-5 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] cursor-help transition-all group-hover:bg-blue-50">
-            <span className="text-[10px] font-black uppercase text-slate-500 block mb-1">Mestring</span>
-            <span className="text-4xl font-black text-blue-900 italic leading-none">{masteryData.percent}%</span>
+        <div className="flex-shrink-0 mt-auto pt-6 border-t-4 border-slate-900 bg-slate-100 -mx-6 px-6 pb-6">
+          <div className="p-4 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] mb-6">
+            <span className="text-[10px] font-black uppercase text-slate-500 block mb-1">Total Mestring</span>
+            <span className="text-5xl font-black text-blue-900 italic leading-none">{masteryData.percent}%</span>
           </div>
           
-          {/* Tooltip content - Fixed hidden/group-hover behavior and z-indexing */}
-          <div className="absolute bottom-full left-0 w-64 p-4 bg-slate-900 text-white rounded border-2 border-slate-900 shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-y-4 z-[9999]">
-            <h4 className="font-black text-xs uppercase mb-3 border-b border-slate-700 pb-2 text-blue-300 tracking-widest">Mastery Detaljer</h4>
-            <div className="space-y-3">
-              <div className="flex justify-between items-center text-[10px]">
-                <span className="text-slate-400 font-bold uppercase">Rigtige Svar:</span>
-                <span className="font-black">{masteryData.correct} / {masteryData.attempts}</span>
-              </div>
-              <div className="flex flex-col gap-1">
-                <span className="text-slate-400 font-bold uppercase text-[9px]">Anbefalet fokus næste gang:</span>
-                <span className="font-black text-yellow-400 uppercase text-[10px] leading-tight">{recommendation}</span>
-              </div>
+          <div className="bg-white border-2 border-slate-900 p-4 shadow-[4px_4px_0px_0px_rgba(203,213,225,1)]">
+            <h4 className="font-black text-[10px] uppercase mb-4 border-b border-slate-200 pb-2 flex justify-between">
+              <span>Fremgang per emne</span>
+              <span className="text-blue-900">{masteryData.masteredCount}/{masteryData.total}</span>
+            </h4>
+            
+            <div className="space-y-4 max-h-60 overflow-y-auto pr-1">
+              {topicDetails.map(td => (
+                <div key={td.id} className="space-y-1">
+                  <div className="flex justify-between text-[9px] font-black uppercase">
+                    <span className="truncate w-3/4">{td.title}</span>
+                    <span className={td.percent > 70 ? "text-green-600" : td.percent > 30 ? "text-yellow-600" : "text-red-600"}>{td.percent}%</span>
+                  </div>
+                  <div className="w-full h-1.5 bg-slate-100 rounded-full overflow-hidden border border-slate-200">
+                    <div className="h-full bg-blue-400 transition-all duration-700" style={{ width: `${td.percent}%` }}></div>
+                  </div>
+                </div>
+              ))}
             </div>
-            {/* Arrow */}
-            <div className="absolute top-full left-10 w-4 h-4 bg-slate-900 rotate-45 -translate-y-2 border-r-2 border-b-2 border-slate-900"></div>
+
+            <div className="mt-4 pt-3 border-t-2 border-slate-100">
+              <span className="text-slate-400 font-bold uppercase text-[8px] block mb-1 italic">Anbefalet fokus nu:</span>
+              <span className="font-black text-blue-900 uppercase text-[10px] leading-tight block">{recommendation}</span>
+            </div>
           </div>
         </div>
       </aside>
@@ -418,36 +556,36 @@ const App = () => {
       <main className={UI.main}>
         <div className="mb-12 pb-6 border-b-8 border-slate-900 flex justify-between items-end">
           <h2 className="text-5xl font-black uppercase italic tracking-tighter">Vælg Modul</h2>
-          <span className="text-xs font-black bg-slate-900 text-white px-4 py-1 uppercase">{filtered.entries.length} Kort i pensum</span>
+          <span className="text-xs font-black bg-slate-900 text-white px-4 py-1 uppercase">{filtered.entries.length} Emner valgt</span>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <button onClick={() => setView('flashcards')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
+          <button onClick={() => startModule('flashcards')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
             <div className="text-5xl mb-6">🗂️</div>
             <h3 className="text-3xl font-black mb-4 uppercase italic">Flashcards</h3>
             <p className="text-sm text-slate-700 font-bold mb-8">Test din paratviden og husk de vigtigste begreber fra det feudale til det senmoderne.</p>
             <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Start Træning</div>
           </button>
-          <button onClick={() => setView('quiz')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
+          <button onClick={() => startModule('quiz')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
             <div className="text-5xl mb-6">🎯</div>
             <h3 className="text-3xl font-black mb-4 uppercase italic">Videns Quiz</h3>
             <p className="text-sm text-slate-700 font-bold mb-8">Multiple-choice test i pensum. Få umiddelbar feedback på dine historiske fakta.</p>
             <div className={`${UI.btn} ${UI.primary} w-full text-center uppercase py-4`}>Tag Quiz</div>
           </button>
-          <button onClick={() => { setStreak(0); setHearts(3); setView('timeline'); }} className={`${UI.card} text-left md:col-span-2 hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-yellow-50 flex items-center gap-10`}>
+          <button onClick={() => startModule('timeline')} className={`${UI.card} text-left md:col-span-2 hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-yellow-50 flex items-center gap-10`}>
             <div className="text-7xl">⚔️</div>
             <div className="flex-1">
               <h3 className="text-4xl font-black mb-4 uppercase italic">Timeline Quest</h3>
-              <p className="text-md text-slate-700 font-bold max-w-2xl mb-8">Beskyt dine hjerter! Sortér begivenheder korrekt for at opnå den højeste streak. 3 liv pr. quest – hearts carry over!</p>
+              <p className="text-md text-slate-700 font-bold max-w-2xl mb-8">Beskyt dine hjerter! Sortér begivenheder korrekt for at opnå den højeste streak. 3 liv pr. quest.</p>
               <div className={`${UI.btn} ${UI.primary} px-16 py-5 uppercase text-lg`}>Start Quest</div>
             </div>
           </button>
-          <button onClick={() => setView('sources')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
+          <button onClick={() => startModule('sources')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)]`}>
             <div className="text-5xl mb-6">📜</div>
             <h3 className="text-3xl font-black mb-4 uppercase italic">Kilde Analyse</h3>
-            <p className="text-sm text-slate-700 font-bold mb-8">Dyk ned i lange uddrag (Wannsee, Suchomel, Hitler Youth) og træn din kildekritik.</p>
+            <p className="text-sm text-slate-700 font-bold mb-8">Dyk ned i lange uddrag og træn din kildekritik med specifikke analyseopgaver.</p>
             <div className={`${UI.btn} ${UI.success} w-full text-center uppercase py-4`}>Analysér</div>
           </button>
-          <button onClick={() => setView('exam')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-slate-100`}>
+          <button onClick={() => startModule('exam')} className={`${UI.card} text-left hover:bg-slate-50 shadow-[8px_8px_0px_0px_rgba(15,23,42,1)] bg-slate-100`}>
             <div className="text-5xl mb-6">💡</div>
             <h3 className="text-3xl font-black mb-4 uppercase italic">Eksamenstræner</h3>
             <p className="text-sm text-slate-700 font-bold mb-8">Typiske eksamensspørgsmål og coaching. Forstå censorernes forventninger.</p>
@@ -459,7 +597,6 @@ const App = () => {
   );
 };
 
-// Removed '!' to fix Babel in-browser transformation
 const rootElement = document.getElementById('root');
 if (rootElement) {
   const root = createRoot(rootElement);
