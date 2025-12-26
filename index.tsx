@@ -67,7 +67,7 @@ const UI = {
   success: "bg-green-300 text-slate-900 hover:bg-green-400",
   warning: "bg-yellow-300 text-slate-900 hover:bg-yellow-400",
   card: "bg-white border-2 border-slate-900 p-6 mb-4",
-  sidebar: "w-64 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full",
+  sidebar: "w-64 border-r-2 border-slate-900 bg-slate-50 p-6 shrink-0 flex flex-col h-full overflow-visible",
   main: "flex-1 p-8 bg-white overflow-y-auto"
 };
 
@@ -320,7 +320,6 @@ const App = () => {
     // Overall Stats
     const relevantStats = Object.entries(stats).filter(([id]) => HISTORY_ENTRIES.map(e => e.id).includes(id));
     let totalAtt = 0; let totalCorr = 0;
-    // Fix: Explicitly cast 'v' to the expected object shape to resolve property access errors
     relevantStats.forEach(([_, v]) => { 
       const val = v as {count: number, correct: number};
       totalAtt += val.count; 
@@ -332,7 +331,6 @@ const App = () => {
       const topicEntries = HISTORY_ENTRIES.filter(e => e.topicId === t.id).map(e => e.id);
       let tAtt = 0; let tCorr = 0;
       Object.entries(stats).forEach(([id, v]) => {
-        // Fix: Explicitly cast 'v' to the expected object shape to resolve property access errors
         const val = v as {count: number, correct: number};
         if (topicEntries.includes(id)) {
           tAtt += val.count;
@@ -372,11 +370,13 @@ const App = () => {
   return (
     <div className="flex h-screen bg-white">
       <aside className={UI.sidebar}>
-        <div className="mb-10 pb-6 border-b-4 border-slate-900">
+        <div className="mb-10 pb-6 border-b-4 border-slate-900 flex-shrink-0">
           <h1 className="text-2xl font-black uppercase italic tracking-tighter leading-none">HF Historie</h1>
           <p className="text-[10px] font-black text-blue-900 uppercase mt-2">Dansk Eksamen Mastery</p>
         </div>
-        <div className="space-y-2 mb-10 overflow-y-auto pr-2">
+        
+        {/* Scrollable Topic Section */}
+        <div className="flex-1 overflow-y-auto pr-2 mb-4 space-y-2">
           {TOPICS.map(t => (
             <label key={t.id} className={`flex items-center gap-3 p-3 border-2 cursor-pointer transition-all ${selIds.includes(t.id) ? 'border-slate-900 bg-blue-50' : 'border-slate-100 opacity-60'}`}>
               <input type="checkbox" checked={selIds.includes(t.id)} onChange={() => setSelIds(s => s.includes(t.id) ? s.filter(x => x !== t.id) : [...s, t.id])} />
@@ -389,19 +389,19 @@ const App = () => {
           </div>
         </div>
 
-        {/* Fixed Mastery Tooltip UI */}
-        <div className="mt-auto group relative pt-4">
-          <div className="p-5 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] cursor-help transition-transform group-hover:-translate-y-1">
+        {/* Fixed Mastery Tooltip UI at the very bottom */}
+        <div className="flex-shrink-0 relative group mt-2 pt-4 border-t-2 border-slate-100">
+          <div className="p-5 border-4 border-slate-900 bg-white text-center shadow-[4px_4px_0px_0px_rgba(15,23,42,1)] cursor-help transition-all group-hover:bg-blue-50">
             <span className="text-[10px] font-black uppercase text-slate-500 block mb-1">Mestring</span>
             <span className="text-4xl font-black text-blue-900 italic leading-none">{masteryData.percent}%</span>
           </div>
           
-          {/* Tooltip content - Fixed hidden/group-hover behavior */}
-          <div className="absolute bottom-full left-0 w-64 p-4 bg-slate-900 text-white rounded border-2 border-slate-900 shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-y-4 z-50">
+          {/* Tooltip content - Fixed hidden/group-hover behavior and z-indexing */}
+          <div className="absolute bottom-full left-0 w-64 p-4 bg-slate-900 text-white rounded border-2 border-slate-900 shadow-2xl invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200 -translate-y-4 z-[9999]">
             <h4 className="font-black text-xs uppercase mb-3 border-b border-slate-700 pb-2 text-blue-300 tracking-widest">Mastery Detaljer</h4>
             <div className="space-y-3">
               <div className="flex justify-between items-center text-[10px]">
-                <span className="text-slate-400 font-bold uppercase">Svar:</span>
+                <span className="text-slate-400 font-bold uppercase">Rigtige Svar:</span>
                 <span className="font-black">{masteryData.correct} / {masteryData.attempts}</span>
               </div>
               <div className="flex flex-col gap-1">
